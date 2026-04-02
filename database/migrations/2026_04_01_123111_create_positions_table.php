@@ -11,10 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::create('positions', function (Blueprint $table) {
+      Schema::create('positions', function (Blueprint $table) {
             $table->increments('position_id');
             $table->string('title', 100)->nullable();
             $table->decimal('salary', 10, 2)->nullable();
+            
+            $table->unsignedInteger('department_id')->nullable();
+            $table->foreign('department_id')
+                  ->references('department_id')
+                  ->on('departments')
+                  ->onDelete('set null');
+
             $table->timestamps();
         });
     }

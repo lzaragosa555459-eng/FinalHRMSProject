@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
 </head>
-<body>
+<body style="background-color: #EDF2FA;">
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 @extends('hr.sidebar')
- <nav class="navbar navbar-expand-lg navbar-dark bg-light">
+ <nav class="navbar navbar-expand-lg navbar-dark bg-white">
         <div class="container-fluid">
 
             <div class="ms-auto d-flex align-items-center">
@@ -41,7 +41,7 @@
     <div class="row g-3 mb-4">
 
                 <div class="col-md-2">
-            <div class="card border-0 bg-light rounded-4 p-3 text-center h-100">
+            <div class="card border-0 bg-white rounded-4 p-3 text-center h-100">
                 <i class="bi bi-people-fill fs-3 mb-2 text-primary"></i>
                 <h6 class="text-muted">Total Employees</h6>
                 <h4 class="fw-semibold">{{ $totalEmployees }}</h4>
@@ -49,7 +49,7 @@
         </div>
 
         <div class="col-md-2">
-            <div class="card border-0 bg-light rounded-4 p-3 text-center h-100">
+            <div class="card border-0 bg-white rounded-4 p-3 text-center h-100">
                 <i class="bi bi-person-check-fill fs-3 mb-2 text-success"></i>
                 <h6 class="text-muted">Total Active</h6>
                 <h4 class="fw-semibold">{{ $totalActive }}</h4>
@@ -57,7 +57,7 @@
         </div>
 
         <div class="col-md-2">
-            <div class="card border-0 bg-light rounded-4 p-3 text-center h-100">
+            <div class="card border-0 bg-white rounded-4 p-3 text-center h-100">
                 <i class="bi bi-person-plus-fill fs-3 mb-2 text-info"></i>
                 <h6 class="text-muted">New Hires</h6>
                 <h4 class="fw-semibold">{{ $newHires }}</h4>
@@ -65,7 +65,7 @@
         </div>
 
         <div class="col-md-2">
-            <div class="card border-0 bg-light rounded-4 p-3 text-center h-100">
+            <div class="card border-0 bg-white rounded-4 p-3 text-center h-100">
                 <i class="bi bi-person-dash-fill fs-3 mb-2 text-danger"></i>
                 <h6 class="text-muted">Resigned</h6>
                 <h4 class="fw-semibold">{{ $resignedEmployees }}</h4>
@@ -73,7 +73,7 @@
         </div>
 
         <div class="col-md-2">
-            <div class="card border-0 bg-light rounded-4 p-3 text-center h-100">
+            <div class="card border-0 bg-white rounded-4 p-3 text-center h-100">
                 <i class="bi bi-building fs-3 mb-2 text-warning"></i>
                 <h6 class="text-muted">Departments</h6>
                 <h4 class="fw-semibold">{{ $departments }}</h4>
@@ -87,7 +87,7 @@
 
         <!-- Employee Analytics -->
         <div class="col-md-8">
-            <div class="card border-0 bg-light rounded-4 p-3 h-100">
+            <div class="card border-0 bg-white rounded-4 p-3 h-100">
                 <h6 class="fw-semibold mb-3">Employee Analytics</h6>
 
                 <div class="row text-center g-3">
@@ -106,7 +106,7 @@
 
         <!-- Attendance -->
         <div class="col-md-4">
-            <div class="card border-0 bg-light rounded-4 p-3 h-100">
+            <div class="card border-0 bg-white rounded-4 p-3 h-100">
                 <h6 class="fw-semibold mb-3">Attendance and Leaves</h6>
 
                 <div class="mb-2">✔ Present: 0</div>
@@ -129,7 +129,7 @@
 
         <!-- Gender Stats -->
         <div class="col-md-6">
-            <div class="card border-0 bg-light rounded-4 p-3 h-100">
+            <div class="card border-0 bg-white rounded-4 p-3 h-100">
                 <h6 class="fw-semibold mb-3">Gender Stats</h6>
                 <div class="bg-white border rounded p-5 text-center">Pie Chart</div>
             </div>
@@ -137,7 +137,7 @@
 
         <!-- Recent Activity -->
         <div class="col-md-6">
-            <div class="card border-0 bg-light rounded-4 p-3 h-100">
+            <div class="card border-0 bg-white rounded-4 p-3 h-100">
                 <h6 class="fw-semibold mb-3">Recent Activity</h6>
 
                 <ul class="list-unstyled mb-0">

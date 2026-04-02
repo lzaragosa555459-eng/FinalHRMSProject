@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payroll', function (Blueprint $table) {
+        Schema::create('payrolls', function (Blueprint $table) {
             $table->increments('payroll_id');
             $table->unsignedInteger('employee_id')->nullable();
             $table->decimal('basic_salary', 10, 2)->nullable();

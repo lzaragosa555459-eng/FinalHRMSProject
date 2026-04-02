@@ -12,7 +12,7 @@
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
-<body>
+<body style="background-color: #EDF2FA;">
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -49,7 +49,7 @@
 
         <div class="col-md-4 mb-4 employee-card" data-id="{{ $emp->id }}">
 
-            <div class="card border-0 bg-light h-100 rounded-4">
+            <div class="card border-0 bg-white h-100 rounded-4">
 
                 <div class="card-body">
 
@@ -58,15 +58,15 @@
 
                             <div class="rounded-circle d-flex justify-content-center align-items-center bg-secondary text-white"
                                  style="width:45px;height:45px;">
-                                {{ strtoupper(substr($emp->first_name ?? 'U', 0, 1)) }}
+                                {{ strtoupper(substr($emp->name ?? 'U', 0, 1)) }}
                             </div>
 
                             <div>
                                 <h6 class="mb-0 fw-semibold">
-                                    {{ $emp->first_name }} {{ $emp->last_name }}
+                                    {{ $emp->name }} 
                                 </h6>
                                 <small class="text-muted">
-                                    {{ $emp->position?->title ?? 'Staff' }}
+                                    {{ $emp->position_id->title}}
                                 </small>
                             </div>
 
@@ -81,8 +81,8 @@
                         <div><strong>Dept:</strong> {{ $emp->department?->name ?? '—' }}</div>
                     </div>
 
-                    <div class="d-flex justify-content-end gap-2 mt-3">
-                        <button class="btn btn-sm btn-outline-warning rounded-pill px-3"
+                  <div class="d-flex justify-content-end gap-2 mt-3">
+                        <!--  <button class="btn btn-sm btn-outline-warning rounded-pill px-3"
                                 onclick="editEmployee('{{ $emp->id }}')">
                             Edit
                         </button>
@@ -90,8 +90,13 @@
                         <button class="btn btn-sm btn-outline-danger rounded-pill px-3"
                                 onclick="deleteEmployee('{{ $emp->id }}')">
                             Delete
-                        </button>
+                        </button>-->
+                         <button class="btn btn-sm btn-outline-primary rounded-pill px-3 ">
+                            View
+                    </button>
                     </div>
+
+                   
 
                 </div>
             </div>
