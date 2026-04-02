@@ -18,7 +18,7 @@
 
 @extends('hr.sidebar')
 
-<div class="container mt-4">
+<div class="container mt-4" style="margin-left: 15%;">
 
     <!-- Header -->
     <div class="row mb-4">
@@ -33,7 +33,7 @@
                     <input type="text" id="searchInput" class="form-control" placeholder="Search..." onkeyup="searchEmployees()">
                 </div>
 
-                <button class="btn btn-primary rounded-pill" onclick="showAddModal()">
+                <button class="btn btn-primary " onclick="showAddModal()">
                     + Add Employee
                 </button>
 
@@ -78,7 +78,7 @@
                     <div class="text-muted small">
                         <div><strong>Email:</strong> {{ $emp->email }}</div>
                         <div><strong>Phone:</strong> {{ $emp->phone_number ?? '—' }}</div>
-                        <div><strong>Dept:</strong> {{ $emp->department?->name ?? '—' }}</div>
+                        <div><strong>Department:</strong> {{ $emp->department?->name ?? '—' }}</div>
                     </div>
 
                   <div class="d-flex justify-content-end gap-2 mt-3">
@@ -91,9 +91,11 @@
                                 onclick="deleteEmployee('{{ $emp->id }}')">
                             Delete
                         </button>-->
-                         <button class="btn btn-sm btn-outline-primary rounded-pill px-3 ">
-                            View
-                    </button>
+                       
+                           <a href="{{ route('hr.EmployeesDetails.employee_details') }}" class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                               View
+                            </a>
+              
                     </div>
 
                    

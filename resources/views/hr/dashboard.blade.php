@@ -30,7 +30,7 @@
 
         </div>
     </nav>
-<div class="container mt-4">
+<div class="container mt-4" style="margin-left: 15%;">
 
     <!-- Header -->
     <div class="text-center mb-4">

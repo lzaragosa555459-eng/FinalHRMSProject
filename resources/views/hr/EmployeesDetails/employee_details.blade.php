@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #EDF2FA;">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    @extends('hr.sidebar')
+    @foreach($employees as $emp)
+    <div class="container mt-4 bg-white p-4" style="margin-left: 15%;">
+
+    <div class="row align-items-center">
+
+        <!-- Profile Image -->
+        <div class="col-md-4 text-center">
+            <img src="{{ asset('LIZPIC.jpg') }}"
+                 class="rounded-circle mt-3"
+                 width="250"
+                 height="250"
+                 alt="Profile">
+        </div>
+
+        <!-- Employee Info -->
+        <div class="col-md-6">
+
+            <h2 class="mb-1">{{ $emp->name }}</h2>
+            <h5>{{ $emp->position?->title ?? '—' }}</h5>
+           
+
+            <hr>
+
+            <div class="mb-2">
+                <strong>Employee Number:</strong>
+                {{ $emp->employee_number ?? '—' }}
+            </div>
+
+            <div class="mb-2">
+                <strong>Phone:</strong>
+                {{ $emp->phone_number ?? '—' }}
+            </div>
+
+            <div class="mb-2">
+                <strong>Department:</strong>
+                {{ $emp->department?->name ?? '—' }}
+            </div>
+
+            <div class="mb-2">
+                <strong>Email:</strong>
+                 {{ $emp->email }}
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+@endforeach
+</body>
+</html>

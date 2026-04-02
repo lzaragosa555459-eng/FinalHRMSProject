@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->enum('gender', ['male', 'female', 'other'])->nullable();
+            $table->string('profile_image')->nullable();
 
             $table->unsignedInteger('department_id')->nullable();
             $table->unsignedInteger('position_id')->nullable();
