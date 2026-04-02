@@ -15,8 +15,6 @@ Route::get('/login', function () {
 
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/index', function(){
-    return view('hr.index');
-});
 
-Route::get('/dashboard', [HRController::class, 'index'])->name('hr.index');
+Route::get('/dashboard', [HRController::class, 'dashboard'])->name('hr.dashboard');
+Route::get('/employees', [HRController::class, 'employees'])->name('hr.employees');

@@ -95,18 +95,17 @@
 
 <!-- Sidebar -->
 <div id="mySidebar" class="sidebar">
-
-    <div class="logo">
-        <img src="{{ asset('logo.png') }}" height="40">
-    </div>
-
-    <a href="{{ route('hr.index') }}" 
+    
+    <img src="{{ asset('logo.png') }}" height="25" style="margin: 15px;">
+    
+    <a href="{{ route('hr.dashboard') }}" 
        class="{{ Route::is('hr.dashboard') ? 'active' : '' }}">
         <i class="bi bi-house-door-fill"></i>
         <span>Dashboard</span>
     </a>
 
-    <a href="#" class="{{ Route::is('employees.*') ? 'active' : '' }}">
+    <a href="{{ route('hr.employees') }}" 
+       class="{{ Route::is('hr.employees') ? 'active' : '' }}">
         <i class="bi bi-people-fill"></i>
         <span>Employees</span>
     </a>

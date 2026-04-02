@@ -27,7 +27,7 @@ return new class extends Migration
             $table->decimal('salary', 10, 2)->nullable();
             $table->unsignedInteger('manager_id')->nullable();
             $table->unsignedInteger('user_id')->nullable();
-
+            $table->enum('status', ['active','resigned','inactive']);
             $table->timestamps();
 
             $table->foreign('department_id')->references('department_id')->on('departments')->onDelete('set null');
