@@ -16,6 +16,7 @@ return new class extends Migration
             $table->increments('employee_id');
             $table->string('employee_number', 50)->unique()->nullable();
             $table->string('name', 150)->nullable();
+            $table->string('phone_number',20)->nullable();
             $table->string('email', 150)->nullable();
             $table->text('address')->nullable();
             $table->date('date_of_birth')->nullable();

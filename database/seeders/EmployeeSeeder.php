@@ -16,6 +16,7 @@ class EmployeeSeeder extends Seeder
             'employee_id' => 1,
             'employee_number' => 'EMP001',
             'name' => 'John Doe',
+            'phone_number' => '09456582058',
             'email' => 'john@example.com',
             'address' => 'Manila',
             'date_of_birth' => '1995-05-10',

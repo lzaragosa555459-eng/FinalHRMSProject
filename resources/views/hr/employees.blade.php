@@ -66,18 +66,18 @@
                                     {{ $emp->name }} 
                                 </h6>
                                 <small class="text-muted">
-                                    {{ $emp->position_id->title}}
+                                    {{ $emp->position?->title ?? 'Staff' }}
                                 </small>
                             </div>
 
                         </div>
 
-                        <small class="text-muted">#{{ $emp->id }}</small>
+                        <small class="text-muted">#{{ $emp->employee_id }}</small>
                     </div>
 
                     <div class="text-muted small">
                         <div><strong>Email:</strong> {{ $emp->email }}</div>
-                        <div><strong>Phone:</strong> {{ $emp->phone ?? '—' }}</div>
+                        <div><strong>Phone:</strong> {{ $emp->phone_number ?? '—' }}</div>
                         <div><strong>Dept:</strong> {{ $emp->department?->name ?? '—' }}</div>
                     </div>
 
