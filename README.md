@@ -183,7 +183,7 @@ Allows users to input and store employee data in the database.
 ---
 
 ## 🔍 Task Analysis
-
+<img width="291" height="571" alt="FlowChart drawio" src="https://github.com/user-attachments/assets/c1469686-2e86-4349-baaa-cb809b47e286" />
 ### 👤 User: HR Staff
 
 ### 🎯 Goal: Add an Employee
@@ -209,13 +209,16 @@ Allows users to input and store employee data in the database.
 
 ## 📅 Gantt Chart
 
-*(Insert your project timeline here)*
+<img width="1180" height="326" alt="image" src="https://github.com/user-attachments/assets/588fb82e-d30f-4f88-a2a0-2accdd737da8" />
+
 
 ---
 
 ## 🗂️ Entity Relationship Diagram (ERD)
 
-*(Insert your ERD diagram here)*
+<img width="1051" height="901" alt="hrmsERD drawio" src="https://github.com/user-attachments/assets/3d134953-701f-476d-be46-3269cae2a7f9" />
+
+
 
 ---
 
