@@ -64,9 +64,9 @@ class HRController extends Controller
         return view('hr.payroll');
     }
 
-    public function employee_details(){
-          $employees = Employee::all();
+    public function employee_details($id){
+          $emp = Employee::findOrFail($id);
 
-        return view('hr.EmployeesDetails.employee_details', compact('employees'));
+        return view('hr.EmployeesDetails.employee_details', compact('emp'));
     }
 }

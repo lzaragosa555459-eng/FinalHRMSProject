@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     protected $table = 'employees';
+    protected $primaryKey = 'employee_id';
+    public $incrementing = true;
+    protected $keyType = 'int';
 
     public function position()
     {

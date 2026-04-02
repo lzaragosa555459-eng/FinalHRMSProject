@@ -25,7 +25,7 @@ class ApplicantSeeder extends Seeder
             'last_name' => 'Smith',
             'email' => 'jane@example.com',
             'resume' => 'resume2.pdf',
-            'status' => 'pending'
+            'status' => 'hired'
         ],
     ]);
 }

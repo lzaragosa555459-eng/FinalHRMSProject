@@ -92,7 +92,7 @@
                             Delete
                         </button>-->
                        
-                           <a href="{{ route('hr.EmployeesDetails.employee_details') }}" class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                           <a href="{{ route('hr.EmployeesDetails.employee_details', $emp->employee_id) }}" class="btn btn-sm btn-outline-primary rounded-pill px-3">
                                View
                             </a>
               
@@ -160,15 +160,7 @@
 </div>
 
 <script>
-let modalInstance = new bootstrap.Modal(document.getElementById('employeeModal'));
 
-function showAddModal() {
-    modalInstance.show();
-}
-
-function closeModal() {
-    modalInstance.hide();
-}
 
 function searchEmployees() {
     const input = document.getElementById('searchInput').value.toLowerCase();
@@ -180,21 +172,6 @@ function searchEmployees() {
     });
 }
 
-function editEmployee(id) {
-    alert("Edit employee: " + id);
-    modalInstance.show();
-}
-
-function deleteEmployee(id) {
-    if (confirm("Are you sure you want to delete employee " + id + "?")) {
-        alert("Deleted (frontend only)");
-    }
-}
-
-function saveEmployee() {
-    alert("Save clicked (connect to backend later)");
-    modalInstance.hide();
-}
 </script>
 
 </body>

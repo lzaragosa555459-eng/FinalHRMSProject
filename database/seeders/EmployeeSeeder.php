@@ -31,5 +31,26 @@ class EmployeeSeeder extends Seeder
             'status' => 'active'
         ]
     ]);
+
+    Employee::insert([
+        [
+            'employee_id' => 2,
+            'employee_number' => 'EMP002',
+            'name' => 'Jane Doe',
+            'phone_number' => '09123456789',
+            'email' => 'jane@example.com',
+            'address' => 'Manila',
+            'date_of_birth' => '1996-04-20',
+            'gender' => 'female',
+            'department_id' => 2,
+            'position_id' => 2,
+            'applicant_id' => 2,
+            'hire_date' => now(),
+            'salary' => 30000,
+            'manager_id' => null,
+            'user_id' => null,
+            'status' => 'active'
+        ]
+    ]);
 }
 }
