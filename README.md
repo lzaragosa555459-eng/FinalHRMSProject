@@ -183,7 +183,9 @@ Allows users to input and store employee data in the database.
 ---
 
 ## 🔍 Task Analysis
+
 <img width="291" height="571" alt="FlowChart drawio" src="https://github.com/user-attachments/assets/c1469686-2e86-4349-baaa-cb809b47e286" />
+
 ### 👤 User: HR Staff
 
 ### 🎯 Goal: Add an Employee
