@@ -137,9 +137,7 @@
 
 </div>
 
-<div class="main">
-    @yield('content')
-</div>
+
 
 <!-- Main Content -->
 <div id="mainContent" class="main">

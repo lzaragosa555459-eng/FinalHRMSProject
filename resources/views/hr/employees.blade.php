@@ -26,15 +26,28 @@
 
             <h2 class="mb-0">Employees</h2>
 
-            <div class="d-flex gap-2">
+            <div class="d-flex gap-2 ">
 
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-search"></i></span>
                     <input type="text" id="searchInput" class="form-control" placeholder="Search..." onkeyup="searchEmployees()">
                 </div>
+                
+                
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        Select Option
+                    </button>
 
-                <button class="btn btn-primary " onclick="showAddModal()">
-                    + Add Employee
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Option 1</a></li>
+                        <li><a class="dropdown-item" href="#">Option 2</a></li>
+                        <li><a class="dropdown-item" href="#">Option 3</a></li>
+                    </ul>
+                </div>
+
+                <button class="btn btn-primary" onclick="showAddModal()">
+                    +Add_Employee
                 </button>
 
             </div>
@@ -72,7 +85,7 @@
 
                         </div>
 
-                        <small class="text-muted">#{{ $emp->employee_id }}</small>
+                       
                     </div>
 
                     <div class="text-muted small">
@@ -171,6 +184,8 @@ function searchEmployees() {
         card.style.display = text.includes(input) ? '' : 'none';
     });
 }
+
+
 
 </script>
 

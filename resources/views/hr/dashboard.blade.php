@@ -8,10 +8,10 @@
     <title>Dashboard</title>
 </head>
 <body style="background-color: #EDF2FA;">
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 @extends('hr.sidebar')
- <nav class="navbar navbar-expand-lg navbar-dark bg-white">
+ <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #EDF2FA;">
         <div class="container-fluid">
 
             <div class="ms-auto d-flex align-items-center">
@@ -31,7 +31,7 @@
         </div>
     </nav>
 <div class="container mt-4" style="margin-left: 15%;">
-
+    
     <!-- Header -->
     <div class="text-center mb-4">
         <h3 class="fw-semibold">DASHBOARD</h3>
@@ -79,6 +79,13 @@
                 <h4 class="fw-semibold">{{ $departments }}</h4>
             </div>
         </div>
+         <div class="col-md-2">
+            <div class="card border-0 bg-white rounded-4 p-3 text-center h-100">
+               <i class="bi bi-briefcase-fill fs-3 mb-2 text-primary"></i>
+                <h6 class="text-muted">Positions</h6>
+                <h4 class="fw-semibold">{{ $positions }}</h4>
+            </div>
+        </div>
 
     </div>
 
@@ -93,6 +100,7 @@
                 <div class="row text-center g-3">
                     <div class="col-md-4">
                         <div class="p-3 rounded bg-white border">Employees by Department</div>
+                        <canvas id="deptChart"></canvas>
                     </div>
                     <div class="col-md-4">
                         <div class="p-3 rounded bg-white border">Age Metric</div>
@@ -109,9 +117,9 @@
             <div class="card border-0 bg-white rounded-4 p-3 h-100">
                 <h6 class="fw-semibold mb-3">Attendance and Leaves</h6>
 
-                <div class="mb-2">✔ Present: 0</div>
-                <div class="mb-2">❌ Absent: 0</div>
-                <div class="mb-3">⏰ Late: 0</div>
+                <div class="mb-2">✔ Present: {{ $totalPresentToday }}</div>
+                <div class="mb-2">❌ Absent: {{  $TotalLeave  }}</div>
+                <div class="mb-3">⏰ Late: {{ $totalLateToday}} </div>
 
                 <hr>
 
@@ -151,6 +159,50 @@
     </div>
 
 </div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const departments = @json($departmentsAnalytics);
+
+    const labels = departments.map(d => d.department);
+    const data = departments.map(d => d.total_positions);
+
+    const ctx = document.getElementById('deptChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Number of Positions',
+                data: data,
+                borderWidth: 1,
+                backgroundColor: ['#0d6efd', '#198754', '#ffc107']
+            }]
+        },
+        options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1, // 🔥 force 1,2,3
+                            callback: function(value) {
+                                if (Number.isInteger(value)) {
+                                    return value;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+    });
+
+});
+
+
+</script>
 
 </body>
 </html>

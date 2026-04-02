@@ -5,13 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\Department;
 use App\Models\Attendance;
-
+use App\Models\Leave;
+use App\Models\Position;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HRController extends Controller
 {
     public function dashboard(){
-      
+        $departmentsAnalytics = DB::table('departments as d')
+        ->leftJoin('positions as p', 'd.department_id', '=', 'p.department_id')
+        ->select(
+            'd.name as department',
+            DB::raw('COUNT(p.position_id) as total_positions')
+        )
+        ->groupBy('d.department_id', 'd.name')
+        ->get();
 
 
         $totalEmployees = Employee::count();
@@ -21,6 +30,11 @@ class HRController extends Controller
         $resignedEmployees = Employee::where('status', 'resigned')->count();
 
         $newHires = Employee::whereMonth('hire_date', now()->month)->count();
+
+        $positions = Position::count();
+     
+        $TotalLeave = Attendance::where('status', 'Absent')->count();
+     
 
         // Departments
         $departments = Department::count();
@@ -41,7 +55,10 @@ class HRController extends Controller
             'newHires',
             'departments',
             'totalPresentToday',
-            'totalLateToday'
+            'totalLateToday',
+            'TotalLeave',
+            'departmentsAnalytics',
+            'positions'
         ));
 
           
@@ -69,4 +86,6 @@ class HRController extends Controller
 
         return view('hr.EmployeesDetails.employee_details', compact('emp'));
     }
+
+    
 }
