@@ -110,17 +110,20 @@
         <span>Employees</span>
     </a>
 
-    <a href="#" class="{{ Route::is('organization.*') ? 'active' : '' }}">
+    <a  href="{{ route('hr.organization') }}" 
+       class="{{ Route::is('hr.organization') ? 'active' : '' }}">
         <i class="bi bi-diagram-3-fill"></i>
         <span>Organization</span>
     </a>
 
-    <a href="#" class="{{ Route::is('attendance.*') ? 'active' : '' }}">
+    <a href="{{ route('hr.attendance') }}" 
+       class="{{ Route::is('hr.attendance') ? 'active' : '' }}">
         <i class="bi bi-calendar-check-fill"></i>
         <span>Attendance</span>
     </a>
 
-    <a href="#" class="{{ Route::is('payroll.*') ? 'active' : '' }}">
+    <a href="{{ route('hr.payroll') }}" 
+       class="{{ Route::is('hr.payroll') ? 'active' : '' }}">
         <i class="bi bi-cash-stack"></i>
         <span>Payroll</span>
     </a>

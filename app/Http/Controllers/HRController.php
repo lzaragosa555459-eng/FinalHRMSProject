@@ -52,4 +52,15 @@ class HRController extends Controller
 
         return view('hr.employees', compact('employees'));
     }
+    public function organization(){
+        return view('hr.organization');
+    }
+
+    public function attendance(){
+        return view('hr.attendance');
+    }
+
+    public function payroll(){
+        return view('hr.payroll');
+    }
 }
