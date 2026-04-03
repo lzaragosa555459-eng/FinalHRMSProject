@@ -1,7 +1,3 @@
-**README.md** style:
-
----
-
 # 📘 Human Resource Management System (HRMS)
 
 ## 📖 Chapter 1: Introduction
