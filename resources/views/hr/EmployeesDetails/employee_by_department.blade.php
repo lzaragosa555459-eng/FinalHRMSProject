@@ -59,7 +59,7 @@
                             <!-- Employee -->
                             <td class="ps-4 py-3">
                                 <div class="d-flex align-items-center gap-3">
-                                    <div class="avatar bg-gradient text-white fw-bold rounded-3 d-flex justify-content-center align-items-center shadow-sm"
+                                    <div class="avatar bg-gradient text-white fw-bold rounded-3 d-flex justify-content-center align-items-center shadow-sm bg-secondary"
                                          style="width: 48px; height: 48px; font-size: 1.1rem;">
                                         {{ strtoupper(substr($emp->name, 0, 2)) }}
                                     </div>

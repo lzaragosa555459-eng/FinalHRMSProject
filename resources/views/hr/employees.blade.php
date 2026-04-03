@@ -22,7 +22,7 @@
 
     <!-- Header -->
     <div class="row mb-4">
-        <div class="col-12 d-flex justify-content-between align-items-center p-4" style="background-color: #a2aab6;">
+        <div class="col-12 d-flex justify-content-between align-items-center p-4 rounded-4" style="background-color: #a2aab6;">
 
             <h2 class="mb-0">Employees</h2>
 
@@ -56,71 +56,49 @@
     </div>
 
     <!-- Grid -->
-    <div class="row" id="employeesGrid">
+   <div class="row" id="employeesGrid">
+    @foreach($employees as $emp)
 
-        @foreach($employees as $emp)
+    <div class="col-md-4 mb-4 employee-card" data-id="{{ $emp->id }}">
+        <div class="card border-0 shadow-sm h-100 rounded-4 text-center p-4 position-relative">
 
-        <div class="col-md-4 mb-4 employee-card" data-id="{{ $emp->id }}">
-
-            <div class="card border-0 bg-white h-100 rounded-4">
-
-                <div class="card-body">
-
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div class="d-flex align-items-center gap-3">
-
-                            <div class="rounded-circle d-flex justify-content-center align-items-center bg-secondary text-white"
-                                 style="width:45px;height:45px;">
-                                {{ strtoupper(substr($emp->name ?? 'U', 0, 1)) }}
-                            </div>
-
-                            <div>
-                                <h6 class="mb-0 fw-semibold">
-                                    {{ $emp->name }} 
-                                </h6>
-                                <small class="text-muted">
-                                    {{ $emp->position?->title ?? 'Staff' }}
-                                </small>
-                            </div>
-
-                        </div>
-
-                       
-                    </div>
-
-                    <div class="text-muted small">
-                        <div><strong>Email:</strong> {{ $emp->email }}</div>
-                        <div><strong>Phone:</strong> {{ $emp->phone_number ?? '—' }}</div>
-                        <div><strong>Department:</strong> {{ $emp->department?->name ?? '—' }}</div>
-                    </div>
-
-                  <div class="d-flex justify-content-end gap-2 mt-3">
-                        <!--  <button class="btn btn-sm btn-outline-warning rounded-pill px-3"
-                                onclick="editEmployee('{{ $emp->id }}')">
-                            Edit
-                        </button>
-
-                        <button class="btn btn-sm btn-outline-danger rounded-pill px-3"
-                                onclick="deleteEmployee('{{ $emp->id }}')">
-                            Delete
-                        </button>-->
-                       
-                           <a href="{{ route('hr.EmployeesDetails.employee_details', $emp->employee_id) }}" class="btn btn-sm btn-outline-primary rounded-pill px-3">
-                               View
-                            </a>
-              
-                    </div>
-
-                   
-
+            <!-- Avatar (Top Center) -->
+            <div class="d-flex justify-content-center">
+                <div class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center shadow"
+                     style="width:80px; height:80px; font-size:28px; margin-top:-50px; border:4px solid #fff;">
+                    {{ strtoupper(substr($emp->name ?? 'U', 0, 1)) }}
                 </div>
             </div>
 
+            <!-- Name -->
+            <h5 class="mt-3 mb-1 fw-semibold">
+                {{ $emp->name }}
+            </h5>
+
+            <!-- Position -->
+            <small class="text-muted d-block mb-3">
+                {{ $emp->position?->title ?? 'Staff' }}
+            </small>
+
+            <!-- Info -->
+            <div class="text-muted small text-start px-2">
+                <div class="mb-1"><strong>Email:</strong> {{ $emp->email }}</div>
+                <div class="mb-1"><strong>Phone:</strong> {{ $emp->phone_number ?? '—' }}</div>
+                <div class="mb-1"><strong>Department:</strong> {{ $emp->department?->name ?? '—' }}</div>
+            </div>
+
+            <!-- Action -->
+            <div class="mt-3">
+                <a href="{{ route('hr.EmployeesDetails.employee_details', $emp->employee_id) }}"
+                   class="btn btn-primary btn-sm rounded-pill px-4">
+                    View Profile
+                </a>
+            </div>
+
         </div>
-
-        @endforeach
-
     </div>
+
+    @endforeach
 </div>
 
 <!-- Modal -->

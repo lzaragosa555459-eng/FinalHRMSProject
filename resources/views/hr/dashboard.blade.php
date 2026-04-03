@@ -7,204 +7,221 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="icon" href="{{ asset('logo.png') }}" type="image/png">
+    <style>
+        body { background-color: #f0f2f5; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        .card { border: none; border-radius: 1rem; transition: all 0.2s ease-in-out; }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.05) !important; }
+        .stat-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+        .navbar { border-radius: 1rem; margin-bottom: 2rem; }
+        .activity-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 10px; }
+    </style>
 </head>
 <body style="background-color: #EDF2FA;">
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 @extends('hr.sidebar')
 
-<div class="container mt-4" style="margin-left: 9%;">
-    <nav class="navbar navbar-expand-lg navbar-dark" ">
-        <div class="container-fluid">
-            <img src="{{ 'logo.png'}}" style="width: 50px;" alt="">
-            <h3 class="ms-3">CoreHR</h3>
-            <div class="ms-auto d-flex align-items-center">
-
-                <div class="rounded-circle d-flex justify-content-center align-items-center bg-secondary text-white"
-                    style="width:45px;height:45px;">
-                    HR
-                </div>
-
-                <div class="ms-2 d-flex flex-column">
-                    <h6 class="mb-0">hruser</h6>
-                    <small class="text-muted">hr@gmail.com</small>
-            </div>
-
-        </div>
-
-    </div>
-</nav> 
-<br><br>
-    <!-- Header -->
-    <div class="text-center mb-4">
-        <h3 class="fw-semibold display-4">Dashboard</h3>
-    </div>
-
-    <!-- Top Stats -->
-    <div class="row g-3 mb-4">
-
-                <div class="col-md-2">
-            <div class="card border-0 bg-white rounded-4 p-3 text-center h-100">
-                <i class="bi bi-people-fill fs-3 mb-2 text-primary"></i>
-                <h6 class="text-muted">Total Employees</h6>
-                <h4 class="fw-semibold">{{ $totalEmployees }}</h4>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <div class="card border-0 bg-white rounded-4 p-3 text-center h-100">
-                <i class="bi bi-person-check-fill fs-3 mb-2 text-success"></i>
-                <h6 class="text-muted">Total Active</h6>
-                <h4 class="fw-semibold">{{ $totalActive }}</h4>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <div class="card border-0 bg-white rounded-4 p-3 text-center h-100">
-                <i class="bi bi-person-plus-fill fs-3 mb-2 text-info"></i>
-                <h6 class="text-muted">New Hires</h6>
-                <h4 class="fw-semibold">{{ $newHires }}</h4>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <div class="card border-0 bg-white rounded-4 p-3 text-center h-100">
-                <i class="bi bi-person-dash-fill fs-3 mb-2 text-danger"></i>
-                <h6 class="text-muted">Resigned</h6>
-                <h4 class="fw-semibold">{{ $resignedEmployees }}</h4>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <div class="card border-0 bg-white rounded-4 p-3 text-center h-100">
-                <i class="bi bi-building fs-3 mb-2 text-warning"></i>
-                <h6 class="text-muted">Departments</h6>
-                <h4 class="fw-semibold">{{ $departments }}</h4>
-            </div>
-        </div>
-         <div class="col-md-2">
-            <div class="card border-0 bg-white rounded-4 p-3 text-center h-100">
-               <i class="bi bi-briefcase-fill fs-3 mb-2 text-primary"></i>
-                <h6 class="text-muted">Positions</h6>
-                <h4 class="fw-semibold">{{ $positions }}</h4>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Main Content Row -->
-    <div class="row g-3">
-
-        <!-- Employee Analytics -->
-        <div class="col-md-8">
-            <div class="card border-0 bg-white rounded-4 p-3 h-100">
-                <h6 class="fw-semibold mb-3">Employee Analytics</h6>
-
-                <div class="row text-center g-3">
-                    <div class="col-md-4">
-                        <div class="p-3 rounded bg-white border">Employees by Department</div>
-                        <canvas id="deptChart"></canvas>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="p-3 rounded bg-white border">Age Metric</div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="p-3 rounded bg-white border">Employment Stats</div>
+<div class="container py-4" style="margin-left:5%;">
+    <div class="row">
+        <div class="col-lg-11 offset-lg-1">
+            
+            <div class="container">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <nav class="navbar navbar-expand-lg bg-white shadow-sm px-4">
+                            <div class="d-flex align-items-center">
+                                <img src="{{ asset('logo.png') }}" style="width: 40px;" alt="Logo">
+                                <h4 class="ms-3 mb-0 fw-bold">CoreHR</h4>
+                            </div>
+                            <div class="ms-auto d-flex align-items-center">
+                                <div class="text-end me-3 d-none d-sm-block">
+                                    <h6 class="mb-0">hruser</h6>
+                                    <small class="text-muted">hr@gmail.com</small>
+                                </div>
+                                <div class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center fw-bold" style="width:45px;height:45px;">
+                                    HR
+                                </div>
+                            </div>
+                        </nav>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Attendance -->
-        <div class="col-md-4">
-            <div class="card border-0 bg-white rounded-4 p-3 h-100">
-                <h6 class="fw-semibold mb-3">Attendance and Leaves</h6>
+                <div class="row mb-4">
+                    <div class="col-12 text-center">
+                        <h1 class="fw-bold display-6">Dashboard Overview</h1>
+                        <p class="text-muted">Real-time HR analytics and employee management</p>
+                    </div>
+                </div>
 
-                <div class="mb-2">✔ Present: {{ $totalPresentToday }}</div>
-                <div class="mb-2">❌ Absent: {{  $TotalLeave  }}</div>
-                <div class="mb-3">⏰ Late: {{ $totalLateToday}} </div>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4 col-lg-2">
+                        <div class="card bg-white shadow-sm p-3 h-100">
+                            <div class="stat-icon bg-primary-subtle text-primary"><i class="bi bi-people-fill fs-4"></i></div>
+                            <small class="text-muted text-uppercase fw-bold" style="font-size: 0.7rem;">Total Employees</small>
+                            <h3 class="fw-bold mb-0">{{ $totalEmployees }}</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-2">
+                        <div class="card bg-white shadow-sm p-3 h-100">
+                            <div class="stat-icon bg-success-subtle text-success"><i class="bi bi-person-check-fill fs-4"></i></div>
+                            <small class="text-muted text-uppercase fw-bold" style="font-size: 0.7rem;">Total Active</small>
+                            <h3 class="fw-bold mb-0">{{ $totalActive }}</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-2">
+                        <div class="card bg-white shadow-sm p-3 h-100">
+                            <div class="stat-icon bg-info-subtle text-info"><i class="bi bi-person-plus-fill fs-4"></i></div>
+                            <small class="text-muted text-uppercase fw-bold" style="font-size: 0.7rem;">New Hires</small>
+                            <h3 class="fw-bold mb-0">{{ $newHires }}</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-2">
+                        <div class="card bg-white shadow-sm p-3 h-100">
+                            <div class="stat-icon bg-danger-subtle text-danger"><i class="bi bi-person-dash-fill fs-4"></i></div>
+                            <small class="text-muted text-uppercase fw-bold" style="font-size: 0.7rem;">Resigned</small>
+                            <h3 class="fw-bold mb-0">{{ $resignedEmployees }}</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-2">
+                        <div class="card bg-white shadow-sm p-3 h-100">
+                            <div class="stat-icon bg-warning-subtle text-warning"><i class="bi bi-building fs-4"></i></div>
+                            <small class="text-muted text-uppercase fw-bold" style="font-size: 0.7rem;">Departments</small>
+                            <h3 class="fw-bold mb-0">{{ $departments }}</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-2">
+                        <div class="card bg-white shadow-sm p-3 h-100">
+                            <div class="stat-icon bg-secondary-subtle text-secondary"><i class="bi bi-briefcase-fill fs-4"></i></div>
+                            <small class="text-muted text-uppercase fw-bold" style="font-size: 0.7rem;">Positions</small>
+                            <h3 class="fw-bold mb-0">{{ $positions }}</h3>
+                        </div>
+                    </div>
+                </div>
 
-                <hr>
+                <div class="row g-4 mb-4">
+                    <div class="col-lg-8">
+                        <div class="card bg-white shadow-sm p-4 h-100">
+                            <h5 class="fw-bold mb-4">Employee Analytics</h5>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="p-2 bg-light rounded text-center mb-3 small fw-bold">Employees by Department</div>
+                                    <canvas id="deptChart" style="max-height: 300px;"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card bg-white shadow-sm p-4 h-100">
+                            <h5 class="fw-bold mb-4">Daily Presence</h5>
+                            <div class="list-group list-group-flush">
+                                <div class="list-group-item border-0 d-flex justify-content-between align-items-center px-0">
+                                    <span><i class="bi bi-check-circle-fill text-success me-2"></i> Present Today</span>
+                                    <span class="badge bg-success-subtle text-success rounded-pill px-3">{{ $totalPresentToday }}</span>
+                                </div>
+                                <div class="list-group-item border-0 d-flex justify-content-between align-items-center px-0">
+                                    <span><i class="bi bi-x-circle-fill text-danger me-2"></i> Absent / Leave</span>
+                                    <span class="badge bg-danger-subtle text-danger rounded-pill px-3">{{ $TotalLeave }}</span>
+                                </div>
+                                <div class="list-group-item border-0 d-flex justify-content-between align-items-center px-0 mb-3">
+                                    <span><i class="bi bi-clock-fill text-warning me-2"></i> Late Arrivals</span>
+                                    <span class="badge bg-warning-subtle text-warning rounded-pill px-3">{{ $totalLateToday }}</span>
+                                </div>
+                            </div>
+                            <hr>
+                            <h6 class="fw-bold mb-3 small text-muted text-uppercase">Leave Requests</h6>
+                            <div class="row g-2 text-center">
+                                <div class="col-4">
+                                    <div class="p-2 border rounded">
+                                        <small class="d-block text-muted">Wait</small>
+                                        <strong class="text-primary">0</strong>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="p-2 border rounded">
+                                        <small class="d-block text-muted">OK</small>
+                                        <strong class="text-success">0</strong>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="p-2 border rounded">
+                                        <small class="d-block text-muted">No</small>
+                                        <strong class="text-danger">0</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <h6 class="fw-semibold">Leave Requests</h6>
-                <div>⏳ Pending: 0</div>
-                <div>✅ Approved: 0</div>
-                <div>❌ Rejected: 0</div>
-            </div>
-        </div>
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="card bg-white shadow-sm p-4 h-100">
+                            <h5 class="fw-bold mb-4">Gender Stats</h5>
+                            <div class="bg-light rounded p-5 text-center text-muted border-dashed">
+                                <i class="bi bi-pie-chart fs-1 d-block mb-2"></i>
+                                Pie Chart Visualization
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card bg-white shadow-sm p-4 h-100">
+                            <h5 class="fw-bold mb-4">Recent Activity</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-3">
+                                    <span class="activity-dot bg-primary"></span>
+                                    <span class="fw-medium">John Doe</span> was hired
+                                    <small class="text-muted d-block ms-4">2 hours ago</small>
+                                </li>
+                                <li class="mb-3">
+                                    <span class="activity-dot bg-warning"></span>
+                                    <span class="fw-medium">Jane Smith</span> filed a leave request
+                                    <small class="text-muted d-block ms-4">5 hours ago</small>
+                                </li>
+                                <li>
+                                    <span class="activity-dot bg-info"></span>
+                                    <span class="fw-medium">Mark</span> updated employee profile
+                                    <small class="text-muted d-block ms-4">Yesterday</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
+            </div> </div>
     </div>
-
-    <!-- Bottom Row -->
-    <div class="row g-3 mt-2">
-
-        <!-- Gender Stats -->
-        <div class="col-md-6">
-            <div class="card border-0 bg-white rounded-4 p-3 h-100">
-                <h6 class="fw-semibold mb-3">Gender Stats</h6>
-                <div class="bg-white border rounded p-5 text-center">Pie Chart</div>
-            </div>
-        </div>
-
-        <!-- Recent Activity -->
-        <div class="col-md-6">
-            <div class="card border-0 bg-white rounded-4 p-3 h-100">
-                <h6 class="fw-semibold mb-3">Recent Activity</h6>
-
-                <ul class="list-unstyled mb-0">
-                    <li class="mb-2">✔ John Doe was hired</li>
-                    <li class="mb-2">✔ Jane Smith filed a leave request</li>
-                    <li>✔ Mark updated employee profile</li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
-
 </div>
-
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-
     const departments = @json($departmentsAnalytics);
-
     const labels = departments.map(d => d.department);
     const data = departments.map(d => d.total_positions);
 
     const ctx = document.getElementById('deptChart');
-
     new Chart(ctx, {
         type: 'bar',
         data: {
             labels: labels,
             datasets: [{
-                label: 'Number of Employees',
+                label: 'Employees',
                 data: data,
-                borderWidth: 1,
-                backgroundColor: ['#0d6efd', '#198754', '#ffc107']
+                borderRadius: 10,
+                backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b']
             }]
         },
         options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 1, // 🔥 force 1,2,3
-                            callback: function(value) {
-                                if (Number.isInteger(value)) {
-                                    return value;
-                                }
-                            }
-                        }
-                    }
-                }
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                y: { beginAtZero: true, grid: { color: '#f8f9fc' }, ticks: { stepSize: 1 } },
+                x: { grid: { display: false } }
             }
+        }
     });
-
 });
-
-
 </script>
 
 </body>

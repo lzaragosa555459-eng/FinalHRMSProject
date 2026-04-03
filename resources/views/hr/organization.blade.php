@@ -35,12 +35,20 @@
 .nav-item-link.active::after {
     width: 100%;
 }
+.department-card {
+    transition: all 0.25s ease;
+}
+
+.department-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
 </style>
 <body style="background-color: #EDF2FA;">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     @extends('hr.sidebar')
     
-    <div class="container mt-4" style="margin-left: 9%;">
+<div class="container mt-4" style="margin-left: 9%;">
     
 <nav class="navbar navbar-expand-lg navbar-light hadow-sm" style="background-color: #a2aab6;">
     <div class="container">
@@ -96,83 +104,79 @@
 </div>
    
 <!-- Departments -->
-<div class="container mt-4" id="container1"  display: block;">
-    <h3 class="mb-4">Departments</h3>
-   <div class="row g-4">
-    @foreach($departments as $dept)
-    <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm border-0">
-            
-            <!-- Card Header -->
-            <div class="card-header bg-light d-flex justify-content-between align-items-center">
-                <h4 class="card-title mb-0">{{ $dept->name }}</h4>
-                <span class="badge bg-primary">{{ $dept->department_number }}</span>
-            </div>
+<div class="container mt-4" id="container1" style="display: block;">
+    <h3 class="mb-4 fw-semibold">Departments</h3>
 
-            <div class="card-body">
+    <div class="row g-4">
+        @foreach($departments as $dept)
+        <div class="col-md-6 col-lg-4">
+            <div class="card border-0 shadow-sm h-100 rounded-4 p-3 department-card">
 
-                <!-- Description -->
-                <p class="card-text text-muted mb-4">
-                    {{ $dept->description ?? 'No description available.' }}
-                </p>
-
-                <!-- Head of Department 
-                <div class="mb-3">
-                    <small class="text-muted d-block mb-1">Head of Department</small>
+                <!-- Top Section -->
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    
+                    <!-- Icon + Name -->
                     <div class="d-flex align-items-center gap-2">
-                        <div class="bg-primary text-white rounded-circle d-flex justify-content-center align-items-center"
-                            style="width:40px; height:40px; font-weight:600;">
-                            {{ $dept->head 
-                                ? strtoupper(substr($dept->head->name, 0, 2)) 
-                                : 'NA' 
-                            }}
+                        <div class="bg-primary bg-opacity-10 text-primary rounded-3 p-2">
+                            <i class="bi bi-building fs-5"></i>
                         </div>
-                        <div>
-                            <strong>{{ $dept->head->name ?? 'No Head Assigned' }}</strong>
-                        </div>
-                    </div>
-                </div>-->
 
-                <!-- Employees Count -->
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div>
-                        <small class="text-muted">Total Employees:</small>
-                        <h4 class="mb-0">{{ $dept->employees_count ?? 0 }}</h4>
+                        <div>
+                            <h5 class="mb-0 fw-semibold">{{ $dept->name }}</h5>
+                            <small class="text-muted">Dept #{{ $dept->department_number }}</small>
+                        </div>
                     </div>
 
                     <!-- Status -->
                     @if($dept->employees_count > 0)
-                        <span class="badge bg-success px-3 py-2">Active</span>
+                        <span class="badge bg-success-subtle text-success px-3 py-2">Active</span>
                     @else
-                        <span class="badge bg-danger px-3 py-2">Inactive</span>
+                        <span class="badge bg-danger-subtle text-danger px-3 py-2">Inactive</span>
                     @endif
                 </div>
 
-            </div>
+                <!-- Description -->
+                <p class="text-muted small mb-3">
+                    {{ $dept->description ?? 'No description available.' }}
+                </p>
 
-            <!-- Card Footer with Actions -->
-            <div class="card-footer bg-white border-top">
-                <div class="d-flex justify-content-between gap-2">
+                <!-- Stats -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <small class="text-muted">Employees</small>
+                        <h4 class="mb-0 fw-bold">{{ $dept->employees_count ?? 0 }}</h4>
+                    </div>
+
+                    <!-- Mini progress feel -->
+                    <div class="text-end">
+                        <small class="text-muted">Status</small><br>
+                        <span class="fw-semibold">
+                            {{ $dept->employees_count > 0 ? 'Operational' : 'Empty' }}
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="d-flex gap-2 mt-auto">
                     <a href="{{ route('hr.EmployeesDetails.employee_by_department', $dept->department_id) }}" 
-                       class="btn btn-outline-primary flex-grow-1">
-                        <i class="bi bi-eye"></i> View Employees
+                       class="btn btn-primary btn-sm flex-grow-1">
+                        <i class="bi bi-eye"></i> View
                     </a>
 
-                    <button class="btn btn-outline-warning">
+                    <button class="btn btn-light border btn-sm">
                         <i class="bi bi-pencil"></i>
                     </button>
 
-                    <button class="btn btn-outline-danger">
+                    <button class="btn btn-light border btn-sm text-danger">
                         <i class="bi bi-trash"></i>
                     </button>
                 </div>
-            </div>
 
+            </div>
         </div>
+        @endforeach
     </div>
-    @endforeach
-   </div>
-  </div>
+</div>
  <!-- Events -->
 <div class="container mt-4" id="container2" style="margin-left: 0%; display: none;">
     <h3 class="mb-4">Events</h3>
