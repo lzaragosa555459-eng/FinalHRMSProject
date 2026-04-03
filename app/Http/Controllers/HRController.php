@@ -76,6 +76,7 @@ class HRController extends Controller
             ->withCount('employees')
             ->get();
 
+
         return view('hr.organization', compact('departments'));
     }
 
@@ -95,7 +96,7 @@ class HRController extends Controller
         return view('hr.EmployeesDetails.employee_details', compact('emp'));
     }
      public function organization_details($id){
-        $employees = Employee::where('employee_id', $id)->get();
+        $employees = Employee::where('department_id', $id)->get();
         
         return view('hr.EmployeesDetails.employee_by_department', compact('employees'));
     }

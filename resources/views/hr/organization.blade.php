@@ -12,10 +12,19 @@
     @extends('hr.sidebar')
 
     <div class="container mt-4" style="margin-left: 9%;">
-
+    <h2>Organization</h2>
+    <h4 class="text-secondary">Company Structure & Activities</h4>
     <!-- Filters / Header -->
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <input type="text" class="form-control w-25" placeholder="Search departments...">
+       <div class="input-group" style="max-width: 320px;">
+             <span class="input-group-text"><i class="bi bi-search"></i></span>
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="form-control" 
+                    placeholder="Search..." 
+                    onkeyup="searchEmployees()">
+            </div>
 
         <div class="d-flex gap-2">
             <select class="form-select">
@@ -36,96 +45,80 @@
         </div>
     </div>
 
-    <!-- Table -->
-    <div class="table-responsive bg-white p-3">
+   <div class="row g-4">
+    @foreach($departments as $dept)
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm border-0">
+            
+            <!-- Card Header -->
+            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                <h4 class="card-title mb-0">{{ $dept->name }}</h4>
+                <span class="badge bg-primary">{{ $dept->department_number }}</span>
+            </div>
 
-        <table class="table align-middle">
-            <thead class="table-light">
-                <tr>
-                    <th>Department ID</th>
-                    <th>Department Name</th>
-                    <th>Description</th>
-                    <th>Head of Department</th>
-                    <th>Employees</th>
-                    <th>Status</th>
-                    <th class="text-center">Actions</th>
-                </tr>
-            </thead>
+            <div class="card-body">
 
-            <tbody>
-                @foreach($departments as $dept)
-                <tr>
-                    <!-- ID -->
-                    <td>{{ $dept->department_number }}</td>
+                <!-- Description -->
+                <p class="card-text text-muted">
+                    {{ $dept->description ?? 'No description available.' }}
+                </p>
 
-                    <!-- Name -->
-                    <td>{{ $dept->name }}</td>
-
-                    <!-- Description -->
-                    <td>{{ $dept->description }}</td>
-
-                    <!-- Head (example relation) -->
-                    <td>
-                        <div class="d-flex align-items-center gap-2">
-                            <div class="bg-primary text-white rounded-circle d-flex justify-content-center align-items-center"
-                                style="width:35px;height:35px;">
-
-                                {{ $dept->head 
-                                    ? strtoupper(substr($dept->head->name, 0, 2))
-                                    : 'NA' 
-                                }}
-
-                            </div>
-
-                            <span>
-                                {{ $dept->head->name ?? 'No Head' }}
-                            </span>
+                <!-- Head of Department -->
+                <div class="mb-3">
+                    <small class="text-muted d-block mb-1">Head of Department</small>
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="bg-primary text-white rounded-circle d-flex justify-content-center align-items-center"
+                            style="width:40px; height:40px; font-weight:600;">
+                            {{ $dept->head 
+                                ? strtoupper(substr($dept->head->name, 0, 2)) 
+                                : 'NA' 
+                            }}
                         </div>
-                    </td>
+                        <div>
+                            <strong>{{ $dept->head->name ?? 'No Head Assigned' }}</strong>
+                        </div>
+                    </div>
+                </div>
 
-                    <!-- Employees Count -->
-                    <td>
-                        {{ $dept->employees_count ?? 0 }}
-                    </td>
+                <!-- Employees Count -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <small class="text-muted">Total Employees</small>
+                        <h4 class="mb-0">{{ $dept->employees_count ?? 0 }}</h4>
+                    </div>
 
                     <!-- Status -->
-                    <td>
-                        @if($dept->employees_count > 0)
-                            <span class="badge bg-success">Active</span>
-                        @else
-                            <span class="badge bg-danger">Inactive</span>
-                        @endif
-                    </td>
+                    @if($dept->employees_count > 0)
+                        <span class="badge bg-success px-3 py-2">Active</span>
+                    @else
+                        <span class="badge bg-danger px-3 py-2">Inactive</span>
+                    @endif
+                </div>
 
-                    <!-- Actions -->
-                    <td class="text-center">
-                        <div class="d-flex justify-content-center gap-2">
+            </div>
 
-                           <a href="{{ route('hr.EmployeesDetails.employee_by_department', $dept->department_id) }}" 
-                           class="btn btn-sm btn-outline-primary px-3">
-                               View
-                            </a>
+            <!-- Card Footer with Actions -->
+            <div class="card-footer bg-white border-top">
+                <div class="d-flex justify-content-between gap-2">
+                    <a href="{{ route('hr.EmployeesDetails.employee_by_department', $dept->department_id) }}" 
+                       class="btn btn-outline-primary flex-grow-1">
+                        <i class="bi bi-eye"></i> View Employees
+                    </a>
 
-                            <button class="btn btn-sm btn-outline-warning">
-                                <i class="bi bi-pencil"></i>
-                            </button>
+                    <button class="btn btn-outline-warning">
+                        <i class="bi bi-pencil"></i>
+                    </button>
 
-                            <button class="btn btn-sm btn-outline-danger">
-                                <i class="bi bi-trash"></i>
-                            </button>
+                    <button class="btn btn-outline-danger">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </div>
 
-                          
-
-                        </div>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-
-    
-
+        </div>
     </div>
+    @endforeach
+</div>
 </div>
 </body>
 </html>

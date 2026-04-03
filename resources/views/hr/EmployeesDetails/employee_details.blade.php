@@ -34,11 +34,11 @@
             <h5>{{ $emp->position?->title ?? '—' }}</h5>
             <h6 class="text-secondary">
                 @if($emp->role === 'head')
-                    <span class="badge bg-warning text-dark ms-2">
+                    <span class="badge bg-warning text-dark">
                         <i class="bi bi-star-fill"></i> Head
                     </span>
                 @else
-                    <span class="badge rounded-pill bg-secondary">
+                    <span class="badge bg-secondary">
                         Employee
                     </span>
                 @endif
