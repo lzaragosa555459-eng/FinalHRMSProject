@@ -1,4 +1,4 @@
-Here’s your content cleaned up and formatted into a professional **README.md** style:
+**README.md** style:
 
 ---
 
