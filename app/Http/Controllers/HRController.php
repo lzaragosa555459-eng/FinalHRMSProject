@@ -9,6 +9,7 @@ use App\Models\Leave;
 use App\Models\Position;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Psy\Command\WhereamiCommand;
 
 class HRController extends Controller
 {
@@ -78,6 +79,8 @@ class HRController extends Controller
         return view('hr.organization', compact('departments'));
     }
 
+   
+
     public function attendance(){
         return view('hr.attendance');
     }
@@ -90,6 +93,11 @@ class HRController extends Controller
           $emp = Employee::findOrFail($id);
 
         return view('hr.EmployeesDetails.employee_details', compact('emp'));
+    }
+     public function organization_details($id){
+        $employees = Employee::where('employee_id', $id)->get();
+        
+        return view('hr.EmployeesDetails.employee_by_department', compact('employees'));
     }
 
     

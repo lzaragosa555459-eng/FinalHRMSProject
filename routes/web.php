@@ -20,9 +20,11 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/dashboard', [HRController::class, 'dashboard'])->name('hr.dashboard');
 Route::get('/employees', [HRController::class, 'employees'])->name('hr.employees');
 
-Route::get('/employee_details/{id}', [HRController::class, 'employee_details'])->name('hr.EmployeesDetails.employee_details');
+Route::get('/employees/{id}', [HRController::class, 'employee_details'])->name('hr.EmployeesDetails.employee_details');
 
 
 Route::get('/organization', [HRController::class, 'organization'])->name('hr.organization');
+Route::get('/organization/{id}', [HRController::class, 'organization_details'])->name('hr.EmployeesDetails.employee_by_department');
+
 Route::get('/attendance', [HRController::class, 'attendance'])->name('hr.attendance');
 Route::get('/payroll', [HRController::class, 'payroll'])->name('hr.payroll');
