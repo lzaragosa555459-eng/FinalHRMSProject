@@ -1,7 +1,3 @@
-Here’s your content cleaned up and formatted into a professional **README.md** style:
-
----
-
 # 📘 Human Resource Management System (HRMS)
 
 ## 📖 Chapter 1: Introduction
@@ -219,12 +215,3 @@ Allows users to input and store employee data in the database.
 ## 🗂️ Entity Relationship Diagram (ERD)
 
 <img width="1051" height="901" alt="hrmsERD drawio" src="https://github.com/user-attachments/assets/3d134953-701f-476d-be46-3269cae2a7f9" />
-
-
-
----
-
-If you want, I can also:
-
-* Turn this into a **GitHub-ready README with badges + screenshots**
-* Or generate a **clean ERD diagram image + Gantt chart** for you 👍
