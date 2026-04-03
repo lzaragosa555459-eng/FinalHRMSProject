@@ -22,7 +22,7 @@ return new class extends Migration
             $table->date('date_of_birth')->nullable();
             $table->enum('gender', ['male', 'female', 'other'])->nullable();
             $table->string('profile_image')->nullable();
-
+            $table->enum('role', ['head', 'employee'])->default('employee');
             $table->unsignedInteger('department_id')->nullable();
             $table->unsignedInteger('position_id')->nullable();
             $table->unsignedInteger('applicant_id')->nullable();

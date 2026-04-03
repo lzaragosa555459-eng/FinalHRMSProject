@@ -10,4 +10,12 @@ class Department extends Model
     {
         return $this->hasMany(Employee::class, 'department_id', 'department_id');
     }
+
+     public function head()
+    {
+        return $this->hasOne(Employee::class, 'department_id', 'department_id')
+                    ->where('role', 'head');
+    }
+
+  
 }

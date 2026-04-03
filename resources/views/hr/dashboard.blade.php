@@ -26,11 +26,11 @@
                     <small class="text-muted">hr@gmail.com</small>
             </div>
 
-</div>
-
         </div>
-    </nav>
-<div class="container mt-4" style="margin-left: 15%;">
+
+    </div>
+</nav>
+<div class="container mt-4" style="margin-left: 9%;">
     
     <!-- Header -->
     <div class="text-center mb-4">
@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Number of Positions',
+                label: 'Number of Employees',
                 data: data,
                 borderWidth: 1,
                 backgroundColor: ['#0d6efd', '#198754', '#ffc107']

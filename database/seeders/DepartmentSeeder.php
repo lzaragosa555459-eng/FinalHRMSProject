@@ -13,16 +13,19 @@ class DepartmentSeeder extends Seeder
     Department::insert([
         [
             'department_id' => 1,
+            'department_number' => 'DEP001',
             'name' => 'IT',
             'description' => 'Handles technical systems'
         ],
         [
             'department_id' => 2,
+            'department_number' => 'DEP002',
             'name' => 'HR',
             'description' => 'Handles employees'
         ],
         [
             'department_id' => 3,
+            'department_number' => 'DEP003',
             'name' => 'Finance',
             'description' => 'Handles finances'
         ],

@@ -69,8 +69,13 @@ class HRController extends Controller
 
         return view('hr.employees', compact('employees'));
     }
-    public function organization(){
-        return view('hr.organization');
+    public function organization()
+    {
+        $departments = Department::with(['head'])
+            ->withCount('employees')
+            ->get();
+
+        return view('hr.organization', compact('departments'));
     }
 
     public function attendance(){

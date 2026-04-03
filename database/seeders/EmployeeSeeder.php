@@ -21,6 +21,7 @@ class EmployeeSeeder extends Seeder
             'address' => 'Manila',
             'date_of_birth' => '1995-05-10',
             'gender' => 'male',
+            'role' => 'head',
             'department_id' => 1,
             'position_id' => 1,
             'applicant_id' => 1,
@@ -34,7 +35,7 @@ class EmployeeSeeder extends Seeder
 
     Employee::insert([
         [
-            'employee_id' => 2,
+            'employee_id' => 2, 
             'employee_number' => 'EMP002',
             'name' => 'Jane Doe',
             'phone_number' => '09123456789',
@@ -42,6 +43,7 @@ class EmployeeSeeder extends Seeder
             'address' => 'Manila',
             'date_of_birth' => '1996-04-20',
             'gender' => 'female',
+            'role' => 'head',
             'department_id' => 2,
             'position_id' => 2,
             'applicant_id' => 2,

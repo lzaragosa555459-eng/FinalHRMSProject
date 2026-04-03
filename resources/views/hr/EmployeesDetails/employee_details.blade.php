@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     @extends('hr.sidebar')
    
-    <div class="container mt-4 bg-white p-4" style="margin-left: 15%;">
+    <div class="container mt-4 bg-white p-4" style="margin-left: 9%;">
      <a href="{{ route('hr.employees') }}" class="btn btn-sm btn-outline-dark rounded-pill px-3">
         Back
     </a>
@@ -30,6 +31,17 @@
 
             <h2 class="mb-1">{{ $emp->name }}</h2>
             <h5>{{ $emp->position?->title ?? '—' }}</h5>
+            <h6 class="text-secondary">
+                @if($emp->role === 'head')
+                    <span class="badge bg-warning text-dark ms-2">
+                        <i class="bi bi-star-fill"></i> Head
+                    </span>
+                @else
+                    <span class="badge rounded-pill bg-secondary">
+                        Employee
+                    </span>
+                @endif
+            </h6>
            
 
             <hr>

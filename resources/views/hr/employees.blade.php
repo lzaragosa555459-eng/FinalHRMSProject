@@ -18,7 +18,7 @@
 
 @extends('hr.sidebar')
 
-<div class="container mt-4" style="margin-left: 15%;">
+<div class="container mt-4" style="margin-left: 9%;">
 
     <!-- Header -->
     <div class="row mb-4">

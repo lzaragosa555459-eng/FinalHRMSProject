@@ -16,7 +16,7 @@
 
         /* Sidebar default (collapsed) */
         .sidebar {
-            width: 70px;
+            width: 60px;
             height: 100vh;
             position: fixed;
             top: 0;
@@ -29,7 +29,7 @@
 
         /* Expanded on hover */
         .sidebar:hover {
-            width: 250px;
+            width: 200px;
         }
 
         /* Links */
