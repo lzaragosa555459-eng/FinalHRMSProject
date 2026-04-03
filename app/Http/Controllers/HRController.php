@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\Department;
 use App\Models\Attendance;
+use App\Models\Event;
 use App\Models\Leave;
 use App\Models\Position;
 use Illuminate\Http\Request;
@@ -75,9 +76,9 @@ class HRController extends Controller
         $departments = Department::with(['head'])
             ->withCount('employees')
             ->get();
+       $events = Event::with('department')->get();
 
-
-        return view('hr.organization', compact('departments'));
+        return view('hr.organization', compact('departments', 'events'));
     }
 
    
@@ -92,6 +93,7 @@ class HRController extends Controller
 
     public function employee_details($id){
           $emp = Employee::findOrFail($id);
+
 
         return view('hr.EmployeesDetails.employee_details', compact('emp'));
     }

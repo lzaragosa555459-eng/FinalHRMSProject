@@ -22,7 +22,7 @@
 
     <!-- Header -->
     <div class="row mb-4">
-        <div class="col-12 d-flex justify-content-between align-items-center">
+        <div class="col-12 d-flex justify-content-between align-items-center p-4" style="background-color: #a2aab6;">
 
             <h2 class="mb-0">Employees</h2>
 

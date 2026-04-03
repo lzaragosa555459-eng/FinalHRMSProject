@@ -130,7 +130,8 @@
 
     <hr class="text-light">
 
-    <a href="#">
+    <a href="{{ route('login') }}" 
+      class="{{ Route::is('login') ? 'active' : '' }}">
         <i class="bi bi-box-arrow-right"></i>
         <span>Logout</span>
     </a>

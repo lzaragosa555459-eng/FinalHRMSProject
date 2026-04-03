@@ -12,9 +12,12 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 @extends('hr.sidebar')
- <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #EDF2FA;">
-        <div class="container-fluid">
 
+<div class="container mt-4" style="margin-left: 9%;">
+    <nav class="navbar navbar-expand-lg navbar-dark" ">
+        <div class="container-fluid">
+            <img src="{{ 'logo.png'}}" style="width: 50px;" alt="">
+            <h3 class="ms-3">CoreHR</h3>
             <div class="ms-auto d-flex align-items-center">
 
                 <div class="rounded-circle d-flex justify-content-center align-items-center bg-secondary text-white"
@@ -30,12 +33,11 @@
         </div>
 
     </div>
-</nav>
-<div class="container mt-4" style="margin-left: 9%;">
-    
+</nav> 
+<br><br>
     <!-- Header -->
     <div class="text-center mb-4">
-        <h3 class="fw-semibold">DASHBOARD</h3>
+        <h3 class="fw-semibold display-4">Dashboard</h3>
     </div>
 
     <!-- Top Stats -->

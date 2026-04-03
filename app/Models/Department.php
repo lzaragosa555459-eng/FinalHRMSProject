@@ -16,6 +16,10 @@ class Department extends Model
         return $this->hasOne(Employee::class, 'department_id', 'department_id')
                     ->where('role', 'head');
     }
+    public function events()
+    {
+        return $this->hasMany(Event::class, 'department_id', 'department_id');
+    }
 
   
 }

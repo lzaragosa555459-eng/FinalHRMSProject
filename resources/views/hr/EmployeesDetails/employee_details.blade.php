@@ -12,11 +12,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     @extends('hr.sidebar')
    
-    <div class="container mt-4 bg-white p-4" style="margin-left: 9%;">
-     <a href="{{ route('hr.employees') }}" class="btn btn-sm btn-outline-dark rounded-pill px-3">
+    <div class="container mt-4 p-4" style="margin-left: 9%;">
+     <div class="container">
+        <a href="{{ route('hr.employees') }}" class="btn btn-sm btn-outline-dark rounded-pill px-3">
         Back
     </a>
-    <div class="row align-items-center">
+     </div>
+    <div class="row align-items-center ">
 
         <!-- Profile Image -->
         <div class="col-md-4 text-center">
