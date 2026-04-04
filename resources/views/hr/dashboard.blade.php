@@ -10,8 +10,6 @@
     <link rel="icon" href="{{ asset('logo.png') }}" type="image/png">
     <style>
         body { background-color: #f0f2f5; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-        .card { border: none; border-radius: 1rem; transition: all 0.2s ease-in-out; }
-        .card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.05) !important; }
         .stat-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
         .navbar { border-radius: 1rem; margin-bottom: 2rem; }
         .activity-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 10px; }
@@ -136,19 +134,19 @@
                                 <div class="col-4">
                                     <div class="p-2 border rounded">
                                         <small class="d-block text-muted">Wait</small>
-                                        <strong class="text-primary">0</strong>
+                                        <strong class="text-primary">{{ $pendingleaves }}</strong>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="p-2 border rounded">
                                         <small class="d-block text-muted">OK</small>
-                                        <strong class="text-success">0</strong>
+                                        <strong class="text-success">{{ $approvedleaves }}</strong>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="p-2 border rounded">
                                         <small class="d-block text-muted">No</small>
-                                        <strong class="text-danger">0</strong>
+                                        <strong class="text-danger">{{ $disapprovedleaves }}</strong>
                                     </div>
                                 </div>
                             </div>
@@ -158,13 +156,13 @@
 
                 <div class="row g-4">
                     <div class="col-lg-6">
-                        <div class="card bg-white shadow-sm p-4 h-100">
-                            <h5 class="fw-bold mb-4">Gender Stats</h5>
-                            <div class="bg-light rounded p-5 text-center text-muted border-dashed">
-                                <i class="bi bi-pie-chart fs-1 d-block mb-2"></i>
-                                Pie Chart Visualization
-                            </div>
+                       <div class="card bg-white shadow-sm p-4 h-100">
+                        <h5 class="fw-bold mb-4">Gender Stats</h5>
+
+                        <div class="bg-light rounded p-3 border-dashed">
+                            <canvas id="genderChart" height="200"></canvas>
                         </div>
+                    </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="card bg-white shadow-sm p-4 h-100">
@@ -209,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 label: 'Employees',
                 data: data,
                 borderRadius: 10,
-                backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b']
+                backgroundColor: ['#b5c8ff', '#b5c8ff', '#b5c8ff', '#b5c8ff', '#b5c8ff']
             }]
         },
         options: {
@@ -223,6 +221,32 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+
+<!--PIE CHART AGE-->
+    const ctx = document.getElementById('genderChart');
+
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Male', 'Female'],
+            datasets: [{
+                data: [60, 40], // 👈 replace with dynamic values
+                backgroundColor: [
+                    '#0d6efd', // blue
+                    '#dc3545'  // red
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
 </script>
 
 </body>

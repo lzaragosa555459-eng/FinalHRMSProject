@@ -19,11 +19,11 @@
 
 
 
-<div class="container mt-4" style="margin-left: 9%;">
+<div class="container mt-4" style="margin-left: 9%; ">
 
     <!-- Header -->
-    <div class="row mb-4">
-        <div class="col-12 d-flex justify-content-between align-items-center p-4 rounded-4" style="background-color: #a2aab6;">
+    <div class="row mb-4 ">
+        <div class="col-12  d-flex justify-content-between align-items-center p-4 rounded-4" style="background-color: #a2aab6;">
 
             <h2 class="mb-0">Employees</h2>
 
@@ -56,23 +56,35 @@
         </div>
     </div>
 
-    <!-- Grid -->
-   <div class="row" id="employeesGrid">
+   <!-- Grid -->
+<div class="row" id="employeesGrid">
     @foreach($employees as $emp)
 
     <div class="col-md-4 mb-4 employee-card" data-id="{{ $emp->id }}">
-        <div class="card border-0 shadow-sm h-100 rounded-4 text-center p-4 position-relative">
+        <div class="card border-0 shadow-sm h-100 rounded-4 text-center p-4">
 
-            <!-- Avatar (Top Center) -->
-            <div class="d-flex justify-content-center">
-                <div class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center shadow"
-                     style="width:80px; height:80px; font-size:28px; margin-top:-50px; border:4px solid #fff;">
-                    {{ strtoupper(substr($emp->name ?? 'U', 0, 1)) }}
+            <!-- Big Circle Profile Picture - Centered -->
+            <div class="d-flex justify-content-center mb-4">
+                <div class="rounded-circle overflow-hidden shadow border border-white"
+                     style="width: 110px; height: 110px; border-width: 5px;">
+                    
+                    @if($emp->profile_image || $emp->avatar)
+                        <img src="{{ $emp->profile_photo_path ?? $emp->avatar }}"
+                             alt="{{ $emp->name }}"
+                             class="w-100 h-100 object-fit-cover">
+                    @else
+                        <!-- Fallback: Initial -->
+                        <div class="w-100 h-100 bg-primary text-white d-flex justify-content-center align-items-center"
+                             style="font-size: 42px;">
+                            {{ strtoupper(substr($emp->name ?? 'U', 0, 1)) }}
+                        </div>
+                    @endif
+                    
                 </div>
             </div>
 
-            <!-- Name -->
-            <h5 class="mt-3 mb-1 fw-semibold">
+            <!-- Name at the Bottom -->
+            <h5 class="fw-semibold mb-1 text-dark">
                 {{ $emp->name }}
             </h5>
 
@@ -81,27 +93,23 @@
                 {{ $emp->position?->title ?? 'Staff' }}
             </small>
 
-            <!-- Info -->
-            <div class="text-muted small text-start px-2">
-                <div class="mb-1"><strong>Email:</strong> {{ $emp->email }}</div>
-                <div class="mb-1"><strong>Phone:</strong> {{ $emp->phone_number ?? '—' }}</div>
-                <div class="mb-1"><strong>Department:</strong> {{ $emp->department?->name ?? '—' }}</div>
+            <!-- Short Info -->
+            <div class="text-muted small text-center mb-4">
+                <div class="mb-1">{{ $emp->email }}</div>
+                <div>{{ $emp->department?->name ?? '—' }}</div>
             </div>
 
-            <!-- Action -->
-            <div class="mt-3">
-                <a href="{{ route('hr.EmployeesDetails.employee_details', $emp->employee_id) }}"
-                   class="btn btn-primary btn-sm rounded-pill px-4">
-                    View Profile
-                </a>
-            </div>
+            <!-- Action Button -->
+            <a href="{{ route('hr.EmployeesDetails.employee_details', $emp->employee_id) }}"
+               class="btn btn-primary btn-sm rounded-pill px-4 py-2">
+                View Profile
+            </a>
 
         </div>
     </div>
 
     @endforeach
 </div>
-
 <!-- Modal -->
 <div id="employeeModal" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-lg">

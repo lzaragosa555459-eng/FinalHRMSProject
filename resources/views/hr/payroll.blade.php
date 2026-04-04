@@ -21,14 +21,7 @@
         <div class="col-4">
             <div class="card border-0 shadow-sm rounded-4 p-3 text-center">
                 <small class="text-muted">Total Gross</small>
-                <h5 class="fw-bold text-success mb-0">₱25,000</h5>
-            </div>
-        </div>
-        <!-- Total Net -->
-        <div class="col-4">
-            <div class="card border-0 shadow-sm rounded-4 p-3 text-center">
-                <small class="text-muted">Total Net</small>
-                <h5 class="fw-bold text-success mb-0">₱25,000</h5>
+                <h5 class="fw-bold text-secondary mb-0">₱25,000</h5>
             </div>
         </div>
 
@@ -39,7 +32,13 @@
                 <h5 class="fw-bold text-danger mb-0">₱5,000</h5>
             </div>
         </div>
-        
+        <!-- Total Net -->
+            <div class="col-4">
+                <div class="card border-0 shadow-sm rounded-4 p-3 text-center">
+                    <small class="text-muted">Total Net</small>
+                <h5 class="fw-bold text-success mb-0">₱25,000</h5>
+            </div>
+         </div>        
     </div>
         
         <div class="row">

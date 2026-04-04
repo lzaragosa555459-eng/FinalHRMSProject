@@ -51,6 +51,10 @@ class HRController extends Controller
             ->where('status', 'Late')
             ->count();
 
+        $approvedleaves = Leave::where('status', 'approved')->count();
+        $disapprovedleaves = Leave::where('status', 'disapproved')->count();
+        $pendingleaves = Leave::where('status', 'pending')->count();
+
         return view('hr.dashboard', compact(
             'totalEmployees',
             'totalActive',
@@ -61,7 +65,10 @@ class HRController extends Controller
             'totalLateToday',
             'TotalLeave',
             'departmentsAnalytics',
-            'positions'
+            'positions',
+            'approvedleaves',
+            'disapprovedleaves',
+            'pendingleaves'
         ));
 
           

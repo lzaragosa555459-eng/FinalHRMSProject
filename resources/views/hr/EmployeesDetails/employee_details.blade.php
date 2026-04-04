@@ -21,18 +21,36 @@
      </div>
     <div class="row align-items-center ">
 
-        <!-- Profile Image -->
-        <div class="col-md-4 text-center">
-            <img src="{{ asset('LIZPIC.jpg') }}"
-                 class="rounded-circle mt-3"
-                 width="250"
-                 height="250"
-                 alt="Profile">
+        <!-- Container (Rectangle) -->
+        <div class="bg-light text-center position-relative" style="height: 180px;">
+
+            <!-- Circle Profile -->
+            <div class="rounded-circle overflow-hidden shadow border border-white position-absolute start-50 translate-middle-x"
+                style="width: 250px; height: 250px; border-width: 5px; bottom: -125px;">
+                
+                @if($emp->profile_image || $emp->avatar)
+                    <img src="{{ $emp->profile_photo_path ?? $emp->avatar }}"
+                        alt="{{ $emp->name }}"
+                        class="w-100 h-100 object-fit-cover">
+                @else
+                    <!-- Fallback -->
+                    <div class="w-100 h-100 bg-primary text-white d-flex justify-content-center align-items-center"
+                        style="font-size: 42px;">
+                        {{ strtoupper(substr($emp->name ?? 'U', 0, 1)) }}
+                    </div>
+                @endif
+                
+            </div>
+
         </div>
-
+        <!-- Add spacing below so content doesn't overlap -->
+        <div style="height: 200px;"></div>
+          <nav>
+                <a href="{{ route('hr.EmployeesDetails.employee_by_department', $emp->department_id) }}">View Department</a>
+            </nav>
         <!-- Employee Info -->
-        <div class="col-md-6">
-
+        <div class="col-md-6 bg-light p-4">
+          
             <h2 class="mb-1">{{ $emp->name }}</h2>
             <h5>{{ $emp->position?->title ?? '—' }}</h5>
             <h6 class="text-secondary">
