@@ -84,7 +84,9 @@ class HRController extends Controller
    
 
     public function attendance(){
-        return view('hr.attendance');
+        $attendances = Attendance::all();
+        $leaves = Leave::all();
+        return view('hr.attendance', compact('attendances','leaves'));
     }
 
     public function payroll(){

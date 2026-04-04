@@ -15,7 +15,8 @@ class LeaveSeeder extends Seeder
             'employee_id' => 1,
             'start_date' => '2026-04-01',
             'end_date' => '2026-04-03',
-            'reason' => 'Sick leave'
+            'reason' => 'Sick leave',
+            'status' => 'approved'
         ]
     ]);
 }

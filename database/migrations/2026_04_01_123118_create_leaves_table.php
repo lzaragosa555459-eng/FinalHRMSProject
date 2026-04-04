@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->text('reason')->nullable();
-
+            $table->enum('status', ['approved', 'disapproved', 'pending']);
             $table->timestamps();
 
             $table->foreign('employee_id')->references('employee_id')->on('employees')->onDelete('set null');
