@@ -55,7 +55,11 @@
                     <a class="nav-link nav-item-link me-4" href="#" 
                     onclick="showContainer('container2', this)">
                     Leave Request
+                    @if($countleaves > 0)
+                     <span class="badge bg-danger ms-2">{{ $countleaves }}</span>
+                     @endif
                     </a>
+                    
                 <select class="form-select w-auto shadow-sm ms-4">
                     <option>All</option>
                     <option>Present</option>
@@ -142,7 +146,7 @@
 
                             <!-- Data -->
                             <tbody>
-                                @foreach($leaves as $leave)
+                                @foreach($approvedleaves as $leave)
                                 <tr>
                                     <td>{{ $leave->leave_id }}</td>
                                     <td class="fw-medium">
@@ -177,7 +181,54 @@
           <div class="innercontainer"  id="container2" style="margin-left: 0%; display: none;">
                 <!--Request leaves-->
                   
-                    Request Leave
+                    <h4>Leave Request</h4>
+
+
+                     <div style="max-height: 400px; overflow-y: auto;">
+
+                        <table class="table table-hover align-middle mb-0">
+
+                            <!-- Sticky Header -->
+                            <thead class="table-light position-sticky top-0">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Employee</th>
+                                    <th>Start date</th>
+                                    <th>End date</th>
+                                    <th>Reason</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <!-- Data -->
+                            <tbody>
+                                @foreach($pendingleaves as $leave)
+                                <tr>
+                                    <td>{{ $leave->leave_id }}</td>
+                                    <td class="fw-medium">
+                                        {{ $leave->employee->name ?? 'N/A' }}
+                                    </td>
+                                    <td>{{ $leave->start_date }}</td>
+                                    <td>{{ $leave->end_date }}</td>
+                                    <td>{{ $leave->reason }}</td>
+
+                                    <td>
+                                        <span class="badge bg-warning-subtle text-warning px-3 py-2 rounded-pill">pending</span>
+                                    </td>
+                                      <td>
+                                        <!-- Action buttons (placeholder) -->
+                                        <button class="btn btn-sm btn-success">Approve</button>
+                                        <button class="btn btn-sm btn-danger">Reject</button>
+                                    </td>
+                                </tr>
+                                @endforeach
+                              
+                            </tbody>
+
+                        </table>
+
+                    </div>
           </div>
         </div>
     </div>

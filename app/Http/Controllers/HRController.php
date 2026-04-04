@@ -85,8 +85,10 @@ class HRController extends Controller
 
     public function attendance(){
         $attendances = Attendance::all();
-        $leaves = Leave::all();
-        return view('hr.attendance', compact('attendances','leaves'));
+        $approvedleaves = Leave::where('status', 'approved')->get();
+        $countleaves = Leave::where('status', 'pending')->count();
+        $pendingleaves = Leave::where('status', 'pending')->get();
+        return view('hr.attendance', compact('attendances','approvedleaves', 'countleaves', 'pendingleaves'));
     }
 
     public function payroll(){
