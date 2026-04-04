@@ -7,6 +7,7 @@ use App\Models\Department;
 use App\Models\Attendance;
 use App\Models\Event;
 use App\Models\Leave;
+use App\Models\Payroll;
 use App\Models\Position;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +36,7 @@ class HRController extends Controller
 
         $positions = Position::count();
      
-        $TotalLeave = Attendance::where('status', 'Absent')->count();
+        $TotalLeave = Leave::where('status', 'approved')->count();
      
 
         // Departments
@@ -68,6 +69,7 @@ class HRController extends Controller
 
     public function employees(){
         $employees = Employee::all();
+        
 
         return view('hr.employees', compact('employees'));
     }
@@ -92,7 +94,8 @@ class HRController extends Controller
     }
 
     public function payroll(){
-        return view('hr.payroll');
+        $payrolls = Payroll::all();
+        return view('hr.payroll', compact('payrolls'));
     }
 
     public function employee_details($id){

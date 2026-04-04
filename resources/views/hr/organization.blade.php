@@ -142,9 +142,9 @@
                 </div>
 
                 <!-- Description -->
-                <p class="text-muted small mb-3">
+                <i class="text-muted small mb-3">
                     {{ $dept->description ?? 'No description available.' }}
-                </p>
+                </i>
 
                 <!-- Stats -->
                 <div class="d-flex justify-content-between align-items-center mb-3">

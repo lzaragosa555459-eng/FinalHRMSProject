@@ -6,6 +6,7 @@
      <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="icon" href="{{ asset('logo.png') }}" type="image/png">
     <title>Organization</title>
 </head>
 <style>

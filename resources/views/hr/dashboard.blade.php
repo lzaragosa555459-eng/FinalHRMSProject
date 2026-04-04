@@ -30,7 +30,7 @@
             
             <div class="container">
                 <div class="row mb-4">
-                    <div class="col-12">
+                    <div class="col-12">    
                         <nav class="navbar navbar-expand-lg bg-white shadow-sm px-4">
                             <div class="d-flex align-items-center">
                                 <img src="{{ asset('logo.png') }}" style="width: 40px;" alt="Logo">

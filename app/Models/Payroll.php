@@ -16,4 +16,9 @@ class Payroll extends Model
         'net_salary',
         'pay_date'
     ];
+
+      public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'employee_id');
+    }
 }
