@@ -103,8 +103,9 @@ class HRController extends Controller
     }
      public function organization_details($id){
         $employees = Employee::where('department_id', $id)->get();
+        $getEvents = Event::where('department_id', $id)->get();
         
-        return view('hr.EmployeesDetails.employee_by_department', compact('employees'));
+        return view('hr.EmployeesDetails.employee_by_department', compact('employees','getEvents'));
     }
 
     

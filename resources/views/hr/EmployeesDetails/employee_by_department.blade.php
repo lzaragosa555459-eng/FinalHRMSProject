@@ -8,24 +8,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organization</title>
 </head>
+<style>
+.card-container {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;   /* enables horizontal scroll */
+    padding: 10px;
+}
+
+.card-item {
+    min-width: 250px;   /* important so cards stay side-by-side */
+    height: 150px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+.card-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+.card-container::-webkit-scrollbar {
+    display: none;
+}
+
+.card-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+</style>
 <body style="background-color: #EDF2FA;">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <div class="container mt-5" style="max-width: 1200px; margin-left: auto; margin-right: auto;">
         <a href="{{ route('hr.organization')}}" class="btn btn-outline-secondary rounded ">
-        Back
-    </a>
+             Back
+        </a>
+         <h1 class="fw-bold text-dark mb-1">
+                Department: 
+                <span class="text-primary">
+                    {{ $employees->first()?->department?->name ?? 'N/A' }}
+                </span>
+        </h1>
+        <div  class="d-flex align-items-center justify-content-between mb-1 mt-4">
+        <h3>Events</h3>
+        <input type="submit" value="+Add event" class="btn btn-primary">
+        </div>
+   
+    
+    <!--CAROUSEL SLIDERS CONTAINER-->
+    <div class="card-container">
+     @foreach($getEvents as $event)
+        <div class="col-md-6 col-lg-4">
+            <div class="card border-0 shadow-sm h-100">
+
+                <!-- Header (Document Style) -->
+                <div class="card-body">
+
+                    <!-- Icon + Type -->
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="bg-primary text-white rounded p-2">
+                                <i class="bi bi-file-earmark-text"></i>
+                            </div>
+                            <small class="text-muted text-uppercase">
+                                {{ str_replace('_', ' ', $event->event_type) }}
+                            </small>
+                        </div>
+
+                        <!-- Status -->
+                        <span class="badge 
+                            @if($event->status == 'published') bg-success
+                            @elseif($event->status == 'draft') bg-secondary
+                            @else bg-danger
+                            @endif">
+                            {{ ucfirst($event->status) }}
+                        </span>
+                    </div>
+
+                    <!-- Title -->
+                    <h5 class="fw-semibold mb-2">
+                        {{ $event->title }}
+                    </h5>
+
+                    <!-- Description -->
+                    <p class="text-muted small mb-3">
+                        {{ $event->description }}
+                    </p>
+
+                    <!-- Info -->
+                    <div class="small text-muted mb-3">
+                        <div><i class="bi bi-calendar-event"></i>
+                            {{ \Carbon\Carbon::parse($event->start_datetime)->format('M d, Y h:i A') }}
+                        </div>
+
+                        <div><i class="bi bi-geo-alt"></i>
+                            {{ $event->location ?? 'N/A' }}
+                        </div>
+
+                        <div><i class="bi bi-people"></i>
+                            Max: {{ $event->max_participants ?? 'Unlimited' }}
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Footer -->
+                <div class="card-footer bg-white border-top d-flex justify-content-between">
+                    <button class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-eye"></i> View
+                    </button>
+
+                    <div class="d-flex gap-1">
+                        <button class="btn btn-outline-warning btn-sm">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        @endforeach
+    </div>
+
     </div>
     <div class="container mt-5" style="max-width: 1200px; margin-left: auto; margin-right: auto;">
 
     <!-- Department Header -->
     <div class="d-flex align-items-center justify-content-between mb-4">
         <div>
-            <h4 class="fw-bold text-dark mb-1">
-                Department: 
-                <span class="text-primary">
-                    {{ $employees->first()?->department?->name ?? 'N/A' }}
-                </span>
-            </h4>
+           <h3>Employees</h3>
             <p class="text-muted mb-0">{{ $employees->count() }} employees</p>
         </div>
         
@@ -138,6 +255,14 @@
 
   
 </div>
-  
+<script>
+    let index = 0;
+
+function showPanel(i) {
+    const track = document.getElementById('track');
+    index = i;
+    track.style.transform = `translateX(-${index * 100}%)`;
+}
+</script>
 </body>
 </html>

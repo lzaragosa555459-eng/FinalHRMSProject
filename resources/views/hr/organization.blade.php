@@ -1,7 +1,9 @@
+ @extends('hr.sidebar')
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('logo.png') }}" type="image/png">
@@ -46,7 +48,7 @@
 </style>
 <body style="background-color: #EDF2FA;">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    @extends('hr.sidebar')
+   
     
 <div class="container mt-4" style="margin-left: 9%;">
     
@@ -107,9 +109,13 @@
 <div class="container mt-4" id="container1" style="display: block;">
     <h3 class="mb-4 fw-semibold">Departments</h3>
 
-    <div class="row g-4">
-        @foreach($departments as $dept)
-        <div class="col-md-6 col-lg-4">
+   <div class="row g-4">
+    @foreach($departments as $dept)
+
+    <div class="col-md-6 col-lg-4">
+        <a href="{{ route('hr.EmployeesDetails.employee_by_department', $dept->department_id) }}" 
+           class="text-decoration-none text-dark">
+
             <div class="card border-0 shadow-sm h-100 rounded-4 p-3 department-card">
 
                 <!-- Top Section -->
@@ -147,7 +153,6 @@
                         <h4 class="mb-0 fw-bold">{{ $dept->employees_count ?? 0 }}</h4>
                     </div>
 
-                    <!-- Mini progress feel -->
                     <div class="text-end">
                         <small class="text-muted">Status</small><br>
                         <span class="fw-semibold">
@@ -158,11 +163,6 @@
 
                 <!-- Actions -->
                 <div class="d-flex gap-2 mt-auto">
-                    <a href="{{ route('hr.EmployeesDetails.employee_by_department', $dept->department_id) }}" 
-                       class="btn btn-primary btn-sm flex-grow-1">
-                        <i class="bi bi-eye"></i> View
-                    </a>
-
                     <button class="btn btn-light border btn-sm">
                         <i class="bi bi-pencil"></i>
                     </button>
@@ -173,9 +173,12 @@
                 </div>
 
             </div>
-        </div>
-        @endforeach
+
+        </a>
     </div>
+
+    @endforeach
+</div>
 </div>
  <!-- Events -->
 <div class="container mt-4" id="container2" style="margin-left: 0%; display: none;">

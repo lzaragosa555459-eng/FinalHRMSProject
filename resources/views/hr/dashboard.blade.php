@@ -1,3 +1,4 @@
+@extends('hr.sidebar')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +22,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-@extends('hr.sidebar')
+
 
 <div class="container py-4" style="margin-left:5%;">
     <div class="row">
