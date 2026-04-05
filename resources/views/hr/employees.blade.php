@@ -23,9 +23,9 @@
 
     <!-- Header -->
     <div class="row mb-4 ">
-        <div class="col-12  d-flex justify-content-between align-items-center p-4 rounded-4" style="background-color: #a2aab6;">
+        <div class="col-12  d-flex justify-content-end align-items-center p-4 " style="background-color: #a2aab6;">
 
-            <h2 class="mb-0">Employees</h2>
+          
 
             <div class="d-flex gap-2 ">
 
@@ -35,27 +35,32 @@
                 </div>
                 
                 
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                        Select Option
-                    </button>
+                <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="bi bi-filter"></i>
+                            </span>
 
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Option 1</a></li>
-                        <li><a class="dropdown-item" href="#">Option 2</a></li>
-                        <li><a class="dropdown-item" href="#">Option 3</a></li>
-                    </ul>
-                </div>
+                            <select class="form-select">
+                                <option>All Status</option>
+                                <option>Active</option>
+                                <option>Inactive</option>
+                            </select>
+                        </div>
 
-                <button class="btn btn-primary" onclick="showAddModal()">
-                    +Add_Employee
-                </button>
 
             </div>
 
         </div>
     </div>
-
+    <div class="row">
+        <div class="col-12  d-flex justify-content-between align-items-center p-4 " >
+              <h2 class="my-4">Employees</h2>
+      
+                <button class="btn btn-primary" onclick="showAddModal()">
+                    +Add_Employee
+                </button>
+        </div>
+    </div>
    <!-- Grid -->
 <div class="row" id="employeesGrid">
     @foreach($employees as $emp)

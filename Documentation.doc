@@ -112,3 +112,105 @@ migrate    → database
 db:seed    → insert data
 serve      → run project
 clear      → fix errors
+
+
+
+
+// ==========================================
+// LARAVEL ELOQUENT ORM - COMPLETE CHEAT SHEET
+// ==========================================
+
+// ---------- CREATE ----------
+Model::create([...]);
+Model::insert([...]);
+
+// ---------- READ ----------
+Model::all();
+Model::find(1);
+Model::findOrFail(1);
+Model::first();
+Model::firstOrFail();
+Model::where('column', value)->get();
+Model::where('column', value)->first();
+
+// ---------- UPDATE ----------
+$model = Model::find(1);
+$model->update([...]);
+
+Model::where('id', 1)->update([...]);
+
+// ---------- DELETE ----------
+$model = Model::find(1);
+$model->delete();
+
+Model::destroy(1);
+Model::where('id', 1)->delete();
+
+
+// ---------- WHERE CONDITIONS ----------
+Model::where('age', 18);
+Model::where('age', '>', 18);
+Model::whereBetween('age', [18, 25]);
+Model::whereIn('id', [1,2,3]);
+Model::whereNull('deleted_at');
+Model::whereNotNull('email');
+
+
+// ---------- RELATIONSHIPS ----------
+$this->hasOne(Model::class);
+$this->hasMany(Model::class);
+$this->belongsTo(Model::class);
+$this->belongsToMany(Model::class);
+
+
+// ---------- RELATION USAGE ----------
+User::with('posts')->get();   // eager loading
+$user->posts;
+
+
+// ---------- ORDER / LIMIT ----------
+Model::orderBy('created_at', 'desc')->get();
+Model::latest()->get();
+Model::oldest()->get();
+Model::take(5)->get();
+Model::limit(5)->get();
+
+
+// ---------- SEARCH ----------
+Model::where('name', 'LIKE', '%john%')->get();
+
+
+// ---------- AGGREGATES ----------
+Model::count();
+Model::sum('salary');
+Model::avg('salary');
+Model::max('salary');
+Model::min('salary');
+
+
+// ---------- HELPERS ----------
+Model::firstOrCreate([...]);
+Model::updateOrCreate([...], [...]);
+Model::exists();
+Model::doesntExist();
+
+
+// ---------- PAGINATION ----------
+Model::paginate(10);
+Model::simplePaginate(10);
+
+
+// ---------- DEBUG ----------
+Model::toSql();
+dd($variable);
+
+
+// ---------- COLLECTION METHODS ----------
+$users->count();
+$users->first();
+$users->pluck('name');
+$users->sortBy('name');
+
+
+// ---------- SIMPLE FLOW ----------
+Model::where(...)->get();
