@@ -1,0 +1,114 @@
+1. npm install
+2. npm run dev
+
+
+Laravel process
+
+Request → Route → Controller → Model → View → Response
+
+User (Browser)
+→ Route (web.php)
+→ Controller (handles logic)
+→ Model (database interaction)
+→ View (Blade UI)
+→ Response (HTML back to browser)
+
+
+Request
+→ Middleware
+→ Route
+→ Controller
+→ Model
+→ View
+→ Response
+
+
+GENERATORS (make):
+php artisan make:model Post
+php artisan make:model Post -m        // with migration
+php artisan make:model Post -mc       // with migration + controller
+php artisan make:model Post -mcr      // migration + controller + resource
+
+php artisan make:controller PostController
+php artisan make:controller PostController --resource
+
+php artisan make:migration create_posts_table
+php artisan make:seeder PostSeeder
+php artisan make:factory PostFactory
+
+php artisan make:middleware CheckUser
+php artisan make:request StorePostRequest
+php artisan make:command CustomCommand
+php artisan make:event EventName
+php artisan make:listener ListenerName
+php artisan make:job JobName
+php artisan make:policy PostPolicy
+php artisan make:provider CustomServiceProvider
+
+
+DATABASE COMMANDS:
+php artisan migrate
+php artisan migrate:rollback
+php artisan migrate:reset
+php artisan migrate:refresh
+php artisan migrate:fresh
+
+php artisan db:seed
+php artisan db:seed --class=PostSeeder
+
+php artisan migrate:fresh --seed
+
+
+
+CACHE & CONFIG
+php artisan config:cache
+php artisan config:clear
+
+php artisan cache:clear
+php artisan route:clear
+php artisan view:clear
+
+php artisan optimize
+php artisan optimize:clear
+
+
+SERVER
+php artisan serve
+
+
+ROUTES
+php artisan route:list
+php artisan route:cache
+php artisan route:clear
+
+
+
+STORAGE FILES:
+php artisan storage:link
+
+
+AUTH:
+php artisan make:auth   // (older Laravel)
+
+
+TESTING
+php artisan test
+
+
+USEFUL COMBINATION
+php artisan make:model Employee -mcr
+
+-creates model,migration, and controller
+
+
+RESET DATABASE
+php artisan migrate:fresh --seed
+
+
+
+SUMMARY
+make:*     → create files
+migrate    → database
+db:seed    → insert data
+serve      → run project
+clear      → fix errors

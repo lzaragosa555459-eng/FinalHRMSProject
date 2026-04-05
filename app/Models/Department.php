@@ -23,3 +23,21 @@ class Department extends Model
 
   
 }
+//The $this->hasOne or hasMany, is elequent relatioship that defines the relationship between tables. 
+
+// In Laravel:
+
+// hasOne()  = one-to-one relationship
+// hasMany() = one-to-many relationship
+// belongsTo() = inverse (child side)
+
+// POST MODEL (Child)
+//public function user()
+//{
+    // Each post belongs to one user
+    //return $this->belongsTo(User::class);
+//}
+
+// Meaning:
+// User → many Posts
+// Post → belongs to one User
