@@ -83,15 +83,16 @@
                     onkeyup="searchEmployees()">
             </div>
        
-        <div class="input-group">
+        <div class="input-group ms-4" >
             <span class="input-group-text">
                 <i class="bi bi-filter"></i>
             </span>
 
             <select class="form-select">
-                <option>All Status</option>
-                <option>Active</option>
-                <option>Inactive</option>
+                <option>Select Department</option>
+                @foreach($departments as $dept)
+                     <option>{{ $dept->name }}</option>
+                @endforeach
             </select>
         </div>
     </div>

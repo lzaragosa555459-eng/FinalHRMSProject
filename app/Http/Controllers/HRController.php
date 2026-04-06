@@ -9,6 +9,7 @@ use App\Models\Event;
 use App\Models\Leave;
 use App\Models\Payroll;
 use App\Models\Position;
+use Database\Seeders\DepartmentSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Psy\Command\WhereamiCommand;
@@ -76,9 +77,9 @@ class HRController extends Controller
 
     public function employees(){
         $employees = Employee::all();
-        
+        $departments = Department::all();
 
-        return view('hr.employees', compact('employees'));
+        return view('hr.employees', compact('employees','departments'));
     }
     public function organization()
     {
@@ -119,7 +120,11 @@ class HRController extends Controller
     }
 
     public function AddEmployees(){
-        return view('hr.Crud.add');
+        $positions = Position::all();
+        $departments = Department::all();
+        $managers = Employee::whereNull('manager_id')->get();
+
+        return view('hr.Crud.add', compact('positions', 'departments', 'managers'));
     }
     public function EditEmployees(){
         return view('hr.Crud.edit');

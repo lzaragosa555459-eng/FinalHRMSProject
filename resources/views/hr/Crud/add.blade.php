@@ -24,37 +24,37 @@
     <div class="row">
 
         <div class="col-md-6">
-            <label class="form-label">Employee Number</label>
+            <label class="form-label">Employee Number<span class="text-danger">*</span></label>
             <input type="text" name="employee_number" class="form-control">
         </div>
 
         <div class="col-md-6">
-            <label class="form-label">Name</label>
+            <label class="form-label">Name<span class="text-danger">*</span></label>
             <input type="text" name="name" class="form-control">
         </div>
 
         <div class="col-md-6">
-            <label class="form-label">Phone Number</label>
+            <label class="form-label">Phone Number<span class="text-danger">*</span></label>
             <input type="text" name="phone_number" class="form-control">
         </div>
 
         <div class="col-md-6">
-            <label class="form-label">Email</label>
+            <label class="form-label">Email<span class="text-danger">*</span></label>
             <input type="email" name="email" class="form-control">
         </div>
 
         <div class="col-12">
-            <label class="form-label">Address</label>
+            <label class="form-label">Address<span class="text-danger">*</span></label>
             <textarea name="address" class="form-control"></textarea>
         </div>
 
         <div class="col-md-6">
-            <label class="form-label">Date of Birth</label>
+            <label class="form-label">Date of Birth<span class="text-danger">*</span></label>
             <input type="date" name="date_of_birth" class="form-control">
         </div>
 
         <div class="col-md-6">
-            <label class="form-label">Gender</label>
+            <label class="form-label">Gender<span class="text-danger">*</span></label>
             <select name="gender" class="form-control">
                 <option value="">Select Gender</option>
                 <option value="male">Male</option>
@@ -69,7 +69,7 @@
         </div>
 
         <div class="col-md-6">
-            <label class="form-label">Role</label>
+            <label class="form-label">Role<span class="text-danger">*</span></label>
             <select name="role" class="form-control">
                 <option value="employee">Employee</option>
                 <option value="head">Head</option>
@@ -77,13 +77,25 @@
         </div>
 
         <div class="col-md-6">
-            <label class="form-label">Department ID</label>
-            <input type="number" name="department_id" class="form-control">
+            <label class="form-label">Department name<span class="text-danger">*</span></label>
+         
+               <select name="department" class="form-control">
+                <option value="">Select department</option>
+            @forEach($departments as $dept)
+                <option value="active">{{ $dept->name }}</option>
+            @endforeach
+               </select>
         </div>
 
         <div class="col-md-6">
-            <label class="form-label">Position ID</label>
-            <input type="number" name="position_id" class="form-control">
+            <label class="form-label">Position<span class="text-danger">*</span></label>
+         
+            <select name="positions" class="form-control">
+                <option value="">Select position</option>
+                @forEach($positions as $pos)
+                    <option value="positions">{{ $pos->title }}</option>
+                @endforeach
+            </select>
         </div>
 
         <div class="col-md-6">
@@ -102,8 +114,13 @@
         </div>
 
         <div class="col-md-6">
-            <label class="form-label">Manager ID</label>
-            <input type="number" name="manager_id" class="form-control">
+            <label class="form-label">Manager name<span class="text-danger">*</span></label>
+            <select name="managers" class="form-control">
+                <option value="">Select manager</option>
+                @foreach($managers as $man)
+                    <option value="positions">{{ $man->name }}</option>
+                @endforeach
+            </select>
         </div>
 
         <div class="col-md-6">

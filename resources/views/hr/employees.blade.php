@@ -31,7 +31,10 @@
 
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-search"></i></span>
-                    <input type="text" id="searchInput" class="form-control" placeholder="Search..." onkeyup="searchEmployees()">
+                    <input type="text" id="searchInput"
+                        class="form-control"
+                        placeholder="Search..."
+                        onkeyup="searchEmployees()">
                 </div>
                 
                 
@@ -39,11 +42,15 @@
                             <span class="input-group-text">
                                 <i class="bi bi-filter"></i>
                             </span>
+                      
+                            <select class="form-select" onchange="filterByDepartment()">
+                                <option value="">All Departments</option>
 
-                            <select class="form-select">
-                                <option>All Status</option>
-                                <option>Active</option>
-                                <option>Inactive</option>
+                                @foreach($departments as $dept)
+                                    <option value="{{ $dept->department_id }}">
+                                        {{ $dept->name }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -65,7 +72,11 @@
 <div class="row" id="employeesGrid">
     @foreach($employees as $emp)
 
-    <div class="col-md-4 mb-4 employee-card" data-id="{{ $emp->id }}">
+   <div class="col-md-4 mb-4 employee-card"
+     data-name="{{ strtolower($emp->name) }}"
+     data-email="{{ strtolower($emp->email) }}"
+     data-position="{{ strtolower($emp->position?->title ?? '') }}"
+     data-department="{{ $emp->department_id }}">
         <div class="card border-0 shadow-sm h-100 rounded-4 text-center p-4">
 
             <!-- Big Circle Profile Picture - Centered -->
@@ -168,15 +179,30 @@
 
 
 function searchEmployees() {
-    const input = document.getElementById('searchInput').value.toLowerCase();
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
     const cards = document.querySelectorAll('.employee-card');
 
     cards.forEach(card => {
         const text = card.innerText.toLowerCase();
-        card.style.display = text.includes(input) ? '' : 'none';
+
+        card.style.display = text.includes(searchInput) ? "" : "none";
     });
 }
 
+function filterByDepartment() {
+    const departmentFilter = document.querySelector('.form-select').value;
+    const cards = document.querySelectorAll('.employee-card');
+
+    cards.forEach(card => {
+        const department = card.getAttribute('data-department');
+
+        if (departmentFilter === "" || department == departmentFilter) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
 
 
 </script>
