@@ -19,7 +19,8 @@
     <div class="row">
         
         <div class="col-8" style="margin-left: 20%;">
-<form>
+<form method="POST" action="{{ route('hr.Crud.add') }}" enctype="multipart/form-data">
+    @csrf
     <h2>Add Employee</h2>
     <div class="row">
 
@@ -81,7 +82,7 @@
          
                <select name="department" class="form-control" id="department_id">
                 <option value="">Select department</option>
-            @forEach($departments as $dept)
+            @foreach($departments as $dept)
                 <option value="active">{{ $dept->name }}</option>
             @endforeach
                </select>
@@ -92,7 +93,7 @@
          
             <select name="positions" class="form-control" id="position_id">
                 <option value="">Select position</option>
-                @forEach($positions as $pos)
+                @foreach($positions as $pos)
                     <option value="positions">{{ $pos->title }}</option>
                 @endforeach
             </select>
@@ -172,7 +173,7 @@
         salary: document.getElementById('salary').value,
         manager_id: document.getElementById('manager_id').value,
         user_id: document.getElementById('user_id').value,
-        status: docucment.getElementById('statud').value,
+        status: docucment.getElementById('status').value,
     };
 }
 </script>

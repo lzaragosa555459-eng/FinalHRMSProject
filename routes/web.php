@@ -4,7 +4,7 @@ use App\Http\Controllers\HRController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CrudConctroller;
+use App\Http\Controllers\CrudController;
 
 Route::get('/', function(){
     return view('login');
@@ -32,7 +32,7 @@ Route::get('/payroll', [HRController::class, 'payroll'])->name('hr.payroll');
 
 
 Route::get('/add employee', [HRController::class, 'AddEmployees'])->name('hr.Crud.add');
-Route::post('/add employee', [CrudConctroller::class, 'save']);
+Route::post('/add employee', [CrudController::class, 'add'])->name('hr.Crud.add');
 
 
 //Route::get('/edit employees', [HRController::class, 'EditEmployees'])->name('hr.Crud.edit');
