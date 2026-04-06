@@ -75,7 +75,7 @@ class EventSeeder extends Seeder
             [
                 'title' => 'Company Anniversary Party',
                 'start_datetime' => Carbon::parse('2026-04-30 18:00:00'),
-                'end_datetime' => null,
+                'end_datetime' => Carbon::parse('2026-04-30 23:59:59'),
                 'location' => 'Grand Hall',
                 'department_id' => null,
                 'description' => 'Celebration event for all employees.',

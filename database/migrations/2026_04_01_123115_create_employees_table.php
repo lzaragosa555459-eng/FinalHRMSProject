@@ -14,20 +14,20 @@ return new class extends Migration
         Schema::create('employees', function (Blueprint $table) 
         {
             $table->increments('employee_id');
-            $table->string('employee_number', 50)->unique()->nullable();
-            $table->string('name', 150)->nullable();
-            $table->string('phone_number',20)->nullable();
-            $table->string('email', 150)->nullable();
-            $table->text('address')->nullable();
-            $table->date('date_of_birth')->nullable();
-            $table->enum('gender', ['male', 'female', 'other'])->nullable();
+            $table->string('employee_number', 50)->unique();
+            $table->string('name', 150);
+            $table->string('phone_number',20);
+            $table->string('email', 150);
+            $table->text('address');
+            $table->date('date_of_birth');
+            $table->enum('gender', ['male', 'female', 'other']);
             $table->string('profile_image')->nullable();
             $table->enum('role', ['head', 'employee'])->default('employee');
             $table->unsignedInteger('department_id')->nullable();
             $table->unsignedInteger('position_id')->nullable();
             $table->unsignedInteger('applicant_id')->nullable();
-            $table->date('hire_date')->nullable();
-            $table->decimal('salary', 10, 2)->nullable();
+            $table->date('hire_date');
+            $table->decimal('salary', 10, 2);
             $table->unsignedInteger('manager_id')->nullable();
             $table->unsignedInteger('user_id')->nullable();
             $table->enum('status', ['active','resigned','inactive']);

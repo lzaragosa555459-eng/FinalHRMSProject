@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('payrolls', function (Blueprint $table) {
             $table->increments('payroll_id');
             $table->unsignedInteger('employee_id')->nullable();
-            $table->decimal('basic_salary', 10, 2)->nullable();
-            $table->decimal('allowances', 10, 2)->nullable();
-            $table->decimal('deduction', 10, 2)->nullable();
-            $table->decimal('net_salary', 10, 2)->nullable();
-            $table->date('pay_date')->nullable();
+            $table->decimal('basic_salary', 10, 2);
+            $table->decimal('allowances', 10, 2);
+            $table->decimal('deduction', 10, 2);
+            $table->decimal('net_salary', 10, 2);
+            $table->date('pay_date');
 
             $table->timestamps();
 

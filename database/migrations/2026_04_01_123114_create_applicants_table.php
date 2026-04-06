@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('applicants', function (Blueprint $table) {
             $table->increments('applicant_id');
-            $table->string('first_name', 100)->nullable();
-            $table->string('last_name', 100)->nullable();
-            $table->string('email', 150)->nullable();
+            $table->string('first_name', 100);
+            $table->string('last_name', 100);
+            $table->string('email', 150);
             $table->text('resume')->nullable();
             $table->enum('status', ['pending', 'interviewed', 'hired', 'rejected'])->default('pending');
             $table->timestamps();

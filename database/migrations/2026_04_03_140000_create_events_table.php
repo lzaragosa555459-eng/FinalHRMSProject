@@ -17,16 +17,16 @@ return new class extends Migration
             // Basic Info
             $table->string('title');
             $table->dateTime('start_datetime');
-            $table->dateTime('end_datetime')->nullable();
+            $table->dateTime('end_datetime');
 
             // Location
-            $table->string('location')->nullable(); // or "Online"
+            $table->string('location'); // or "Online"
 
             // Department (single)
             $table->unsignedInteger('department_id')->nullable();
 
             // Description
-            $table->text('description')->nullable();
+            $table->text('description');
 
             // Event Type
             $table->enum('event_type', [
@@ -39,7 +39,7 @@ return new class extends Migration
 
 
             // Max Participants
-            $table->integer('max_participants')->nullable();
+            $table->integer('max_participants');
 
             // Status
             $table->enum('status', [

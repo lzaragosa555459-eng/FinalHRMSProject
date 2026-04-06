@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->increments('attendance_id');
             $table->unsignedInteger('employee_id')->nullable();
-            $table->date('date')->nullable();
-            $table->time('time_in')->nullable();
-            $table->time('time_out')->nullable();
-            $table->enum('status', ['Present', 'Absent', 'Late'])->nullable();
+            $table->date('date');
+            $table->time('time_in');
+            $table->time('time_out');
+            $table->enum('status', ['Present', 'Absent', 'Late']);
 
             $table->timestamps();
 
