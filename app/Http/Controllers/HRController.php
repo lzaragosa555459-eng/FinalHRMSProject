@@ -121,4 +121,7 @@ class HRController extends Controller
     public function AddEmployees(){
         return view('hr.Crud.add');
     }
+    public function EditEmployees(){
+        return view('hr.Crud.edit');
+    }
 }

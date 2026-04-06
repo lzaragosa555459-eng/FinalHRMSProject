@@ -47,6 +47,7 @@
         <div style="height: 200px;"></div>
           <nav>
                 <a href="{{ route('hr.EmployeesDetails.employee_by_department', $emp->department_id) }}">View Department</a>
+                <a href=""  class="ms-4">Edit employee</a>
             </nav>
         <!-- Employee Info -->
         <div class="col-md-6 bg-light p-4">
@@ -90,6 +91,11 @@
 
         </div>
 
+    </div>
+    <div class="row">
+        <div class="col">
+            <input type="submit" value="Delete employee" class="btn btn-outline-danger">
+        </div>
     </div>
 
 </div>

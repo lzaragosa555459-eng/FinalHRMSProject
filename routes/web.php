@@ -31,3 +31,5 @@ Route::get('/payroll', [HRController::class, 'payroll'])->name('hr.payroll');
 
 
 Route::get('/add employees', [HRController::class, 'AddEmployees'])->name('hr.Crud.add');
+
+//Route::get('/edit employees', [HRController::class, 'EditEmployees'])->name('hr.Crud.edit');
