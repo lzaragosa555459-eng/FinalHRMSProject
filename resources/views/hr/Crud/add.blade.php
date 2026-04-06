@@ -25,37 +25,37 @@
 
         <div class="col-md-6">
             <label class="form-label">Employee Number<span class="text-danger">*</span></label>
-            <input type="text" name="employee_number" class="form-control">
+            <input type="text" name="employee_number" class="form-control" id="employee_number">
         </div>
 
         <div class="col-md-6">
             <label class="form-label">Name<span class="text-danger">*</span></label>
-            <input type="text" name="name" class="form-control">
+            <input type="text" name="name" class="form-control" id="name">
         </div>
 
         <div class="col-md-6">
             <label class="form-label">Phone Number<span class="text-danger">*</span></label>
-            <input type="text" name="phone_number" class="form-control">
+            <input type="text" name="phone_number" class="form-control" id="phone_number">
         </div>
 
         <div class="col-md-6">
             <label class="form-label">Email<span class="text-danger">*</span></label>
-            <input type="email" name="email" class="form-control">
+            <input type="email" name="email" class="form-control" id="email">
         </div>
 
         <div class="col-12">
             <label class="form-label">Address<span class="text-danger">*</span></label>
-            <textarea name="address" class="form-control"></textarea>
+            <textarea name="address" class="form-control" id="address"></textarea>
         </div>
 
         <div class="col-md-6">
             <label class="form-label">Date of Birth<span class="text-danger">*</span></label>
-            <input type="date" name="date_of_birth" class="form-control">
+            <input type="date" name="date_of_birth" class="form-control" id="date_of_birth">
         </div>
 
         <div class="col-md-6">
             <label class="form-label">Gender<span class="text-danger">*</span></label>
-            <select name="gender" class="form-control">
+            <select name="gender" class="form-control" id="gender">
                 <option value="">Select Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -65,12 +65,12 @@
 
         <div class="col-md-6">
             <label class="form-label">Profile Image</label>
-            <input type="file" name="profile_image" class="form-control">
+            <input type="file" name="profile_image" class="form-control" id="profile_image">
         </div>
 
         <div class="col-md-6">
             <label class="form-label">Role<span class="text-danger">*</span></label>
-            <select name="role" class="form-control">
+            <select name="role" class="form-control" id="role">
                 <option value="employee">Employee</option>
                 <option value="head">Head</option>
             </select>
@@ -79,7 +79,7 @@
         <div class="col-md-6">
             <label class="form-label">Department name<span class="text-danger">*</span></label>
          
-               <select name="department" class="form-control">
+               <select name="department" class="form-control" id="department_id">
                 <option value="">Select department</option>
             @forEach($departments as $dept)
                 <option value="active">{{ $dept->name }}</option>
@@ -90,7 +90,7 @@
         <div class="col-md-6">
             <label class="form-label">Position<span class="text-danger">*</span></label>
          
-            <select name="positions" class="form-control">
+            <select name="positions" class="form-control" id="position_id">
                 <option value="">Select position</option>
                 @forEach($positions as $pos)
                     <option value="positions">{{ $pos->title }}</option>
@@ -100,22 +100,22 @@
 
         <div class="col-md-6">
             <label class="form-label">Applicant ID</label>
-            <input type="number" name="applicant_id" class="form-control">
+            <input type="number" name="applicant_id" class="form-control" id="applicant_id">
         </div>
 
         <div class="col-md-6">
             <label class="form-label">Hire Date</label>
-            <input type="date" name="hire_date" class="form-control">
+            <input type="date" name="hire_date" class="form-control" id="hire_date">
         </div>
 
         <div class="col-md-6">
             <label class="form-label">Salary</label>
-            <input type="number" step="0.01" name="salary" class="form-control">
+            <input type="number" step="0.01" name="salary" class="form-control" id="salary">
         </div>
 
         <div class="col-md-6">
             <label class="form-label">Manager name<span class="text-danger">*</span></label>
-            <select name="managers" class="form-control">
+            <select name="managers" class="form-control" id="manager_id">
                 <option value="">Select manager</option>
                 @foreach($managers as $man)
                     <option value="positions">{{ $man->name }}</option>
@@ -125,12 +125,12 @@
 
         <div class="col-md-6">
             <label class="form-label">User ID</label>
-            <input type="number" name="user_id" class="form-control">
+            <input type="number" name="user_id" class="form-control" id="user_id">
         </div>
 
         <div class="col-md-6">
             <label class="form-label">Status</label>
-            <select name="status" class="form-control">
+            <select name="status" class="form-control" id="status">
                 <option value="">Select Status</option>
                 <option value="active">Active</option>
                 <option value="resigned">Resigned</option>
@@ -152,6 +152,30 @@
         </div>
     </div>
 </div>
+
+<script>
+    function saveEmployee() {
+    const formData = {
+        employee_number: document.getElementById('employee_number').value,
+        name: document.getElementById('name').value,
+        phone_number: document.getElementById('phone_number').value,
+        email: document.getElementById('email').value,
+        address: document.getElementById('address').value,
+        date_of_birth: document.getElementById('date_of_birth').value,
+        gender: document.getElementById('gender').value,
+        profile_image: document.getElementById('profile_image').value,
+        role: document.getElementById('role').value,
+        department_id: document.getElementById('department_id').value,
+        position_id: document.getElementById('position_id').value,
+        applicant_id: document.getElementById('applicant_id').value,
+        hire_date: document.getElementById('hire_date').value,
+        salary: document.getElementById('salary').value,
+        manager_id: document.getElementById('manager_id').value,
+        user_id: document.getElementById('user_id').value,
+        status: docucment.getElementById('statud').value,
+    };
+}
+</script>
 
 </body>
 </html>

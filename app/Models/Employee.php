@@ -25,4 +25,24 @@ class Employee extends Model
     {
         return $this->belongsTo(Attendance::class, 'attendance_id', 'attendance_id');
     }
+
+     protected $fillable = [
+        'employee_number',
+        'name',
+        'phone_number',
+        'email',
+        'address',
+        'date_of_birth',
+        'gender',
+        'profile_image',
+        'role',
+        'department_id',
+        'position_id',
+        'applicant_id',
+        'hire_date',
+        'salary',
+        'manager_id',
+        'user_id',
+        'status',
+    ];
 }
