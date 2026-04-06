@@ -118,5 +118,7 @@ class HRController extends Controller
         return view('hr.EmployeesDetails.employee_by_department', compact('employees','getEvents'));
     }
 
-    
+    public function AddEmployees(){
+        return view('hr.Crud.add');
+    }
 }

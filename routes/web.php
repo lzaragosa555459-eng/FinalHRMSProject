@@ -28,3 +28,6 @@ Route::get('/organization/{id}', [HRController::class, 'organization_details'])-
 
 Route::get('/attendance', [HRController::class, 'attendance'])->name('hr.attendance');
 Route::get('/payroll', [HRController::class, 'payroll'])->name('hr.payroll');
+
+
+Route::get('/add employees', [HRController::class, 'AddEmployees'])->name('hr.Crud.add');

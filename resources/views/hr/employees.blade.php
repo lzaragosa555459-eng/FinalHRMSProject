@@ -56,9 +56,9 @@
         <div class="col-12  d-flex justify-content-between align-items-center p-4 " >
               <h2 class="my-4">Employees</h2>
       
-                <button class="btn btn-primary" onclick="showAddModal()">
-                    +Add_Employee
-                </button>
+                <a href="{{ route('hr.Crud.add') }}" class="btn btn-primary">
+                    +Add Employee
+                </a>
         </div>
     </div>
    <!-- Grid -->
@@ -115,7 +115,7 @@
 
     @endforeach
 </div>
-<!-- Modal -->
+<!-- Modal
 <div id="employeeModal" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content border-0 rounded-4">
@@ -162,7 +162,7 @@
 
         </div>
     </div>
-</div>
+</div> -->
 
 <script>
 
