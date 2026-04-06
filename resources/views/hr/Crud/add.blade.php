@@ -80,10 +80,10 @@
         <div class="col-md-6">
             <label class="form-label">Department name<span class="text-danger">*</span></label>
          
-               <select name="department" class="form-control" id="department_id">
+               <select name="department_id" class="form-control" id="department_id">
                 <option value="">Select department</option>
             @foreach($departments as $dept)
-                <option value="active">{{ $dept->name }}</option>
+                <option  value="{{ $dept->department_id }}">{{ $dept->name }}</option>
             @endforeach
                </select>
         </div>
@@ -91,17 +91,22 @@
         <div class="col-md-6">
             <label class="form-label">Position<span class="text-danger">*</span></label>
          
-            <select name="positions" class="form-control" id="position_id">
+            <select name="position_id" class="form-control" id="position_id">
                 <option value="">Select position</option>
                 @foreach($positions as $pos)
-                    <option value="positions">{{ $pos->title }}</option>
+                    <option  value="{{ $pos->position_id }}">{{ $pos->title }}</option>
                 @endforeach
             </select>
         </div>
 
         <div class="col-md-6">
             <label class="form-label">Applicant ID</label>
-            <input type="number" name="applicant_id" class="form-control" id="applicant_id">
+            <select name="applicant_id" class="form-control" id="applicant_id">
+                <option value="">Select Applicant</option>
+                @foreach($applicants as $app)
+                    <option value="{{ $app->applicant_id }}">{{ $app->first_name }} {{ $app->last_name }}</option>
+                @endforeach
+            </select>
         </div>
 
         <div class="col-md-6">
@@ -115,18 +120,23 @@
         </div>
 
         <div class="col-md-6">
-            <label class="form-label">Manager name<span class="text-danger">*</span></label>
-            <select name="managers" class="form-control" id="manager_id">
+            <label class="form-label">Manager name</label>
+            <select name="manager_id" class="form-control" id="manager_id">
                 <option value="">Select manager</option>
                 @foreach($managers as $man)
-                    <option value="positions">{{ $man->name }}</option>
+                    <option value="{{ $man->employee_id }}">{{ $man->name }}</option>
                 @endforeach
             </select>
         </div>
 
         <div class="col-md-6">
             <label class="form-label">User ID</label>
-            <input type="number" name="user_id" class="form-control" id="user_id">
+            <select name="user_id" class="form-control" id="user_id">
+                <option value="">Select manager</option>
+                @foreach($users as $user)
+                    <option value="{{ $user->user_id }}">{{ $user->username }}</option>
+                @endforeach
+            </select>
         </div>
 
         <div class="col-md-6">
@@ -173,7 +183,7 @@
         salary: document.getElementById('salary').value,
         manager_id: document.getElementById('manager_id').value,
         user_id: document.getElementById('user_id').value,
-        status: docucment.getElementById('status').value,
+        status: document.getElementById('status').value,
     };
 }
 </script>

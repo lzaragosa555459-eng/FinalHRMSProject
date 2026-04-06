@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Applicant;
 use App\Models\Employee;
 use App\Models\Department;
 use App\Models\Attendance;
@@ -13,6 +14,7 @@ use Database\Seeders\DepartmentSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Psy\Command\WhereamiCommand;
+use App\Models\User;
 
 class HRController extends Controller
 {
@@ -122,9 +124,11 @@ class HRController extends Controller
     public function AddEmployees(){
         $positions = Position::all();
         $departments = Department::all();
+        $applicants = Applicant::all();
+        $users = User::all();
         $managers = Employee::whereNull('manager_id')->get();
 
-        return view('hr.Crud.add', compact('positions', 'departments', 'managers'));
+        return view('hr.Crud.add', compact('positions', 'departments', 'managers', 'applicants', 'users'));
     }
     public function EditEmployees(){
         return view('hr.Crud.edit');
