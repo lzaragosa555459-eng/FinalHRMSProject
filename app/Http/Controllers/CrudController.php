@@ -45,27 +45,34 @@ class CrudController extends Controller
                          ->with('success', 'Employee added successfully!');
     }
 
-        
-        public function edit($id)
+
+        public function update(Request $request, $id)
         {
             $employee = Employee::findOrFail($id);
-            $departments = Department::all();
-            $positions = Position::all();
-            $applicants = Applicant::all();
-            $managers = Employee::all();
-            $users = User::all();
 
-            return view('hr.Crud.edit', compact(
-                'employee',
-                'departments',
-                'positions',
-                'applicants',
-                'managers',
-                'users'
-            ));
-        }
+            $employee->update([
+                'employee_number' => $request->employee_number,
+                'name'            => $request->name,
+                'phone_number'    => $request->phone_number,
+                'email'           => $request->email,
+                'address'         => $request->address,
+                'date_of_birth'   => $request->date_of_birth,
+                'gender'          => $request->gender,
 
-        public function update($id){
-                
+                // Profile image handled separately (see note below)
+
+                'role'            => $request->role,
+                'department_id'   => $request->department_id,
+                'position_id'     => $request->position_id,
+                'applicant_name'  => $request->applicant_name,
+                'hire_date'       => $request->hire_date,
+                'salary'          => $request->salary,
+                'manager_name'    => $request->manager_name,
+                'user_id'         => $request->user_id,
+                'status'          => $request->status,
+            ]);
+
+            return redirect()->route('hr.EmployeesDetails.employee_details', $id)
+                ->with('success', 'Employee updated successfully');
         }
 }

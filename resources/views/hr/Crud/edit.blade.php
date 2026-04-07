@@ -17,8 +17,9 @@
     <div class="row">
         
         <div class="col-8" style="margin-left: 20%;">
-<form>
+<form action="{{ route('hr.Crud.update', $employee->employee_id) }}" method="POST">
     @csrf
+    @method('PUT')
   
 
     <h2>Edit Employee</h2>

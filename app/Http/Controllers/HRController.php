@@ -135,7 +135,24 @@ class HRController extends Controller
 
         return view('hr.Crud.add', compact('positions', 'departments', 'managers', 'applicants', 'users'));
     }
-    public function EditEmployees(){
-        return view('hr.Crud.edit');
-    }
+
+
+    public function edit($id)
+    {
+            $employee = Employee::findOrFail($id);
+            $departments = Department::all();
+            $positions = Position::all();
+            $applicants = Applicant::all();
+            $managers = Employee::all();
+            $users = User::all();
+
+            return view('hr.Crud.edit', compact(
+                'employee',
+                'departments',
+                'positions',
+                'applicants',
+                'managers',
+                'users'
+            ));
+     }
 }
