@@ -94,7 +94,15 @@
     </div>
     <div class="row">
         <div class="col">
-            <input type="submit" value="Delete employee" class="btn btn-outline-danger">
+            <form action="{{ route('hr.Crud.delete', $emp->employee_id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this employee?');">
+                @csrf
+                @method('DELETE')
+
+                <button type="submit" class="btn btn-danger">
+                    Delete employee
+                </button>
+            </form>
+
         </div>
     </div>
 
