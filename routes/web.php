@@ -35,4 +35,7 @@ Route::get('/add employee', [HRController::class, 'AddEmployees'])->name('hr.Cru
 Route::post('/add employee', [CrudController::class, 'add'])->name('hr.Crud.add');
 
 
-//Route::get('/edit employees', [HRController::class, 'EditEmployees'])->name('hr.Crud.edit');
+
+Route::get('/employees/{id}/edit', [CrudController::class, 'edit'])->name('hr.Crud.edit');
+
+Route::put('/employees/{id}', [CrudController::class, 'update'])->name('hr.Crud.update');

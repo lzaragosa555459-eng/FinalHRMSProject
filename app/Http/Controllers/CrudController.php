@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
+use App\Models\Department;
+use App\Models\Position;
+use App\Models\Applicant;
+use App\Models\User;
+
 class CrudController extends Controller
 {
     public function add(Request $request)
@@ -39,4 +44,28 @@ class CrudController extends Controller
         return redirect()->route('hr.employees')
                          ->with('success', 'Employee added successfully!');
     }
+
+        
+        public function edit($id)
+        {
+            $employee = Employee::findOrFail($id);
+            $departments = Department::all();
+            $positions = Position::all();
+            $applicants = Applicant::all();
+            $managers = Employee::all();
+            $users = User::all();
+
+            return view('hr.Crud.edit', compact(
+                'employee',
+                'departments',
+                'positions',
+                'applicants',
+                'managers',
+                'users'
+            ));
+        }
+
+        public function update($id){
+                
+        }
 }

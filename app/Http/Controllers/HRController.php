@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Applicant;
@@ -28,6 +27,9 @@ class HRController extends Controller
         ->groupBy('d.department_id', 'd.name')
         ->get();
 
+        $female = Employee::where('gender', 'female')->count();
+        $male = Employee::where('gender', 'male')->count();
+        $other = Employee::where('gender', 'other')->count();
 
         $totalEmployees = Employee::count();
 
@@ -71,7 +73,10 @@ class HRController extends Controller
             'positions',
             'approvedleaves',
             'disapprovedleaves',
-            'pendingleaves'
+            'pendingleaves',
+            'female',
+            'male',
+            'other'
         ));
 
           

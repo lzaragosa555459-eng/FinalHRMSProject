@@ -189,7 +189,7 @@
         </div>
 
         <div class="card border-0 rounded-4 overflow-hidden">
-            <div class="table-responsive">
+            <div class="table-responsive"  style="max-height: 400px; overflow-y: auto;"><!--For scrolls-->
                 <table class="table table-hover align-middle mb-0">
 
                     <thead class="bg-light">

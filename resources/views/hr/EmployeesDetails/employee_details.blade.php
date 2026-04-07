@@ -47,7 +47,7 @@
         <div style="height: 200px;"></div>
           <nav>
                 <a href="{{ route('hr.EmployeesDetails.employee_by_department', $emp->department_id) }}">View Department</a>
-                <a href=""  class="ms-4">Edit employee</a>
+                <a href="{{ route('hr.Crud.edit', $emp->employee_id) }}" class="ms-4">Edit employee</a>
             </nav>
         <!-- Employee Info -->
         <div class="col-md-6 bg-light p-4">

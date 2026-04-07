@@ -194,12 +194,14 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+
+    // ===== BAR CHART =====
     const departments = @json($departmentsAnalytics);
     const labels = departments.map(d => d.department);
     const data = departments.map(d => d.total_positions);
 
-    const ctx = document.getElementById('deptChart');
-    new Chart(ctx, {
+    const deptCtx = document.getElementById('deptChart');
+    new Chart(deptCtx, {
         type: 'bar',
         data: {
             labels: labels,
@@ -207,7 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 label: 'Employees',
                 data: data,
                 borderRadius: 10,
-                backgroundColor: ['#b5c8ff', '#b5c8ff', '#b5c8ff', '#b5c8ff', '#b5c8ff']
+                backgroundColor: ['#b5c8ff']
             }]
         },
         options: {
@@ -215,28 +217,31 @@ document.addEventListener("DOMContentLoaded", function () {
             maintainAspectRatio: false,
             plugins: { legend: { display: false } },
             scales: {
-                y: { beginAtZero: true, grid: { color: '#f8f9fc' }, ticks: { stepSize: 1 } },
+                y: { beginAtZero: true },
                 x: { grid: { display: false } }
             }
         }
     });
-});
 
 
-<!--PIE CHART AGE-->
-    const ctx = document.getElementById('genderChart');
+    // ===== PIE CHART =====
+    const genderCtx = document.getElementById('genderChart');
 
-    new Chart(ctx, {
+    const female = @json($female);
+    const male = @json($male);
+    const other = @json($other);
+
+    new Chart(genderCtx, {
         type: 'pie',
         data: {
-            labels: ['Male', 'Female'],
+            labels: ['Male', 'Female', 'Other'],
             datasets: [{
-                data: [60, 40], // 👈 replace with dynamic values
+                data: [male, female, other],
                 backgroundColor: [
-                    '#0d6efd', // blue
-                    '#dc3545'  // red
-                ],
-                borderWidth: 1
+                    '#0d6efd',
+                    '#dc3545',
+                    '#fffb00'
+                ]
             }]
         },
         options: {
@@ -247,6 +252,8 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     });
+
+});
 </script>
 
 </body>
