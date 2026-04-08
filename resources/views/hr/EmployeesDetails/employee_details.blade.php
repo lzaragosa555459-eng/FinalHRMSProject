@@ -85,64 +85,71 @@
         </div>
 
         <!-- Performance Chart -->
-<div class="col-md-6">
-    <div class="bg-light p-4 rounded h-100">
+    <div class="col-md-6">
+        <div class="bg-light p-4 rounded h-100">
 
-        <h4 class="mb-3">Performance</h4>
+            <h4 class="mb-3">Performance</h4>
 
-        <!-- Chart -->
-        <div style="height:250px;">
-            <canvas id="performanceChart"></canvas>
-        </div>
+            <!-- Chart -->
+            <div style="height:250px;">
+                <canvas id="performanceChart"></canvas>
+            </div>
 
-        <hr>
+            <hr>
 
-        <!-- Document Style Content -->
-        <div class="d-flex flex-column gap-4">
+            <!-- Document Style Content -->
+            <div class="d-flex flex-column gap-4">
 
-            @forelse($performances as $perf)
-                <div>
+                @forelse($performances as $perf)
+                    <div>
 
-                    <h6 class="mb-1">
-                        Review Period: <strong>{{ $perf->review_period }}</strong>
-                    </h6>
+                        <h6 class="mb-1">
+                            Review Period: <strong>{{ $perf->review_period }}</strong>
+                        </h6>
 
-                    <p class="mb-1">
-                        <strong>Status:</strong> 
-                        <span class="badge 
-                            @if($perf->status == 'Reviewed') bg-success 
-                            @elseif($perf->status == 'Completed') bg-primary 
-                            @else bg-secondary 
-                            @endif">
-                            {{ $perf->status }}
-                        </span>
-                    </p>
+                        <p class="mb-1">
+                            <strong>Status:</strong> 
+                            <span class="badge 
+                                @if($perf->status == 'Reviewed') bg-success 
+                                @elseif($perf->status == 'Completed') bg-primary 
+                                @else bg-secondary 
+                                @endif">
+                                {{ $perf->status }}
+                            </span>
+                        </p>
 
-                    <p class="mb-1">
-                        <strong>Rating:</strong> {{ $perf->rating }}
-                    </p>
+                        <p class="mb-1">
+                            <strong>Rating:</strong> {{ $perf->rating }}
+                        </p>
 
-                    <p class="mb-1">
-                        <strong>Review Date:</strong> {{ $perf->review_date }}
-                    </p>
+                        <p class="mb-1">
+                            <strong>Review Date:</strong> {{ $perf->review_date }}
+                        </p>
 
-                    <p class="mb-0">
-                        <strong>Comments:</strong><br>
-                        <span class="text-muted">{{ $perf->comments }}</span>
-                    </p>
+                        <p class="mb-0">
+                            <strong>Comments:</strong><br>
+                            <span class="text-muted">{{ $perf->comments }}</span>
+                        </p>
 
-                </div>
+                    </div>
 
-                <hr>
+                    <hr>
 
-            @empty
-                <p class="text-muted text-center">No performance records found.</p>
-            @endforelse
+                @empty
+                    <p class="text-muted text-center">No added performance record.</p>
+                @endforelse
+
+            </div>
 
         </div>
 
     </div>
-</div>
+    <div class="row">
+        <div class="col">
+            <h2>Attendance History</h2>
+            
+        </div>
+    </div>
 
     </div>
 

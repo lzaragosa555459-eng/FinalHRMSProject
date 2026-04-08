@@ -61,6 +61,31 @@ class HRController extends Controller
         $disapprovedleaves = Leave::where('status', 'disapproved')->count();
         $pendingleaves = Leave::where('status', 'pending')->count();
 
+        $attendances = Attendance::select('date', 'employee_id', 'status')
+                ->orderBy('date')
+                ->get();
+
+        // Daily Summary
+        $dailySummary = Attendance::
+        selectRaw('date, 
+                        COUNT(CASE WHEN status = "Present" THEN 1 END) as present,
+                        COUNT(CASE WHEN status = "Late" THEN 1 END) as late')
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get();
+
+        // Employee Summary
+        $employeeSummary = Attendance::select(
+                'attendances.employee_id',
+                'employees.name',
+                DB::raw('COUNT(CASE WHEN attendances.status = "Present" THEN 1 END) as present'),
+                DB::raw('COUNT(CASE WHEN attendances.status = "Late" THEN 1 END) as late')
+            )
+            ->join('employees', 'employees.employee_id', '=', 'attendances.employee_id')
+            ->groupBy('attendances.employee_id', 'employees.name')
+            ->orderBy('attendances.employee_id')
+            ->get();
+               
         return view('hr.dashboard', compact(
             'totalEmployees',
             'totalActive',
@@ -77,7 +102,10 @@ class HRController extends Controller
             'pendingleaves',
             'female',
             'male',
-            'other'
+            'other',
+            'dailySummary', 
+            'employeeSummary', 
+            'attendances'
         ));
 
           
@@ -121,6 +149,7 @@ class HRController extends Controller
 
         $ratings = $performances->pluck('rating');
         $labels = $performances->pluck('review_period'); // or review_date
+        
 
         return view('hr.EmployeesDetails.employee_details', compact('emp','ratings','labels','performances'));
     }

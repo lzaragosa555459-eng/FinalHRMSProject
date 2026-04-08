@@ -186,6 +186,24 @@
                             </ul>
                         </div>
                     </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h1 class="text-3xl font-bold mb-8">Attendance History Graph ({{ now()->format('F Y') }})</h1>
+
+                        <!-- Daily Attendance Chart -->
+                        <div class="bg-white p-6 rounded-lg shadow mb-10">
+                            <h2 class="text-xl font-semibold mb-4">Daily Present vs Late</h2>
+                            <canvas id="dailyChart" height="100"></canvas>
+                        </div>
+
+                        <!-- Employee Performance Chart -->
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h2 class="text-xl font-semibold mb-4">Employee Attendance Performance</h2>
+                            <canvas id="employeeChart" height="120"></canvas>
+                        </div>
+                    </div>
                 </div>
 
             </div> </div>
@@ -254,6 +272,81 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
+// Daily Chart Data (from Laravel)
+    const dailyDates = @json($dailySummary->pluck('date'));
+    const presentData = @json($dailySummary->pluck('present'));
+    const lateData = @json($dailySummary->pluck('late'));
+
+    // Daily Bar Chart
+    new Chart(document.getElementById('dailyChart'), {
+        type: 'bar',
+        data: {
+            labels: dailyDates,
+            datasets: [
+                {
+                    label: 'Present',
+                    data: presentData,
+                    backgroundColor: '#22c55e',
+                    borderColor: '#16a34a',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Late',
+                    data: lateData,
+                    backgroundColor: '#eab308',
+                    borderColor: '#ca8a04',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' },
+                title: { display: true, text: 'Daily Attendance Overview' }
+            },
+            scales: {
+                y: { beginAtZero: true, title: { display: true, text: 'Number of Employees' } }
+            }
+        }
+    });
+
+    // Employee Chart Data
+    const employeeIds = @json($employeeSummary->pluck('name'));
+    const empPresent = @json($employeeSummary->pluck('present'));
+    const empLate = @json($employeeSummary->pluck('late'));
+
+    // Employee Horizontal Bar Chart
+    new Chart(document.getElementById('employeeChart'), {
+        type: 'bar',
+        data: {
+            labels: employeeIds.map(name =>  name),
+            datasets: [
+                {
+                    label: 'Present',
+                    data: empPresent,
+                    backgroundColor: '#22c55e'
+                },
+                {
+                    label: 'Late',
+                    data: empLate,
+                    backgroundColor: '#eab308'
+                }
+            ]
+        },
+        options: {
+            indexAxis: 'y',   // Horizontal bars
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' },
+                title: { display: true, text: 'Attendance by Employee (3 Days)' }
+            },
+            scales: {
+                x: { beginAtZero: true, title: { display: true, text: 'Number of Days' } }
+            }
+        }
+    });
 </script>
 
 </body>
