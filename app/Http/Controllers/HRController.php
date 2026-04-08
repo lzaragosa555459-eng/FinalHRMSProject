@@ -150,8 +150,31 @@ class HRController extends Controller
         $ratings = $performances->pluck('rating');
         $labels = $performances->pluck('review_period'); // or review_date
         
+        $employeeSummary = Attendance::select(
+                'attendances.employee_id',
+                'employees.name',
+                DB::raw('COUNT(CASE WHEN attendances.status = "Present" THEN 1 END) as present'),
+                DB::raw('COUNT(CASE WHEN attendances.status = "Late" THEN 1 END) as late')
+            )
+            ->join('employees', 'employees.employee_id', '=', 'attendances.employee_id')
+            ->where('attendances.employee_id', $id)
+            ->groupBy('attendances.employee_id', 'employees.name')
+            ->orderBy('attendances.employee_id')
+            ->get();
 
-        return view('hr.EmployeesDetails.employee_details', compact('emp','ratings','labels','performances'));
+        $attendanceByDate = Attendance::where('employee_id', $id)
+            ->selectRaw('date, 
+                COUNT(CASE WHEN status = "Present" THEN 1 END) as present,
+                COUNT(CASE WHEN status = "Late" THEN 1 END) as late')
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get();
+
+            $dates = $attendanceByDate->pluck('date');
+            $present = $attendanceByDate->pluck('present');
+            $late = $attendanceByDate->pluck('late');
+
+        return view('hr.EmployeesDetails.employee_details', compact('emp','ratings','labels','performances','employeeSummary', 'attendanceByDate', 'dates', 'present', 'late'));
     }
      public function organization_details($id){
         $employees = Employee::where('department_id', $id)->get();

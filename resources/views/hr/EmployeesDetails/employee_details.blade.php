@@ -146,8 +146,8 @@
     </div>
     <div class="row">
         <div class="col">
-            <h2>Attendance History</h2>
-            
+            <h2 class="text-center mt-4">Attendance History</h2>
+                <canvas id="attendanceChart" height="120"></canvas>
         </div>
     </div>
 
@@ -186,6 +186,49 @@
                 y: {
                     beginAtZero: true,
                     max: 5
+                }
+            }
+        }
+    });
+
+    const dates = @json($dates);
+    const present = @json($present);
+    const late = @json($late);
+
+
+    new Chart(document.getElementById('attendanceChart'), {
+        type: 'bar',
+        data: {
+            labels: dates,
+            datasets: [
+                {
+                    label: 'Present',
+                    data: present,
+                    backgroundColor: '#22c55e'
+                },
+                {
+                    label: 'Late',
+                    data: late,
+                    backgroundColor: '#eab308'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' },
+                title: { 
+                    display: true, 
+                    text: 'Attendance per Day' 
+                }
+            },
+            scales: {
+                x: {
+                    title: { display: true, text: 'Date' }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: { display: true, text: 'Count' }
                 }
             }
         }

@@ -340,7 +340,7 @@ document.addEventListener("DOMContentLoaded", function () {
             responsive: true,
             plugins: {
                 legend: { position: 'top' },
-                title: { display: true, text: 'Attendance by Employee (3 Days)' }
+                title: { display: true, text: 'Attendance by Employee' }
             },
             scales: {
                 x: { beginAtZero: true, title: { display: true, text: 'Number of Days' } }
