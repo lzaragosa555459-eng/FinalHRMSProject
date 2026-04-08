@@ -126,54 +126,7 @@
 
     @endforeach
 </div>
-<!-- Modal
-<div id="employeeModal" class="modal fade" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content border-0 rounded-4">
 
-            <div class="modal-header border-0">
-                <h5 class="modal-title fw-semibold">Add / Edit Employee</h5>
-                <button type="button" class="btn-close" onclick="closeModal()"></button>
-            </div>
-
-            <div class="modal-body">
-
-                <form id="employeeForm">
-                    <div class="row g-3">
-
-                        <div class="col-md-6">
-                            <label class="form-label">First Name</label>
-                            <input type="text" id="first_name" class="form-control" required>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label">Last Name</label>
-                            <input type="text" id="last_name" class="form-control" required>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label">Email</label>
-                            <input type="email" id="email" class="form-control" required>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label">Phone</label>
-                            <input type="text" id="phone" class="form-control">
-                        </div>
-
-                    </div>
-                </form>
-
-            </div>
-
-            <div class="modal-footer border-0">
-                <button class="btn btn-light rounded-pill px-4" onclick="closeModal()">Cancel</button>
-                <button class="btn btn-primary rounded-pill px-4" onclick="saveEmployee()">Save</button>
-            </div>
-
-        </div>
-    </div>
-</div> -->
 
 <script>
 
