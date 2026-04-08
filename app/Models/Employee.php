@@ -45,4 +45,11 @@ class Employee extends Model
         'user_id',
         'status',
     ];
+
+    public function events()
+{
+    return $this->belongsToMany(Event::class, 'event_attendances')
+                ->withPivot('status', 'check_in_time')
+                ->withTimestamps();
+}
 }

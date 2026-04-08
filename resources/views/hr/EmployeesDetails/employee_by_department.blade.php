@@ -140,7 +140,7 @@
 
                 <div class="card-footer bg-white d-flex justify-content-between">
                     <button class="btn btn-outline-primary btn-sm">
-                        <i class="bi bi-eye"></i> View
+                        <i class="bi bi-eye"></i> View Attendees
                     </button>
 
                     <div class="d-flex gap-1">

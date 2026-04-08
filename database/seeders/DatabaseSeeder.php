@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             LeaveSeeder::class,
             EventSeeder::class,
             PerformanceSeeder::class,
+            EventAttendanceSeeder::class,
         ]);
     }
 }

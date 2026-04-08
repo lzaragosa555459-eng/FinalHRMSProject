@@ -23,4 +23,10 @@ class Event extends Model
     {
         return $this->belongsTo(Department::class, 'department_id', 'department_id');
     }
+    public function attendees()
+{
+    return $this->belongsToMany(Employee::class, 'event_attendances')
+                ->withPivot('status', 'check_in_time')
+                ->withTimestamps();
+}
 }
