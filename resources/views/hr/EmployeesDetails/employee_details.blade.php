@@ -11,102 +11,178 @@
 </head>
 <body style="background-color: #EDF2FA;">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
    
-   
-    <div class="container mt-4 p-4" style="margin-left: 9%;">
-     <div class="container">
+<div class="container mt-4" style="margin-left: 9%;">
+
+    <!-- Back Button -->
+    <div class="mb-3">
         <a href="{{ route('hr.employees') }}" class="btn btn-sm btn-outline-dark rounded-pill px-3">
-        Back
-    </a>
-     </div>
-    <div class="row align-items-center ">
+            Back
+        </a>
+    </div>
 
-        <!-- Container (Rectangle) -->
-        <div class="bg-light text-center position-relative" style="height: 180px;">
+    <!-- PROFILE HEADER -->
+    <div class="bg-light rounded p-4 text-center position-relative mb-4">
 
-            <!-- Circle Profile -->
-            <div class="rounded-circle overflow-hidden shadow border border-white position-absolute start-50 translate-middle-x"
-                style="width: 250px; height: 250px; border-width: 5px; bottom: -125px;">
-                
-                @if($emp->profile_image || $emp->avatar)
-                    <img src="{{ $emp->profile_photo_path ?? $emp->avatar }}"
-                        alt="{{ $emp->name }}"
-                        class="w-100 h-100 object-fit-cover">
-                @else
-                    <!-- Fallback -->
-                    <div class="w-100 h-100 bg-primary text-white d-flex justify-content-center align-items-center"
-                        style="font-size: 42px;">
-                        {{ strtoupper(substr($emp->name ?? 'U', 0, 1)) }}
-                    </div>
-                @endif
-                
-            </div>
+        <!-- Profile Image -->
+        <div class="rounded-circle overflow-hidden shadow border border-white mx-auto"
+             style="width: 150px; height: 150px;">
 
+            @if($emp->profile_image || $emp->avatar)
+                <img src="{{ $emp->profile_photo_path ?? $emp->avatar }}"
+                     alt="{{ $emp->name }}"
+                     class="w-100 h-100 object-fit-cover">
+            @else
+                <div class="w-100 h-100 bg-primary text-white d-flex justify-content-center align-items-center"
+                     style="font-size: 40px;">
+                    {{ strtoupper(substr($emp->name ?? 'U', 0, 1)) }}
+                </div>
+            @endif
         </div>
-        <!-- Add spacing below so content doesn't overlap -->
-        <div style="height: 200px;"></div>
-          <nav>
-                <a href="{{ route('hr.EmployeesDetails.employee_by_department', $emp->department_id) }}">View Department</a>
-                <a href="{{ route('hr.Crud.edit', $emp->employee_id) }}" class="ms-4">Edit employee</a>
-            </nav>
+
+        <!-- Name -->
+        <h2 class="mt-3 mb-1">{{ $emp->name }}</h2>
+        <h5 class="text-muted">{{ $emp->position?->title ?? '—' }}</h5>
+
+        <!-- Role Badge -->
+        @if($emp->role === 'head')
+            <span class="badge bg-warning text-dark mt-2">
+                <i class="bi bi-star-fill"></i> Head
+            </span>
+        @else
+            <span class="badge bg-secondary mt-2">Employee</span>
+        @endif
+
+        <!-- Actions -->
+        <div class="mt-3">
+            <a href="{{ route('hr.EmployeesDetails.employee_by_department', $emp->department_id) }}" class="btn btn-sm btn-outline-primary">
+                View Department
+            </a>
+            <a href="{{ route('hr.Crud.edit', $emp->employee_id) }}" class="btn btn-sm btn-outline-dark ms-2">
+                Edit Employee
+            </a>
+        </div>
+
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="row g-4">
+
         <!-- Employee Info -->
-        <div class="col-md-6 bg-light p-4">
-          
-            <h2 class="mb-1">{{ $emp->name }}</h2>
-            <h5>{{ $emp->position?->title ?? '—' }}</h5>
-            <h6 class="text-secondary">
-                @if($emp->role === 'head')
-                    <span class="badge bg-warning text-dark">
-                        <i class="bi bi-star-fill"></i> Head
-                    </span>
-                @else
-                    <span class="badge bg-secondary">
-                        Employee
-                    </span>
-                @endif
-            </h6>
-           
+        <div class="col-md-6">
+            <div class="bg-light p-4 rounded h-100">
 
-            <hr>
+                <h4 class="mb-3">Employee Details</h4>
+                <hr>
 
-            <div class="mb-2">
-                <strong>Employee Number:</strong>
-                {{ $emp->employee_number ?? '—' }}
+                <p><strong>Employee Number:</strong> {{ $emp->employee_number ?? '—' }}</p>
+                <p><strong>Phone:</strong> {{ $emp->phone_number ?? '—' }}</p>
+                <p><strong>Department:</strong> {{ $emp->department?->name ?? '—' }}</p>
+                <p><strong>Email:</strong> {{ $emp->email }}</p>
+
             </div>
+        </div>
 
-            <div class="mb-2">
-                <strong>Phone:</strong>
-                {{ $emp->phone_number ?? '—' }}
-            </div>
+        <!-- Performance Chart -->
+<div class="col-md-6">
+    <div class="bg-light p-4 rounded h-100">
 
-            <div class="mb-2">
-                <strong>Department:</strong>
-                {{ $emp->department?->name ?? '—' }}
-            </div>
+        <h4 class="mb-3">Performance</h4>
 
-            <div class="mb-2">
-                <strong>Email:</strong>
-                 {{ $emp->email }}
-            </div>
+        <!-- Chart -->
+        <div style="height:250px;">
+            <canvas id="performanceChart"></canvas>
+        </div>
+
+        <hr>
+
+        <!-- Document Style Content -->
+        <div class="d-flex flex-column gap-4">
+
+            @forelse($performances as $perf)
+                <div>
+
+                    <h6 class="mb-1">
+                        Review Period: <strong>{{ $perf->review_period }}</strong>
+                    </h6>
+
+                    <p class="mb-1">
+                        <strong>Status:</strong> 
+                        <span class="badge 
+                            @if($perf->status == 'Reviewed') bg-success 
+                            @elseif($perf->status == 'Completed') bg-primary 
+                            @else bg-secondary 
+                            @endif">
+                            {{ $perf->status }}
+                        </span>
+                    </p>
+
+                    <p class="mb-1">
+                        <strong>Rating:</strong> {{ $perf->rating }}
+                    </p>
+
+                    <p class="mb-1">
+                        <strong>Review Date:</strong> {{ $perf->review_date }}
+                    </p>
+
+                    <p class="mb-0">
+                        <strong>Comments:</strong><br>
+                        <span class="text-muted">{{ $perf->comments }}</span>
+                    </p>
+
+                </div>
+
+                <hr>
+
+            @empty
+                <p class="text-muted text-center">No performance records found.</p>
+            @endforelse
 
         </div>
 
     </div>
-    <div class="row">
-        <div class="col">
-            <form action="{{ route('hr.Crud.delete', $emp->employee_id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this employee?');">
-                @csrf
-                @method('DELETE')
+</div>
 
-                <button type="submit" class="btn btn-danger">
-                    Delete employee
-                </button>
-            </form>
+    </div>
 
-        </div>
+    <!-- DELETE BUTTON -->
+    <div class="mt-4">
+        <form action="{{ route('hr.Crud.delete', $emp->employee_id) }}" method="POST"
+              onsubmit="return confirm('Are you sure you want to delete this employee?');">
+            @csrf
+            @method('DELETE')
+
+            <button type="submit" class="btn btn-danger">
+                Delete Employee
+            </button>
+        </form>
     </div>
 
 </div>
+<script>
+    const ctx = document.getElementById('performanceChart').getContext('2d');
 
+    const performanceChart = new Chart(ctx, {
+        type: 'bar', // you can change to 'line', 'pie', etc.
+        data: {
+            labels: @json($labels),
+            datasets: [{
+                label: 'Employee Ratings',
+                data: @json($ratings),
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 5
+                }
+            }
+        }
+    });
+</script>
 </body>
 </html>

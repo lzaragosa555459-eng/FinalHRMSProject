@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Psy\Command\WhereamiCommand;
 use App\Models\User;
+use App\Models\Performance;
 
 class HRController extends Controller
 {
@@ -114,10 +115,14 @@ class HRController extends Controller
     }
 
     public function employee_details($id){
-          $emp = Employee::findOrFail($id);
+        $emp = Employee::findOrFail($id);
 
+        $performances = Performance::where('employee_id', $id)->get();
 
-        return view('hr.EmployeesDetails.employee_details', compact('emp'));
+        $ratings = $performances->pluck('rating');
+        $labels = $performances->pluck('review_period'); // or review_date
+
+        return view('hr.EmployeesDetails.employee_details', compact('emp','ratings','labels','performances'));
     }
      public function organization_details($id){
         $employees = Employee::where('department_id', $id)->get();

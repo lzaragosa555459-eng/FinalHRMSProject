@@ -130,9 +130,9 @@
         </div>
 
         <div class="col-md-6">
-            <label class="form-label">User ID</label>
+            <label class="form-label">User name</label>
             <select name="user_id" class="form-control" id="user_id">
-                <option value="">Select manager</option>
+                <option value="">Select User</option>
                 @foreach($users as $user)
                     <option value="{{ $user->user_id }}">{{ $user->username }}</option>
                 @endforeach
