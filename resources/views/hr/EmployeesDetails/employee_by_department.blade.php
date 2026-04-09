@@ -145,9 +145,9 @@
                         </a>
 
                     <div class="d-flex gap-1">
-                        <button class="btn btn-outline-warning btn-sm">
+                    <a href="{{ route('hr.Crud.editEvent') }}" class="btn btn-outline-warning btn-sm">
                             <i class="bi bi-pencil"></i>
-                        </button>
+                    </a>
                         <button class="btn btn-outline-danger btn-sm">
                             <i class="bi bi-trash"></i>
                         </button>

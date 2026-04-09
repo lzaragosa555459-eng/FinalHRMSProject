@@ -200,7 +200,6 @@ class HRController extends Controller
     }
 
 
-
     public function edit($id)
     {
             $employee = Employee::findOrFail($id);
@@ -225,4 +224,13 @@ class HRController extends Controller
         
         return view('hr.EmployeesDetails.EventAttendees', compact('attendees'));
      }
+
+     // Show edit form
+    public function updateEvent($id)
+    {
+        $event = Event::findOrFail($id);
+        $departments = Department::all();
+
+        return view('hr.EmployeesDetails.editEvent', compact('event', 'departments'));
+    }
 }

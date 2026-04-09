@@ -106,4 +106,29 @@ class CrudController extends Controller
             return redirect()->route('hr.organization')
                 ->with('success', 'Event created successfully.');
         }
+
+         // Update event
+        public function updateEvent(Request $request, $id)
+        {
+            $event = Event::findOrFail($id);
+
+            // Validation
+            $validated = $request->validate([
+                'title' => 'required|string|max:255',
+                'start_datetime' => 'required|date',
+                'end_datetime' => 'required|date|after_or_equal:start_datetime',
+                'location' => 'required|string|max:255',
+                'department_id' => 'nullable|exists:departments,department_id',
+                'description' => 'required|string',
+                'event_type' => 'required|in:meeting,training,team_building,social,workshop',
+                'max_participants' => 'required|integer|min:1',
+                'status' => 'required|in:draft,published,cancelled',
+            ]);
+
+            // Update record
+            $event->update($validated);
+
+            return redirect()->route('hr.organization')
+                ->with('success', 'Event updated successfully.');
+        }
 }
