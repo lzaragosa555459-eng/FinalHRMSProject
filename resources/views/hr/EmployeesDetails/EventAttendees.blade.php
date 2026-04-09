@@ -26,6 +26,11 @@
                            class="btn btn-outline-primary btn-sm">
                             ← Back
                         </a>
+                    @else
+                        <a href="{{ route('hr.organization') }}" 
+                           class="btn btn-outline-primary btn-sm">
+                            ← Back
+                        </a>
                     @endif
                 </div>
 

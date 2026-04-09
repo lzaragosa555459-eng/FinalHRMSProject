@@ -193,6 +193,12 @@ class HRController extends Controller
 
         return view('hr.Crud.add', compact('positions', 'departments', 'managers', 'applicants', 'users'));
     }
+    
+    public function AddEvent(){
+        $departments = Department::all();
+        return view('hr.Crud.addEvent', compact('departments'));
+    }
+
 
 
     public function edit($id)

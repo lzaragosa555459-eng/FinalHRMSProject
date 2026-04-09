@@ -183,8 +183,15 @@
 </div>
  <!-- Events -->
 <div class="container mt-4" id="container2" style="margin-left: 0%; display: none;">
-    <h3 class="mb-4">Events</h3>
 
+
+<div class="col-12  d-flex justify-content-between align-items-center p-4 " >
+    <h3 class="mb-4">Events</h3>
+      
+        <a href="{{ route('hr.Crud.addEvent') }}" class="btn btn-primary">
+                +Create Event
+        </a>
+</div>
     <div class="row g-4">
         @foreach($events as $event)
         <div class="col-md-6 col-lg-4">
@@ -270,7 +277,7 @@ function showContainer(id, el) {
 
     // Show selected container
     document.getElementById(id).style.display = 'block';
-
+ 
     // Remove active class from all nav links
     document.querySelectorAll('.nav-item-link').forEach(link => {
         link.classList.remove('active');

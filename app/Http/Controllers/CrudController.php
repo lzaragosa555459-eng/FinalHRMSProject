@@ -9,6 +9,7 @@ use App\Models\Department;
 use App\Models\Position;
 use App\Models\Applicant;
 use App\Models\User;
+use App\Models\Event;
 
 class CrudController extends Controller
 {
@@ -82,5 +83,27 @@ class CrudController extends Controller
 
             return redirect()->route('hr.employees')
                          ->with('success', 'Employee deleted successfully!');
+        }
+        public function AddEvent(Request $request)
+        {
+            // Validation
+            $validated = $request->validate([
+                'title' => 'required|string|max:255',
+                'start_datetime' => 'required|date',
+                'end_datetime' => 'required|date|after_or_equal:start_datetime',
+                'location' => 'required|string|max:255',
+                'department_id' => 'nullable|exists:departments,department_id',
+                'description' => 'required|string',
+                'event_type' => 'required|in:meeting,training,team_building,social,workshop',
+                'max_participants' => 'required|integer|min:1',
+                'status' => 'required|in:draft,published,cancelled',
+            ]);
+
+            // Create event
+            Event::create($validated);
+
+            // Redirect back with success message
+            return redirect()->route('hr.organization')
+                ->with('success', 'Event created successfully.');
         }
 }
