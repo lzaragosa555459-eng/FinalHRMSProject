@@ -188,7 +188,7 @@
 <div class="col-12  d-flex justify-content-between align-items-center p-4 " >
     <h3 class="mb-4">Events</h3>
       
-        <a href="{{ route('hr.Crud.add') }}" class="btn btn-primary">
+        <a href="{{ route('hr.Crud.addEvent') }}" class="btn btn-primary">
                 +Create Event
         </a>
 </div>
@@ -255,7 +255,7 @@
                         </a>
 
                     <div class="d-flex gap-1">
-                    <a href="{{ route('hr.Crud.editEvent', $event->event_id) }}" class="btn btn-outline-warning btn-sm">
+                    <a href="{{ route('hr.Crud.editEvent',  $event->event_id) }}" class="btn btn-outline-warning btn-sm">
                             <i class="bi bi-pencil"></i>
                     </a>
                         <button class="btn btn-outline-danger btn-sm">
