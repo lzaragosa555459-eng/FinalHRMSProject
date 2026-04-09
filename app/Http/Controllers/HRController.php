@@ -6,6 +6,7 @@ use App\Models\Employee;
 use App\Models\Department;
 use App\Models\Attendance;
 use App\Models\Event;
+use App\Models\Event_attendance;
 use App\Models\Leave;
 use App\Models\Payroll;
 use App\Models\Position;
@@ -211,5 +212,11 @@ class HRController extends Controller
                 'managers',
                 'users'
             ));
+     }
+
+     public function EventAttendances($event_id){
+        $attendees = Event_attendance::where('event_id', $event_id)->get();
+        
+        return view('hr.EmployeesDetails.EventAttendees', compact('attendees'));
      }
 }

@@ -139,9 +139,10 @@
                 </div>
 
                 <div class="card-footer bg-white d-flex justify-content-between">
-                    <button class="btn btn-outline-primary btn-sm">
-                        <i class="bi bi-eye"></i> View Attendees
-                    </button>
+
+                    <a href="{{ route('hr.EmployeesDetails.EventAttendances', $event->event_id) }}" class="btn btn-outline-primary btn-sm">
+                        View Attendees
+                        </a>
 
                     <div class="d-flex gap-1">
                         <button class="btn btn-outline-warning btn-sm">
