@@ -126,7 +126,7 @@
                 </a>
  
     </div>
-
+<hr style="border-top: 5px solid-1 black;"> 
     <!-- EMPLOYEES SECTION -->
     <div class="container mt-4"  id="container1" style="display: block;">
         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -134,11 +134,11 @@
                 <h3>Employees</h3>
                 <p class="text-muted mb-0">{{ $employees->count() }} employees</p>
             </div>
-            <div class="input-group" style="max-width: 170px;">
+            <div class="input-group" style="max-width: 145px;">
 
-                <button class="btn btn-primary shadow-sm ms-3">
-                    <i class="bi bi-plus-lg me-2"></i>Add Employee
-                </button>
+                <a href="{{ route('hr.Crud.add') }}" class="btn btn-primary">
+                    + Add Employee
+                </a>
             </div>
         </div>
 
@@ -224,7 +224,9 @@
     <div class="container mt-4"  id="container2"  style="margin-left: 0%; display: none;">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="mb-0">Events</h3>
-            <input type="submit" value="+Add event" class="btn btn-primary">
+        <a href="{{ route('hr.Crud.addEvent') }}" class="btn btn-primary">
+                +Create Event
+        </a>
         </div>
 
         <div class="card-container">
