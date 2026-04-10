@@ -76,7 +76,10 @@
         </a>
         <div class="d-flex justify-content-between align-items-center mb-4">
             <span class="input-group-text"><i class="bi bi-search"></i></span>
-            <input type="text" id="searchInput" class="form-control" placeholder="Search..." onkeyup="searchEmployees()" style="width:200px;">
+        <input type="text" id="searchInput" class="form-control"
+        placeholder="Search employees or events..."
+        onkeyup="globalSearch()"
+        style="width:200px;">
         </div>
 
     </div>
@@ -304,20 +307,37 @@
 
 <script>
 function showContainer(id, el) {
-    // Hide all containers
     document.getElementById('container1').style.display = 'none';
     document.getElementById('container2').style.display = 'none';
 
-    // Show selected container
     document.getElementById(id).style.display = 'block';
- 
-    // Remove active class from all nav links
+
     document.querySelectorAll('.nav-item-link').forEach(link => {
         link.classList.remove('active');
     });
 
-    // Add active to clicked link
     el.classList.add('active');
+}
+
+/*  GLOBAL SEARCH FOR BOTH EMPLOYEES + EVENTS */
+function globalSearch() {
+    let input = document.getElementById("searchInput").value.toLowerCase();
+
+    /* ---------------- EMPLOYEES ---------------- */
+    let employeeRows = document.querySelectorAll("#container1 tbody tr");
+
+    employeeRows.forEach(row => {
+        let text = row.innerText.toLowerCase();
+        row.style.display = text.includes(input) ? "" : "none";
+    });
+
+    /* ---------------- EVENTS ---------------- */
+    let eventCards = document.querySelectorAll("#container2 .card-item");
+
+    eventCards.forEach(card => {
+        let text = card.innerText.toLowerCase();
+        card.style.display = text.includes(input) ? "" : "none";
+    });
 }
 </script>
 

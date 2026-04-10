@@ -79,8 +79,8 @@
                     type="text" 
                     id="searchInput" 
                     class="form-control" 
-                    placeholder="Search..." 
-                    onkeyup="searchEmployees()">
+                    placeholder="Search departments or events..." 
+                    onkeyup="globalSearch()">
             </div>
        
         <div class="input-group ms-4" >
@@ -88,10 +88,10 @@
                 <i class="bi bi-filter"></i>
             </span>
 
-            <select class="form-select">
-                <option>Select Department</option>
+            <select class="form-select" id="departmentFilter" onchange="filterDepartments()">
+                <option value="">All Departments</option>
                 @foreach($departments as $dept)
-                     <option>{{ $dept->name }}</option>
+                    <option value="{{ strtolower($dept->name) }}">{{ $dept->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -271,20 +271,57 @@
 </div>
 <script>
 function showContainer(id, el) {
-    // Hide all containers
     document.getElementById('container1').style.display = 'none';
     document.getElementById('container2').style.display = 'none';
 
-    // Show selected container
     document.getElementById(id).style.display = 'block';
- 
-    // Remove active class from all nav links
+
     document.querySelectorAll('.nav-item-link').forEach(link => {
         link.classList.remove('active');
     });
 
-    // Add active to clicked link
     el.classList.add('active');
+}
+
+/* =========================
+    GLOBAL SEARCH
+========================= */
+function globalSearch() {
+    let input = document.getElementById("searchInput").value.toLowerCase();
+
+    // DEPARTMENTS
+    let departments = document.querySelectorAll("#container1 .col-md-6");
+
+    departments.forEach(card => {
+        let text = card.innerText.toLowerCase();
+        card.style.display = text.includes(input) ? "" : "none";
+    });
+
+    // EVENTS
+    let events = document.querySelectorAll("#container2 .col-md-6");
+
+    events.forEach(card => {
+        let text = card.innerText.toLowerCase();
+        card.style.display = text.includes(input) ? "" : "none";
+    });
+}
+
+/* =========================
+   DROPDOWN FILTER (DEPARTMENTS ONLY)
+========================= */
+function filterDepartments() {
+    let value = document.getElementById("departmentFilter").value.toLowerCase();
+    let departments = document.querySelectorAll("#container1 .col-md-6");
+
+    departments.forEach(card => {
+        let name = card.innerText.toLowerCase();
+
+        if (value === "" || name.includes(value)) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
+    });
 }
 </script>
 </body>
