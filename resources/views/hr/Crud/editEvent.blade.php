@@ -27,7 +27,7 @@
 
                 <div class="card-body p-4">
 
-                    <form action="{{ route('events.update', $event->event_id) }}" method="POST">
+                    <form action="{{ route('hr.Crud.updateEvent', $event->event_id) }}" method="POST">
                         @csrf
                         @method('PUT')
 

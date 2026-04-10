@@ -226,11 +226,11 @@ class HRController extends Controller
      }
 
      // Show edit form
-    public function updateEvent($id)
+    public function editEvent($id)
     {
         $event = Event::findOrFail($id);
         $departments = Department::all();
 
-        return view('hr.EmployeesDetails.editEvent', compact('event', 'departments'));
+        return view('hr.Crud.editEvent', compact('event', 'departments'));
     }
 }
