@@ -260,7 +260,9 @@
                     </div>
 
                     <h5 class="fw-semibold mb-2">{{ $event->title }}</h5>
-
+                    <h6 class="text-muted small mb-3">
+                        {{ $event->department->name}} Department
+                    </h6>
                     <p class="text-muted small mb-3">
                         {{ $event->description }}
                     </p>

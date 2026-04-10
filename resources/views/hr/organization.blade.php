@@ -225,6 +225,9 @@
                     <h5 class="fw-semibold mb-2">
                         {{ $event->title }}
                     </h5>
+                    <h6 class="text-muted small mb-3">
+                        {{ $event->department->name}} Department
+                    </h6>
 
                     <!-- Description -->
                     <p class="text-muted small mb-3">
@@ -314,6 +317,17 @@ function filterDepartments() {
     let departments = document.querySelectorAll("#container1 .col-md-6");
 
     departments.forEach(card => {
+        let name = card.innerText.toLowerCase();
+
+        if (value === "" || name.includes(value)) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
+    });
+    let events = document.querySelectorAll("#container2 .col-md-6");
+
+    events.forEach(card => {
         let name = card.innerText.toLowerCase();
 
         if (value === "" || name.includes(value)) {
