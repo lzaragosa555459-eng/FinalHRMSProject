@@ -61,12 +61,12 @@
                      @endif
                     </a>
                     
-                <select class="form-select w-auto shadow-sm ms-4">
-                    <option>All</option>
-                    <option>Present</option>
-                    <option>Late</option>
-                    <option>Absent</option>
-                </select>
+            <select class="form-select w-auto shadow-sm ms-4" onchange="filterStatus(this)">
+                <option value="">All</option>
+                <option value="present">Present</option>
+                <option value="late">Late</option>
+                <option value="absent">Absent</option>
+            </select>
             </div>
          <div class="innercontaner" id="container1" style="display: block;">
             <!-- Card -->
@@ -77,7 +77,7 @@
                     <!-- Scrollable Table -->
                     <div style="max-height: 350px; overflow-y: auto;">
 
-                        <table class="table table-hover align-middle mb-0">
+                        <table class="table table-hover align-middle mb-0" id="table">
  
                             <!-- Sticky Header -->
                             <thead class="table-light position-sticky top-0">
@@ -238,21 +238,34 @@
 
 <script>
     function showContainer(id, el) {
-    // Hide all containers
-    document.getElementById('container1').style.display = 'none';
-    document.getElementById('container2').style.display = 'none';
+        document.getElementById('container1').style.display = 'none';
+        document.getElementById('container2').style.display = 'none';
 
-    // Show selected container
-    document.getElementById(id).style.display = 'block';
+        document.getElementById(id).style.display = 'block';
 
-    // Remove active class from all nav links
-    document.querySelectorAll('.nav-item-link').forEach(link => {
-        link.classList.remove('active');
-    });
+        document.querySelectorAll('.nav-item-link').forEach(link => {
+            link.classList.remove('active');
+        });
 
-    // Add active to clicked link
-    el.classList.add('active');
-}
+        el.classList.add('active');
+    }
+
+    /* ✅ MOVE THIS OUTSIDE */
+    function filterStatus(select) {
+        let value = select.value.toLowerCase();
+
+        let rows = document.querySelectorAll("#table tbody tr");
+
+        rows.forEach(row => {
+            let statusText = row.cells[5].innerText.toLowerCase();
+
+            if (value === "" || statusText.includes(value)) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    }
 </script>
 </body>
 </html>
