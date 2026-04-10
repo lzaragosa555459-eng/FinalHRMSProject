@@ -211,9 +211,7 @@
                                    class="btn btn-sm btn-outline-primary me-1">
                                     View
                                 </a>
-                                <button class="btn btn-sm btn-outline-primary">
-                                    <i class="bi bi-pencil"></i>
-                                </button>
+
                             </td>
                         </tr>
                         @endforeach
@@ -228,7 +226,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="mb-0">Events</h3>
         <a href="{{ route('hr.Crud.addEvent') }}" class="btn btn-primary">
-                +Create Event
+                + Create Event
         </a>
         </div>
 
@@ -294,9 +292,14 @@
                         <a href="{{ route('hr.Crud.editEvent', $event->event_id) }}" class="btn btn-outline-warning btn-sm">
                             <i class="bi bi-pencil"></i>
                         </a>
-                        <button class="btn btn-outline-danger btn-sm">
+                    <form action="{{ route('hr.Crud.deleteEvent', $event->event_id) }}" method="POST" onsubmit="return confirm('Delete this record?')">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit" class="btn btn-outline-danger btn-sm">
                             <i class="bi bi-trash"></i>
                         </button>
+                    </form>
                     </div>
                 </div>
 

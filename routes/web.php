@@ -40,7 +40,8 @@ Route::post('/add event', [CrudController::class, 'AddEvent'])->name('hr.Crud.ad
 
 Route::get('/events/{id}/edit', [HRController::class, 'editEvent'])->name('hr.Crud.editEvent');
 Route::put('/events/{id}', [CrudController::class, 'updateEvent'])->name('hr.Crud.updateEvent');
-
+Route::delete('/events/{id}', [CrudController::class, 'destroyEvent'])->name('hr.Crud.deleteEvent');
+    
 Route::get('/employees/{id}/edit', [HRController::class, 'edit'])->name('hr.Crud.edit');
 Route::put('/employees/{id}', [CrudController::class, 'update'])->name('hr.Crud.update');
 Route::delete('/employee/{id}', [CrudController::class, 'destroy'])->name('hr.Crud.delete');

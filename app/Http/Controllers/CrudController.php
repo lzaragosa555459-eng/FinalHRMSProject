@@ -131,4 +131,12 @@ class CrudController extends Controller
             return redirect()->route('hr.organization')
                 ->with('success', 'Event updated successfully.');
         }
+        //Delete event
+        public function destroyEvent($id){
+            $employee = Event::findOrFail($id);
+            $employee->delete();
+
+            return redirect()->route('hr.organization')
+                         ->with('success', 'Employee deleted successfully!');
+        }
 }

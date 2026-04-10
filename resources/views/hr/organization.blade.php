@@ -261,9 +261,15 @@
                     <a href="{{ route('hr.Crud.editEvent',  $event->event_id) }}" class="btn btn-outline-warning btn-sm">
                             <i class="bi bi-pencil"></i>
                     </a>
-                        <button class="btn btn-outline-danger btn-sm">
+                    <form action="{{ route('hr.Crud.deleteEvent', $event->event_id) }}" method="POST" onsubmit="return confirm('Delete this record?')">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit" class="btn btn-outline-danger btn-sm">
                             <i class="bi bi-trash"></i>
                         </button>
+                    </form>
+
                     </div>
                 </div>
 
