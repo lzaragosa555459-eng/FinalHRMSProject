@@ -75,8 +75,8 @@
             Back
         </a>
         <div class="d-flex justify-content-between align-items-center mb-4">
-        <span class="input-group-text"><i class="bi bi-search"></i></span>
-        <input type="text" id="searchInput" class="form-control" placeholder="Search..." onkeyup="searchEmployees()" style="width:200px;">
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <input type="text" id="searchInput" class="form-control" placeholder="Search..." onkeyup="searchEmployees()" style="width:200px;">
         </div>
 
     </div>
@@ -114,7 +114,7 @@
     </div>
 
     <!-- TOGGLE BUTTONS -->
-    <div class="d-flex justify-content-center gap-4 mb-4">
+    <div class="d-flex justify-content-center align-items-center gap-4 mb-4">
 
                 <a class="nav-link nav-item-link active" href="#" onclick="showContainer('container1', this)">
                     Department
