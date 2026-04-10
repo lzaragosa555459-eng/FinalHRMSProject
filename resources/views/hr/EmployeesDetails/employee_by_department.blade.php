@@ -69,12 +69,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <div class="container mt-5" style="max-width: 1300px;">
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-2">
         <!-- Back Button -->
         <a href="{{ route('hr.organization') }}" class="btn btn-outline-secondary rounded mb-3">
             Back
         </a>
-        <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-2">
             <span class="input-group-text"><i class="bi bi-search"></i></span>
         <input type="text" id="searchInput" class="form-control"
         placeholder="Search employees or events..."
@@ -84,7 +84,7 @@
 
     </div>
     <!-- Department Title -->
-    <h1 class="fw-bold text-dark mb-4">
+    <h1 class="fw-bold text-dark mb-3">
         Department: 
         <span class="text-primary">
             {{ $employees->first()?->department?->name ?? 'N/A' }}
@@ -146,7 +146,7 @@
         </div>
 
         <div class="card border-0 rounded-4 overflow-hidden">
-            <div class="table-responsive" style="max-height: 450px; overflow-y: auto;">
+            <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
                 <table class="table table-hover align-middle mb-0">
 
                     <thead class="bg-light">
