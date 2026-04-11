@@ -144,8 +144,14 @@ class HRController extends Controller
         $totalgross = DB::table('payrolls')
             ->selectRaw('SUM(basic_salary + allowances) as total_gross')
             ->value('total_gross');
-        return view('hr.payroll', compact('payrolls', 'employees','totalgross'));
-    }
+        $totaldeduction = DB::table('payrolls')
+            ->selectRaw('SUM(deduction) as total_deduction')
+            ->value('total_deduction');
+        $totalnet = DB::table('payrolls')
+            ->selectRaw('SUM(net_salary) as total_net')
+            ->value('total_net');
+        return view('hr.payroll', compact('payrolls', 'employees','totalgross', 'totaldeduction','totalnet'));
+    }   
 
     public function employee_details($id){
         $emp = Employee::findOrFail($id);

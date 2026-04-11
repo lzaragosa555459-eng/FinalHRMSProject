@@ -29,14 +29,14 @@
         <div class="col-4">
             <div class="card border-0 shadow-sm rounded-4 p-3 text-center">
                 <small class="text-muted">Deductions</small>
-                <h5 class="fw-bold text-danger mb-0">₱5,000</h5>
+                <h5 class="fw-bold text-danger mb-0">₱{{ number_format($totaldeduction, 2) }}</h5>
             </div>
         </div>
         <!-- Total Net -->
             <div class="col-4">
                 <div class="card border-0 shadow-sm rounded-4 p-3 text-center">
                     <small class="text-muted">Total Net</small>
-                <h5 class="fw-bold text-success mb-0">₱25,000</h5>
+                <h5 class="fw-bold text-success mb-0">₱{{ number_format($totalnet, 2)}}</h5>
             </div>
          </div>        
     </div>
