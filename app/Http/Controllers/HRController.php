@@ -42,6 +42,16 @@ class HRController extends Controller
         $newHires = Employee::whereMonth('hire_date', now()->month)->count();
 
         $positions = Position::count();
+
+        $totalgross = DB::table('payrolls')
+            ->selectRaw('SUM(basic_salary + allowances) as total_gross')
+            ->value('total_gross');
+        $totaldeduction = DB::table('payrolls')
+            ->selectRaw('SUM(deduction) as total_deduction')
+            ->value('total_deduction');
+        $totalnet = DB::table('payrolls')
+            ->selectRaw('SUM(net_salary) as total_net')
+            ->value('total_net');
      
         $TotalLeave = Leave::where('status', 'approved')->count();
      
@@ -106,7 +116,10 @@ class HRController extends Controller
             'other',
             'dailySummary', 
             'employeeSummary', 
-            'attendances'
+            'attendances',
+            'totalgross',
+            'totaldeduction',
+            'totalnet'
         ));
 
           
