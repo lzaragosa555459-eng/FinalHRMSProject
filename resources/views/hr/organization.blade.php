@@ -52,7 +52,7 @@
     
 <div class="container mt-4" style="margin-left: 9%;">
     
-<nav class="navbar navbar-expand-lg navbar-light hadow-sm" style="background-color: #a2aab6;">
+<nav class="navbar navbar-expand-lg navbar-light hadow-sm" >
     <div class="container">
 
    
@@ -71,6 +71,7 @@
                     Events
                 </a>
             </li>
+    
                     <!-- Filters / Header -->
     <div class="d-flex justify-content-between align-items-center mb-3">
        <div class="input-group" style="max-width: 320px;">
@@ -101,7 +102,8 @@
 
     </div>
 </nav>
-<div class="container" style="background-color: #c5ccd6;">
+<hr style="border-top: 5px solid-1 black;"> 
+<div class="container" >
      <h2>Organization</h2>
     <h4 class="text-secondary mb-0">Company Structure & Activities</h4><br><br>
 </div>

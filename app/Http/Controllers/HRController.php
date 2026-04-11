@@ -206,8 +206,15 @@ class HRController extends Controller
      public function organization_details($id){
         $employees = Employee::where('department_id', $id)->get();
         $getEvents = Event::where('department_id', $id)->get();
-        
-        return view('hr.EmployeesDetails.employee_by_department', compact('employees','getEvents'));
+        $totalNetDept = Payroll::join('employees', 'employees.employee_id', '=', 'payrolls.employee_id')
+            ->where('employees.department_id', $id)
+            ->sum('payrolls.net_salary');
+        $totalDeduction = Payroll::where('employee_id', $id)
+        ->sum('deduction');
+        $totalGross = Payroll::where('employee_id', $id)
+            ->sum(DB::raw('basic_salary + allowances'));
+            
+        return view('hr.EmployeesDetails.employee_by_department', compact('employees','getEvents','totalNetDept', 'totalDeduction', 'totalGross'));
     }
 
     public function AddEmployees(){

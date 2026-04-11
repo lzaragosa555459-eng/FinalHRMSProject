@@ -23,7 +23,7 @@
 
     <!-- Header -->
     <div class="row mb-4 ">
-        <div class="col-12  d-flex justify-content-end align-items-center p-4 " style="background-color: #a2aab6;">
+        <div class="col-12  d-flex justify-content-end align-items-center p-4 " >
 
           
 
@@ -59,6 +59,7 @@
 
         </div>
     </div>
+<hr style="border-top: 5px solid-1 black;"> 
     <div class="row">
         <div class="col-12  d-flex justify-content-between align-items-center p-4 " >
               <h2 class="my-4">Employees</h2>

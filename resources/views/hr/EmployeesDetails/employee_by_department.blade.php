@@ -97,21 +97,21 @@
             <div class="card border-0 shadow rounded-4 text-center p-4"
                  style="background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);">
                 <small class="text-muted fs-6">Total Gross</small>
-                <h2 class="fw-bold text-secondary mt-2 mb-0">₱25,000</h2>
+                <h2 class="fw-bold text-secondary mt-2 mb-0">₱{{ number_format($totalGross, 2)}}</h2>
             </div>
         </div>
         <div class="col-md-4 col-lg-4">
             <div class="card border-0 shadow rounded-4 text-center p-4"
                  style="background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);">
                 <small class="text-muted fs-6">Deductions</small>
-                <h2 class="fw-bold text-danger mt-2 mb-0">₱5,000</h2>
+                <h2 class="fw-bold text-danger mt-2 mb-0">₱{{ number_format($totalDeduction, 2) }}</h2>
             </div>
         </div>
         <div class="col-md-4 col-lg-4">
             <div class="card border-0 shadow rounded-4 text-center p-4"
                  style="background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);">
                 <small class="text-muted fs-6">Total Net</small>
-                <h2 class="fw-bold text-success mt-2 mb-0">₱25,000</h2>
+                <h2 class="fw-bold text-success mt-2 mb-0">₱{{ number_format($totalNetDept, 2)}}</h2>
             </div>
         </div>
     </div>
