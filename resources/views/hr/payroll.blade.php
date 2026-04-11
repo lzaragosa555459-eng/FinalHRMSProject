@@ -101,16 +101,13 @@
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-search"></i></span>
                     <input type="text" id="searchInput" class="form-control" placeholder="Search..." onkeyup="searchEmployees()">
-                    <div class="dropdown ms-4">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                        Select Option
-                    </button>
-
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Option 1</a></li>
-                        <li><a class="dropdown-item" href="#">Option 2</a></li>
-                        <li><a class="dropdown-item" href="#">Option 3</a></li>
-                    </ul>
+                <div class="dropdown ms-4">
+                    <select name="" id="departmentFilter" class="form-select w-auto" onchange="searchEmployees()">
+                        <option value="">All Department</option>
+                    @foreach($departments as $dept)
+                        <option value="{{ $dept->department_id }}">{{ $dept->name }}</option>
+                    @endforeach
+                    </select>
                 </div>
                 </div>
                 <br>
@@ -119,7 +116,6 @@
 
                             <thead class="table-light">
                                 <tr>
-                                    <th>ID</th>
                                     <th>Employee</th>
                                     <th>Basic Salary</th>
                                     <th>Allowances</th>
@@ -132,9 +128,7 @@
 
                             <tbody>
                                 @foreach($payrolls as $payroll)
-                                <tr>
-
-                                    <td>{{ $payroll->payroll_id }}</td>
+                                <tr data-dept="{{ $payroll->employee->department_id }}">
 
                                     <td>{{ $payroll->employee->name }}</td>
 
@@ -163,7 +157,7 @@
                                             )">
                                             <i class="bi bi-pencil"></i>
                                             </button>
-                                        <form action="{{ route('delete.payroll', $payroll->payroll_id) }}" method="POST">
+                                        <form action="{{ route('delete.payroll', $payroll->payroll_id) }}" method="POST" onsubmit="return confirm('Delete this payroll?')">
                                             @csrf
                                             @method('DELETE')
 
@@ -191,6 +185,37 @@ function editEmployee(employee_id, basic_salary, allowances, deduction, paydate)
     document.getElementById('deduction').value = deduction;
     document.getElementById('pay_date').value = paydate;
 
+}
+function editEmployee(employee_id, basic_salary, allowances, deduction, paydate){
+
+    document.getElementById('employee_id').value = employee_id;
+    document.getElementById('basic_salary').value = basic_salary;
+    document.getElementById('allowances').value = allowances;
+    document.getElementById('deduction').value = deduction;
+    document.getElementById('pay_date').value = paydate;
+
+}
+
+// SEARCH + FILTER FUNCTION
+function searchEmployees(){
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let filterDept = document.getElementById("departmentFilter").value;
+
+    let rows = document.querySelectorAll("tbody tr");
+
+    rows.forEach(row => {
+        let text = row.innerText.toLowerCase();
+        let dept = row.getAttribute("data-dept");
+
+        let matchText = text.includes(input);
+        let matchDept = (filterDept === "" || dept === filterDept);
+
+        if(matchText && matchDept){
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
 }
 </script>
 </body>
