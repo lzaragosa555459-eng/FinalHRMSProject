@@ -153,6 +153,12 @@ class HRController extends Controller
         return view('hr.payroll', compact('payrolls', 'employees','totalgross', 'totaldeduction','totalnet'));
     }   
 
+    public function GetPayroll($id){
+        $getEmployee = Payroll::with('employee')->where('payroll_id', $id)->first();
+        
+        return view('hr.payroll', compact('getEmployee'));
+    }
+
     public function employee_details($id){
         $emp = Employee::findOrFail($id);
 

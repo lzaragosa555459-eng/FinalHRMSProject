@@ -133,13 +133,10 @@
                             <tbody>
                                 @foreach($payrolls as $payroll)
                                 <tr>
-                                    <td class="fw-medium">{{ $payroll->payroll_id }}</td>
 
-                                    <td>
-                                        <div class="fw-semibold">
-                                            {{ $payroll->employee->name }}
-                                        </div>
-                                    </td>
+                                    <td>{{ $payroll->payroll_id }}</td>
+
+                                    <td>{{ $payroll->employee->name }}</td>
 
                                     <td>₱{{ number_format($payroll->basic_salary, 2) }}</td>
                                     <td>₱{{ number_format($payroll->allowances, 2) }}</td>
@@ -149,21 +146,26 @@
                                         ₱{{ number_format($payroll->net_salary, 2) }}
                                     </td>
 
+                                    <td>{{ $payroll->pay_date }}</td>
+
                                     <td>
-                                        <span class="badge bg-secondary-subtle text-dark px-3 py-2">
-                                            {{ $payroll->pay_date }}
-                                        </span>
-                                    </td>
-                                    <!--ACTIONS-->
-                                    <td>
-                                          <button class="btn btn-light border btn-sm">
+
+                                        <!-- FIXED BUTTON -->
+                                        <button 
+                                            type="button"
+                                            class="btn btn-light border btn-sm"
+                                            onclick="editEmployee(
+                                                '{{ $payroll->employee->employee_id }}',
+                                                '{{ $payroll->basic_salary }}',
+                                                '{{ $payroll->allowances }}',
+                                                '{{ $payroll->deduction }}',
+                                                '{{ $payroll->pay_date }}'
+                                            )">
                                             <i class="bi bi-pencil"></i>
                                         </button>
 
-                                        <button class="btn btn-light border btn-sm text-danger">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
                                     </td>
+
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -173,5 +175,16 @@
             </div>
         </div>
     </div>
+<script>
+function editEmployee(employee_id, basic_salary, allowances, deduction, paydate){
+
+    document.getElementById('employee_id').value = employee_id;
+    document.getElementById('basic_salary').value = basic_salary;
+    document.getElementById('allowances').value = allowances;
+    document.getElementById('deduction').value = deduction;
+    document.getElementById('pay_date').value = paydate;
+
+}
+</script>
 </body>
 </html>
