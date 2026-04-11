@@ -141,7 +141,10 @@ class HRController extends Controller
     public function payroll(){
         $payrolls = Payroll::all();
         $employees = Employee::all();
-        return view('hr.payroll', compact('payrolls', 'employees'));
+        $totalgross = DB::table('payrolls')
+            ->selectRaw('SUM(basic_salary + allowances) as total_gross')
+            ->value('total_gross');
+        return view('hr.payroll', compact('payrolls', 'employees','totalgross'));
     }
 
     public function employee_details($id){
