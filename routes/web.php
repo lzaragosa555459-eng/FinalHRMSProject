@@ -30,6 +30,7 @@ Route::get('/organization/{id}', [HRController::class, 'organization_details'])-
 Route::get('/attendance', [HRController::class, 'attendance'])->name('hr.attendance');
 Route::get('/payroll', [HRController::class, 'payroll'])->name('hr.payroll');
 
+Route::post('/add payroll', [CrudController::class, 'AddPayroll'])->name('hr.AddPayroll');
 
 Route::get('/add employee', [HRController::class, 'AddEmployees'])->name('hr.Crud.add');
 Route::post('/add employee', [CrudController::class, 'add'])->name('hr.Crud.add');
@@ -47,3 +48,4 @@ Route::put('/employees/{id}', [CrudController::class, 'update'])->name('hr.Crud.
 Route::delete('/employee/{id}', [CrudController::class, 'destroy'])->name('hr.Crud.delete');
 
 Route::get('/view event/{event_id}', [HRController::class, 'EventAttendances'])->name('hr.EmployeesDetails.EventAttendances');
+

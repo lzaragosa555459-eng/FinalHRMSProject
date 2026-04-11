@@ -140,7 +140,8 @@ class HRController extends Controller
 
     public function payroll(){
         $payrolls = Payroll::all();
-        return view('hr.payroll', compact('payrolls'));
+        $employees = Employee::all();
+        return view('hr.payroll', compact('payrolls', 'employees'));
     }
 
     public function employee_details($id){

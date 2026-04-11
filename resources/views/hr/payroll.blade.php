@@ -46,52 +46,54 @@
                 <div class="card border-0 shadow-sm rounded-4 p-4">
 
                     <h5 class="mb-3 fw-semibold">Add Payroll</h5>
+                        <form action="{{ route('hr.AddPayroll') }}" method="POST">
+                            @csrf
+                                 <!-- Employee -->
+                                <div class="mb-3">
+                                    <label class="form-label">Employee</label>
+                                    <select class="form-select" id="employee_id" name="employee_id">
+                                        <option selected disabled>Select Employee</option>
+                                    @foreach($employees as $emp)
+                                        <option value="{{ $emp->employee_id }}">{{ $emp->name }}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
 
-                    <!-- Employee -->
-                    <div class="mb-3">
-                        <label class="form-label">Employee</label>
-                        <select class="form-select">
-                            <option selected disabled>Select Employee</option>
-                            <option>John Doe</option>
-                            <option>Jane Smith</option>
-                        </select>
-                    </div>
+                                <!-- Basic Salary -->
+                                <div class="mb-3">
+                                    <label class="form-label">Basic Salary</label>
+                                    <input type="number" class="form-control" placeholder="Enter basic salary" id="basic_salary" name="basic_salary">
+                                </div>
 
-                    <!-- Basic Salary -->
-                    <div class="mb-3">
-                        <label class="form-label">Basic Salary</label>
-                        <input type="number" class="form-control" placeholder="Enter basic salary">
-                    </div>
+                                <!-- Allowances -->
+                                <div class="mb-3">
+                                    <label class="form-label">Allowances</label>
+                                    <input type="number" class="form-control" placeholder="Enter allowances" id="allowances" name="allowances">
+                                </div>
 
-                    <!-- Allowances -->
-                    <div class="mb-3">
-                        <label class="form-label">Allowances</label>
-                        <input type="number" class="form-control" placeholder="Enter allowances">
-                    </div>
+                                <!-- Deductions -->
+                                <div class="mb-3">
+                                    <label class="form-label">Deductions</label>
+                                    <input type="number" class="form-control" placeholder="Enter deductions" id="deduction" name="deduction">
+                                </div>
 
-                    <!-- Deductions -->
-                    <div class="mb-3">
-                        <label class="form-label">Deductions</label>
-                        <input type="number" class="form-control" placeholder="Enter deductions">
-                    </div>
+                                <!-- Pay Date -->
+                                <div class="mb-3">
+                                    <label class="form-label">Pay Date</label>
+                                    <input type="date" class="form-control" id="pay_date" name="pay_date">
+                                </div>
 
-                    <!-- Pay Date -->
-                    <div class="mb-3">
-                        <label class="form-label">Pay Date</label>
-                        <input type="date" class="form-control">
-                    </div>
+                                <!-- Buttons -->
+                                <div class="d-flex gap-2 mt-3">
+                                    <button class="btn btn-primary w-100">
+                                        <i class="bi bi-plus-circle me-1"></i> Add
+                                    </button>
 
-                    <!-- Buttons -->
-                    <div class="d-flex gap-2 mt-3">
-                        <button class="btn btn-primary w-100">
-                            <i class="bi bi-plus-circle me-1"></i> Add
-                        </button>
-
-                        <button class="btn btn-light border w-100">
-                            Clear
-                        </button>
-                    </div>
-
+                                    <button class="btn btn-light border w-100">
+                                        Clear
+                                    </button>
+                                </div>
+                        </form>
                 </div>
             </div>
             
@@ -171,6 +173,5 @@
             </div>
         </div>
     </div>
-
 </body>
 </html>

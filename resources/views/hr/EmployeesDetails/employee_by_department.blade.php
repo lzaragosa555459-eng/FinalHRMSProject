@@ -1,4 +1,4 @@
-@extends('hr.sidebar')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
