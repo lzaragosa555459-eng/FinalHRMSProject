@@ -31,8 +31,8 @@ Route::get('/attendance', [HRController::class, 'attendance'])->name('hr.attenda
 Route::get('/payroll', [HRController::class, 'payroll'])->name('hr.payroll');
 
 Route::post('/add payroll', [CrudController::class, 'AddPayroll'])->name('hr.AddPayroll');
-Route::get('/edit payroll/{$id}', [HRController::class, 'GetPayroll'])->name('hr.Crud.getpayroll');
-
+Route::delete('/delete-payroll/{id}', [CrudController::class, 'destroyPayroll'])->name('delete.payroll');
+        
 Route::get('/add employee', [HRController::class, 'AddEmployees'])->name('hr.Crud.add');
 Route::post('/add employee', [CrudController::class, 'add'])->name('hr.Crud.add');
 

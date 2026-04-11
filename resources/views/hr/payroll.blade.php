@@ -148,12 +148,12 @@
 
                                     <td>{{ $payroll->pay_date }}</td>
 
-                                    <td>
+                                    <td class="d-flex">
 
                                         <!-- FIXED BUTTON -->
                                         <button 
                                             type="button"
-                                            class="btn btn-light border btn-sm"
+                                            class="btn btn-light border btn-sm me-2"
                                             onclick="editEmployee(
                                                 '{{ $payroll->employee->employee_id }}',
                                                 '{{ $payroll->basic_salary }}',
@@ -162,8 +162,15 @@
                                                 '{{ $payroll->pay_date }}'
                                             )">
                                             <i class="bi bi-pencil"></i>
-                                        </button>
+                                            </button>
+                                        <form action="{{ route('delete.payroll', $payroll->payroll_id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
 
+                                            <button class="btn btn-outline-danger border btn-sm">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
                                     </td>
 
                                 </tr>

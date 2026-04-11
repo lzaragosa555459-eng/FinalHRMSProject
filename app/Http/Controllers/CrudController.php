@@ -170,6 +170,15 @@ class CrudController extends Controller
                 ->with('success', 'Payroll saved successfully!');
         }
 
+        public function destroyPayroll($id){
+            $employee = Payroll::findOrFail($id);
+            $employee->delete();
+
+            return redirect()->route('hr.payroll')
+                         ->with('success', 'Payroll deleted successfully!');
+
+        }
+
 
 
 }
