@@ -95,7 +95,7 @@
     </div>
 
     <div class="col-md-4">
-        <div class="card card-blue small-card text-center">
+        <div class="card card-blue small-card text-center" style="background-color: #a5d7fa;">
             <small>Total Net</small>
             <h6 class="fw-bold text-success mb-0">₱{{ number_format($totalnet, 2) }}</h6>
         </div>
@@ -132,7 +132,7 @@ $stats = [
 <div class="row g-3 tight">
 
 <div class="col-lg-7">
-    <div class="card card-white p-3 h-100">
+    <div class="card card-white p-3 h-100" style="background-color: #a5d7fa;">
         <h6 class="fw-bold mb-2">Employee Analytics</h6>
         <canvas id="deptChart" style="max-height:250px;"></canvas>
     </div>
@@ -211,7 +211,7 @@ $stats = [
 <!-- LAST -->
 <div class="row">
 <div class="col-lg-12">
-    <div class="card card-white p-3">
+    <div class="card card-white p-3" style="background-color: #a5d7fa;">
         <h6 class="fw-bold mb-2">Employee Performance</h6>
         <canvas id="employeeChart"></canvas>
     </div>
@@ -239,7 +239,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 label: 'Employees',
                 data: data,
                 borderRadius: 10,
-                backgroundColor: ['#b5c8ff']
+                backgroundColor: ['#139dff']
             }]
         },
         options: {
@@ -268,9 +268,9 @@ document.addEventListener("DOMContentLoaded", function () {
             datasets: [{
                 data: [male, female, other],
                 backgroundColor: [
-                    '#0d6efd',
-                    '#dc3545',
-                    '#fffb00'
+                    '#139dff',
+                    '#ff00bf',
+                    '#c014d3'
                 ]
             }]
         },
@@ -299,15 +299,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 {
                     label: 'Present',
                     data: presentData,
-                    backgroundColor: '#22c55e',
-                    borderColor: '#16a34a',
+                    backgroundColor: '#139dff',
+                    borderColor: '#139dff',
                     borderWidth: 1
                 },
                 {
                     label: 'Late',
                     data: lateData,
-                    backgroundColor: '#eab308',
-                    borderColor: '#ca8a04',
+                    backgroundColor: '#395970',
+                    borderColor: '#395970',
                     borderWidth: 1
                 }
             ]
@@ -338,12 +338,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 {
                     label: 'Present',
                     data: empPresent,
-                    backgroundColor: '#22c55e'
+                    backgroundColor: '#139dff'
                 },
                 {
                     label: 'Late',
                     data: empLate,
-                    backgroundColor: '#eab308'
+                    backgroundColor: '#395970'
                 }
             ]
         },
