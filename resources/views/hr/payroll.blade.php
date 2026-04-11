@@ -86,7 +86,7 @@
                                 <!-- Buttons -->
                                 <div class="d-flex gap-2 mt-3">
                                     <button class="btn btn-primary w-100">
-                                        <i class="bi bi-plus-circle me-1"></i> Add
+                                        <i class="bi bi-plus-circle me-1"></i> Submit
                                     </button>
 
                                     <button class="btn btn-light border w-100">

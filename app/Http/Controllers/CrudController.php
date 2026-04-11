@@ -141,31 +141,35 @@ class CrudController extends Controller
                          ->with('success', 'Employee deleted successfully!');
         }
 
-        public function AddPayroll(Request $request){
-
+        public function AddPayroll(Request $request)
+        {
             $validated = $request->validate([
-                'employee_id'  => 'nullable|exists:employees,employee_id',
+                'employee_id'  => 'required|exists:employees,employee_id',
                 'basic_salary' => 'required|numeric|min:0',
                 'allowances'   => 'required|numeric|min:0',
                 'deduction'    => 'required|numeric|min:0',
                 'pay_date'     => 'required|date|date_format:Y-m-d',
             ]);
 
-
-            $net_salary = $validated['basic_salary'] 
-                        + $validated['allowances'] 
+            $net_salary = $validated['basic_salary']
+                        + $validated['allowances']
                         - $validated['deduction'];
 
-            Payroll::create([
-                'employee_id'  => $validated['employee_id'],
-                'basic_salary' => $validated['basic_salary'],
-                'allowances'   => $validated['allowances'],
-                'deduction'    => $validated['deduction'],
-                'net_salary'   => $net_salary,
-                'pay_date'     => $validated['pay_date'],
-            ]);
+            Payroll::updateOrCreate(
+                ['employee_id' => $validated['employee_id']],
+                [
+                    'basic_salary' => $validated['basic_salary'],
+                    'allowances'   => $validated['allowances'],
+                    'deduction'    => $validated['deduction'],
+                    'net_salary'   => $net_salary,
+                    'pay_date'     => $validated['pay_date'],
+                ]
+            );
 
             return redirect()->route('hr.payroll')
-                         ->with('success', 'Employee deleted successfully!');
+                ->with('success', 'Payroll saved successfully!');
         }
+
+
+
 }
