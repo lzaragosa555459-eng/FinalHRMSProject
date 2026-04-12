@@ -13,11 +13,19 @@
         <div class="row">
             <div class="col">
                     <h2>Dashboard</h2>
+                    <h1>{{ $user->employee->department->name}} Department</h1>
                     <div class="p-4 bg-light text-center">
+                        {{ $user->employee->employee_number }}
                         <h3> {{ $user->employee->name }}</h3>
-                        {{ $user->email}}
+                         <p>{{ $user->email}}</p>
+                         {{ $user->employee->position->title }}
                     </div>
-
+            </div>
+        </div>
+        <div class="row">
+             <div class="col mt-4 p-4">
+                <h6>Net Salary</h6>
+               ₱{{ number_format($user->employee->payroll->net_salary, 2)}}
             </div>
         </div>
     </div>

@@ -55,4 +55,8 @@ class Employee extends Model
     public function user(){
         return $this->belongsTo(User::class, 'user_id');
     }
+    
+    public function payroll(){
+        return $this->belongsTo(Payroll::class, 'employee_id');
+    }
 }
