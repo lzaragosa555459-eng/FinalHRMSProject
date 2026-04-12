@@ -28,7 +28,7 @@ class EmployeeSeeder extends Seeder
         'hire_date'       => now(),
         'salary'          => 35000,
         'manager_id'      => null,
-        'user_id'         => null,
+        'user_id'         => 3,
         'status'          => 'active'
     ],
     [
