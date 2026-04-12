@@ -44,6 +44,13 @@
                ₱{{ number_format($user->employee->payroll->net_salary, 2)}}
             </div>
         </div>
+        <div class="row">
+            Actions
+            <a href="">Attendance</a>
+            <a href="">Attend Event</a>
+            <a href="">Request Leave</a>
+            <a href="">Performance</a>
+        </div>
     </div>
 </body>
 </html>
