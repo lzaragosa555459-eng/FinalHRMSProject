@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CrudController;
+use App\Http\Controllers\EmployeeController;
 
 Route::get('/', function(){
     return view('login');
@@ -14,8 +15,10 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-Route::post('/login', [AuthController::class, 'login'])->name('hr.logout');
 
+//Human Resource ROUTE---------------------------------------------------------------------------------
+
+Route::post('/login', [AuthController::class, 'login'])->name('hr.logout');
 
 
 Route::get('/dashboard', [HRController::class, 'dashboard'])->name('hr.dashboard');
@@ -50,3 +53,9 @@ Route::delete('/employee/{id}', [CrudController::class, 'destroy'])->name('hr.Cr
 
 Route::get('/view event/{event_id}', [HRController::class, 'EventAttendances'])->name('hr.EmployeesDetails.EventAttendances');
 
+
+
+
+//EMPLOYEE ROTA-------------------------------------------------------------------------------------------
+
+Route::get('/employee-dashboard', [EmployeeController::class, 'dashboard'])->name('employee.dashboard');
