@@ -11,7 +11,7 @@
 
     <div class="container mt-4">
         <div class="row">
-            <div class="col">
+            <div class="col-12">
                     <h2>Dashboard</h2>
                     <h1>{{ $user->employee->department->name}} Department</h1>
                     <div class="p-4 bg-light text-center">
@@ -22,8 +22,24 @@
                     </div>
             </div>
         </div>
-        <div class="row">
-             <div class="col mt-4 p-4">
+        <div class="row justify-content-center">
+             <div class="col-5 mt-4 p-4 bg-light me-2">
+                <h6>Position Salary</h6>
+               ₱{{ number_format($user->employee->position->salary, 2)}}
+            </div>
+             <div class="col-5 mt-4 p-4 bg-light">
+                <h6>Basic Salary</h6>
+               ₱{{ number_format($user->employee->payroll->basic_salary, 2)}}
+            </div>
+             <div class="col-5 mt-4 p-4 bg-secondary me-2">
+                <h6>Allowance</h6>
+               ₱{{ number_format($user->employee->payroll->allowances, 2)}}
+            </div>
+            <div class="col-5 mt-4 p-4 bg-danger">
+                <h6>Deduction</h6>
+               ₱{{ number_format($user->employee->payroll->deduction, 2)}}   
+            </div>
+             <div class="col-5 mt-4 p-4 bg-primary">
                 <h6>Net Salary</h6>
                ₱{{ number_format($user->employee->payroll->net_salary, 2)}}
             </div>
