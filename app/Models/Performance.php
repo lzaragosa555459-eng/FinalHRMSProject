@@ -10,4 +10,16 @@ class Performance extends Model
     {
         $this->hasOne(Employee::class, 'employee_id');
     }
+    
+    protected $fillable = [
+        'employee_id',
+        'review_period',
+        'rating',
+        'comments',
+        'reviewer_id',
+        'review_date',
+        'status',
+    ];
+
+    
 }

@@ -62,6 +62,9 @@
             <a href="{{ route('hr.Crud.edit', $emp->employee_id) }}" class="btn btn-sm btn-outline-dark ms-2">
                 Edit Employee
             </a>
+            <a href="{{ route('gotoperfomanceform', $emp->employee_id) }}" class="btn btn-sm btn-outline-dark ms-2">
+                Add Performance
+            </a>
         </div>
 
     </div>
@@ -99,7 +102,7 @@
                 <canvas id="performanceChart"></canvas>
             </div>
 
-            <hr>
+          
 
             <!-- Document Style Content -->
             <div class="d-flex flex-column gap-4">

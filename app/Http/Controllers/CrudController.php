@@ -11,6 +11,7 @@ use App\Models\Applicant;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Payroll;
+use App\Models\Performance;
 
 class CrudController extends Controller
 {
@@ -173,6 +174,22 @@ class CrudController extends Controller
 
         }
 
+        public function addPerformance(Request $request, $id)
+        {
+            $validated = $request->validate([
+                'reviewer_id'   => 'nullable|exists:employees,employee_id',
+                'review_period' => 'nullable|string|max:255',
+                'rating'        => 'nullable|numeric|min:0|max:5',
+                'comments'      => 'nullable|string',
+                'review_date'   => 'nullable|date',
+                'status'        => 'required|in:Pending,Completed,Reviewed',
+            ]);
 
+            $validated['employee_id'] = $id;
+
+            Performance::create($validated);
+
+            return redirect()->route('hr.EmployeesDetails.employee_details')->with('success', 'Performance added successfully!');
+        }
 
 }

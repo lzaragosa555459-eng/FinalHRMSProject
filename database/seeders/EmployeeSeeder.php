@@ -92,6 +92,22 @@ class EmployeeSeeder extends Seeder
         'manager_id'      => 1,
         'status'          => 'active'
     ],
+
+    [
+        'employee_id'     => 6,
+        'employee_number' => 'EMP006',
+        'name'            => 'Liz Zaragosa',
+        'phone_number'    => '09451237890',
+        'address'         => 'Davao city',
+        'date_of_birth'   => '2006-04-18',
+        'gender'          => 'male',
+        'employee_role'   => 'employee',
+        'position_id'     => 2,
+        'applicant_id'    => null,
+        'hire_date'       => now(),
+        'manager_id'      => null,
+        'status'          => 'active'
+    ],
 ]);
 }
 }

@@ -54,8 +54,8 @@ Route::delete('/employee/{id}', [CrudController::class, 'destroy'])->name('hr.Cr
 
 Route::get('/view event/{event_id}', [HRController::class, 'EventAttendances'])->name('hr.EmployeesDetails.EventAttendances');
 
-
-
+Route::get('/form-performance/{id}', [HRController::class, 'ViewPerformanceForm'])->name('gotoperfomanceform');
+Route::post('/add-performance/{id}', [CrudController::class, 'addPerformance'])->name('AddEmployeeRating');
 
 //EMPLOYEE ROTA-------------------------------------------------------------------------------------------
 

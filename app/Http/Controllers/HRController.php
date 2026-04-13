@@ -270,4 +270,11 @@ class HRController extends Controller
 
         return view('hr.Crud.editEvent', compact('event', 'departments'));
     }
+
+    public function ViewPerformanceForm($id){
+        $employeeID = Employee::findOrFail($id);
+        $humanresource = User::where('system_role', 'hr')->get();
+
+        return view('hr.Crud.addPerformance', compact('humanresource', 'employeeID'));
+    }
 }
