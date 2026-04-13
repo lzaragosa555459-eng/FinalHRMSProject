@@ -20,7 +20,7 @@
         <!-- Total Gross -->
         <div class="col-4">
             <div class="card border-0 shadow-sm rounded-4 p-3 text-center">
-                <small class="text-muted">Total Gross</small>
+                <small class="text-muted">Overall Total Gross</small>
                 <h5 class="fw-bold text-secondary mb-0">₱{{ number_format($totalgross, 2) }}</h5>
             </div>
         </div>
@@ -28,14 +28,14 @@
         <!-- Total Deductions -->
         <div class="col-4">
             <div class="card border-0 shadow-sm rounded-4 p-3 text-center">
-                <small class="text-muted">Deductions</small>
+                <small class="text-muted">Overall Deductions</small>
                 <h5 class="fw-bold text-danger mb-0">₱{{ number_format($totaldeduction, 2) }}</h5>
             </div>
         </div>
         <!-- Total Net -->
             <div class="col-4">
                 <div class="card border-0 shadow-sm rounded-4 p-3 text-center">
-                    <small class="text-muted">Total Net</small>
+                    <small class="text-muted">Overall Total Net</small>
                 <h5 class="fw-bold text-success mb-0">₱{{ number_format($totalnet, 2)}}</h5>
             </div>
          </div>        

@@ -80,7 +80,11 @@
                 <p><strong>Phone:</strong> {{ $emp->phone_number ?? '—' }}</p>
                 <p><strong>Department:</strong> {{ $emp->position->department->name ?? '—' }}</p>
                 <p><strong>Email:</strong> {{ $emp->user->email }}</p>
-
+                @if($emp->payroll && $emp->payroll->net_salary !== null)
+                    <p><strong>Net Salary:</strong> ₱{{ number_format($emp->payroll->net_salary, 2) }}</p>
+                @else
+                    <p><strong>Net Salary:</strong> —</p>
+                @endif
             </div>
         </div>
 
