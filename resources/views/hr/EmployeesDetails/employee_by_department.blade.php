@@ -183,7 +183,7 @@
                             </td>
 
                             <td>
-                                @if($emp->role == 'head')
+                                @if($emp->employee_role == 'head')
                                     <span class="badge bg-warning text-dark">Head</span>
                                 @else
                                     <span class="badge bg-secondary">Employee</span>

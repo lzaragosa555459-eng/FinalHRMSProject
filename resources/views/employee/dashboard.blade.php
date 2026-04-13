@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-12">
                     <h2>Dashboard</h2>
-                    <h1>{{ $user->employee->department->name}} Department</h1>
+                    <h1>{{ $user->employee->position->department->name}} Department</h1>
                     <div class="p-4 bg-light text-center">
                         {{ $user->employee->employee_number }}
                         <h3> {{ $user->employee->name }}</h3>
@@ -25,23 +25,23 @@
         <div class="row justify-content-center">
              <div class="col-5 mt-4 p-4 bg-light me-2">
                 <h6>Position Salary</h6>
-               ₱{{ number_format($user->employee->position->salary, 2)}}
+               ₱{{ number_format($user->employee->position->salary ?? 0, 2)}}
             </div>
              <div class="col-5 mt-4 p-4 bg-light">
                 <h6>Basic Salary</h6>
-               ₱{{ number_format($user->employee->payroll->basic_salary, 2)}}
+               ₱{{ number_format($user->employee->payroll->basic_salary ?? 0, 2)}}
             </div>
              <div class="col-5 mt-4 p-4 bg-secondary me-2">
                 <h6>Allowance</h6>
-               ₱{{ number_format($user->employee->payroll->allowances, 2)}}
+               ₱{{ number_format($user->employee->payroll->allowances ?? 0, 2)}}
             </div>
             <div class="col-5 mt-4 p-4 bg-danger">
                 <h6>Deduction</h6>
-               ₱{{ number_format($user->employee->payroll->deduction, 2)}}   
+               ₱{{ number_format($user->employee->payroll->deduction ?? 0, 2)}}   
             </div>
              <div class="col-5 mt-4 p-4 bg-primary">
                 <h6>Net Salary</h6>
-               ₱{{ number_format($user->employee->payroll->net_salary, 2)}}
+               ₱{{ number_format($user->employee->payroll->net_salary ?? 0, 2)}}
             </div>
         </div>
         <div class="row">
@@ -50,6 +50,7 @@
             <a href="">Attend Event</a>
             <a href="">Request Leave</a>
             <a href="">Performance</a>
+            <a href="{{ route('hr.logout') }}">Logout</a>
         </div>
     </div>
 </body>

@@ -139,7 +139,11 @@
                             <strong>Comments:</strong><br>
                             <span class="text-muted">{{ $perf->comments }}</span>
                         </p>
-
+                    @if(auth()->user()->employee_id == $perf->reviewer_id)
+                        <p class="mb-0 mt-3">
+                            <a href="" class="btn btn-outline-secondary">Edit</a>
+                        </p>
+                    @endif
                     </div>
 
                     <hr>
@@ -162,7 +166,7 @@
     </div>
 
     </div>
-
+   
     <!-- DELETE BUTTON -->
     <div class="mt-4">
         <form action="{{ route('hr.Crud.delete', $emp->employee_id) }}" method="POST"
