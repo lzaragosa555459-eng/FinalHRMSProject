@@ -46,7 +46,7 @@
         <h5 class="text-muted">{{ $emp->position?->title ?? '—' }}</h5>
 
         <!-- Role Badge -->
-        @if($emp->role === 'head')
+        @if($emp->employee_role === 'head')
             <span class="badge bg-warning text-dark mt-2">
                 <i class="bi bi-star-fill"></i> Head
             </span>
@@ -79,7 +79,7 @@
                 <p><strong>Employee Number:</strong> {{ $emp->employee_number ?? '—' }}</p>
                 <p><strong>Phone:</strong> {{ $emp->phone_number ?? '—' }}</p>
                 <p><strong>Department:</strong> {{ $emp->position->department->name ?? '—' }}</p>
-                <p><strong>Email:</strong> {{ $emp->email }}</p>
+                <p><strong>Email:</strong> {{ $emp->user->email }}</p>
 
             </div>
         </div>

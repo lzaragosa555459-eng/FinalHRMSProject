@@ -29,6 +29,7 @@ Route::get('/employees/{id}', [HRController::class, 'employee_details'])->name('
 
 Route::get('/organization', [HRController::class, 'organization'])->name('hr.organization');
 Route::get('/organization/{id}', [HRController::class, 'organization_details'])->name('hr.EmployeesDetails.employee_by_department');
+//Route::post('/organization', [HRController::class, 'add_department'])->name('add_department');
 
 Route::get('/attendance', [HRController::class, 'attendance'])->name('hr.attendance');
 Route::get('/payroll', [HRController::class, 'payroll'])->name('hr.payroll');

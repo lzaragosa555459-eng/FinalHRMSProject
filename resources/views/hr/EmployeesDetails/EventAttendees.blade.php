@@ -22,7 +22,7 @@
 
                     @if($attendees->isNotEmpty())
                         @php $att = $attendees->first(); @endphp
-                        <a href="{{ route('hr.EmployeesDetails.employee_by_department', $att->employee->department_id) }}" 
+                        <a href="{{ route('hr.EmployeesDetails.employee_by_department', $att->employee->position->department_id) }}" 
                            class="btn btn-outline-primary btn-sm">
                             ← Back
                         </a>

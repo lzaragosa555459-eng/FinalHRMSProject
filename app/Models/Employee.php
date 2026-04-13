@@ -26,16 +26,14 @@ class Employee extends Model
         'employee_number',
         'name',
         'phone_number',
-        'email',
         'address',
         'date_of_birth',
         'gender',
         'profile_image',
-        'role',
+        'employee_role',
         'position_id',
         'applicant_id',
         'hire_date',
-        'salary',
         'manager_id',
         'user_id',
         'status',
@@ -48,7 +46,7 @@ class Employee extends Model
                 ->withTimestamps();
     }
     public function user(){
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->hasOne(User::class, 'employee_id');
     }
     
     public function payroll(){

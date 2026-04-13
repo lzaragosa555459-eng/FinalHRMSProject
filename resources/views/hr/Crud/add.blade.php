@@ -78,17 +78,6 @@
         </div>
 
         <div class="col-md-6">
-            <label class="form-label">Department name<span class="text-danger">*</span></label>
-         
-               <select name="department_id" class="form-control" id="department_id">
-                <option value="">Select department</option>
-            @foreach($departments as $dept)
-                <option  value="{{ $dept->department_id }}">{{ $dept->name }}</option>
-            @endforeach
-               </select>
-        </div>
-
-        <div class="col-md-6">
             <label class="form-label">Position<span class="text-danger">*</span></label>
          
             <select name="position_id" class="form-control" id="position_id">
@@ -112,11 +101,6 @@
         <div class="col-md-6">
             <label class="form-label">Hire Date</label>
             <input type="date" name="hire_date" class="form-control" id="hire_date">
-        </div>
-
-        <div class="col-md-6">
-            <label class="form-label">Salary</label>
-            <input type="number" step="0.01" name="salary" class="form-control" id="salary">
         </div>
 
         <div class="col-md-6">

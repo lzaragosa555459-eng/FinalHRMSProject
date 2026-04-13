@@ -85,23 +85,6 @@
         </div>
 
         <div class="col-md-6">
-            <label class="form-label">
-                Department name<span class="text-danger">*</span>
-            </label>
-
-            <select name="department_id" class="form-control" id="department_id">
-                <option value="">Select department</option>
-
-                @foreach($departments as $dept)
-                    <option value="{{ $dept->department_id }}"
-                        {{ old('department_id', $employee->department_id) == $dept->department_id ? 'selected' : '' }}>
-                        {{ $dept->name }}
-                    </option>
-                @endforeach
-
-            </select>
-        </div>
-        <div class="col-md-6">
             <label class="form-label">Position ID</label>
              <select name="position_id" class="form-control" id="position_id">
                 <option value="">Select position</option>
@@ -135,11 +118,6 @@
                    value="{{ old('hire_date', $employee->hire_date) }}">
         </div>
 
-        <div class="col-md-6">
-            <label class="form-label">Salary</label>
-            <input type="number" step="0.01" name="salary" class="form-control"
-                   value="{{ old('salary', $employee->salary) }}">
-        </div>
 
         <div class="col-md-6">
             <label class="form-label">Manager</label>

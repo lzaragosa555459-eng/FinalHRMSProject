@@ -87,7 +87,7 @@
     <h1 class="fw-bold text-dark mb-3">
         Department: 
         <span class="text-primary">
-            {{ $employees->first()?->department?->name ?? 'N/A' }}
+            {{ $employees->first()->position?->department?->name ?? 'N/A' }}
         </span>
     </h1>
 
@@ -178,7 +178,7 @@
                             </td>
 
                             <td>
-                                <div>{{ $emp->email ?? '—' }}</div>
+                                <div>{{ $emp->user->email ?? '—' }}</div>
                                 <small class="text-muted">{{ $emp->phone_number ?? '—' }}</small>
                             </td>
 
@@ -195,7 +195,7 @@
                             </td>
 
                             <td>
-                                {{ $emp->salary ? '$' . number_format($emp->salary, 0) : '—' }}
+                                {{ $emp->payroll ? '₱' . number_format($emp->payroll->net_salary, 2) : '—' }}
                             </td>
 
                             <td class="text-center">

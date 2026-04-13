@@ -106,11 +106,15 @@
 <div class="container" >
      <h2>Organization</h2>
     <h4 class="text-secondary mb-0">Company Structure & Activities</h4><br><br>
-</div>
    
+</div>
+
 <!-- Departments -->
 <div class="container mt-4" id="container1" style="display: block;">
-    <h3 class="mb-4 fw-semibold">Departments</h3>
+    <div class="d-flex justify-content-between mb-4">
+        <h3 class="mb-4 fw-semibold">Departments</h3>
+        <a href="" class="btn btn-primary mb-4">+ Add Department</a>
+    </div>
 
    <div class="row g-4">
     @foreach($departments as $dept)
@@ -186,14 +190,16 @@
  <!-- Events -->
 <div class="container mt-4" id="container2" style="margin-left: 0%; display: none;">
 
-
-<div class="col-12  d-flex justify-content-between align-items-center p-4 " >
-    <h3 class="mb-4">Events</h3>
-      
+<div class="row">
+    <div class="col-12  d-flex justify-content-between align-items-center mb-4" >
+        <h3 class="mb-4">Events</h3>
+        
         <a href="{{ route('hr.Crud.addEvent') }}" class="btn btn-primary">
-                +Create Event
+            + Create Event
         </a>
+    </div>
 </div>
+
     <div class="row g-4">
         @foreach($events as $event)
         <div class="col-md-6 col-lg-4">
