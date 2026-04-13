@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Psy\Command\WhereamiCommand;
 use App\Models\User;
 use App\Models\Performance;
+use Illuminate\Support\Facades\Auth;
 
 class HRController extends Controller
 {
@@ -55,7 +56,7 @@ class HRController extends Controller
      
         $TotalLeave = Leave::where('status', 'approved')->count();
      
-
+        $user = Auth::user();
         // Departments
         $departments = Department::count();
 
@@ -119,7 +120,8 @@ class HRController extends Controller
             'attendances',
             'totalgross',
             'totaldeduction',
-            'totalnet'
+            'totalnet',
+            'user'
         ));
 
           

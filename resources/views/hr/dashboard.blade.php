@@ -63,8 +63,8 @@
 
     <div class="ms-auto d-flex align-items-center">
         <div class="text-end me-2 d-none d-sm-block">
-            <h6 class="mb-0">hruser</h6>
-            <small class="text-muted">hr@gmail.com</small>
+            <h6 class="mb-0">{{ $user->employee->name }}</h6>
+            <small class="text-muted">{{ $user->email }}</small>
         </div>
 
         <div class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center fw-bold" style="width:38px;height:38px;">

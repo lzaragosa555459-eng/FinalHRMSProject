@@ -52,4 +52,8 @@ class Employee extends Model
     public function payroll(){
         return $this->belongsTo(Payroll::class, 'employee_id');
     }
+
+    public function performance(){
+        return $this->hasMany(Performance::class, 'reviewer_id');
+    }
 }

@@ -91,9 +91,9 @@
             </div>
         </div>
 
-        <!-- Performance Chart -->
+    <!-- Performance Chart -->
     <div class="col-md-6">
-        <div class="bg-light p-4 rounded h-100">
+        <div class="bg-light p-4 rounded h-100 d-flex flex-column">
 
             <h4 class="mb-3">Performance</h4>
 
@@ -102,20 +102,22 @@
                 <canvas id="performanceChart"></canvas>
             </div>
 
-          
-
-            <!-- Document Style Content -->
-            <div class="d-flex flex-column gap-4">
+            <!-- Scrollable Content -->
+            <div class="d-flex flex-column gap-4 mt-3"
+                style="max-height: 350px; overflow-y: auto; padding-right: 10px;">
 
                 @forelse($performances as $perf)
                     <div>
+                        <h6>
+                            Reviewer: <strong>{{ $perf->employee->name }}</strong>
+                        </h6>
 
                         <h6 class="mb-1">
                             Review Period: <strong>{{ $perf->review_period }}</strong>
                         </h6>
 
                         <p class="mb-1">
-                            <strong>Status:</strong> 
+                            <strong>Status:</strong>
                             <span class="badge 
                                 @if($perf->status == 'Reviewed') bg-success 
                                 @elseif($perf->status == 'Completed') bg-primary 
@@ -149,6 +151,7 @@
             </div>
 
         </div>
+    </div>
 
     </div>
     <div class="row">
