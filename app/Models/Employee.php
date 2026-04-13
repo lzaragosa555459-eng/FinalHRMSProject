@@ -16,10 +16,6 @@ class Employee extends Model
         return $this->belongsTo(Position::class, 'position_id', 'position_id');
     }
 
-    public function department()
-    {
-        return $this->belongsTo(Department::class, 'department_id', 'department_id');
-    }
 
      public function attendance()
     {
@@ -36,7 +32,6 @@ class Employee extends Model
         'gender',
         'profile_image',
         'role',
-        'department_id',
         'position_id',
         'applicant_id',
         'hire_date',

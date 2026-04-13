@@ -23,7 +23,6 @@ return new class extends Migration
             $table->enum('gender', ['male', 'female', 'other']);
             $table->string('profile_image')->nullable();
             $table->enum('role', ['head', 'employee'])->default('employee');
-            $table->unsignedInteger('department_id')->nullable();
             $table->unsignedInteger('position_id')->nullable();
             $table->unsignedInteger('applicant_id')->nullable();
             $table->date('hire_date');
@@ -33,7 +32,6 @@ return new class extends Migration
             $table->enum('status', ['active','resigned','inactive']);
             $table->timestamps();
 
-            $table->foreign('department_id')->references('department_id')->on('departments')->onDelete('set null');
             $table->foreign('position_id')->references('position_id')->on('positions')->onDelete('set null');
             $table->foreign('applicant_id')->references('applicant_id')->on('applicants')->onDelete('set null');
             $table->foreign('manager_id')->references('employee_id')->on('employees')->onDelete('set null');

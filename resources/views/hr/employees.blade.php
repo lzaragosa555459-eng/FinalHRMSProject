@@ -77,7 +77,7 @@
      data-name="{{ strtolower($emp->name) }}"
      data-email="{{ strtolower($emp->email) }}"
      data-position="{{ strtolower($emp->position?->title ?? '') }}"
-     data-department="{{ $emp->department_id }}">
+     data-department="{{ $emp->position->department_id }}">
         <div class="card border-0 shadow-sm h-100 rounded-4 text-center p-4">
 
             <!-- Big Circle Profile Picture - Centered -->
@@ -113,7 +113,7 @@
             <!-- Short Info -->
             <div class="text-muted small text-center mb-4">
                 <div class="mb-1">{{ $emp->email }}</div>
-                <div>{{ $emp->department?->name ?? '—' }}</div>
+                <div>{{ $emp->position->department?->name ?? '—' }}</div>
             </div>
 
             <!-- Action Button -->

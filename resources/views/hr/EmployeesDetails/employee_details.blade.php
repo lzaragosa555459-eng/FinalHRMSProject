@@ -56,7 +56,7 @@
 
         <!-- Actions -->
         <div class="mt-3">
-            <a href="{{ route('hr.EmployeesDetails.employee_by_department', $emp->department_id) }}" class="btn btn-sm btn-outline-primary">
+            <a href="{{ route('hr.EmployeesDetails.employee_by_department', $emp->position->department_id) }}" class="btn btn-sm btn-outline-primary">
                 View Department
             </a>
             <a href="{{ route('hr.Crud.edit', $emp->employee_id) }}" class="btn btn-sm btn-outline-dark ms-2">
@@ -78,7 +78,7 @@
 
                 <p><strong>Employee Number:</strong> {{ $emp->employee_number ?? '—' }}</p>
                 <p><strong>Phone:</strong> {{ $emp->phone_number ?? '—' }}</p>
-                <p><strong>Department:</strong> {{ $emp->department?->name ?? '—' }}</p>
+                <p><strong>Department:</strong> {{ $emp->position->department->name ?? '—' }}</p>
                 <p><strong>Email:</strong> {{ $emp->email }}</p>
 
             </div>

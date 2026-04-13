@@ -133,10 +133,10 @@ class HRController extends Controller
     }
     public function organization()
     {
-        $departments = Department::with(['head'])
-            ->withCount('employees')
-            ->get();
-       $events = Event::with('department')->get();
+        $departments = Department::withCount('employees')->get();
+
+        
+        $events = Event::with('department')->get();
 
         return view('hr.organization', compact('departments', 'events'));
     }
@@ -204,10 +204,14 @@ class HRController extends Controller
         return view('hr.EmployeesDetails.employee_details', compact('emp','ratings','labels','performances','employeeSummary', 'attendanceByDate', 'dates', 'present', 'late'));
     }
      public function organization_details($id){
-        $employees = Employee::where('department_id', $id)->get();
+        $employees = Employee::join('positions', 'employees.position_id', '=', 'positions.position_id')
+            ->where('positions.department_id', $id)
+            ->select('employees.*')
+            ->get();
         $getEvents = Event::where('department_id', $id)->get();
         $totalNetDept = Payroll::join('employees', 'employees.employee_id', '=', 'payrolls.employee_id')
-            ->where('employees.department_id', $id)
+            ->join('positions', 'positions.position_id', '=', 'employees.position_id')
+            ->where('positions.department_id', $id)
             ->sum('payrolls.net_salary');
         $totalDeduction = Payroll::where('employee_id', $id)
         ->sum('deduction');

@@ -6,19 +6,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class Department extends Model
 {
-    public function employees()
-    {
-        return $this->hasMany(Employee::class, 'department_id', 'department_id');
-    }
+    protected $primaryKey = 'department_id';
 
-     public function head()
-    {
-        return $this->hasOne(Employee::class, 'department_id', 'department_id')
-                    ->where('role', 'head');
-    }
     public function events()
     {
         return $this->hasMany(Event::class, 'department_id', 'department_id');
+    }
+
+    public function position(){
+        return $this->hasMany(Position::class, 'department_id');
+    }
+
+    public function employees()
+    {
+        return $this->hasManyThrough(
+            Employee::class,
+            Position::class,
+            'department_id',   // positions.department_id
+            'position_id',     // employees.position_id
+            'department_id',   // departments.department_id (IMPORTANT FIX)
+            'position_id'      // positions.position_id (NOT id if custom)
+        );
     }
 
   

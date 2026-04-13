@@ -10,4 +10,8 @@ class Position extends Model
     {
         return $this->hasMany(Employee::class, 'position_id', 'position_id');
     }
+
+    public function department(){
+        return $this->hasOne(Department::class, 'department_id', 'department_id');
+    }
 }
