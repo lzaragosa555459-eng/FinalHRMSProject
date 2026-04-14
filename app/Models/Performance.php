@@ -23,7 +23,7 @@ class Performance extends Model
         'status',
     ];
 
-    public function employee(){
-        return $this->hasOne(Employee::class, 'employee_id', 'reviewer_id');
+    public function reviewer(){
+        return $this->belongsTo(Employee::class, 'reviewer_id', 'employee_id');
     }
 }

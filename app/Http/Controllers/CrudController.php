@@ -177,7 +177,7 @@ class CrudController extends Controller
         public function addPerformance(Request $request, $id)
         {
             $validated = $request->validate([
-                'reviewer_id'   => 'nullable|exists:employees,employee_id',
+                'reviewer_id'   => 'required|exists:employees,employee_id',
                 'review_period' => 'nullable|string|max:255',
                 'rating'        => 'nullable|numeric|min:0|max:5',
                 'comments'      => 'nullable|string',
@@ -195,7 +195,7 @@ class CrudController extends Controller
         public function updatePerformance(Request $request, $employee_id, $performance_id)
         {
             $validated = $request->validate([
-                'reviewer_id'   => 'nullable|exists:employees,employee_id',
+                'reviewer_id'   => 'required|exists:employees,employee_id',
                 'review_period' => 'nullable|string|max:255',
                 'rating'        => 'nullable|numeric|min:0|max:5',
                 'comments'      => 'nullable|string',

@@ -37,21 +37,16 @@
                                     <!-- Reviewer -->
                                     <div class="col-md-6">
                                         <label for="reviewer_id" class="form-label">Reviewer</label>
-                                        <select name="reviewer_id" id="reviewer_id" class="form-select">
- 
-                                        @if(isset($performance->performance_id))
-                                             <option value="{{ $performance->review_id }}">
-                                                    {{ $performance->employee->name}}
-                                            </option>
-                                        @else
-                                           <option value="">Select Reviewer HR</option>
-                                            @foreach($humanresource as $hr)
-                                                <option value="{{ $hr->employee->employee_id }}">
-                                                    {{ $hr->employee->name }}
-                                                </option>
-                                            @endforeach
-                                        @endif
-                                        </select>
+                                            <select name="reviewer_id" class="form-select">
+                                                <option value="">Select Reviewer HR</option>
+
+                                                @foreach($humanresource as $hr)
+                                                    <option value="{{ $hr->employee->employee_id }}"
+                                                        {{ old('reviewer_id', $performance->reviewer_id ?? '') == $hr->employee->employee_id ? 'selected' : '' }}>
+                                                        {{ $hr->employee->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                     </div>
 
                                     <!-- Review Period -->

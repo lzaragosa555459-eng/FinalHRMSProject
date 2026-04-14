@@ -112,7 +112,7 @@
                 @forelse($performances as $perf)
                     <div>
                         <h6>
-                            Reviewer: <strong>{{ $perf->employee->name }}</strong>
+                            Reviewer: <strong>{{ $perf->reviewer->name }}</strong>
                         </h6>
 
                         <h6 class="mb-1">
