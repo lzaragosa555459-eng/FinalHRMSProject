@@ -17,10 +17,20 @@
                             <h5><strong>Employee: </strong>{{ $employeeID->name }}</h5>
                         </div>
 
+                        <div class="row m-4">
+                            <form action="{{ isset($performance) 
+                                    ? route('UpdateEmployeeRating', [
+                                        'employee_id' => $employeeID->employee_id,
+                                        'performance_id' => $performance->performance_id
+                                    ]) 
+                                    : route('AddEmployeeRating', $employeeID->employee_id) }}" 
+                                method="POST">
 
-                        <div class="card-body">
-                            <form action="{{ route('AddEmployeeRating', $employeeID->employee_id) }}" method="POST">
                                 @csrf
+
+                                @if(isset($performance))
+                                    @method('PUT')
+                                @endif
 
                                 <div class="row g-3">
 
@@ -29,9 +39,9 @@
                                         <label for="reviewer_id" class="form-label">Reviewer</label>
                                         <select name="reviewer_id" id="reviewer_id" class="form-select">
  
-                                        @if(isset($performanceID->performance_id))
-                                             <option value="{{ $performanceID->review_id }}">
-                                                    {{ $performanceID->employee->name}}
+                                        @if(isset($performance->performance_id))
+                                             <option value="{{ $performance->review_id }}">
+                                                    {{ $performance->employee->name}}
                                             </option>
                                         @else
                                            <option value="">Select Reviewer HR</option>
@@ -47,61 +57,43 @@
                                     <!-- Review Period -->
                                     <div class="col-md-6">
                                         <label for="review_period" class="form-label">Review Period</label>
-                                    @if(isset($performanceID))
-                                      <input type="text" name="review_period" id="review_period" 
-                                            class="form-control" placeholder="e.g. Q1 2026" value="{{ $performanceID->review_period}}">
-                                    @else
                                         <input type="text" name="review_period" id="review_period" 
-                                            class="form-control" placeholder="e.g. Q1 2026">
-                                    @endif
+                                            class="form-control" placeholder="e.g. Q1 2026" value="{{ old('review_period', $performance->review_period ?? '')}}">
                                     </div>
 
                                     <!-- Rating -->
                                     <div class="col-md-6">
                                         <label for="rating" class="form-label">Rating</label>
-                                    @if(isset($performanceID))
                                        <input type="number" step="0.01" min="0" max="5" 
-                                            name="rating" id="rating" class="form-control" placeholder="0.00 - 5.00" value="{{ $performanceID->rating}}">
-                                    @else
-                                        <input type="number" step="0.01" min="0" max="5" 
-                                            name="rating" id="rating" class="form-control" placeholder="0.00 - 5.00">
-                                    @endif
+                                            name="rating" id="rating" class="form-control" placeholder="0.00 - 5.00" value="{{ old('rating', $performance->rating ?? '')}}">
                                     </div>
 
                                     <!-- Review Date -->
                                     <div class="col-md-6">
                                        <label for="review_date" class="form-label">Review Date</label>
-                                   @if(isset($performanceID))
-                                        <input type="date" name="review_date" id="review_date" class="form-control" value="{{ $performanceID->review_date }}">
-                                   @else
-                                        <input type="date" name="review_date" id="review_date" class="form-control">
-                                    @endif
+                                        <input type="date" name="review_date" id="review_date" class="form-control" value="{{ old('review_date', $performance->review_date ?? '') }}">
                                     </div>
 
                                     <!-- Status -->
                                     <div class="col-md-6">
                                         <label for="status" class="form-label">Status</label>
-                                    <select name="status" id="status" class="form-select">
-                                    @if(isset($performanceID))
-                                            <option value="">{{ $performanceID->status }}</option>
-                                            <option value="Pending">Pending</option>
-                                            <option valiue="Completed">Completed</option>
-                                            <option value="Reviewed">Reviewed</option>
-                                    @else
+                                        <select name="status" id="status" class="form-select">
                                             <option value="">Select Status</option>
-                                            <option value="Pending">Pending</option>
-                                            <option valiue="Completed">Completed</option>
-                                            <option value="Reviewed">Reviewed</option>
-                                        
-                                    @endif
-                                    </select>
+
+                                            @foreach($status as $stat)
+                                                <option value="{{ $stat }}"
+                                                    {{ old('status', $performance->status ?? '') == $stat ? 'selected' : '' }}>
+                                                    {{ $stat }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
 
                                     <!-- Comments -->
                                     <div class="col-12">
                                         <label for="comments" class="form-label">Comments</label>
                                         <textarea name="comments" id="comments" rows="4" 
-                                                class="form-control" placeholder="Write comments here..."></textarea>
+                                                class="form-control" placeholder="Write comments here..." >{{ old('comments', $performance->comments ?? '') }}</textarea>
                                     </div>
 
                                     <!-- Submit -->
@@ -121,6 +113,5 @@
             </div>
         </div>
     </div>
-
 </body>
 </html>

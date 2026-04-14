@@ -192,4 +192,7 @@ class CrudController extends Controller
             return redirect()->route('hr.EmployeesDetails.employee_details', $id)->with('success', 'Performance added successfully!');
         }
 
+        public function updatePerformance($employee_id, $performance_id){
+
+        }
 }

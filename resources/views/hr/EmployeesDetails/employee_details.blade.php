@@ -62,9 +62,12 @@
             <a href="{{ route('hr.Crud.edit', $emp->employee_id) }}" class="btn btn-sm btn-outline-dark ms-2">
                 Edit Employee
             </a>
-            <a href="{{ route('gotoperfomanceform', $emp->employee_id) }}" class="btn btn-sm btn-outline-dark ms-2">
-                Add Performance
-            </a>
+            @if($performances)
+                <a href="{{ route('gotoperfomanceform', [$emp->employee_id, $performance->performance_id]) }}"
+                class="btn btn-sm btn-outline-dark ms-2">
+                    Edit Performance
+                </a>
+            @endif
         </div>
 
     </div>
@@ -142,7 +145,7 @@
                     @if(auth()->user()->employee_id == $perf->reviewer_id)
                     <div class="d-flex justify-content-end  gap-2">
                         <p class="mb-0 mt-3 ">
-                            <a href="{{ route('gotoeditformperformance', [$emp->employee_id, $perf->performance_id]) }}" class="btn btn-outline-warning">
+                            <a href="{{ route('gotoperfomanceform', [$emp->employee_id, $perf->performance_id]) }}" class="btn btn-outline-warning">
                                 <i class="bi bi-pencil"></i>
                             </a>
                         </p>

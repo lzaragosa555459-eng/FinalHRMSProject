@@ -173,8 +173,11 @@ class HRController extends Controller
 
     public function employee_details($id){
         $emp = Employee::findOrFail($id);
-
+        
         $performances = Performance::where('employee_id', $id)->get();
+        $performance =  Performance::where('employee_id', $id)
+            ->latest()
+            ->first();
 
         $ratings = $performances->pluck('rating');
         $labels = $performances->pluck('review_period'); // or review_date
@@ -203,7 +206,7 @@ class HRController extends Controller
             $present = $attendanceByDate->pluck('present');
             $late = $attendanceByDate->pluck('late');
 
-        return view('hr.EmployeesDetails.employee_details', compact('emp','ratings','labels','performances','employeeSummary', 'attendanceByDate', 'dates', 'present', 'late'));
+        return view('hr.EmployeesDetails.employee_details', compact('emp','ratings','labels','performances','employeeSummary', 'attendanceByDate', 'dates', 'present', 'late', 'performance'));
     }
      public function organization_details($id){
         $employees = Employee::join('positions', 'employees.position_id', '=', 'positions.position_id')
@@ -273,17 +276,24 @@ class HRController extends Controller
         return view('hr.Crud.editEvent', compact('event', 'departments'));
     }
 
-    public function ViewPerformanceForm($id){
+    public function ViewPerformanceForm($id, $perf_id = null)
+    {
         $employeeID = Employee::findOrFail($id);
         $humanresource = User::where('system_role', 'hr')->get();
+        $status = ['Pending', 'Complete', 'Reviewed'];
 
-        return view('hr.Crud.addPerformance', compact('humanresource', 'employeeID'));
+        $performance = null;
+
+        if ($perf_id) {
+            $performance = Performance::findOrFail($perf_id);
+        }
+
+        return view('hr.Crud.addPerformance', compact(
+            'humanresource',
+            'employeeID',
+            'status',
+            'performance'
+        ));
     }
 
-    public function editPerformance($employee_id, $performance_id){
-        $employeeID = Employee::findOrFail($employee_id);
-        $performanceID = Performance::findOrFail($performance_id);
-
-        return view('hr.Crud.addPerformance', compact('employeeID','performanceID'));
-    }
 }
