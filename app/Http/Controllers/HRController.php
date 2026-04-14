@@ -279,4 +279,11 @@ class HRController extends Controller
 
         return view('hr.Crud.addPerformance', compact('humanresource', 'employeeID'));
     }
+
+    public function editPerformance($employee_id, $performance_id){
+        $employeeID = Employee::findOrFail($employee_id);
+        $performanceID = Performance::findOrFail($performance_id);
+
+        return view('hr.Crud.addPerformance', compact('employeeID','performanceID'));
+    }
 }

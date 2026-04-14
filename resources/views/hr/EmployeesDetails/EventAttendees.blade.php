@@ -22,12 +22,12 @@
 
                     @if($attendees->isNotEmpty())
                         @php $att = $attendees->first(); @endphp
-                        <a href="{{ route('hr.EmployeesDetails.employee_by_department', $att->employee->position->department_id) }}" 
+                        <a href="{{ url()->previous() }}" 
                            class="btn btn-outline-primary btn-sm">
                             ← Back
                         </a>
                     @else
-                        <a href="{{ route('hr.organization') }}" 
+                        <a href="{{ url()->previous() }}" 
                            class="btn btn-outline-primary btn-sm">
                             ← Back
                         </a>

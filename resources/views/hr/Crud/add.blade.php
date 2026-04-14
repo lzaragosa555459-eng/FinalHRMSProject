@@ -136,7 +136,7 @@
     </div>
    
      <div class="mt-4 text-end">
-         <a href="{{ route('hr.employees') }}" class="btn btn-secondary">
+         <a href="{{ url()->previous() }}" class="btn btn-secondary">
         Back
     </a>
      </div>

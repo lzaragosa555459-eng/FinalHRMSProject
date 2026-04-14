@@ -189,7 +189,7 @@ class CrudController extends Controller
 
             Performance::create($validated);
 
-            return redirect()->route('hr.EmployeesDetails.employee_details')->with('success', 'Performance added successfully!');
+            return redirect()->route('hr.EmployeesDetails.employee_details', $id)->with('success', 'Performance added successfully!');
         }
 
 }

@@ -72,7 +72,7 @@
     <div class="d-flex justify-content-between align-items-center mb-2">
         <!-- Back Button -->
         <a href="{{ route('hr.organization') }}" class="btn btn-outline-secondary rounded mb-3">
-            Back
+           <= View Departments
         </a>
         <div class="d-flex justify-content-between align-items-center mb-2">
             <span class="input-group-text"><i class="bi bi-search"></i></span>

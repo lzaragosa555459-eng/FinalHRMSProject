@@ -140,9 +140,19 @@
                             <span class="text-muted">{{ $perf->comments }}</span>
                         </p>
                     @if(auth()->user()->employee_id == $perf->reviewer_id)
-                        <p class="mb-0 mt-3">
-                            <a href="" class="btn btn-outline-secondary">Edit</a>
+                    <div class="d-flex justify-content-end  gap-2">
+                        <p class="mb-0 mt-3 ">
+                            <a href="{{ route('gotoeditformperformance', [$emp->employee_id, $perf->performance_id]) }}" class="btn btn-outline-warning">
+                                <i class="bi bi-pencil"></i>
+                            </a>
                         </p>
+                        <p class="mb-0 mt-3">
+                            <a href="" class="btn btn-outline-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </p>
+                    </div>
+
                     @endif
                     </div>
 

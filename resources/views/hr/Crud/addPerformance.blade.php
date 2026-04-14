@@ -28,43 +28,73 @@
                                     <div class="col-md-6">
                                         <label for="reviewer_id" class="form-label">Reviewer</label>
                                         <select name="reviewer_id" id="reviewer_id" class="form-select">
-                                            <option value="">Select Reviewer HR</option>
+ 
+                                        @if(isset($performanceID->performance_id))
+                                             <option value="{{ $performanceID->review_id }}">
+                                                    {{ $performanceID->employee->name}}
+                                            </option>
+                                        @else
+                                           <option value="">Select Reviewer HR</option>
                                             @foreach($humanresource as $hr)
                                                 <option value="{{ $hr->employee->employee_id }}">
                                                     {{ $hr->employee->name }}
                                                 </option>
                                             @endforeach
+                                        @endif
                                         </select>
                                     </div>
 
                                     <!-- Review Period -->
                                     <div class="col-md-6">
                                         <label for="review_period" class="form-label">Review Period</label>
+                                    @if(isset($performanceID))
+                                      <input type="text" name="review_period" id="review_period" 
+                                            class="form-control" placeholder="e.g. Q1 2026" value="{{ $performanceID->review_period}}">
+                                    @else
                                         <input type="text" name="review_period" id="review_period" 
                                             class="form-control" placeholder="e.g. Q1 2026">
+                                    @endif
                                     </div>
 
                                     <!-- Rating -->
                                     <div class="col-md-6">
                                         <label for="rating" class="form-label">Rating</label>
+                                    @if(isset($performanceID))
+                                       <input type="number" step="0.01" min="0" max="5" 
+                                            name="rating" id="rating" class="form-control" placeholder="0.00 - 5.00" value="{{ $performanceID->rating}}">
+                                    @else
                                         <input type="number" step="0.01" min="0" max="5" 
                                             name="rating" id="rating" class="form-control" placeholder="0.00 - 5.00">
+                                    @endif
                                     </div>
 
                                     <!-- Review Date -->
                                     <div class="col-md-6">
-                                        <label for="review_date" class="form-label">Review Date</label>
+                                       <label for="review_date" class="form-label">Review Date</label>
+                                   @if(isset($performanceID))
+                                        <input type="date" name="review_date" id="review_date" class="form-control" value="{{ $performanceID->review_date }}">
+                                   @else
                                         <input type="date" name="review_date" id="review_date" class="form-control">
+                                    @endif
                                     </div>
 
                                     <!-- Status -->
                                     <div class="col-md-6">
                                         <label for="status" class="form-label">Status</label>
-                                        <select name="status" id="status" class="form-select">
+                                    <select name="status" id="status" class="form-select">
+                                    @if(isset($performanceID))
+                                            <option value="">{{ $performanceID->status }}</option>
                                             <option value="Pending">Pending</option>
-                                            <option value="Completed">Completed</option>
+                                            <option valiue="Completed">Completed</option>
                                             <option value="Reviewed">Reviewed</option>
-                                        </select>
+                                    @else
+                                            <option value="">Select Status</option>
+                                            <option value="Pending">Pending</option>
+                                            <option valiue="Completed">Completed</option>
+                                            <option value="Reviewed">Reviewed</option>
+                                        
+                                    @endif
+                                    </select>
                                     </div>
 
                                     <!-- Comments -->
@@ -91,5 +121,6 @@
             </div>
         </div>
     </div>
+
 </body>
 </html>

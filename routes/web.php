@@ -56,6 +56,8 @@ Route::get('/view event/{event_id}', [HRController::class, 'EventAttendances'])-
 
 Route::get('/form-performance/{id}', [HRController::class, 'ViewPerformanceForm'])->name('gotoperfomanceform');
 Route::post('/add-performance/{id}', [CrudController::class, 'addPerformance'])->name('AddEmployeeRating');
+Route::get('/form-performance/{employee_id}/{performance_id}', [HRController::class, 'editPerformance'])->name('gotoeditformperformance');
+
 
 //EMPLOYEE ROTA-------------------------------------------------------------------------------------------
 
