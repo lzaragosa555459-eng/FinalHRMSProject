@@ -192,7 +192,23 @@ class CrudController extends Controller
             return redirect()->route('hr.EmployeesDetails.employee_details', $id)->with('success', 'Performance added successfully!');
         }
 
-        public function updatePerformance($employee_id, $performance_id){
+        public function updatePerformance(Request $request, $employee_id, $performance_id)
+        {
+            $validated = $request->validate([
+                'reviewer_id'   => 'nullable|exists:employees,employee_id',
+                'review_period' => 'nullable|string|max:255',
+                'rating'        => 'nullable|numeric|min:0|max:5',
+                'comments'      => 'nullable|string',
+                'review_date'   => 'nullable|date',
+                'status'        => 'required|in:Pending,Completed,Reviewed',
+            ]);
 
+            $performance = Performance::findOrFail($performance_id);
+
+            $performance->update($validated);
+
+            return redirect()
+                ->route('hr.EmployeesDetails.employee_details', $employee_id)
+                ->with('success', 'Updated successfully!');
         }
 }

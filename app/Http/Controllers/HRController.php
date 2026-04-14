@@ -280,7 +280,7 @@ class HRController extends Controller
     {
         $employeeID = Employee::findOrFail($id);
         $humanresource = User::where('system_role', 'hr')->get();
-        $status = ['Pending', 'Complete', 'Reviewed'];
+        $status = ['Pending', 'Completed', 'Reviewed'];
 
         $performance = null;
 
