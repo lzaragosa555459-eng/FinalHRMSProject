@@ -16,7 +16,7 @@ class PerformanceSeeder extends Seeder
                 'review_period' => 'Q1 2026',
                 'rating' => 4.20,
                 'comments' => 'Consistent performance and good teamwork',
-                'reviewer_id' => 1, // John Doe (head)
+                'reviewer_id' => 6, 
                 'review_date' => '2026-03-31',
                 'status' => 'Reviewed',
                 'created_at' => now(),
@@ -27,7 +27,7 @@ class PerformanceSeeder extends Seeder
                 'review_period' => 'Q1 2026',
                 'rating' => 3.90,
                 'comments' => 'Good output but needs to improve speed',
-                'reviewer_id' => 2, // Jane Smith (head)
+                'reviewer_id' => 2,
                 'review_date' => '2026-03-31',
                 'status' => 'Completed',
                 'created_at' => now(),
@@ -38,7 +38,7 @@ class PerformanceSeeder extends Seeder
                 'review_period' => 'Q1 2026',
                 'rating' => 4.70,
                 'comments' => 'Excellent work and leadership potential',
-                'reviewer_id' => 1,
+                'reviewer_id' => 4,
                 'review_date' => '2026-03-31',
                 'status' => 'Reviewed',
                 'created_at' => now(),
