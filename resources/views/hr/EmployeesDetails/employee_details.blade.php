@@ -62,12 +62,10 @@
             <a href="{{ route('hr.Crud.edit', $emp->employee_id) }}" class="btn btn-sm btn-outline-dark ms-2">
                 Edit Employee
             </a>
-            @if($performances)
-                <a href="{{ route('gotoperfomanceform', [$emp->employee_id, $performance->performance_id]) }}"
+                <a href="{{ route('gotoperfomanceform', $emp->employee_id) }}"
                 class="btn btn-sm btn-outline-dark ms-2">
-                    Edit Performance
-                </a>
-            @endif
+                    Add Performance
+            </a>
         </div>
 
     </div>
@@ -177,22 +175,22 @@
                 <canvas id="attendanceChart" height="120"></canvas>
         </div>
     </div>
-
-    </div>
-   
     <!-- DELETE BUTTON -->
-    <div class="mt-4">
-        <form action="{{ route('hr.Crud.delete', $emp->employee_id) }}" method="POST"
-              onsubmit="return confirm('Are you sure you want to delete this employee?');">
-            @csrf
-            @method('DELETE')
+    <div class="row mt-4">
+        <div class="col text-end mb-4">
+            <form action="{{ route('hr.Crud.delete', $emp->employee_id) }}" method="POST"
+                onsubmit="return confirm('Are you sure you want to delete this employee?');"
+                class="d-inline">
+                @csrf
+                @method('DELETE')
 
-            <button type="submit" class="btn btn-danger">
-                Delete Employee
-            </button>
-        </form>
+                <button type="submit" class="btn btn-danger px-4">
+                    <i class="bi bi-trash"></i> Delete Employee
+                </button>
+            </form>
+        </div>
     </div>
-
+    </div>
 </div>
 <script>
     const ctx = document.getElementById('performanceChart').getContext('2d');

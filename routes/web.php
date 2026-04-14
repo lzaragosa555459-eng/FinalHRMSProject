@@ -54,7 +54,7 @@ Route::delete('/employee/{id}', [CrudController::class, 'destroy'])->name('hr.Cr
 
 Route::get('/view event/{event_id}', [HRController::class, 'EventAttendances'])->name('hr.EmployeesDetails.EventAttendances');
 
-Route::get('/form-performance/{employee_id}/{performance_id}', [HRController::class, 'ViewPerformanceForm'])->name('gotoperfomanceform');
+Route::get('/form-performance/{employee_id}/{performance_id?}', [HRController::class, 'ViewPerformanceForm'])->name('gotoperfomanceform');
 Route::post('/add-performance/{id}', [CrudController::class, 'addPerformance'])->name('AddEmployeeRating');
 Route::put('/form-performance/{employee_id}/{performance_id}', [CrudController::class, 'updatePerformance'])->name('UpdateEmployeeRating');
 
