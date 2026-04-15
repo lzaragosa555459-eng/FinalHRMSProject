@@ -31,6 +31,7 @@ Route::get('/organization', [HRController::class, 'organization'])->name('hr.org
 Route::get('/organization/{id}', [HRController::class, 'organization_details'])->name('hr.EmployeesDetails.employee_by_department');
 Route::post('/organization/add',[CrudController::class, 'addDepartment'])->name('AddNewDepartment');
 Route::put('/organization/update/{id}',[CrudController::class, 'updateDepartment'])->name('UpdateDepartment');
+Route::delete('/organization/delete/{id}', [CrudController::class, 'destroyDepartment'])->name('deleteDepartment');
 
 Route::get('/attendance', [HRController::class, 'attendance'])->name('hr.attendance');
 Route::get('/payroll', [HRController::class, 'payroll'])->name('hr.payroll');

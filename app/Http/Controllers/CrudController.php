@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\Event;
 use App\Models\Payroll;
 use App\Models\Performance;
+use SebastianBergmann\CodeUnit\FunctionUnit;
 
 class CrudController extends Controller
 {
@@ -238,5 +239,15 @@ class CrudController extends Controller
 
             return redirect()->route('hr.organization')
                 ->with('success', 'Department updated successfully!');
+        }
+
+        public function destroyDepartment($id){
+            $department = Department::findOrFail($id);
+
+            $department->delete();
+
+            return redirect()->route('hr.organization')
+                 ->with('success', 'Employee deleted successfully!');
+            
         }
 }

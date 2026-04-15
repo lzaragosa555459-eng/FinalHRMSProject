@@ -175,9 +175,14 @@
                         <i class="bi bi-pencil"></i>
                     </a>
 
+                <form action="{{ route('deleteDepartment', $dept->department_id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete $dept->name department?')">
+                    @csrf
+                    @method('DELETE')
                     <button class="btn btn-light border btn-sm text-danger">
                         <i class="bi bi-trash"></i>
                     </button>
+                </form>
+
                 </div>
 
             </div>
