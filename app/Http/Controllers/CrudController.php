@@ -211,4 +211,18 @@ class CrudController extends Controller
                 ->route('hr.EmployeesDetails.employee_details', $employee_id)
                 ->with('success', 'Updated successfully!');
         }
+
+        public function addDeparment(Request $request){
+
+            $validated = $request->validate([
+                'department_number' => 'nullable|string|max:20',
+                'name' => 'required|string|max:100',
+                'description' => 'nullable|string|max:255',
+            ]);
+
+            Department::create($validated);
+
+            return redirect()->route('hr.organization')
+                            ->with('success', 'deparment added successfully!');
+        }
 }

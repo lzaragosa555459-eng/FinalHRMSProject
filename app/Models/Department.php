@@ -8,6 +8,12 @@ class Department extends Model
 {
     protected $primaryKey = 'department_id';
 
+    protected $fillable = [
+        'department_number',
+        'name',
+        'description',
+    ];
+    
     public function events()
     {
         return $this->hasMany(Event::class, 'department_id', 'department_id');
