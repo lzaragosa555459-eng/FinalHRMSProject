@@ -18,21 +18,31 @@
                         </div>
 
                         <div class="card-body">
-                            <form action="{{ route('AddNewDepartment') }}" method="POST">
+                            <form action="{{ isset($department)
+                                ? route('UpdateDepartment', $department->department_id)
+                                : route('AddNewDepartment') }}"
+                            method="POST">
+
                                 @csrf
+
+                                @if(isset($department))
+                                    @method('PUT')
+                                @endif
                                 <div class="mb-3">
                                     <label for="department_number" class="form-label">Department Number</label>
-                                    <input type="text" class="form-control" id="department_number" name="department_number" placeholder="Enter department number e.g DEP001">
+                                    <input type="text" class="form-control" id="department_number" name="department_number" placeholder="Enter department number e.g DEP001" 
+                                    value="{{ old('department_number', $department->department_number ?? '' ) }}">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Department Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter department name">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter department name" 
+                                    value="{{ old('name', $department->name ?? '') }}">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="description" class="form-label">Description</label>
-                                    <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter description"></textarea>
+                                    <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter description">{{ old('description', $department->description ?? '') }} </textarea>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">

@@ -212,8 +212,8 @@ class CrudController extends Controller
                 ->with('success', 'Updated successfully!');
         }
 
-        public function addDeparment(Request $request){
-
+        public function addDepartment(Request $request)
+        {
             $validated = $request->validate([
                 'department_number' => 'nullable|string|max:20',
                 'name' => 'required|string|max:100',
@@ -223,6 +223,20 @@ class CrudController extends Controller
             Department::create($validated);
 
             return redirect()->route('hr.organization')
-                            ->with('success', 'deparment added successfully!');
+                ->with('success', 'Department added successfully!');
+        }
+        
+        public function updateDepartment(Request $request, $id)
+        {
+            $validated = $request->validate([
+                'department_number' => 'nullable|string|max:20',
+                'name' => 'required|string|max:100',
+                'description' => 'nullable|string|max:255',
+            ]);
+
+            Department::where('department_id', $id)->update($validated);
+
+            return redirect()->route('hr.organization')
+                ->with('success', 'Department updated successfully!');
         }
 }

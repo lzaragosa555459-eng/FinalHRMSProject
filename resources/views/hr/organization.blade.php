@@ -170,9 +170,10 @@
 
                 <!-- Actions -->
                 <div class="d-flex gap-2 mt-auto">
-                    <button class="btn btn-light border btn-sm">
+                    <a href="{{ route('departmentsForm', $dept->department_id) }}" 
+                    class="btn btn-outline-warning btn-sm">
                         <i class="bi bi-pencil"></i>
-                    </button>
+                    </a>
 
                     <button class="btn btn-light border btn-sm text-danger">
                         <i class="bi bi-trash"></i>

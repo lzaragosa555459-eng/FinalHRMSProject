@@ -296,8 +296,13 @@ class HRController extends Controller
         ));
     }
 
-    public function departmentForm(){
-        return view('hr.Crud.departmentForm');
+    public function departmentForm($id = null){
+        $department = null;
+
+        if ($id) {
+            $department = Department::findOrFail($id);
+        }
+            return view('hr.Crud.departmentForm', compact('department'));
     }
 
 }
