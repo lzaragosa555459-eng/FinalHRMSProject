@@ -296,4 +296,8 @@ class HRController extends Controller
         ));
     }
 
+    public function departmentForm(){
+        return view('hr.Crud.departmentForm');
+    }
+
 }

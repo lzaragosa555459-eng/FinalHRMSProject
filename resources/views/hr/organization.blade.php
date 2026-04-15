@@ -113,7 +113,7 @@
 <div class="container mt-4" id="container1" style="display: block;">
     <div class="d-flex justify-content-between mb-4">
         <h3 class="mb-4 fw-semibold">Departments</h3>
-        <a href="" class="btn btn-primary mb-4">+ Add Department</a>
+        <a href="{{ route('departmentsForm') }}" class="btn btn-primary mb-4">+ Add Department</a>
     </div>
 
    <div class="row g-4">
