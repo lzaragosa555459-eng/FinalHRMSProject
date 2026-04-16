@@ -48,6 +48,7 @@
             padding-left: 20px;
         }
 
+        /* ACTIVE STATE (FIXED) */
         .sidebar .nav-link.active {
             background-color: #0d6efd;
             color: white;
@@ -62,69 +63,83 @@
         .sidebar .logout:hover {
             background-color: #bb2d3b;
         }
+
         .sidebar .nav-link {
             padding-left: 10px;
             padding-right: 10px;
         }
     </style>
 </head>
+
 <body>
 
-    <div class="sidebar">
-        <h3>Menu</h3>
+<div class="sidebar">
+    <h3>Menu</h3>
 
-        <ul class="nav flex-column">
+    <ul class="nav flex-column">
 
-            <li class="nav-item">
-                <a class="nav-link active">
-                    <i class="bi bi-speedometer2"></i>
-                    Dashboard
-                </a>
-            </li>
+        <!-- DASHBOARD -->
+        <li class="nav-item">
+            <a href="{{ route('employee.dashboard') }}"
+               class="nav-link {{ Route::is('employee.dashboard') ? 'active' : '' }}">
+                <i class="bi bi-speedometer2"></i>
+                Dashboard
+            </a>
+        </li>
 
-            <li class="nav-item mt-3">
-                <span class="text-uppercase text-secondary small fw-bold px-2">
-                    Actions
-                </span>
-            </li>
+        <li class="nav-item mt-3">
+            <span class="text-uppercase text-secondary small fw-bold px-2">
+                Actions
+            </span>
+        </li>
 
-            <li class="nav-item mt-2">
-                <a class="nav-link">
-                    <i class="bi bi-calendar-check"></i>
-                    Attendance
-                </a>
-            </li>
+        <!-- ATTENDANCE -->
+        <li class="nav-item mt-2">
+            <a href="{{ route('employee.attendance') }}"
+               class="nav-link {{ Route::is('employee.attendance') ? 'active' : '' }}">
+                <i class="bi bi-calendar-check"></i>
+                Attendance
+            </a>
+        </li>
 
-            <li class="nav-item">
-                <a class="nav-link">
-                    <i class="bi bi-calendar-event"></i>
-                    Attend Event
-                </a>
-            </li>
+        <!-- ATTEND EVENT -->
+        <li class="nav-item">
+            <a href="{{ route('employee.attendEvent') }}"
+               class="nav-link {{ Route::is('employee.attendEvent') ? 'active' : '' }}">
+                <i class="bi bi-calendar-event"></i>
+                Attend Event
+            </a>
+        </li>
 
-            <li class="nav-item">
-                <a class="nav-link">
-                    <i class="bi bi-envelope-paper"></i>
-                    Request Leave
-                </a>
-            </li>
+        <!-- REQUEST LEAVE -->
+        <li class="nav-item">
+            <a href="{{ route('employee.requestleave') }}"
+               class="nav-link {{ Route::is('employee.requestleave') ? 'active' : '' }}">
+                <i class="bi bi-envelope-paper"></i>
+                Request Leave
+            </a>
+        </li>
 
-            <li class="nav-item">
-                <a class="nav-link">
-                    <i class="bi bi-bar-chart-line"></i>
-                    Performance
-                </a>
-            </li>
+        <!-- PERFORMANCE -->
+        <li class="nav-item">
+            <a href="{{ route('employee.performance') }}"
+               class="nav-link {{ Route::is('employee.performance') ? 'active' : '' }}">
+                <i class="bi bi-bar-chart-line"></i>
+                Performance
+            </a>
+        </li>
 
-            <li class="nav-item mt-4">
-                <a class="nav-link logout">
-                    <i class="bi bi-box-arrow-right"></i>
-                    Logout
-                </a>
-            </li>
+        <!-- LOGOUT -->
+        <li class="nav-item mt-4">
+            <a href="{{ route('hr.logout') }}"
+               class="nav-link logout">
+                <i class="bi bi-box-arrow-right"></i>
+                Logout
+            </a>
+        </li>
 
-        </ul>
-    </div>
+    </ul>
+</div>
 
 </body>
 </html>

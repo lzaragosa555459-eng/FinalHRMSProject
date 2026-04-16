@@ -64,3 +64,9 @@ Route::put('/form-performance/{employee_id}/{performance_id}', [CrudController::
 //EMPLOYEE ROTA-------------------------------------------------------------------------------------------
 
 Route::get('/employee-dashboard', [EmployeeController::class, 'dashboard'])->name('employee.dashboard');
+//Actions
+Route::get('/employee-attendance', [EmployeeController::class, 'attendance'])->name('employee.attendance');
+Route::get('/employee-attend_event', [EmployeeController::class, 'attend_event'])->name('employee.attendEvent');
+Route::get('/employee-request_leave', [EmployeeController::class, 'request_leave'])->name('employee.requestleave');
+Route::get('/employee-performance', [EmployeeController::class, 'performance'])->name('employee.performance');
+
