@@ -8,7 +8,11 @@
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    @extends('layouts.app')
 
+    @section('title', 'Dashboard')
+
+    @section('content')
     <div class="container mt-4">
         <div class="row">
             <div class="col-12">
@@ -44,14 +48,8 @@
                ₱{{ number_format($user->employee->payroll->net_salary ?? 0, 2)}}
             </div>
         </div>
-        <div class="row">
-            Actions
-            <a href="">Attendance</a>
-            <a href="">Attend Event</a>
-            <a href="">Request Leave</a>
-            <a href="">Performance</a>
-            <a href="{{ route('hr.logout') }}">Logout</a>
-        </div>
+    
     </div>
+    @endsection
 </body>
 </html>
