@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Attendance;
 use App\Models\Event;
 use App\Models\Leave;
+use App\Models\Performance;
 
 class EmployeeController extends Controller
 {
@@ -45,6 +46,9 @@ class EmployeeController extends Controller
    }
 
    public function performance(){
-      return view('employee.performance');
+      $user = Auth::user();
+      $performances = Performance::where('employee_id', $user->employee_id)->get();
+
+      return view('employee.performance', compact('performances'));
    }
 }

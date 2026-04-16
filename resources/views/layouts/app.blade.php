@@ -15,7 +15,7 @@
             </div>
 
             <!-- Main Content -->
-            <div class="col-md-9 p-5">
+            <div class="col-md-9 p-5" style="margin-left:4%;">
                 @yield('content')
             </div>
 
