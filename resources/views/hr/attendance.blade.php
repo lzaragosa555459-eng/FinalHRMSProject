@@ -217,12 +217,26 @@
                                     <td>
                                         <span class="badge bg-warning-subtle text-warning px-3 py-2 rounded-pill">pending</span>
                                     </td>
-                                      <td>
-                                        <!-- Action buttons (placeholder) -->
-                                        <button class="btn btn-sm btn-success">Approve</button>
-                                        <button class="btn btn-sm btn-danger">Reject</button>
-                                    </td>
-                                </tr>
+                                        <td>
+                                            <form action="{{ route('approved', $leave->leave_id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('PUT')
+
+                                                <button type="submit" class="btn btn-sm btn-success">
+                                                    Approve
+                                                </button>
+                                            </form>
+
+                                            <form action="{{ route('reject', $leave->leave_id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('PUT')
+
+                                                <button type="submit" class="btn btn-sm btn-danger">
+                                                    Reject
+                                                </button>
+                                            </form>
+                                        </td>
+                                 </tr>
                                 @endforeach
                               
                             </tbody>

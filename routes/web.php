@@ -34,6 +34,9 @@ Route::put('/organization/update/{id}',[CrudController::class, 'updateDepartment
 Route::delete('/organization/delete/{id}', [CrudController::class, 'destroyDepartment'])->name('deleteDepartment');
 
 Route::get('/attendance', [HRController::class, 'attendance'])->name('hr.attendance');
+Route::put('/attendance/{id}/approve', [CrudController::class, 'approved'])->name('approved');
+Route::put('/attendance/{id}/reject', [CrudController::class, 'reject'])->name('reject');
+
 Route::get('/payroll', [HRController::class, 'payroll'])->name('hr.payroll');
 
 Route::post('/add payroll', [CrudController::class, 'AddPayroll'])->name('hr.AddPayroll');
@@ -59,6 +62,7 @@ Route::get('/view event/{event_id}', [HRController::class, 'EventAttendances'])-
 Route::get('/form-performance/{employee_id}/{performance_id?}', [HRController::class, 'ViewPerformanceForm'])->name('gotoperfomanceform');
 Route::post('/add-performance/{id}', [CrudController::class, 'addPerformance'])->name('AddEmployeeRating');
 Route::put('/form-performance/{employee_id}/{performance_id}', [CrudController::class, 'updatePerformance'])->name('UpdateEmployeeRating');
+
 
 
 //EMPLOYEE ROTA-------------------------------------------------------------------------------------------

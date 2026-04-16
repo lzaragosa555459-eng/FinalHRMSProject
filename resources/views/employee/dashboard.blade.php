@@ -20,7 +20,7 @@
     <div class="mb-4">
         <h2 class="fw-bold">Dashboard</h2>
 
-        <span class="badge bg-primary fs-6 px-3 py-2">
+        <span >
             {{ $user->employee->position->department->name }} Department
         </span>
     </div>

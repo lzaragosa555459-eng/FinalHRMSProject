@@ -10,6 +10,7 @@ use App\Models\Position;
 use App\Models\Applicant;
 use App\Models\User;
 use App\Models\Event;
+use App\Models\Leave;
 use App\Models\Payroll;
 use App\Models\Performance;
 use SebastianBergmann\CodeUnit\FunctionUnit;
@@ -249,5 +250,24 @@ class CrudController extends Controller
             return redirect()->route('hr.organization')
                  ->with('success', 'Employee deleted successfully!');
             
+        }
+
+        public function approved($id){
+           Leave::where('leave_id', $id)
+                ->update([
+                    'status' => 'approved'
+                ]);
+
+            return redirect()->route('hr.attendance')
+                 ->with('success', 'successful!');
+        }
+        public function reject($id){
+           Leave::where('leave_id', $id)
+                ->update([
+                    'status' => 'disapproved'
+                ]);
+
+            return redirect()->route('hr.attendance')
+                 ->with('success', 'successful!');
         }
 }
