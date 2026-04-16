@@ -137,7 +137,6 @@
                 Logout
             </a>
         </li>
-
     </ul>
 </div>
 

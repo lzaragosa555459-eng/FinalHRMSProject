@@ -14,7 +14,7 @@
     <h1>Attendance</h1>
 
     <table class="table table-bordered table-striped mt-3">
-        <thead>
+        <thead class="table-dark">
             <tr>
                 <th>Name</th>
                 <th>Date</th>

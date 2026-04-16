@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Attendance;
 use App\Models\Event;
+use App\Models\Leave;
 
 class EmployeeController extends Controller
 {
@@ -37,7 +38,10 @@ class EmployeeController extends Controller
    }
 
    public function request_leave(){
-      return view('employee.requestleave');
+      $user = Auth::user();
+      $leaves = Leave::where('employee_id', $user->employee_id)->get();
+
+      return view('employee.requestleave', compact('leaves'));
    }
 
    public function performance(){
