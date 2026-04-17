@@ -17,8 +17,8 @@
 
     <!-- Back Button -->
     <div class="mb-3">
-        <a href="{{ route('hr.employees') }}" class="btn btn-sm btn-outline-dark rounded-pill px-3">
-            Back
+        <a href="{{ route('hr.employees') }}" class="btn btn-outline-secondary rounded mb-3">
+           <i class="bi bi-arrow-left"></i> 
         </a>
     </div>
 
@@ -83,7 +83,7 @@
                 <p><strong>Employee Number:</strong> {{ $emp->employee_number ?? '—' }}</p>
                 <p><strong>Phone:</strong> {{ $emp->phone_number ?? '—' }}</p>
                 <p><strong>Department:</strong> {{ $emp->position->department->name ?? '—' }}</p>
-                <p><strong>Email:</strong> {{ $emp->user->email }}</p>
+                <p><strong>Email:</strong> {{ $emp->user->email ?? '' }}</p>
                 @if($emp->payroll && $emp->payroll->net_salary !== null)
                     <p><strong>Net Salary:</strong> ₱{{ number_format($emp->payroll->net_salary, 2) }}</p>
                 @else

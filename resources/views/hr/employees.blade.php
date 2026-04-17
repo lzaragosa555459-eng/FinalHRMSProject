@@ -1,4 +1,3 @@
-@extends('hr.sidebar')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,12 +13,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body style="background-color: #EDF2FA;">
-
+@extends('hr.sidebar')
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 
 
-<div class="container mt-4" style="margin-left: 9%; ">
+<div class="container mt-4 ">
 
     <!-- Header -->
     <div class="row mb-4 ">

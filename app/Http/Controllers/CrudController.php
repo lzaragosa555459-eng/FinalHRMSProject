@@ -27,12 +27,11 @@ class CrudController extends Controller
             'date_of_birth'   => 'required|date',
             'gender'          => 'required|in:male,female,other',
             'profile_image'   => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'employee_role'   => 'required|in:head,employee',
+            'employee_role'   => 'nullable|in:head,employee',
             'position_id'     => 'required|exists:positions,position_id',
             'applicant_id'    => 'nullable|exists:applicants,applicant_id',
             'hire_date'       => 'nullable|date',
             'manager_id'      => 'nullable|exists:employees,employee_id',
-            'user_id'         => 'nullable|integer',
             'status'          => 'nullable|in:active,resigned,inactive',
         ]);
  
@@ -40,6 +39,8 @@ class CrudController extends Controller
             $path = $request->file('profile_image')->store('employees', 'public');
             $validated['profile_image'] = $path;
         }
+
+        $validated['status'] = $request->status ?? 'active';
 
         Employee::create($validated);
 

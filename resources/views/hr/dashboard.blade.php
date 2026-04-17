@@ -1,4 +1,3 @@
-@extends('hr.sidebar')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,11 +46,11 @@
 </head>
 
 <body>
-
+@extends('hr.sidebar')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<div class="container py-3" style="margin-left:5%;">
+<div class="container py-3">
 <div class="col-lg-11 offset-lg-1">
 
 <!-- NAV -->
