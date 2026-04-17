@@ -1,60 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{{ isset($department) ? 'Edit' : 'Create' }} Department</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f3f0f7;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        :root {
+            --primary-purple: #6f42c1;
+            --dark-purple: #4b2a89;
+            --light-purple: #efebf7;
+        }
+
+        .card-custom {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(111, 66, 193, 0.1);
+            background-color: white;
+            overflow: hidden;
+        }
+
+        .header-gradient {
+            background: linear-gradient(135deg, #6f42c1 0%, #4b2a89 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #555;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 0 0.25rem rgba(111, 66, 193, 0.15);
+        }
+
+        .btn-purple {
+            background-color: var(--primary-purple);
+            color: white;
+            border-radius: 12px;
+            padding: 10px 30px;
+            font-weight: 600;
+            border: none;
+            transition: 0.3s;
+        }
+
+        .btn-purple:hover {
+            background-color: var(--dark-purple);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-cancel {
+            border-radius: 12px;
+            padding: 10px 30px;
+            color: #6c757d;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .btn-cancel:hover {
+            background: #e9ecef;
+            color: #333;
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            backdrop-filter: blur(5px);
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="container mt-4">
-                    <div class="card shadow">
-                        <div class="card-header">
-                            <h3 class="mb-0">Department Form</h3>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                
+                <div class="card card-custom">
+                    <div class="header-gradient">
+                        <div class="icon-box">
+                            <i class="bi bi-diagram-3 fs-2 text-white"></i>
                         </div>
+                        <h3 class="mb-0 fw-bold">
+                            {{ isset($department) ? 'Edit Department' : 'New Department' }}
+                        </h3>
+                        <p class="mb-0 opacity-75 small">Define organizational structure and goals</p>
+                    </div>
 
-                        <div class="card-body">
-                            <form action="{{ isset($department)
-                                ? route('UpdateDepartment', $department->department_id)
-                                : route('AddNewDepartment') }}"
+                    <div class="card-body p-4 p-md-5">
+                        <form action="{{ isset($department)
+                            ? route('UpdateDepartment', $department->department_id)
+                            : route('AddNewDepartment') }}"
                             method="POST">
 
-                                @csrf
+                            @csrf
+                            @if(isset($department))
+                                @method('PUT')
+                            @endif
 
-                                @if(isset($department))
-                                    @method('PUT')
-                                @endif
-                                <div class="mb-3">
-                                    <label for="department_number" class="form-label">Department Number</label>
-                                    <input type="text" class="form-control" id="department_number" name="department_number" placeholder="Enter department number e.g DEP001" 
-                                    value="{{ old('department_number', $department->department_number ?? '' ) }}">
+                            <div class="mb-4">
+                                <label for="department_number" class="form-label">Department ID / Number</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white border-end-0 text-muted"><i class="bi bi-hash"></i></span>
+                                    <input type="text" class="form-control border-start-0" id="department_number" name="department_number" 
+                                        placeholder="e.g. DEP-101" 
+                                        value="{{ old('department_number', $department->department_number ?? '' ) }}">
                                 </div>
+                            </div>
 
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Department Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter department name" 
-                                    value="{{ old('name', $department->name ?? '') }}">
+                            <div class="mb-4">
+                                <label for="name" class="form-label">Department Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white border-end-0 text-muted"><i class="bi bi-building"></i></span>
+                                    <input type="text" class="form-control border-start-0" id="name" name="name" 
+                                        placeholder="e.g. Human Resources" 
+                                        value="{{ old('name', $department->name ?? '') }}">
                                 </div>
+                            </div>
 
-                                <div class="mb-3">
-                                    <label for="description" class="form-label">Description</label>
-                                    <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter description">{{ old('description', $department->description ?? '') }} </textarea>
-                                </div>
+                            <div class="mb-4">
+                                <label for="description" class="form-label">Purpose & Description</label>
+                                <textarea class="form-control" id="description" name="description" rows="4" 
+                                    placeholder="Briefly describe the department's responsibilities...">{{ old('description', $department->description ?? '') }}</textarea>
+                            </div>
 
-                                <button type="submit" class="btn btn-primary">
-                                    Save Department
+                            <div class="d-flex justify-content-end gap-2 pt-3 border-top">
+                                <a href="{{ route('hr.organization') }}" class="btn btn-cancel">
+                                    Cancel
+                                </a>
+                                <button type="submit" class="btn btn-purple shadow-sm">
+                                    <i class="bi bi-check-lg me-1"></i> Save Changes
                                 </button>
-                                <a href="{{ route('hr.organization') }}" class="btn btn-secondary">Cancel</a>
-                            </form>
-                        </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
