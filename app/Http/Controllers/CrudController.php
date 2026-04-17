@@ -28,14 +28,14 @@ class CrudController extends Controller
             'gender'          => 'required|in:male,female,other',
             'profile_image'   => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'employee_role'   => 'required|in:head,employee',
-            'position_id'     => 'nullable|exists:positions,position_id',
+            'position_id'     => 'required|exists:positions,position_id',
             'applicant_id'    => 'nullable|exists:applicants,applicant_id',
-            'hire_date'       => 'required|date',
+            'hire_date'       => 'nullable|date',
             'manager_id'      => 'nullable|exists:employees,employee_id',
             'user_id'         => 'nullable|integer',
-            'status'          => 'required|in:active,resigned,inactive',
+            'status'          => 'nullable|in:active,resigned,inactive',
         ]);
-
+ 
         if ($request->hasFile('profile_image')) {
             $path = $request->file('profile_image')->store('employees', 'public');
             $validated['profile_image'] = $path;

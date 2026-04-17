@@ -22,9 +22,9 @@ return new class extends Migration
             $table->enum('gender', ['male', 'female', 'other']);
             $table->string('profile_image')->nullable();
             $table->enum('employee_role', ['head', 'employee'])->default('employee');
-            $table->unsignedInteger('position_id')->nullable();
+            $table->unsignedInteger('position_id');
             $table->unsignedInteger('applicant_id')->nullable();
-            $table->date('hire_date');
+            $table->date('hire_date')->nullable();
             $table->unsignedInteger('manager_id')->nullable();
             $table->enum('status', ['active','resigned','inactive'])->default('active');
             $table->timestamps();

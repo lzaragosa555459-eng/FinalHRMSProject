@@ -78,13 +78,21 @@
 
             <!-- FIXED BUTTON AREA -->
             <div class="card-footer bg-white border-0 mt-auto">
-
+            @if(!in_array($event->event_id, $attendances))
                 <div class="d-flex justify-content-end">
-                    <a href=""
-                    class="btn btn-outline-primary btn-sm">
-                        Attend
+                    <a href="{{ route('attend', [
+                        'employee_id' => $user->employee_id,
+                        'event_id' => $event->event_id
+                    ]) }}"
+                    class="btn btn-outline-primary btn-sm" onclick="return confirm('Are you sure you want to register for this event?')">
+                        Register
                     </a>
                 </div>
+            @else
+                <div class="d-flex justify-content-end">
+                    <i class="bi bi-check bg-light text-success">Registered!</i>
+                </div>
+            @endif
 
             </div>
 

@@ -21,7 +21,7 @@ return new class extends Migration
 
                 $table->timestamps();
                 $table->foreign('employee_id')->references('employee_id')->on('employees')->onDelete('set null');
-                $table->foreign('event_id')->references('employee_id')->on('employees')->onDelete('set null');
+                $table->foreign('event_id')->references('event_id')->on('events')->onDelete('set null');
                 // Prevent duplicate attendance records
                 $table->unique(['event_id', 'employee_id']);
             });

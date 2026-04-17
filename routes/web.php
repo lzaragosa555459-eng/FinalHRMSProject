@@ -74,3 +74,4 @@ Route::get('/employee-attend_event', [EmployeeController::class, 'attend_event']
 Route::get('/employee-request_leave', [EmployeeController::class, 'request_leave'])->name('employee.requestleave');
 Route::get('/employee-performance', [EmployeeController::class, 'performance'])->name('employee.performance');
 
+Route::get('/employee-attendance/{employee_id}/{event_id}', [EmployeeController::class, 'attend'])->name('attend');

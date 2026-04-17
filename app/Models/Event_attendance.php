@@ -10,5 +10,9 @@ class Event_attendance extends Model
     {
         return $this->hasOne(Employee::class, 'employee_id', 'employee_id');
     }
-    
+    protected $fillable = [
+        'event_id',
+        'employee_id',
+        'check_in_time',
+    ];
 }
