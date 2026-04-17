@@ -10,4 +10,11 @@ class Leave extends Model
     {
         return $this->belongsTo(Employee::class, 'employee_id');
     }
+    protected $fillable = [
+    'employee_id',
+    'start_date',
+    'end_date',
+    'reason',
+    'status',
+];
 }

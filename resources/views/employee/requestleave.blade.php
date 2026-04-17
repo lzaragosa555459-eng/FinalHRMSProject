@@ -81,6 +81,7 @@
                             <th>Reason</th>
                             <th>Status</th>
                             <th>Created At</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
 
@@ -94,6 +95,11 @@
                                 <td>{{ $leave->reason }}</td>
                                 <td><span class="badge bg-warning text-dark">Pending</span></td>
                                 <td>{{ $leave->created_at ?? 'N/A' }}</td>
+                                <td>
+                                    <a href="" class="btn btn-outline-danger">
+                                        Cancel
+                                    </a>
+                                </td>
                             </tr>
                         @empty
                             <tr>
@@ -160,7 +166,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
-            <form action="" method="POST">
+            <form action="{{ route('add-request', $user->employee->employee_id) }}" method="POST">
                 @csrf
 
                 <div class="modal-body">

@@ -48,7 +48,7 @@ class EmployeeController extends Controller
       $user = Auth::user();
       $leaves = Leave::where('employee_id', $user->employee_id)->get();
 
-      return view('employee.requestleave', compact('leaves'));
+      return view('employee.requestleave', compact('leaves', 'user'));
    }
 
    public function performance(){
