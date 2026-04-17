@@ -11,132 +11,134 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <style>
-        body {
-            margin: 0;
-            background-color: #f5f6fa;
-        }
+<style>
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
 
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background-color: #212529;
-            padding: 20px;
-        }
+    width: 70px;   /* collapsed */
+    background-color: #212529;
+    padding: 20px 10px;
 
-        .sidebar h3 {
-            color: white;
-            text-align: center;
-            margin-bottom: 30px;
-            font-weight: bold;
-        }
+    overflow-x: hidden;
+    transition: 0.3s ease;
+    z-index: 1000;
+}
 
-        .sidebar .nav-link {
-            color: #dcdcdc;
-            padding: 12px 15px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+/* expand on hover */
+.sidebar:hover {
+    width: 250px;
+}
 
-        .sidebar .nav-link:hover {
-            background-color: #343a40;
-            color: white;
-            padding-left: 20px;
-        }
+.sidebar h3 {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
 
-        /* ACTIVE STATE (FIXED) */
-        .sidebar .nav-link.active {
-            background-color: #0d6efd;
-            color: white;
-        }
+    opacity: 0;
+    transition: 0.2s;
+    white-space: nowrap;
+}
 
-        .sidebar .logout {
-            margin-top: 30px;
-            background-color: #dc3545;
-            color: white !important;
-        }
+.sidebar:hover h3 {
+    opacity: 1;
+}
 
-        .sidebar .logout:hover {
-            background-color: #bb2d3b;
-        }
+.sidebar .nav-link {
+    color: #dcdcdc;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 
-        .sidebar .nav-link {
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-    </style>
-</head>
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 8px;
 
-<body>
+    white-space: nowrap;
+}
+
+.sidebar .nav-link i {
+    font-size: 18px;
+    min-width: 30px;
+    text-align: center;
+}
+
+/* hide text by default */
+.sidebar .text {
+    opacity: 0;
+    transition: 0.2s;
+}
+
+/* show text on hover */
+.sidebar:hover .text {
+    opacity: 1;
+}
+
+/* hover effect */
+.sidebar .nav-link:hover {
+    background-color: #343a40;
+    color: white;
+}
+
+/* active */
+.sidebar .nav-link.active {
+    background-color: #0d6efd;
+    color: white;
+}
+
+</style>
 
 <div class="sidebar">
+
     <h3>Menu</h3>
 
     <ul class="nav flex-column">
 
-        <!-- DASHBOARD -->
         <li class="nav-item">
-            <a href="{{ route('employee.dashboard') }}"
-               class="nav-link {{ Route::is('employee.dashboard') ? 'active' : '' }}">
+            <a href="{{ route('employee.dashboard') }}" class="nav-link">
                 <i class="bi bi-speedometer2"></i>
-                Dashboard
+                <span class="text">Dashboard</span>
             </a>
         </li>
 
-        <li class="nav-item mt-3">
-            <span class="text-uppercase text-secondary small fw-bold px-2">
-                Actions
-            </span>
-        </li>
-
-        <!-- ATTENDANCE -->
-        <li class="nav-item mt-2">
-            <a href="{{ route('employee.attendance') }}"
-               class="nav-link {{ Route::is('employee.attendance') ? 'active' : '' }}">
+        <li class="nav-item">
+            <a href="{{ route('employee.attendance') }}" class="nav-link">
                 <i class="bi bi-calendar-check"></i>
-                Attendance
+                <span class="text">Attendance</span>
             </a>
         </li>
 
-        <!-- ATTEND EVENT -->
         <li class="nav-item">
-            <a href="{{ route('employee.attendEvent') }}"
-               class="nav-link {{ Route::is('employee.attendEvent') ? 'active' : '' }}">
+            <a href="{{ route('employee.attendEvent') }}" class="nav-link">
                 <i class="bi bi-calendar-event"></i>
-                Attend Event
+                <span class="text">Events</span>
             </a>
         </li>
 
-        <!-- REQUEST LEAVE -->
         <li class="nav-item">
-            <a href="{{ route('employee.requestleave') }}"
-               class="nav-link {{ Route::is('employee.requestleave') ? 'active' : '' }}">
+            <a href="{{ route('employee.requestleave') }}" class="nav-link">
                 <i class="bi bi-envelope-paper"></i>
-                Request Leave
+                <span class="text">Leave</span>
             </a>
         </li>
 
-        <!-- PERFORMANCE -->
         <li class="nav-item">
-            <a href="{{ route('employee.performance') }}"
-               class="nav-link {{ Route::is('employee.performance') ? 'active' : '' }}">
+            <a href="{{ route('employee.performance') }}" class="nav-link">
                 <i class="bi bi-bar-chart-line"></i>
-                Performance
+                <span class="text">Performance</span>
             </a>
         </li>
 
-        <!-- LOGOUT -->
         <li class="nav-item mt-4">
-            <a href="{{ route('hr.logout') }}"
-               class="nav-link logout">
+            <a href="{{ route('hr.logout') }}" class="nav-link logout">
                 <i class="bi bi-box-arrow-right"></i>
-                Logout
+                <span class="text">Logout</span>
             </a>
         </li>
+
     </ul>
 </div>
 

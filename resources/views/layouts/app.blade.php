@@ -10,12 +10,12 @@
         <div class="row">
             
             <!-- Sidebar -->
-            <div class="col-md-2 bg-dark text-white min-vh-100">
+            <div class="col-md-2">
                 @include('partials.sidebarEmployee')
             </div>
 
             <!-- Main Content -->
-            <div class="col-md-9 p-5" style="margin-left:4%;">
+            <div class="col-md-9 p-5">
                 @yield('content')
             </div>
 
