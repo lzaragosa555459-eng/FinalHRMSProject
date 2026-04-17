@@ -76,3 +76,4 @@ Route::get('/employee-performance', [EmployeeController::class, 'performance'])-
 
 Route::get('/employee-attendance/{employee_id}/{event_id}', [EmployeeController::class, 'attend'])->name('attend');
 Route::post('/employee-request_leave/{id}', [CrudController::class, 'add_request'])->name('add-request');
+Route::delete('/employee-request_leave/{id}', [CrudController::class, 'cancel_leave'])->name('cancel-leave');

@@ -36,7 +36,7 @@
                 <table class="table table-bordered table-striped table-hover">
                     <thead class="table-dark">
                         <tr>
-                            <th>Leave ID</th>
+                     
                             <th>Employee</th>
                             <th>Start Date</th>
                             <th>End Date</th>
@@ -49,7 +49,7 @@
                     <tbody>
                         @forelse($leaves->where('status', 'approved') as $leave)
                             <tr>
-                                <td>{{ $leave->leave_id }}</td>
+                              
                                 <td>{{ $leave->employee->name }}</td>
                                 <td>{{ $leave->start_date }}</td>
                                 <td>{{ $leave->end_date }}</td>
@@ -59,7 +59,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="text-center text-muted">
+                                <td colspan="6" class="text-center text-muted">
                                     No approved leave requests
                                 </td>
                             </tr>
@@ -74,7 +74,6 @@
                 <table class="table table-bordered table-striped table-hover">
                     <thead class="table-dark">
                         <tr>
-                            <th>Leave ID</th>
                             <th>Employee</th>
                             <th>Start Date</th>
                             <th>End Date</th>
@@ -88,7 +87,6 @@
                     <tbody>
                         @forelse($leaves->where('status', 'pending') as $leave)
                             <tr>
-                                <td>{{ $leave->leave_id }}</td>
                                 <td>{{ $leave->employee->name }}</td>
                                 <td>{{ $leave->start_date }}</td>
                                 <td>{{ $leave->end_date }}</td>
@@ -96,9 +94,11 @@
                                 <td><span class="badge bg-warning text-dark">Pending</span></td>
                                 <td>{{ $leave->created_at ?? 'N/A' }}</td>
                                 <td>
-                                    <a href="" class="btn btn-outline-danger">
-                                        Cancel
-                                    </a>
+                                    <form action="{{ route('cancel-leave', $leave->leave_id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                        <button type="submit" class="btn btn-outline-danger">Cancel</button>
+                                    </form>
                                 </td>
                             </tr>
                         @empty
@@ -118,7 +118,7 @@
                 <table class="table table-bordered table-striped table-hover">
                     <thead class="table-dark">
                         <tr>
-                            <th>Leave ID</th>
+                        
                             <th>Employee</th>
                             <th>Start Date</th>
                             <th>End Date</th>
@@ -131,7 +131,7 @@
                     <tbody>
                         @forelse($leaves->where('status', 'disapproved') as $leave)
                             <tr>
-                                <td>{{ $leave->leave_id }}</td>
+                              
                                 <td>{{ $leave->employee->name }}</td>
                                 <td>{{ $leave->start_date }}</td>
                                 <td>{{ $leave->end_date }}</td>
@@ -141,7 +141,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="text-center text-muted">
+                                <td colspan="6" class="text-center text-muted">
                                     No disapproved leave requests
                                 </td>
                             </tr>

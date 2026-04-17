@@ -276,19 +276,29 @@ class CrudController extends Controller
             $employee = Employee::findOrFail($id);
 
             $validated = $request->validate([
-                'start_date' => 'required|date',
-                'end_date'   => 'required|date|after_or_equal:start_date',
-                'reason'     => 'required|string|max:255',
+                'employee_id' => 'nullable|exists:employees,employee_id',
+                'start_date' => 'nullable|date',
+                'end_date'   => 'nullable|date|after_or_equal:start_date',
+                'reason'     => 'nullable|string|max:255',
             ]);
 
             Leave::create([
                 'employee_id' => $employee->employee_id,
-                'start_date'  => $validated['start_date'],
-                'end_date'    => $validated['end_date'],
-                'reason'      => $validated['reason'],
-                'status'      => 'pending',
+                'start_date' => $validated['start_date'],
+                'end_date' => $validated['end_date'],
+                'reason' => $validated['reason'],
+                'status' => 'pending',
             ]);
 
             return redirect()->back()->with('success', 'Leave request submitted successfully.');
+        }
+
+        public function cancel_leave($id){
+            $leave = Leave::findOrFail($id);
+
+            $leave->delete();
+
+            return redirect()->route('employee.requestleave')
+                ->with('success', 'Leave request submitted successfully.');
         }
 }

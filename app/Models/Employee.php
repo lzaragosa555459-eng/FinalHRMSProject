@@ -56,4 +56,8 @@ class Employee extends Model
     public function performance(){
         return $this->hasMany(Performance::class, 'reviewer_id');
     }
+    public function leaves()
+    {
+        return $this->hasMany(Leave::class, 'employee_id');
+    }
 }
