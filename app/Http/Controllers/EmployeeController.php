@@ -43,12 +43,24 @@ class EmployeeController extends Controller
 
       return view('employee.attendEvent', compact('events', 'user', 'attendances'));
    }
-
-   public function request_leave(){
+   
+   public function request_leave()
+   {
       $user = Auth::user();
-      $leaves = Leave::where('employee_id', $user->employee_id)->get();
 
-      return view('employee.requestleave', compact('leaves', 'user'));
+      $pending = Leave::where('employee_id', $user->employee_id)
+         ->where('status', 'pending')
+         ->paginate(5);
+
+      $approved = Leave::where('employee_id', $user->employee_id)
+         ->where('status', 'approved')
+         ->paginate(5);
+
+      $disapproved = Leave::where('employee_id', $user->employee_id)
+         ->where('status', 'disapproved')
+         ->paginate(5);
+
+      return view('employee.requestleave', compact('user', 'pending', 'approved', 'disapproved'));
    }
 
    public function performance(){
