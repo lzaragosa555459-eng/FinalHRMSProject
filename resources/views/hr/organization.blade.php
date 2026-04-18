@@ -191,8 +191,8 @@
     <div class="row g-4">
         @foreach($events as $event)
         <div class="col-md-6 col-lg-4 event-item">
-            <a href="{{ route('hr.EmployeesDetails.EventAttendances', $event->event_id) }}" class="text-decoration-none">
-                <div class="card department-card shadow-sm h-100 rounded-4 overflow-hidden border-0">
+           
+                <div class="card shadow-sm h-100 rounded-4 overflow-hidden border-0">
                     <div class="p-4">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <div class="bg-purple-subtle px-3 py-1 rounded-pill small fw-bold">
@@ -223,8 +223,9 @@
                     </div>
 
                     <div class="card-footer bg-white border-top p-3 d-flex justify-content-between align-items-center">
+                        <a href="{{ route('hr.EmployeesDetails.EventAttendances', $event->event_id) }}" class="text-decoration-none">
                         <span class="text-purple small fw-bold">Click to view attendees <i class="bi bi-arrow-right ms-1"></i></span>
-                        
+                        </a>
                         <div class="d-flex gap-2">
                             <button type="button" class="btn btn-sm btn-light border" 
                                     onclick="event.preventDefault(); window.location.href='{{ route('hr.Crud.editEvent', $event->event_id) }}';">
@@ -241,7 +242,7 @@
                         </div>
                     </div>
                 </div>
-            </a>
+         
         </div>
         @endforeach
     </div>
