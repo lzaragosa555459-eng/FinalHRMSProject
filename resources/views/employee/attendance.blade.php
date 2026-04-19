@@ -112,6 +112,45 @@
             font-size: 0.7rem;
         }
     }
+@media (max-width: 768px) {
+
+    /* KEEP TABLE STRUCTURE */
+    .custom-table {
+        width: 100%;
+        font-size: 0.75rem;
+    }
+
+    /* HEADER */
+    .custom-table thead th {
+        font-size: 0.65rem;
+        padding: 10px 6px;
+        letter-spacing: 1px;
+    }
+
+    /* CELLS */
+    .custom-table tbody td {
+        padding: 8px 6px !important;
+        font-size: 0.7rem;
+        white-space: nowrap; /* prevents breaking */
+    }
+
+    /* ICONS */
+    .custom-table i {
+        font-size: 0.75rem;
+    }
+
+    /* STATUS */
+    .status-badge {
+        font-size: 0.55rem;
+        padding: 3px 8px;
+    }
+
+    /* CONTAINER */
+    .attendance-container {
+        box-shadow: 6px 6px 0px #000;
+        border-width: 2px;
+    }
+}
 </style>
 
 <div class="container mt-5 mb-5">
@@ -140,25 +179,25 @@
                 <tbody>
                     @foreach($attendance as $attend)
                         <tr>
-                            <td data-label="Date" class="date-cell">
+                            <td data-label="" class="date-cell">
                                 {{ \Carbon\Carbon::parse($attend->date)->format('Y.m.d') }}
                             </td>
-                            <td data-label="Name">
+                            <td data-label="">
                                 <span class="fw-black text-uppercase">{{ $attend->employee->name }}</span>
                             </td>
-                            <td data-label="Time In">
+                            <td data-label="">
                                 <div class="fw-bold">
                                     <i class="bi bi-door-open-fill me-1"></i>
                                     {{ $attend->time_in }}
                                 </div>
                             </td>
-                            <td data-label="Time Out">
+                            <td data-label="">
                                 <div class="fw-bold">
                                     <i class="bi bi-door-closed-fill me-1"></i>
                                     {{ $attend->time_out ?? '--:--' }}
                                 </div>
                             </td>
-                            <td data-label="Status">
+                            <td data-label="">
                                 <span class="status-badge {{ $attend->status == 'Present' ? 'status-present' : 'status-late' }}">
                                     {{ strtoupper($attend->status) }}
                                 </span>

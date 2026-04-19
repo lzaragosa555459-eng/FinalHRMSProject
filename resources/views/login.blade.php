@@ -114,15 +114,25 @@
                 <form action="/login" method="POST">
                     @csrf
 
+                    @if(session('error'))
+                        <div class="alert alert-danger rounded-3 border-0 mb-4" role="alert">
+                            <i class="bi bi-exclamation-triangle me-2"></i>
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
                     <div class="mb-3">
                         <label class="form-label small fw-bold text-muted">Email Address</label>
                         <div class="input-group">
                             <span class="input-group-text bg-white border-end-0 text-muted">
                                 <i class="bi bi-envelope"></i>
                             </span>
-                            <input type="email" name="email" class="form-control border-start-0" 
-                                   placeholder="name@company.com" required autofocus>
+                            <input type="email" name="email" class="form-control border-start-0 @error('email') is-invalid @enderror" 
+                                placeholder="name@company.com" value="{{ old('email') }}" required autofocus>
                         </div>
+                        @error('email')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
@@ -134,12 +144,16 @@
                             <span class="input-group-text bg-white border-end-0 text-muted">
                                 <i class="bi bi-shield-lock"></i>
                             </span>
-                            <input type="password" name="password" id="password" class="form-control border-start-0 border-end-0" 
+                            <input type="password" name="password" id="password" 
+                                class="form-control border-start-0 border-end-0 @error('password') is-invalid @enderror"
                                 placeholder="••••••••" required>
                             <span class="input-group-text bg-white border-start-0 text-muted" style="cursor: pointer;" id="togglePassword">
                                 <i class="bi bi-eye" id="eyeIcon"></i>
                             </span>
                         </div>
+                        @error('password')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
 
                     <div class="mb-4 form-check">
@@ -150,7 +164,7 @@
                     <button type="submit" class="btn btn-login w-100 mb-3">
                         Sign In <i class="bi bi-arrow-right ms-2"></i>
                     </button>
-                    
+
                     <p class="text-center small text-muted mb-0">
                         Don't have an account? <a href="#" class="forgot-link">Contact HR</a>
                     </p>

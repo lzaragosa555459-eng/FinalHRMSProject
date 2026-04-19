@@ -56,6 +56,57 @@
         font-size: 0.65rem;
         padding: 0.4rem 0.8rem;
     }
+    @media (max-width: 576px) {
+
+    /* TABLE TEXT */
+    .table {
+        font-size: 0.75rem;
+    }
+
+    /* HEADER CELLS */
+    .table thead th {
+        font-size: 0.65rem !important;
+        padding: 0.4rem !important;
+        letter-spacing: 0.5px; /* reduce spacing so it fits better */
+    }
+
+    /* BODY CELLS */
+    .table td {
+        padding: 0.4rem !important;
+        vertical-align: middle;
+    }
+
+    /* BADGES */
+    .status-badge {
+        font-size: 0.55rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    /* BUTTONS */
+    .btn-sm {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.5rem;
+    }
+}
+    @media (max-width: 576px) {
+
+        .nav-tabs-custom .nav-link {
+            font-size: 0.65rem !important;
+            padding: 0.6rem 0.7rem !important;
+            letter-spacing: 0.5px;
+            white-space: nowrap; /* prevents text breaking */
+        }
+
+        .nav-tabs-custom {
+            overflow-x: auto; /* allows horizontal scroll instead of breaking */
+            flex-wrap: nowrap;
+        }
+
+        .nav-tabs-custom .nav-item {
+            flex: 1;
+            text-align: center;
+        }
+    }
 </style>
 
 <div class="container mt-5">
@@ -95,43 +146,46 @@
 
             {{-- PENDING --}}
             <div class="tab-pane fade show active" id="pending">
-                <table class="table mb-0">
-                    <thead>
-                        <tr>
-                            <th class="ps-4">Duration</th>
-                            <th>Reason</th>
-                            <th>Requested</th>
-                            <th class="text-end pe-4">Manage</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($pending as $leave)
-                        <tr>
-                            <td class="ps-4">
-                                <div class="fw-bold">
-                                    {{ \Carbon\Carbon::parse($leave->start_date)->format('d M') }}
-                                    —
-                                    {{ \Carbon\Carbon::parse($leave->end_date)->format('d M, Y') }}
-                                </div>
-                                <span class="badge bg-warning text-dark status-badge">Processing</span>
-                            </td>
-                            <td class="text-muted small">{{ $leave->reason }}</td>
-                            <td>{{ $leave->created_at->format('Y-m-d') }}</td>
-                            <td class="text-end pe-4">
-                                <form action="{{ route('cancel-leave', $leave->leave_id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Cancel?')">
-                                        Cancel
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                        @empty
-                        <tr><td colspan="4" class="text-center py-4">No pending requests</td></tr>
-                        @endforelse
-                    </tbody>
-                </table>
+
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th class="ps-4">Duration</th>
+                                <th>Reason</th>
+                                <th>Requested</th>
+                                <th class="text-end pe-4">Manage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($pending as $leave)
+                            <tr>
+                                <td class="ps-4">
+                                    <div class="fw-bold">
+                                        {{ \Carbon\Carbon::parse($leave->start_date)->format('d M') }}
+                                        —
+                                        {{ \Carbon\Carbon::parse($leave->end_date)->format('d M, Y') }}
+                                    </div>
+                                    <span class="badge bg-warning text-dark status-badge">Processing</span>
+                                </td>
+                                <td class="text-muted small">{{ $leave->reason }}</td>
+                                <td>{{ $leave->created_at->format('Y-m-d') }}</td>
+                                <td class="text-end pe-4">
+                                    <form action="{{ route('cancel-leave', $leave->leave_id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Cancel?')">
+                                            Cancel
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr><td colspan="4" class="text-center py-4">No pending requests</td></tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
 
                 <div class="p-3">
                     {{ $pending->links() }}
@@ -140,30 +194,33 @@
 
             {{-- APPROVED --}}
             <div class="tab-pane fade" id="approved">
-                <table class="table mb-0">
-                    <thead>
-                        <tr>
-                            <th>Employee</th>
-                            <th>Period</th>
-                            <th>Reason</th>
-                            <th class="text-end">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($approved as $leave)
-                        <tr>
-                            <td class="fw-bold">{{ $leave->employee->name }}</td>
-                            <td>{{ $leave->start_date }} - {{ $leave->end_date }}</td>
-                            <td class="text-muted">{{ $leave->reason }}</td>
-                            <td class="text-end">
-                                <span class="badge bg-dark status-badge">Approved</span>
-                            </td>
-                        </tr>
-                        @empty
-                        <tr><td colspan="4" class="text-center py-4">No approved requests</td></tr>
-                        @endforelse
-                    </tbody>
-                </table>
+
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th>Employee</th>
+                                <th>Period</th>
+                                <th>Reason</th>
+                                <th class="text-end">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($approved as $leave)
+                            <tr>
+                                <td class="fw-bold">{{ $leave->employee->name }}</td>
+                                <td>{{ $leave->start_date }} - {{ $leave->end_date }}</td>
+                                <td class="text-muted">{{ $leave->reason }}</td>
+                                <td class="text-end">
+                                    <span class="badge bg-dark status-badge">Approved</span>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr><td colspan="4" class="text-center py-4">No approved requests</td></tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
 
                 <div class="p-3">
                     {{ $approved->links() }}
@@ -172,28 +229,31 @@
 
             {{-- DISAPPROVED --}}
             <div class="tab-pane fade" id="disapproved">
-                <table class="table mb-0">
-                    <thead>
-                        <tr>
-                            <th>Period</th>
-                            <th>Reason</th>
-                            <th class="text-end">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($disapproved as $leave)
-                        <tr>
-                            <td>{{ $leave->start_date }} - {{ $leave->end_date }}</td>
-                            <td class="text-muted">{{ $leave->reason }}</td>
-                            <td class="text-end">
-                                <span class="badge bg-danger status-badge">Rejected</span>
-                            </td>
-                        </tr>
-                        @empty
-                        <tr><td colspan="3" class="text-center py-4">No disapproved requests</td></tr>
-                        @endforelse
-                    </tbody>
-                </table>
+
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th>Period</th>
+                                <th>Reason</th>
+                                <th class="text-end">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($disapproved as $leave)
+                            <tr>
+                                <td>{{ $leave->start_date }} - {{ $leave->end_date }}</td>
+                                <td class="text-muted">{{ $leave->reason }}</td>
+                                <td class="text-end">
+                                    <span class="badge bg-danger status-badge">Rejected</span>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr><td colspan="3" class="text-center py-4">No disapproved requests</td></tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
 
                 <div class="p-3">
                     {{ $disapproved->links() }}

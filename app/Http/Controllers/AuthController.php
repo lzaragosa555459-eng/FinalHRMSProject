@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
 
-   public function login(Request $request)
+    public function login(Request $request)
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -18,16 +18,15 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-        if (Auth::user()->system_role === 'hr') {
-            return redirect()->intended('/dashboard');
-        } else {
-            return redirect()->intended('/employee-dashboard');
-        }
-           
+            if (Auth::user()->system_role === 'hr') {
+                return redirect()->intended('/dashboard');
+            } else {
+                return redirect()->intended('/employee-dashboard');
+            }
         }
 
-        return back()->withErrors([
-            'email' => 'Invalid credentials.',
-        ]);
+        return back()
+            ->with('error', 'Invalid email or password.')
+            ->withInput();
     }
 }

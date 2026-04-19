@@ -106,10 +106,10 @@
                             <input type="text" name="phone_number" class="form-control" id="phone_number" placeholder="+63 900 000 0000">
                         </div>
 
-                        <div class="col-md-6">
+                        <!--<div class="col-md-6">
                             <label class="form-label">Email Address<span class="required-dot">*</span></label>
                             <input type="email" name="email" class="form-control" id="email" placeholder="example@company.com">
-                        </div>
+                        </div>-->
 
                         <div class="col-12">
                             <label class="form-label">Address<span class="required-dot">*</span></label>
@@ -184,7 +184,7 @@
                             <select name="user_id" class="form-select" id="user_id">
                                 <option value="">Select User Account</option>
                                 @foreach($users as $user)
-                                    <option value="{{ $user->user_id }}">{{ $user->username }}</option>
+                                    <option value="{{ $user->user_id }}">{{ $user->email }}</option>
                                 @endforeach
                             </select>
                         </div>

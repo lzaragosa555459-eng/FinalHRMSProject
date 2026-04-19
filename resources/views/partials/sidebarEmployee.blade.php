@@ -19,7 +19,7 @@
             position: fixed;
             top: 0;
             left: 0;
-            height: 100vh;
+            height: 300vh;
             width: 70px; /* Collapsed width */
             background-color: #212529;
             padding: 20px 10px;
@@ -109,10 +109,36 @@
             background-color: #dc3545;
             color: white;
         }
+        /* HAMBURGER BUTTON */
+        .hamburger-btn {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1100;
+            background: #212529;
+            color: white;
+            border: none;
+            padding: 8px 10px;
+            font-size: 20px;
+        }
+
+        /* MOBILE ONLY BEHAVIOR */
+        @media (max-width: 1024px) {
+            .sidebar {
+                left: -250px; /* hide sidebar */
+                transition: left 0.3s ease;
+            }
+
+            .sidebar.active {
+                left: 0; /* OVERLAP OPEN */
+            }
+        }
     </style>
 </head>
 <body>
-
+<button class="hamburger-btn">
+    <i class="bi bi-list"></i>
+</button>
 <div class="sidebar">
     <h3>Menu</h3>
 
@@ -162,14 +188,12 @@
 </div>
 
 <script>
-    document.querySelectorAll('.sidebar .nav-link').forEach(link => {
-        link.addEventListener('click', function() {
-            // "Lock" the sidebar in expanded mode during page transition
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.classList.add('expanded');
-        });
+    const sidebar = document.querySelector('.sidebar');
+    const btn = document.querySelector('.hamburger-btn');
+
+    btn.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
     });
 </script>
-
 </body>
 </html>
