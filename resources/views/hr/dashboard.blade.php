@@ -53,6 +53,83 @@
         }
 
         .bg-purple-subtle { background-color: #efebf7 !important; color: #6f42c1 !important; }
+@media (max-width: 768px) {
+    .container.py-4 {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+
+    .col-lg-11.offset-lg-1 {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+
+
+
+    .big-card {
+        padding: 15px !important;
+    }
+
+    .small-card {
+        padding: 12px !important;
+    }
+
+    .card h3,
+    .card h4,
+    .card h5 {
+        font-size: 1rem;
+    }
+
+    .card p,
+    .card small,
+    .card span,
+    .card li {
+        font-size: 0.75rem;
+    }
+
+    .stat-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+
+    .tight h3 {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    canvas {
+        max-height: 220px !important;
+    }
+
+    #employeeChart {
+        min-height: 250px !important;
+    }
+
+    .row.g-4,
+    .row.g-3 {
+        --bs-gutter-y: 0.8rem;
+    }
+
+    .col-6.col-md-4.col-lg-2 {
+        width: 50%;
+    }
+}
+@media (max-width: 768px) {
+    #employeeChart {
+        min-height: 180px !important;
+        max-height: 180px !important;
+    }
+
+    .card h5 {
+        font-size: 0.9rem;
+    }
+
+    .card.card-white.p-4.shadow-sm {
+        padding: 15px !important;
+    }
+}
     </style>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

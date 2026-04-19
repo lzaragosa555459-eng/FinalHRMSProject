@@ -42,7 +42,8 @@
         }
 
         /* Expanded Sidebar */
-        .sidebar:hover {
+        .sidebar:hover,
+        .sidebar.active {
             width: 240px;
         }
 
@@ -178,6 +179,66 @@
                 margin-left: 0 !important;
             }
         }
+@media (max-width: 768px) {
+    .sidebar {
+        width: 190px;
+        left: -190px;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .sidebar a {
+        height: 42px;
+        margin-bottom: 6px;
+        border-radius: 10px;
+    }
+
+    .sidebar a i {
+        min-width: 42px;
+        font-size: 1rem;
+        line-height: 42px;
+    }
+
+    .sidebar a span {
+        font-size: 0.85rem;
+    }
+
+    .logo-details {
+        height: 60px;
+    }
+
+    .logo-details img {
+        height: 28px;
+    }
+
+    .nav-list {
+        padding: 8px;
+        margin-top: 10px;
+    }
+
+    .logout-section {
+        padding: 8px;
+    }
+
+    .hamburger-btn {
+        top: 10px;
+        left: 10px;
+        padding: 6px 9px;
+        font-size: 18px;
+    }
+    .sidebar:hover a span,
+    .sidebar.active a span {
+        opacity: 1;
+    }
+
+    .sidebar:hover .logo-details,
+    .sidebar.active .logo-details {
+        justify-content: flex-start;
+        padding-left: 20px;
+    }
+}
     </style>
 </head>
 <body>
