@@ -96,9 +96,7 @@
     /* Responsive Mobile Cards */
     @media (max-width: 768px) {
         .attendance-container { border-width: 3px; box-shadow: 6px 6px 0px #000; }
-        .custom-table thead { display: none; }
         .custom-table tbody td {
-            display: block;
             text-align: right;
             padding-left: 50%;
             border-bottom: 1px solid #000;
@@ -114,24 +112,31 @@
     }
 @media (max-width: 768px) {
 
-    /* KEEP TABLE STRUCTURE */
-    .custom-table {
-        width: 100%;
-        font-size: 0.75rem;
+    .attendance-container {
+        border-width: 2px;
+        box-shadow: 6px 6px 0px #000;
     }
 
-    /* HEADER */
+    /* KEEP TABLE HORIZONTAL */
+    .custom-table {
+        width: 100%;
+        font-size: 0.7rem;
+    }
+
+    /* HEADER MUST STAY VISIBLE */
     .custom-table thead th {
-        font-size: 0.65rem;
-        padding: 10px 6px;
+        font-size: 0.6rem;
+        padding: 8px 6px;
         letter-spacing: 1px;
+        white-space: nowrap;
     }
 
     /* CELLS */
     .custom-table tbody td {
         padding: 8px 6px !important;
         font-size: 0.7rem;
-        white-space: nowrap; /* prevents breaking */
+        white-space: nowrap;
+        text-align: center;
     }
 
     /* ICONS */
@@ -139,16 +144,10 @@
         font-size: 0.75rem;
     }
 
-    /* STATUS */
+    /* BADGE */
     .status-badge {
         font-size: 0.55rem;
         padding: 3px 8px;
-    }
-
-    /* CONTAINER */
-    .attendance-container {
-        box-shadow: 6px 6px 0px #000;
-        border-width: 2px;
     }
 }
 </style>
