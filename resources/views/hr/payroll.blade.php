@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ asset('logo.png') }}" type="image/png">
-    <title>Payroll Management</title>
-</head>
+@extends('layouts.apphr')
+
+@section('title', 'Payroll')
+
+@section('content')
 <style>
     body {
         background-color: #f3f0f7 !important;
@@ -59,13 +54,10 @@
     .border-deduction { border-left-color: #dc3545; }
     .border-net { border-left-color: #198754; }
 </style>
-<body>
-    @extends('hr.sidebar')
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     
-    <div class="container py-4">
-        <div class="col-lg-11 offset-lg-1">
-            <h2 class="fw-bold mb-4" style="color: #2d1a4d;">Payroll Management</h2>
+    <div class="container p-4">
+        <div class="col-lg-11 offset-lg-1 mb-5 mt-4 text-center text-lg-start">
+            <h2 class="fw-bold mb-4" style="color: #2d1a4d; margin-top:9%;">Payroll Management</h2>
 
             <div class="row g-3 mb-4">
                 <div class="col-md-4">
@@ -254,5 +246,3 @@ function searchEmployees(){
     });
 }
 </script>
-</body>
-</html>

@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+@extends('layouts.apphr')
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+@section('title', 'Dashboard')
 
+@section('content')
     <style>
         body {
             background-color: #f3f0f7 !important; /* Soft purple-grey background */
@@ -59,12 +54,7 @@
 
         .bg-purple-subtle { background-color: #efebf7 !important; color: #6f42c1 !important; }
     </style>
-</head>
 
-<body>
-@extends('hr.sidebar')
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <div class="container py-4">
 <div class="col-lg-11 offset-lg-1">
@@ -298,5 +288,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
-</body>
-</html>

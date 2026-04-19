@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ asset('logo.png') }}" type="image/png">
-    <title>Organization</title>
+@extends('layouts.apphr')
 
+@section('title', 'Organization')
+
+@section('content')
     <style>
         body {
             background-color: #f3f0f7 !important; /* Soft Lavender Background */
@@ -76,51 +71,133 @@
             border-color: #6f42c1;
             box-shadow: 0 0 0 0.25rem rgba(111, 66, 193, 0.1);
         }
-    </style>
-</head>
+@media (max-width: 768px) {
 
-<body>
-@extends('hr.sidebar')
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    /* NAV STACK FIX */
+    .navbar-nav {
+        flex-direction: row !important;
+        gap: 10px;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    /* NAV LINKS SMALL */
+    .nav-item-link {
+        font-size: 0.8rem;
+    }
+
+    /* SEARCH FULL WIDTH */
+    #searchInput {
+        font-size: 0.75rem;
+    }
+
+    .input-group {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* FILTER DROPDOWN FULL WIDTH */
+    #departmentFilter {
+        width: 100% !important;
+        max-width: 100% !important;
+        font-size: 0.75rem;
+    }
+
+    /* NAV CONTAINER STACK */
+    .navbar .container-fluid {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+}
+@media (max-width: 768px) {
+
+    /* Main header block */
+    .mb-5.mt-4 {
+        text-align: center;
+    }
+
+    /* Title */
+    .mb-5.mt-4 h1 {
+        font-size: 1.5rem;
+    }
+
+    /* Subtitle */
+    .mb-5.mt-4 p {
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+    }
+
+    /* NAV BAR CENTER */
+    .navbar .container-fluid {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+    }
+
+    /* NAV LINKS CENTER */
+    .navbar-nav {
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* SEARCH + FILTER STACK CENTER */
+    .d-flex.gap-3 {
+        justify-content: center;
+        width: 100%;
+    }
+}
+    </style>
+
 
 <div class="container py-4">
+
     <div class="col-lg-11 offset-lg-1">
-        
-        <nav class="navbar navbar-expand-lg mb-4 bg-white rounded-4 shadow-sm px-4">
-            <div class="container-fluid p-0">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item me-4">
-                        <a class="nav-link nav-item-link active" href="#" onclick="showContainer('container1', this)">
-                            Departments
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-item-link" href="#" onclick="showContainer('container2', this)">
-                            Events
-                        </a>
-                    </li>
-                </ul>
-
-                <div class="d-flex gap-3 align-items-center">
-                    <div class="input-group" style="max-width: 250px;">
-                        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-purple"></i></span>
-                        <input type="text" id="searchInput" class="form-control border-start-0" placeholder="Search..." onkeyup="globalSearch()">
-                    </div>
-                    
-                    <select class="form-select" id="departmentFilter" onchange="filterDepartments()" style="max-width: 200px;">
-                        <option value="">All Departments</option>
-                        @foreach($departments as $dept)
-                            <option value="{{ strtolower($dept->name) }}">{{ $dept->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
+            <div class="mb-5 mt-4 text-center text-lg-start">
+                <h1 class="fw-bold" style="color: #2d1a4d;">Organization</h1>
+                <p class="text-muted mb-0">Manage company hierarchy and upcoming activities</p>
             </div>
-        </nav>
+            <nav class="navbar navbar-expand-lg mb-4 bg-white rounded-4 shadow-sm px-3 py-3">
+                <div class="container-fluid p-0 d-flex justify-content-between align-items-center flex-wrap">
 
-        <div class="mb-5 mt-4">
-            <h1 class="fw-bold" style="color: #2d1a4d;">Organization</h1>
-            <p class="text-muted">Manage company hierarchy and upcoming activities</p>
-        </div>
+                    <!-- LEFT / NAV LINKS -->
+                    <ul class="navbar-nav d-flex flex-row gap-4 mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link nav-item-link active" href="#" onclick="showContainer('container1', this)">
+                                Departments
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-item-link" href="#" onclick="showContainer('container2', this)">
+                                Events
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- RIGHT SIDE CONTROLS -->
+                    <div class="d-flex gap-2 align-items-center">
+
+                        <div class="input-group" style="max-width: 250px;">
+                            <span class="input-group-text bg-white border-end-0">
+                                <i class="bi bi-search text-purple"></i>
+                            </span>
+                            <input type="text" id="searchInput" class="form-control border-start-0" placeholder="Search..." onkeyup="globalSearch()">
+                        </div>
+
+                        <select class="form-select" id="departmentFilter" style="max-width: 200px;" onchange="filterDepartments()">
+                            <option value="">All Departments</option>
+                            @foreach($departments as $dept)
+                                <option value="{{ strtolower($dept->name) }}">{{ $dept->name }}</option>
+                            @endforeach
+                        </select>
+
+                    </div>
+
+                </div>
+             </nav>
+
+
 
         <div id="container1" style="display: block;">
             <div class="d-flex justify-content-between align-items-center mb-4">
@@ -275,5 +352,3 @@ function filterDepartments() {
     });
 }
 </script>
-</body>
-</html>

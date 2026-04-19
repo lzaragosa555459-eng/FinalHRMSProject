@@ -141,10 +141,49 @@
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
+        /* Hamburger Button */
+        .hamburger-btn {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1100;
+            background: #2d1a4d;
+            color: white;
+            border: none;
+            padding: 8px 10px;
+            font-size: 20px;
+            display: none;
+            border-radius: 6px;
+        }
+
+        /* SHOW ON IPAD + PHONE */
+        @media (max-width: 1024px) {
+            .hamburger-btn {
+                display: block;
+            }
+
+            /* Hide sidebar by default on tablet/mobile */
+            .sidebar {
+                left: -240px;
+                position: fixed;
+                transition: left 0.35s ease;
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            /* MAIN CONTENT FULL WIDTH */
+            .main {
+                margin-left: 0 !important;
+            }
+        }
     </style>
 </head>
 <body>
-
+<button class="hamburger-btn">
+    <i class="bi bi-list"></i>
+</button>
 <div id="mySidebar" class="sidebar">
     <div class="logo-details">
         <img src="{{ asset('logo.png') }}" height="35" alt="Logo">
@@ -185,10 +224,17 @@
     </div>
 </div>
 
- @yield('content')
+ <!--@yield('content')-->
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const sidebar = document.querySelector('#mySidebar');
+    const btn = document.querySelector('.hamburger-btn');
 
+    btn.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+    });
+</script>
 </body>
 </html>

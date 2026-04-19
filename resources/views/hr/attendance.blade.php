@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ asset('logo.png') }}" type="image/png">
-    <title>Attendance</title>
-</head>
+@extends('layouts.apphr')
+
+@section('title', 'Attendance')
+
+@section('content')
 <style>
     body {
         background-color: #f3f0f7 !important; /* Consistent Lavender Background */
@@ -82,21 +77,126 @@
         border-color: #6f42c1;
         box-shadow: 0 0 0 0.25rem rgba(111, 66, 193, 0.1);
     }
+    @media (max-width: 768px) {
+
+        /* Stack header nicely */
+        .d-flex.justify-content-between {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+        }
+
+        /* Make nav section wrap */
+        .bg-white.p-2 {
+            width: 100%;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* Title spacing */
+        h1 {
+            font-size: 1.6rem;
+        }
+
+        /* Dropdown full width on mobile */
+        .form-select {
+            width: 100% !important;
+        }
+    }
+@media (max-width: 768px) {
+
+    /* Main title */
+    h1 {
+        font-size: 1.4rem !important;
+        line-height: 1.2;
+    }
+
+    /* Subtitle */
+    h1 + p {
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+    }
+
+    /* Attendance / Leave tabs text */
+    .nav-item-link {
+        font-size: 0.75rem;
+        padding: 4px 6px;
+    }
+
+    /* Badge (leave count) */
+    .badge {
+        font-size: 0.65rem;
+    }
+
+    /* Dropdown */
+    .form-select {
+        font-size: 0.75rem;
+        padding: 5px 8px;
+    }
+
+    /* Container spacing fix */
+    .bg-white.p-2 {
+        padding: 8px !important;
+        gap: 8px;
+    }
+}
+@media (max-width: 768px) {
+
+    /* TABLE TEXT SMALLER */
+    .table {
+        font-size: 0.7rem;
+    }
+
+    /* HEADER SMALLER */
+    .table thead th {
+        font-size: 0.65rem;
+        padding: 8px 6px !important;
+        white-space: nowrap;
+    }
+
+    /* CELLS SMALLER */
+    .table tbody td {
+        padding: 6px 6px !important;
+        font-size: 0.7rem;
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+
+    /* BADGES SMALL */
+    .badge {
+        font-size: 0.6rem;
+        padding: 4px 8px;
+    }
+
+    /* BUTTONS SMALL */
+    .btn {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+    }
+
+    /* SCROLL FIX (prevents overflow) */
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    /* ICONS SMALLER */
+    .bi {
+        font-size: 0.8rem;
+    }
+}
+
 </style>
-<body>
-@extends('hr.sidebar')
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
   
     <div class="container py-5">
         <div class="col-lg-11 offset-lg-1">
 
-            <div class="d-flex justify-content-between align-items-center mb-5">
+            <div class="d-flex flex-wrap justify-content-between align-items-center mb-5 gap-3">
                 <div>
                     <h1 class="fw-bold mb-0" style="color: #2d1a4d;">Attendance & Leaves</h1>
                     <p class="text-muted">Monitor daily presence and manage time-off requests</p>
                 </div>
                 
-                <div class="d-flex align-items-center bg-white p-2 rounded-4 shadow-sm px-4">
+                <div class="d-flex align-items-center bg-white p-2 rounded-4 shadow-sm px-4 ">
                     <a class="nav-link nav-item-link active me-4" href="#" onclick="showContainer('container1', this)">
                         Attendance
                     </a>
@@ -184,7 +284,9 @@
                                     <td>{{ $leave->end_date }}</td>
                                     <td class="small text-muted text-truncate" style="max-width: 200px;">{{ $leave->reason }}</td>
                                     <td class="pe-4">
-                                        <span class="badge bg-purple-subtle text-purple px-3 py-2 rounded-pill">Approved</span>
+                                        <span class="badge rounded-pill px-3 py-2 bg-primary">
+                                            Approved
+                                        </span>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -271,5 +373,3 @@
         });
     }
 </script>
-</body>
-</html>

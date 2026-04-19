@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ asset('logo.png') }}" type="image/png">
-    <title>Employees</title>
+@extends('layouts.apphr')
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+@section('title', 'Employees')
 
+@section('content')
     <style>
         body {
             background-color: #f3f0f7 !important;
@@ -107,10 +101,7 @@
             transform: scale(1.02);
         }
     </style>
-</head>
 
-<body>
-@extends('hr.sidebar')
 
 <div class="container py-5">
     <div class="col-lg-11 offset-lg-1">
@@ -213,5 +204,3 @@ function filterByDepartment() {
 }
 </script>
 
-</body>
-</html>
