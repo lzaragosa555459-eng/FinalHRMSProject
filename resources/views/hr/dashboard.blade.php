@@ -55,11 +55,13 @@
         .bg-purple-subtle { background-color: #efebf7 !important; color: #6f42c1 !important; }
     </style>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <div class="container py-4">
 <div class="col-lg-11 offset-lg-1">
 
-<nav class="navbar shadow-sm tight">
+<nav class="navbar shadow-sm tight mt-5">
     <div class="d-flex align-items-center">
         <img src="{{ asset('logo.png') }}" style="width:40px;">
         <h4 class="ms-2 mb-0 fw-bold" style="color: #6f42c1;">CoreHR</h4>

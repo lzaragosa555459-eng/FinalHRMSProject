@@ -47,7 +47,8 @@
         border-radius: 10px;
     }
 </style>
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <div class="container py-4">
         <div class="col-lg-11 offset-lg-1">

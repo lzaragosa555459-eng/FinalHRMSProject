@@ -241,15 +241,22 @@
                         </a>
 
                         <div class="d-flex gap-2 pt-2 border-top">
-                            <a href="{{ route('departmentsForm', $dept->department_id) }}" class="btn btn-outline-warning border-0 btn-sm">
-                                <i class="bi bi-pencil-square me-1"></i> Edit
+
+                            <a href="{{ route('departmentsForm', $dept->department_id) }}"
+                            class="btn btn-outline-warning border-0 btn-sm d-flex align-items-center gap-1">
+                                <i class="bi bi-pencil fs-6"></i>
+                                Edit
                             </a>
+
                             <form action="{{ route('deleteDepartment', $dept->department_id) }}" method="POST" class="ms-auto">
                                 @csrf @method('DELETE')
-                                <button class="btn btn-outline-danger border-0 btn-sm" onclick="return confirm('Delete department?')">
-                                    <i class="bi bi-trash"></i>
+                                <button class="btn btn-outline-danger border-0 btn-sm d-flex align-items-center gap-1"
+                                        onclick="return confirm('Delete department?')">
+                                    <i class="bi bi-trash fs-6"></i>
+                                    Delete
                                 </button>
                             </form>
+
                         </div>
                     </div>
                 </div>
