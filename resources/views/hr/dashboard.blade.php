@@ -135,7 +135,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<div class="container py-4">
+<div class="container ">
 <div class="col-lg-11 offset-lg-1">
 
 <nav class="navbar shadow-sm tight mt-5">

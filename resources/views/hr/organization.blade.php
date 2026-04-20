@@ -310,15 +310,16 @@
                         <a href="{{ route('hr.EmployeesDetails.EventAttendances', $event->event_id) }}" class="text-decoration-none">
                         <span class="text-purple small fw-bold">Click to view attendees <i class="bi bi-arrow-right ms-1"></i></span>
                         </a>
-                        <div class="d-flex gap-2">
-                            <button type="button" class="btn btn-sm btn-light border" 
+                        <div class="d-flex gap-2 align-items-center">
+                            
+                            <button type="button" class="btn p-0" 
                                     onclick="event.preventDefault(); window.location.href='{{ route('hr.Crud.editEvent', $event->event_id) }}';">
                                 <i class="bi bi-pencil"></i>
                             </button>
                             
-                            <form action="{{ route('hr.Crud.deleteEvent', $event->event_id) }}" method="POST" class="d-inline">
+                            <form action="{{ route('hr.Crud.deleteEvent', $event->event_id) }}" method="POST" class="d-inline m-0">
                                 @csrf @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-light border text-danger" 
+                                <button type="submit" class="btn p-0 text-danger" 
                                         onclick="event.stopPropagation(); return confirm('Delete event?');">
                                     <i class="bi bi-trash"></i>
                                 </button>

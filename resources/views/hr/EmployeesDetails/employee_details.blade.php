@@ -53,7 +53,7 @@
     <div class="container py-4">
         <div class="col-lg-11 offset-lg-1">
             
-            <div class="mb-3">
+            <div class="mb-3 text-end">
                 <a href="{{ route('hr.employees') }}" class="btn btn-white shadow-sm rounded-pill px-4">
                    <i class="bi bi-arrow-left me-2"></i> Back to List
                 </a>

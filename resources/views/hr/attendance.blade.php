@@ -325,7 +325,7 @@
                                         <span class="badge bg-warning-subtle text-warning px-3 py-2 rounded-pill">Pending</span>
                                     </td>
                                     <td class="pe-4 text-end">
-                                        <div class="btn-group shadow-sm rounded-3 overflow-hidden">
+                                        <div class="">
                                             <form action="{{ route('approved', $leave->leave_id) }}" method="POST" class="d-inline">
                                                 @csrf @method('PUT')
                                                 <button type="submit" class="btn btn-sm btn-success border-0 px-3">
