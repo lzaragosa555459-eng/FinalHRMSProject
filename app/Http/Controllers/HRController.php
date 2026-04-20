@@ -18,6 +18,7 @@ use App\Models\User;
 use App\Models\Performance;
 use Illuminate\Support\Facades\Auth;
 
+
 class HRController extends Controller
 {
     public function dashboard(){
@@ -97,7 +98,11 @@ class HRController extends Controller
             ->groupBy('attendances.employee_id', 'employees.name')
             ->orderBy('attendances.employee_id')
             ->get();
-               
+        $missingTimeouts = Attendance::where('date', today())
+            ->whereNull('time_out')
+            ->with('employee')
+            ->take(5)
+            ->get();
         return view('hr.dashboard', compact(
             'totalEmployees',
             'totalActive',
@@ -121,7 +126,8 @@ class HRController extends Controller
             'totalgross',
             'totaldeduction',
             'totalnet',
-            'user'
+            'user',
+            'missingTimeouts'
         ));
 
           
@@ -304,5 +310,6 @@ class HRController extends Controller
         }
             return view('hr.Crud.departmentForm', compact('department'));
     }
+
 
 }

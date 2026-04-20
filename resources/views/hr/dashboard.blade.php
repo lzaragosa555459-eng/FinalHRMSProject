@@ -258,12 +258,16 @@ $stats = [
     </div>
     <div class="col-lg-4">
         <div class="card card-white p-4 h-100 shadow-sm">
-            <h5 class="fw-bold mb-3">Recent Activity</h5>
-            <ul class="list-unstyled mb-0">
-                <li class="mb-3 d-flex align-items-center"><span class="activity-dot bg-primary"></span>John Doe hired</li>
-                <li class="mb-3 d-flex align-items-center"><span class="activity-dot bg-warning"></span>Sick leave request</li>
-                <li class="mb-0 d-flex align-items-center"><span class="activity-dot bg-info"></span>Salary updated</li>
-            </ul>
+            <h5 class="fw-bold mb-3">Missing Time Out Today</h5>
+
+            @forelse($missingTimeouts as $attendance)
+                <div class="d-flex justify-content-between border-bottom py-2">
+                    <span>{{ $attendance->employee->name }}</span>
+                    <span class="text-danger small">No Time Out</span>
+                </div>
+            @empty
+                <p class="text-muted mb-0">No missing time out records today.</p>
+            @endforelse
         </div>
     </div>
     <div class="col-lg-4">
