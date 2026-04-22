@@ -153,9 +153,9 @@ class HRController extends Controller
 
     public function attendance(){
         $attendances = Attendance::paginate(6);
-        $approvedleaves = Leave::where('status', 'approved')->get();
+        $approvedleaves = Leave::where('status', 'approved')->paginate(6);
         $countleaves = Leave::where('status', 'pending')->count();
-        $pendingleaves = Leave::where('status', 'pending')->get();
+        $pendingleaves = Leave::where('status', 'pending')->paginate(6);
         return view('hr.attendance', compact('attendances','approvedleaves', 'countleaves', 'pendingleaves'));
     }
 

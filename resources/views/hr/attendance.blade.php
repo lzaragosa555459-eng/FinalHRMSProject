@@ -301,6 +301,15 @@
                                 @endforeach
                             </tbody>
                         </table>
+                         <tfoot>
+                                <tr>
+                                    <td class="colspan=6 mt-4">
+                                        <div class="mt-3 d-flex justify-content-end me-4">
+                                            {{ $approvedleaves->links() }}
+                                        </div>
+                                    </td>
+                                </tr>
+                        </tfoot>
                     </div>
                 </div>
             </div>
@@ -353,6 +362,15 @@
                                 @endforeach
                             </tbody>
                         </table>
+                         <tfoot>
+                                <tr>
+                                    <td class="colspan=6 mt-4">
+                                        <div class="mt-3 d-flex justify-content-end me-4">
+                                            {{ $pendingleaves->links() }}
+                                        </div>
+                                    </td>
+                                </tr>
+                        </tfoot>
                     </div>
                 </div>
             </div>
