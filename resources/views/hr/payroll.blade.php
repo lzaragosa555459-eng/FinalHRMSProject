@@ -144,7 +144,7 @@
                             </div>
 
                             <div class="d-grid gap-2">
-                                <button class="btn btn-purple py-2 fw-bold">
+                                <button class="btn btn-purple py-2 fw-bold text-white" style="background-color: #2d1a4d;">
                                     <i class="bi bi-check-lg me-1"></i> Submit Payroll
                                 </button>
                                 <button type="reset" class="btn btn-light border py-2">
@@ -199,17 +199,26 @@
                                             </span>
                                         </td>
                                         <td class="pe-4">
-                                            <div class="d-flex gap-2">
-                                                <button type="button" class="btn btn-sm btn-light border" 
+                                            <div class="d-flex gap-2 justify-content-center align-items-center">
+
+                                                <button type="button"
+                                                    class="btn btn-sm btn-light border d-inline-flex align-items-center justify-content-center"
+                                                    style="width: 34px; height: 34px;"
                                                     onclick="editEmployee('{{ $payroll->employee->employee_id }}','{{ $payroll->basic_salary }}','{{ $payroll->allowances }}','{{ $payroll->deduction }}','{{ $payroll->pay_date }}')">
-                                                    <i class="bi bi-pencil text-purple"></i>
+                                                    <i class="bi bi-pencil fs-6"></i>
                                                 </button>
-                                                <form action="{{ route('delete.payroll', $payroll->payroll_id) }}" method="POST" onsubmit="return confirm('Delete this payroll?')">
+
+                                                <form action="{{ route('delete.payroll', $payroll->payroll_id) }}" method="POST"
+                                                    class="m-0">
                                                     @csrf @method('DELETE')
-                                                    <button class="btn btn-sm btn-light border text-danger">
-                                                        <i class="bi bi-trash"></i>
+
+                                                    <button type="submit"
+                                                        class="btn btn-sm btn-light border d-inline-flex align-items-center justify-content-center text-danger"
+                                                        style="width: 34px; height: 34px;">
+                                                        <i class="bi bi-trash fs-6"></i>
                                                     </button>
                                                 </form>
+
                                             </div>
                                         </td>
                                     </tr>

@@ -209,7 +209,8 @@
                     </a>
                     
                     <div class="vr me-4 my-2"></div>
-
+                    <input type="text" id="searchInput" class="form-control border-0 bg-light shadow-none w-auto ms-2 me-4"
+                        placeholder="Search employee..." onkeyup="searchTable()">
                     <select class="form-select border-0 bg-light shadow-none w-auto" onchange="filterStatus(this)">
                         <option value="">All Status</option>
                         <option value="present">Present</option>
@@ -227,7 +228,7 @@
                         <table class="table table-hover align-middle mb-0" id="table">
                             <thead class="position-sticky top-0 z-1">
                                 <tr>
-                                    <th class="ps-4">ID</th>
+                                    <th class="ps-4">Department</th>
                                     <th>Employee</th>
                                     <th>Date</th>
                                     <th>Time In</th>
@@ -238,7 +239,7 @@
                             <tbody>
                                 @foreach($attendances as $attendance)
                                 <tr>
-                                    <td class="ps-4 text-muted small">#{{ $attendance->attendance_id }}</td>
+                                    <td class="ps-4 text-muted small">{{ $attendance->employee->position->department->name }} department</td>
                                     <td class="fw-bold text-dark">
                                         {{ $attendance->employee->name ?? 'N/A' }}
                                     </td>
@@ -247,11 +248,11 @@
                                     <td><span class="text-muted">{{ $attendance->time_out ?? '--:--' }}</span></td>
                                     <td class="pe-4 text-center">
                                         @if($attendance->status == 'Present')
-                                            <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill">Present</span>
+                                            <span class="badge  text-success px-3 py-2 rounded-pill">Present</span>
                                         @elseif($attendance->status == 'Late')
-                                            <span class="badge bg-warning-subtle text-warning px-3 py-2 rounded-pill">Late</span>
+                                            <span class="badge  text-warning px-3 py-2 rounded-pill">Late</span>
                                         @else
-                                            <span class="badge bg-danger-subtle text-danger px-3 py-2 rounded-pill">Absent</span>
+                                            <span class="badge text-danger px-3 py-2 rounded-pill">Absent</span>
                                         @endif
                                     </td>
                                 </tr>
@@ -276,7 +277,7 @@
                         <table class="table table-hover align-middle mb-0">
                             <thead class="position-sticky top-0 z-1">
                                 <tr>
-                                    <th class="ps-4">ID</th>
+                                    <th class="ps-4">Leave</th>
                                     <th>Employee</th>
                                     <th>Start Date</th>
                                     <th>End Date</th>
@@ -287,13 +288,13 @@
                             <tbody>
                                 @foreach($approvedleaves as $leave)
                                 <tr>
-                                    <td class="ps-4 text-muted">#{{ $leave->leave_id }}</td>
+                                    <td class="ps-4 text-muted">{{ $leave->employee->position->department->name }} department</td>
                                     <td class="fw-bold">{{ $leave->employee->name ?? 'N/A' }}</td>
                                     <td>{{ $leave->start_date }}</td>
                                     <td>{{ $leave->end_date }}</td>
                                     <td class="small text-muted text-truncate" style="max-width: 200px;">{{ $leave->reason }}</td>
                                     <td class="pe-4">
-                                        <span class="badge rounded-pill px-3 py-2 bg-primary">
+                                        <span class="badge rounded-pill px-3 py-2 text-primary">
                                             Approved
                                         </span>
                                     </td>
@@ -321,7 +322,7 @@
                         <table class="table table-hover align-middle mb-0">
                             <thead class="position-sticky top-0 z-1">
                                 <tr>
-                                    <th class="ps-4">ID</th>
+                                    <th class="ps-4">Department</th>
                                     <th>Employee</th>
                                     <th>Duration</th>
                                     <th>Reason</th>
@@ -332,7 +333,7 @@
                             <tbody>
                                 @foreach($pendingleaves as $leave)
                                 <tr>
-                                    <td class="ps-4 text-muted">#{{ $leave->leave_id }}</td>
+                                    <td class="ps-4 text-muted">{{ $leave->employee->position->department->name }} department</td>
                                     <td class="fw-bold">{{ $leave->employee->name ?? 'N/A' }}</td>
                                     <td>
                                         <div class="small fw-medium">{{ $leave->start_date }}</div>
@@ -340,7 +341,7 @@
                                     </td>
                                     <td class="small text-muted">{{ $leave->reason }}</td>
                                     <td>
-                                        <span class="badge bg-warning-subtle text-warning px-3 py-2 rounded-pill">Pending</span>
+                                        <span class="badge text-warning-subtle text-warning px-3 py-2 rounded-pill">Pending</span>
                                     </td>
                                     <td class="pe-4 text-end">
                                         <div class="">
@@ -397,6 +398,15 @@
         rows.forEach(row => {
             let statusText = row.cells[5].innerText.toLowerCase();
             row.style.display = (value === "" || statusText.includes(value)) ? "" : "none";
+        });
+    }
+    function searchTable() {
+        let input = document.getElementById("searchInput").value.toLowerCase();
+        let rows = document.querySelectorAll("#table tbody tr");
+
+        rows.forEach(row => {
+            let text = row.innerText.toLowerCase();
+            row.style.display = text.includes(input) ? "" : "none";
         });
     }
 </script>
