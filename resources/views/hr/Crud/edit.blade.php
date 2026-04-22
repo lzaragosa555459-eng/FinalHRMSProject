@@ -124,14 +124,14 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                           <!-- <div class="col-md-6">
                                 <label class="form-label">Email Address</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-white border-end-0 text-muted"><i class="bi bi-envelope"></i></span>
                                     <input type="email" name="email" class="form-control border-start-0"
                                            value="{{ old('email', $employee->email) }}">
                                 </div>
-                            </div>
+                            </div>-->
 
                             <div class="col-12">
                                 <label class="form-label">Residential Address</label>
@@ -220,7 +220,7 @@
                                     @foreach($users as $user)
                                         <option value="{{ $user->user_id }}"
                                             {{ old('user_id', $employee->user_id) == $user->user_id ? 'selected' : '' }}>
-                                            {{ $user->username }}
+                                            {{ $user->email }}
                                         </option>
                                     @endforeach
                                 </select>

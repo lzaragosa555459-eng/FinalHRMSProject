@@ -197,7 +197,29 @@
                                 <option value="inactive">Inactive</option>
                             </select>
                         </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Username<span class="required-dot">*</span></label>
+                            <input type="text" name="username" class="form-control" id="username" placeholder="johndoe">
+                        </div>
 
+                        <div class="col-md-6">
+                            <label class="form-label">Email Address<span class="required-dot">*</span></label>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="example@company.com">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Password<span class="required-dot">*</span></label>
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Enter temporary password">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">System Role<span class="required-dot">*</span></label>
+                            <select name="system_role" class="form-select" id="system_role">
+                                <option value="employee">Employee</option>
+                                <option value="hr">HR</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="mt-5 d-flex justify-content-end gap-2">

@@ -262,6 +262,9 @@
                 </div>
                 @endforeach
             </div>
+            <div class="mt-3 d-flex justify-content-center">
+                {{ $departments->links() }}
+            </div>
         </div>
 
 <div id="container2" style="display: none;">

@@ -134,14 +134,14 @@ class HRController extends Controller
     }
 
     public function employees(){
-        $employees = Employee::all();
+        $employees = Employee::paginate(6);
         $departments = Department::all();
 
         return view('hr.employees', compact('employees','departments'));
     }
     public function organization()
     {
-        $departments = Department::withCount('employees')->get();
+        $departments = Department::withCount('employees')->paginate(6);
 
         
         $events = Event::with('department')->get();
@@ -152,7 +152,7 @@ class HRController extends Controller
    
 
     public function attendance(){
-        $attendances = Attendance::all();
+        $attendances = Attendance::paginate(6);
         $approvedleaves = Leave::where('status', 'approved')->get();
         $countleaves = Leave::where('status', 'pending')->count();
         $pendingleaves = Leave::where('status', 'pending')->get();
