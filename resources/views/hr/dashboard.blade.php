@@ -139,7 +139,7 @@
 <div class="col-lg-11 offset-lg-1">
 
 <nav class="navbar shadow-sm tight mt-5">
-    <div class="d-flex align-items-center">
+    <div class="d-flex align-items-center ms-4">
         <img src="{{ asset('logo.png') }}" style="width:40px;">
         <h4 class="ms-2 mb-0 fw-bold" style="color: #6f42c1;">CoreHR</h4>
     </div>
@@ -149,7 +149,7 @@
             <h6 class="mb-0 fw-bold">{{ $user->employee->name }}</h6>
             <small class="text-muted">{{ $user->email }}</small>
         </div>
-        <div class="rounded-circle text-white d-flex justify-content-center align-items-center fw-bold" style="width:45px;height:45px; background: #6f42c1;">
+        <div class="rounded-circle text-white d-flex justify-content-center align-items-center fw-bold me-4" style="width:45px;height:45px; background: #6f42c1;">
             HR
         </div>
     </div>

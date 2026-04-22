@@ -57,7 +57,7 @@
     
     <div class="container p-4">
         <div class="col-lg-11 offset-lg-1 mb-5 mt-4 text-center text-lg-start">
-            <h2 class="fw-bold mb-4" style="color: #2d1a4d; margin-top:9%;">Payroll Management</h2>
+            <h2 class="fw-bold mb-4" style="color: #2d1a4d;">Payroll Management</h2>
 
             <div class="row g-3 mb-4">
                 <div class="col-md-4">
