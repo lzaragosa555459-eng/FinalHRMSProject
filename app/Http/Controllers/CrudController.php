@@ -34,7 +34,31 @@ class CrudController extends Controller
             'manager_id'      => 'nullable|exists:employees,employee_id',
             'status'          => 'nullable|in:active,resigned,inactive',
         ]);
- 
+        $employee = Employee::create($validated);
+        if (
+            $request->filled('username') ||
+            $request->filled('email') ||
+            $request->filled('password')
+        ) {
+
+            $request->validate([
+                'username' => 'required|string|max:100',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|min:6',
+                'system_role' => 'required|in:hr,employee,admin',
+            ]);
+
+            User::create([
+                'employee_id' => $employee->getkey(),
+                'username' => $request->username,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'system_role' => $request->system_role,
+            ]);
+        }
+            
+
+
         if ($request->hasFile('profile_image')) {
             $path = $request->file('profile_image')->store('employees', 'public');
             $validated['profile_image'] = $path;
@@ -42,7 +66,7 @@ class CrudController extends Controller
 
         $validated['status'] = $request->status ?? 'active';
 
-        Employee::create($validated);
+       
 
         return redirect()->route('hr.employees')
                          ->with('success', 'Employee added successfully!');

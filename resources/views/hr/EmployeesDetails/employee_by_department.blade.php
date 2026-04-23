@@ -179,7 +179,6 @@
                             <th class="ps-4 py-3">Employee</th>
                             <th>Contact</th>
                             <th>Role</th>
-                            <th>Salary</th>
                             <th class="text-center">Status</th>
                             <th class="text-end pe-4">Actions</th>
                         </tr>
@@ -208,9 +207,6 @@
                                 @else
                                     <span class="badge rounded-pill bg-light text-muted px-3 border">Employee</span>
                                 @endif
-                            </td>
-                            <td class="fw-bold text-dark">
-                                {{ $emp->payroll ? '₱' . number_format($emp->payroll->net_salary, 2) : '—' }}
                             </td>
                             <td class="text-center">
                                 @if($emp->status == 'active' || !isset($emp->status))

@@ -13,14 +13,14 @@ return new class extends Migration
     {
        Schema::create('users', function (Blueprint $table) {
             $table->increments('user_id');
-            $table->unsignedInteger('employee_id')->nullable();
+            $table->unsignedInteger('employee_id');
             $table->string('username', 100);
             $table->string('email', 150)->unique();
             $table->string('password', 255);
-            $table->enum('system_role', ['hr','admin','employee'])->default('employee');
+            $table->enum('system_role', ['hr','employee'])->default('employee');
             $table->timestamps();
 
-            $table->foreign('employee_id')->references('employee_id')->on('employees')->onDelete('set null');
+            $table->foreign('employee_id')->references('employee_id')->on('employees')->onDelete('cascade');
         });
     }
 

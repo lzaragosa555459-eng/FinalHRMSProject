@@ -86,7 +86,15 @@
                     <i class="bi bi-person-plus-fill"></i> Add New Employee
                 </h2>
                 <p class="text-muted mb-4">Please fill in the required information to register a new employee in the system.</p>
-
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form method="POST" action="{{ route('hr.Crud.add') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row g-4">
@@ -124,7 +132,7 @@
                         <div class="col-md-6">
                             <label class="form-label">Gender<span class="required-dot">*</span></label>
                             <select name="gender" class="form-select" id="gender">
-                                <option value="">Select Gender</option>
+                                <option value="" disabled selected>Select Gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                                 <option value="other">Other</option>
@@ -138,7 +146,7 @@
 
                         <div class="col-md-6">
                             <label class="form-label">Role Type<span class="required-dot">*</span></label>
-                            <select name="role" class="form-select" id="role">
+                            <select name="employee_role" class="form-select" id="role">
                                 <option value="employee">Regular Employee</option>
                                 <option value="head">Department Head</option>
                             </select>
@@ -197,6 +205,9 @@
                                 <option value="inactive">Inactive</option>
                             </select>
                         </div>
+                        <div class="col-12">
+                            <h2>Create User account</h2>
+                        </div>
                         <div class="col-md-6">
                             <label class="form-label">Username<span class="required-dot">*</span></label>
                             <input type="text" name="username" class="form-control" id="username" placeholder="johndoe">
@@ -217,7 +228,6 @@
                             <select name="system_role" class="form-select" id="system_role">
                                 <option value="employee">Employee</option>
                                 <option value="hr">HR</option>
-                                <option value="admin">Admin</option>
                             </select>
                         </div>
                     </div>
