@@ -164,13 +164,17 @@
                     <!-- LEFT / NAV LINKS -->
                     <ul class="navbar-nav d-flex flex-row gap-4 mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link nav-item-link active" href="#" onclick="showContainer('container1', this)">
-                                Departments
+                            <a class="nav-link nav-item-link active"
+                            href="#departments"
+                            onclick="showContainer('container1', this)">
+                            Departments
                             </a>
-                        </li>
+                        </li>   
                         <li class="nav-item">
-                            <a class="nav-link nav-item-link" href="#" onclick="showContainer('container2', this)">
-                                Events
+                            <a class="nav-link nav-item-link"
+                            href="#events"
+                            onclick="showContainer('container2', this)">
+                            Events
                             </a>
                         </li>
                     </ul>
@@ -334,6 +338,9 @@
         </div>
         @endforeach
     </div>
+    <div class="mt-3 d-flex justify-content-center">
+        {{ $events->links() }}
+    </div>
 </div>
 
     </div>
@@ -343,11 +350,30 @@
 function showContainer(id, el) {
     document.getElementById('container1').style.display = 'none';
     document.getElementById('container2').style.display = 'none';
+
     document.getElementById(id).style.display = 'block';
 
-    document.querySelectorAll('.nav-item-link').forEach(link => link.classList.remove('active'));
+    document.querySelectorAll('.nav-item-link')
+        .forEach(link => link.classList.remove('active'));
+
     el.classList.add('active');
+
+    sessionStorage.setItem('activeTab', id);
 }
+window.onload = function () {
+    let activeTab = sessionStorage.getItem('activeTab');
+
+    if (activeTab) {
+        let links = document.querySelectorAll('.nav-item-link');
+
+        if (activeTab === 'container2') {
+            showContainer('container2', links[1]);
+        } else {
+            showContainer('container1', links[0]);
+        }
+    }
+};
+
 
 function globalSearch() {
     let input = document.getElementById("searchInput").value.toLowerCase();

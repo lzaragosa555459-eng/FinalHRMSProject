@@ -144,7 +144,7 @@ class HRController extends Controller
         $departments = Department::withCount('employees')->paginate(6);
 
         
-        $events = Event::with('department')->get();
+        $events = Event::with('department')->paginate(6);
 
         return view('hr.organization', compact('departments', 'events'));
     }

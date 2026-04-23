@@ -161,28 +161,28 @@
 
 <div class="row g-3 tight">
     <div class="col-md-4">
-        <div class="card card-purple big-card text-center shadow-sm">
+        <div class="card card-purple big-card text-end shadow-sm">
             <p class="text-uppercase small mb-1 opacity-75">Total Gross</p>
             <h3 class="fw-bold mb-0">₱{{ number_format($totalgross, 2) }}</h3>
         </div>
     </div>
 
     <div class="col-md-4">
-        <div class="card card-white big-card text-center shadow-sm">
+        <div class="card card-white big-card text-end shadow-sm">
             <p class="text-uppercase small mb-1 text-muted">Deductions</p>
             <h3 class="fw-bold text-danger mb-0">₱{{ number_format($totaldeduction, 2) }}</h3>
         </div>
     </div>
 
     <div class="col-md-4">
-        <div class="card card-purple-light big-card text-center shadow-sm">
+        <div class="card card-purple-light big-card text-end shadow-sm">
             <p class="text-uppercase small mb-1">Total Net</p>
             <h3 class="fw-bold text-success mb-0">₱{{ number_format($totalnet, 2) }}</h3>
         </div>
     </div>
 </div>
 
-<div class="row g-3 tight">
+<div class="row g-3 tight ">
 @php
 $stats = [
     ['Employees', $totalEmployees, '6f42c1', 'people-fill'],
@@ -196,12 +196,20 @@ $stats = [
 
 @foreach($stats as $s)
 <div class="col-6 col-md-4 col-lg-2">
-    <div class="card card-white small-card h-100 shadow-sm border-bottom border-4" style="border-color: #{{ $s[2] }} !important;">
-        <div class="stat-icon" style="background-color: #{{ $s[2] }}20; color: #{{ $s[2] }};">
+    <div class="card card-white small-card h-100 shadow-sm border-bottom border-4 d-flex flex-row align-items-center justify-content-between px-3"
+         style="border-color: #{{ $s[2] }} !important;">
+
+        <!-- ICON -->
+        <div class="stat-icon d-flex align-items-center justify-content-center"
+             style="background-color: #{{ $s[2] }}20; color: #{{ $s[2] }};">
             <i class="bi bi-{{ $s[3] }}"></i>
         </div>
-        <small class="text-muted fw-bold">{{ $s[0] }}</small>
-        <h4 class="fw-bold mb-0">{{ $s[1] }}</h4>
+
+        <!-- TEXT -->
+        <div class="d-flex flex-column text-end">
+            <small class="text-muted fw-bold">{{ $s[0] }}</small>
+            <h4 class="fw-bold mb-0">{{ $s[1] }}</h4>
+        </div>
     </div>
 </div>
 @endforeach
