@@ -148,6 +148,56 @@
         width: 100%;
     }
 }
+.card-modern {
+        border: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+    }
+    .card-modern:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(111, 66, 193, 0.15) !important;
+    }
+    /* The Purple Header Style */
+    .header-accent {
+        background: linear-gradient(135deg, #6f42c1 0%, #8965d4 100%);
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .icon-circle {
+        width: 45px;
+        height: 45px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(5px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .member-count-badge {
+        background: white;
+        color: #6f42c1;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-weight: 800;
+        font-size: 0.9rem;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .btn-soft {
+        background: #f8f6ff;
+        color: #6f42c1;
+        border: none;
+        transition: 0.2s;
+    }
+    .btn-soft:hover {
+        background: #6f42c1;
+        color: white;
+    }
+    .btn-soft-danger:hover {
+        background: #dc3545;
+        color: white;
+    }
     </style>
 
 
@@ -212,57 +262,53 @@
             <div class="row g-4">
                 @foreach($departments as $dept)
                 <div class="col-md-6 col-lg-4 department-item">
-                    <div class="card department-card shadow-sm h-100 rounded-4 p-4">
-                        <a href="{{ route('hr.EmployeesDetails.employee_by_department', $dept->department_id) }}" class="text-decoration-none">
-                            <div class="d-flex justify-content-between align-items-start mb-4">
-                                <div class="d-flex align-items-center gap-3">
-                                    <div class="bg-purple-subtle rounded-3 p-3">
-                                        <i class="bi bi-building-fill fs-4"></i>
-                                    </div>
-                                    <div>
-                                        <h5 class="mb-0 fw-bold text-dark">{{ $dept->name }}</h5>
-                                        <small class="text-muted">ID: #{{ $dept->department_number }}</small>
-                                    </div>
-                                </div>
-                                @if($dept->employees_count > 0)
-                                    <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2">Operational</span>
-                                @else
-                                    <span class="badge bg-secondary-subtle text-secondary px-3 py-2">Empty</span>
-                                @endif
-                            </div>
+<div class="card card-modern shadow-sm rounded-4 h-100">
+    <div class="header-accent">
+        <div class="d-flex justify-content-start align-items-center">
+            <div class="icon-circle rounded-3">
+                <i class="bi bi-building-fill text-white fs-4"></i>
+            </div>
+                <h5 class="fw-bold mb-2 ms-2" style="color: #3c19a2;">{{ $dept->name }}</h5>      
+        </div>
 
-                            <p class="text-muted small mb-4" style="min-height: 40px;">
-                                {{ $dept->description ?? 'Strategic unit handling organizational objectives.' }}
-                            </p>
+        <div class="member-count-badge">
+            <i class="bi bi-people-fill me-1 small"></i>
+            {{ $dept->employees_count ?? 0 }}
+        </div>
+    </div>
 
-                            <div class="p-3 bg-light rounded-3 d-flex justify-content-between align-items-center mb-4">
-                                <div>
-                                    <small class="text-muted d-block">Team Size</small>
-                                    <h4 class="mb-0 fw-bold text-purple">{{ $dept->employees_count ?? 0 }}</h4>
-                                </div>
-                                <i class="bi bi-people-fill text-purple opacity-50 fs-3"></i>
-                            </div>
-                        </a>
+    <div class="card-body p-4">
+        <a href="{{ route('hr.EmployeesDetails.employee_by_department', $dept->department_id) }}" class="text-decoration-none">
+ 
+            <p class="text-muted small mb-0">
+                {{ $dept->description ?? 'Strategic unit focused on organizational excellence.' }}
+            </p>
+        </a>
 
-                        <div class="d-flex gap-2 pt-2 border-top">
-
-                            <a href="{{ route('departmentsForm', $dept->department_id) }}"
-                            class="btn btn-outline-warning border-0 btn-sm d-flex align-items-center gap-1">
-                                <i class="bi bi-pencil fs-6"></i>
-                                Edit
-                            </a>
-
-                            <form action="{{ route('deleteDepartment', $dept->department_id) }}" method="POST" class="ms-auto">
-                                @csrf @method('DELETE')
-                                <button class="btn btn-outline-danger border-0 btn-sm d-flex align-items-center gap-1"
-                                        onclick="return confirm('Delete department?')">
-                                    <i class="bi bi-trash fs-6"></i>
-                                    Delete
-                                </button>
-                            </form>
-
-                        </div>
-                    </div>
+        <div class="d-flex align-items-center justify-content-between mt-4">
+            <div class="d-flex gap-2">
+                <a href="{{ route('departmentsForm', $dept->department_id) }}" 
+                   class="btn btn-sm btn-soft rounded-3 px-3">
+                    <i class="bi bi-pencil-square me-1"></i> Edit
+                </a>
+                
+                <form action="{{ route('deleteDepartment', $dept->department_id) }}" method="POST">
+                    @csrf @method('DELETE')
+                    <button class="btn btn-sm btn-soft btn-soft-danger rounded-3 px-3" 
+                            onclick="return confirm('Delete department?')">
+                        <i class="bi bi-trash3"></i>
+                    </button>
+                </form>
+            </div>
+            
+            @if($dept->employees_count > 0)
+                <span class="small fw-bold text-purple" style="font-size: 0.75rem; letter-spacing: 0.5px;">
+                    <i class="bi bi-check-circle-fill me-1"></i>ACTIVE
+                </span>
+            @endif
+        </div>
+    </div>
+</div>
                 </div>
                 @endforeach
             </div>

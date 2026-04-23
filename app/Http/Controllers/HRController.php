@@ -218,7 +218,7 @@ class HRController extends Controller
         $employees = Employee::join('positions', 'employees.position_id', '=', 'positions.position_id')
             ->where('positions.department_id', $id)
             ->select('employees.*')
-            ->get();
+            ->paginate(6);
         $getEvents = Event::where('department_id', $id)->get();
         $totalNetDept = Payroll::join('employees', 'employees.employee_id', '=', 'payrolls.employee_id')
             ->join('positions', 'positions.position_id', '=', 'employees.position_id')
