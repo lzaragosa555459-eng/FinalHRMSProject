@@ -291,13 +291,29 @@
     function showContainer(id, el) {
         document.getElementById('container1').style.display = 'none';
         document.getElementById('container2').style.display = 'none';
+
         document.getElementById(id).style.display = 'block';
 
         document.querySelectorAll('.nav-item-link').forEach(link => {
             link.classList.remove('active');
         });
+
         el.classList.add('active');
+
+        // SAVE ACTIVE TAB
+        sessionStorage.setItem('activeContainer', id);
     }
+    window.addEventListener('load', function () {
+        let active = sessionStorage.getItem('activeContainer');
+
+        let links = document.querySelectorAll('.nav-item-link');
+
+        if (active === 'container2') {
+            showContainer('container2', links[1]);
+        } else {
+            showContainer('container1', links[0]);
+        }
+    });
 
     function globalSearch() {
         let input = document.getElementById("searchInput").value.toLowerCase();
