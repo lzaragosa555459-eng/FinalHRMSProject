@@ -157,8 +157,11 @@
 
                 <div class="col-lg-8">
                     <div class="d-flex gap-3 mb-3">
-                        <div class="input-group shadow-sm rounded-3 overflow-hidden">
-                            <span class="input-group-text border-0"><i class="bi bi-search"></i></span>
+                        <div class="input-group custom-search">
+                            <span class="input-group-text">
+                                <i class="bi bi-search"></i>    
+                            </span>
+                        
                             <input type="text" id="searchInput" class="form-control border-0" placeholder="Search employee..." onkeyup="searchEmployees()">
                         </div>
                         

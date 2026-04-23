@@ -116,23 +116,37 @@
             </a>
         </div>
 
-        <div class="controls-container">
+        <div class=" mb-4">
             <div class="row g-3">
+
+                <!-- SEARCH -->
                 <div class="col-md-8">
-                    <div class="input-group">
-                        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-purple"></i></span>
-                        <input type="text" id="searchInput" class="form-control border-start-0" 
-                               placeholder="Search name or position..." onkeyup="searchEmployees()">
+                    <div class="input-group custom-search">
+                        <span class="input-group-text">
+                            <i class="bi bi-search"></i>    
+                        </span>
+
+                        <input type="text"
+                            id="searchInput"
+                            class="form-control"
+                            placeholder="Search name or position..."
+                            onkeyup="searchEmployees()">
                     </div>
                 </div>
+
+                <!-- FILTER -->
                 <div class="col-md-4">
-                    <select class="form-select" onchange="filterByDepartment()">
+                    <select class="form-select custom-select"
+                            onchange="filterByDepartment()">
                         <option value="">All Departments</option>
                         @foreach($departments as $dept)
-                            <option value="{{ $dept->department_id }}">{{ $dept->name }}</option>
+                            <option value="{{ $dept->department_id }}">
+                                {{ $dept->name }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
+
             </div>
         </div>
 

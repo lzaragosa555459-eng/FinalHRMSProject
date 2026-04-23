@@ -232,11 +232,11 @@
                     <!-- RIGHT SIDE CONTROLS -->
                     <div class="d-flex gap-2 align-items-center">
 
-                        <div class="input-group" style="max-width: 250px;">
-                            <span class="input-group-text bg-white border-end-0">
-                                <i class="bi bi-search text-purple"></i>
-                            </span>
-                            <input type="text" id="searchInput" class="form-control border-start-0" placeholder="Search..." onkeyup="globalSearch()">
+                    <div class="input-group custom-search">
+                        <span class="input-group-text">
+                            <i class="bi bi-search"></i>    
+                        </span>
+                            <input type="text" id="searchInput" class="form-control" placeholder="Search..." onkeyup="globalSearch()">
                         </div>
 
                         <select class="form-select" id="departmentFilter" style="max-width: 200px;" onchange="filterDepartments()">
@@ -276,7 +276,6 @@
                                 {{ $dept->employees_count ?? 0 }}
                             </div>
                         </div>
-
                         <div class="card-body p-4">
                             <a href="{{ route('hr.EmployeesDetails.employee_by_department', $dept->department_id) }}" class="text-decoration-none">
                     

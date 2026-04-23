@@ -196,21 +196,26 @@
                     <p class="text-muted">Monitor daily presence and manage time-off requests</p>
                 </div>
                 
-                <div class="d-flex align-items-center bg-white p-2 rounded-4 shadow-sm px-4 ">
+                <div class="d-flex align-items-center p-2  px-4 ">
                     <a class="nav-link nav-item-link active me-4" href="#" onclick="showContainer('container1', this)">
                         Attendance
                     </a>
 
                     <a class="nav-link nav-item-link me-4" href="#" onclick="showContainer('container2', this)">
-                        Leave Requests
+                        Requests
                         @if($countleaves > 0)
                             <span class="badge rounded-pill bg-danger ms-1">{{ $countleaves }}</span>
                         @endif
                     </a>
                     
                     <div class="vr me-4 my-2"></div>
-                    <input type="text" id="searchInput" class="form-control border-0 bg-light shadow-none w-auto ms-2 me-4"
+                    <div class="input-group custom-search">
+                        <span class="input-group-text">
+                            <i class="bi bi-search"></i>    
+                        </span>
+                        <input type="text" id="searchInput" class="form-control border-0 bg-light shadow-none w-auto me-4"
                         placeholder="Search employee..." onkeyup="searchTable()">
+                    </div>
                     <select class="form-select border-0 bg-light shadow-none w-auto" onchange="filterStatus(this)">
                         <option value="">All Status</option>
                         <option value="present">Present</option>
@@ -259,7 +264,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                         <tfoot>
+                         <tfoot>        
                                 <tr>
                                     <td class="colspan=6 mt-4">
                                         <div class="mt-3 d-flex justify-content-end me-4">
@@ -318,7 +323,7 @@
             <div class="innercontainer" id="container2" style="display: none;">
                 <h4 class="fw-bold mb-3" style="color: #2d1a4d;"><i class="bi bi-envelope-paper me-2 text-purple"></i>Pending Leave Requests</h4>
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
-                    <div class="table-responsive table-responsive-scroll" style="max-height: 500px; overflow-y: auto;">
+                    <div class="table-responsive table-responsive-scroll attendance-dark-table" style="max-height: 500px; overflow-y: auto;">
                         <table class="table table-hover align-middle mb-0">
                             <thead class="position-sticky top-0 z-1">
                                 <tr>
