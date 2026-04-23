@@ -220,7 +220,14 @@
 
                         <div class="col-md-6">
                             <label class="form-label">Password<span class="required-dot">*</span></label>
-                            <input type="password" name="password" class="form-control" id="password" placeholder="Enter temporary password">
+
+                            <div class="input-group">
+                                <input type="password" name="password" class="form-control" id="password" placeholder="Enter password">
+
+                                <span class="input-group-text" onclick="togglePassword()" style="cursor:pointer;">
+                                    <i class="bi bi-eye" id="toggleIcon"></i>
+                                </span>
+                            </div>
                         </div>
 
                         <div class="col-md-6">
@@ -247,6 +254,21 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function togglePassword() {
+    const password = document.getElementById("password");
+    const icon = document.getElementById("toggleIcon");
 
+    if (password.type === "password") {
+        password.type = "text";
+        icon.classList.remove("bi-eye");
+        icon.classList.add("bi-eye-slash");
+    } else {
+        password.type = "password";
+        icon.classList.remove("bi-eye-slash");
+        icon.classList.add("bi-eye");
+    }
+}
+</script>
 </body>
 </html>
