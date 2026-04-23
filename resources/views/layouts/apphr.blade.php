@@ -207,6 +207,20 @@ body.dark-mode h5,
 body.dark-mode h6 {
     color: #ffffff !important;
 }
+/* DARK MODE FIX FOR CUSTOM PURPLE BADGE */
+body.dark-mode .bg-purple-subtle {
+    background-color: #3a2a5c !important;
+    color: #eaeaea !important;
+}
+body.dark-mode .member-count-badge{
+    background-color: #3a2a5c !important;
+    color: #eaeaea !important;
+}
+body.dark-mode .emp-position{
+    background-color: #3a2a5c !important;
+    color: #eaeaea !important;
+}
+
 </style>
 <body id="appBody">
 
@@ -253,6 +267,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 });
+
 </script>
 </body>
 </html>
