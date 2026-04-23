@@ -222,7 +222,7 @@
                             <label class="form-label">Password<span class="required-dot">*</span></label>
 
                             <div class="input-group">
-                                <input type="password" name="password" class="form-control" id="password" placeholder="Enter password">
+                                <input type="password" name="password" class="form-control" id="password" placeholder="Enter password (min of 6 characters)">
 
                                 <span class="input-group-text" onclick="togglePassword()" style="cursor:pointer;">
                                     <i class="bi bi-eye" id="toggleIcon"></i>

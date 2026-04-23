@@ -278,6 +278,10 @@
     </div>
 
     <div class="logout-section">
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="darkModeToggle">
+            <label class="form-check-label"></label>
+        </div>
         <a href="{{ route('login') }}">
             <i class="bi bi-box-arrow-right"></i>
             <span>Logout</span>

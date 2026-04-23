@@ -177,7 +177,19 @@
     {{ $employees->links() }}
 </div>
 </div>
-
+@if(session('success'))
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="successToast" class="toast align-items-center text-bg-success border-0 show" role="alert">
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="bi bi-check-circle me-2"></i>
+                {{ session('success') }}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+</div>
+@endif
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
@@ -204,5 +216,12 @@ function filterByDepartment() {
         }
     });
 }
+document.addEventListener('DOMContentLoaded', function () {
+    const toastEl = document.getElementById('successToast');
+    if (toastEl) {
+        const toast = new bootstrap.Toast(toastEl, { delay: 9000 });
+        toast.show();
+    }
+});
 </script>
 
