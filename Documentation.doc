@@ -214,3 +214,13 @@ $users->sortBy('name');
 
 // ---------- SIMPLE FLOW ----------
 Model::where(...)->get();
+
+
+
+
+
+//Things to do 
+payroll
+edit and add layout
+pagination /
+fix the button of dark mode
