@@ -117,7 +117,7 @@
     }
 </style>
     
-    <div class="container p-2">
+    <div class="container">
         <div class="col-lg-11 offset-lg-1 mb-5 mt-4 text-center text-lg-start">
             <h2 class="fw-bold mb-4" style="color: #2d1a4d;">Payroll Management</h2>
 
@@ -188,27 +188,34 @@
                                     <input type="number" class="form-control border-start-0" placeholder="0.00" id="basic_salary" name="basic_salary">
                                 </div>
                             </div>
-                            <div class="mb-3">  
-                                <label class="form-label small fw-bold text-muted">Period Start</label>
-                                <div class="input-group">
-                                    <span class="input-group-text">
-                                        <i class="bi bi-calendar"></i>
-                                    </span>
-                                    
-                                    <input type="text" class="form-control border-start-0" placeholder="Enter period start" id="period_start" name="period_start">
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label small fw-bold text-muted">Period End</label>
-                                <div class="input-group">
-                                    <span class="input-group-text">
-                                        <i class="bi bi-calendar"></i>
-                                    </span>
-                                    <input type="text" class="form-control border-start-0" placeholder="Enter period end" id="period_end" name="period_end">
-                                </div>
-                            </div>
                             <div class="row mb-3">
-                                <div class="col-6">
+                            <div class="col-6">
+                                <div class="mb-3">  
+                                    <label class="form-label small fw-bold text-muted">Period Start</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="bi bi-calendar"></i>
+                                        </span>
+                                        <input type="text" class="form-control border-start-0" placeholder="period start" id="period_start" name="period_start">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold text-muted">Period End</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="bi bi-calendar"></i>
+                                        </span>
+                                        <input type="text" class="form-control border-start-0" placeholder="period end" id="period_end" name="period_end">
+                                    </div>
+                                </div> 
+                            </div>
+
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-12">
                                     <label class="form-label small fw-bold text-muted">Allowances</label>
                                     <input type="number" class="form-control" placeholder="0.00" id="allowances" name="allowances">
                                 </div>
@@ -246,7 +253,7 @@
                             <input type="text" id="searchInput" class="form-control border-0" placeholder="Search employee..." onkeyup="searchEmployees()">
                         </div>
                         
-                        <select id="departmentFilter" class="form-select w-auto shadow-sm border-0 rounded-3" onchange="searchEmployees()">
+                        <select id="departmentFilter" class="form-select w-auto shadow-sm border-0 rounded-3" style="min-width: 220px;" onchange="searchEmployees()">
                             <option value="">All Departments</option>
                             @foreach($departments as $dept)
                                 <option value="{{ $dept->department_id }}">{{ $dept->name }}</option>
@@ -310,11 +317,12 @@
                                             </span>
                                         </td>
 
-                                        <td class="pe-4">
-                                            <div class="d-flex gap-2 justify-content-center align-items-center">
+                                        <td class="pe-4 align-middle">
+                                            <div class="d-flex flex-row gap-2 justify-content-center align-items-center" style="min-height: 34px;">
 
                                                 <button type="button"
-                                                    class="btn btn-sm btn-light border"
+                                                    class="btn btn-sm btn-light border d-flex align-items-center justify-content-center p-0"
+                                                    style="width: 34px; height: 34px; flex-shrink: 0;"
                                                     onclick="editEmployee(
                                                         '{{ $payroll->employee->employee_id }}',
                                                         '{{ $payroll->basic_salary }}',
@@ -327,11 +335,15 @@
                                                     <i class="bi bi-pencil"></i>
                                                 </button>
 
-                                                <form action="{{ route('delete.payroll', $payroll->payroll_id) }}" method="POST">
+                                                <form action="{{ route('delete.payroll', $payroll->payroll_id) }}"
+                                                    method="POST"
+                                                    class="m-0 d-flex align-items-center">
                                                     @csrf
                                                     @method('DELETE')
 
-                                                    <button class="btn btn-sm btn-light border text-danger">
+                                                    <button type="submit"
+                                                        class="btn btn-sm btn-light border text-danger d-flex align-items-center justify-content-center p-0"
+                                                        style="width: 34px; height: 34px; flex-shrink: 0;">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
                                                 </form>

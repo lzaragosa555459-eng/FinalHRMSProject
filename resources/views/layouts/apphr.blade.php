@@ -221,7 +221,22 @@ body.dark-mode .emp-position{
     background-color: #3a2a5c !important;
     color: #eaeaea !important;
 }
+.pagination .page-link {
+    color: #6f42c1;
+    border: 1px solid #e5d9ff;
+}
 
+.pagination .page-item.active .page-link {
+    background-color: #6f42c1;
+    border-color: #6f42c1;
+    color: #fff;
+}
+
+.pagination .page-link:hover {
+    background-color: #f1e9ff;
+    color: #6f42c1;
+    border-color: #6f42c1;
+}
 </style>
 <body id="appBody">
 

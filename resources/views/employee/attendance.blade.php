@@ -4,12 +4,17 @@
 
 @section('content')
 <style>
-    /* Neo-Brutalist Table Aesthetics */
+    body {
+        background-color: #f3f0f7 !important; /* Soft purple-grey background */
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Modern Flat Container */
     .attendance-container {
         background: #fff;
-        border: 4px solid #000;
-        box-shadow: 12px 12px 0px #000;
-        border-radius: 0;
+        border: none;
+        box-shadow: 0 4px 6px rgba(100, 50, 150, 0.05) !important;
+        border-radius: 16px;
         overflow: hidden;
     }
 
@@ -18,193 +23,156 @@
     }
 
     .custom-table thead th {
-        background-color: #000 !important;
-        color: #fff !important;
+        background-color: #f8f7fa !important; /* Very light purple/grey */
+        color: #6f42c1 !important; /* Core Purple */
         text-transform: uppercase;
-        font-weight: 900;
-        font-size: 0.8rem;
-        letter-spacing: 2px;
-        padding: 20px 15px;
-        border: none;
+        font-weight: 700;
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+        padding: 18px 15px;
+        border-bottom: 2px solid #efebf7;
         text-align: center;
     }
 
     .custom-table tbody td {
-        padding: 18px 15px;
+        padding: 15px 15px;
         vertical-align: middle;
-        font-size: 0.95rem;
-        border-bottom: 2px solid #000;
+        font-size: 0.9rem;
+        border-bottom: 1px solid #efebf7;
         background: #fff;
         text-align: center;
+        color: #4b208c;
+    }
+
+    .custom-table tbody tr:last-child td {
+        border-bottom: none;
     }
 
     .custom-table tbody tr:hover td {
-        background-color: #f0f0f0;
+        background-color: #fcfaff;
     }
 
-    /* Tactile Export Button */
-    .btn-brutal-export {
-        background: #00ff66; /* Neon green pop */
-        color: #000;
-        border: 3px solid #000;
-        border-radius: 0;
-        font-weight: 900;
+    /* CoreHR Purple Button */
+    .btn-purple-export {
+        background: #6f42c1;
+        color: #fff;
+        border: none;
+        border-radius: 12px;
+        font-weight: 600;
         text-transform: uppercase;
-        box-shadow: 4px 4px 0px #000;
-        transition: 0.1s;
+        font-size: 0.8rem;
+        padding: 10px 20px;
+        transition: 0.3s;
+        box-shadow: 0 4px 6px rgba(111, 66, 193, 0.2);
     }
 
-    .btn-brutal-export:hover {
-        background: #00ff66;
-        transform: translate(2px, 2px);
-        box-shadow: 2px 2px 0px #000;
+    .btn-purple-export:hover {
+        background: #5a32a3;
+        color: #fff;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 12px rgba(111, 66, 193, 0.3);
     }
 
-    .btn-brutal-export:active {
-        transform: translate(4px, 4px);
-        box-shadow: 0px 0px 0px #000;
-    }
-
-    /* High-Contrast Status Badges */
+    /* Refined Status Badges */
     .status-badge {
         display: inline-block;
-        padding: 6px 15px;
-        border: 2px solid #000;
-        font-weight: 900;
+        padding: 5px 12px;
+        font-weight: 700;
         font-size: 0.7rem;
-        letter-spacing: 1px;
-        border-radius: 0;
+        border-radius: 8px;
+        text-transform: uppercase;
     }
 
     .status-present { 
-        background: #000; 
-        color: #fff; 
+        background: #e2d9f3; 
+        color: #6f42c1; 
     }
 
     .status-late { 
-        background: #ff4d4d; /* Bright red for visibility */
-        color: #fff; 
+        background: #ffe5e5; 
+        color: #dc3545; 
     }
 
     /* Date column styling */
     .date-cell {
-        font-family: 'Courier New', Courier, monospace;
-        font-weight: bold;
-        color: #555;
+        font-weight: 600;
+        color: #6f42c1;
     }
 
-    /* Responsive Mobile Cards */
+    .header-section {
+        margin-top: 40px;
+        margin-bottom: 30px;
+    }
+
+    /* Desktop/Mobile specific tweaks */
     @media (max-width: 768px) {
-        .attendance-container { border-width: 3px; box-shadow: 6px 6px 0px #000; }
+        .custom-table thead th, 
         .custom-table tbody td {
-            text-align: right;
-            padding-left: 50%;
-            border-bottom: 1px solid #000;
-        }
-        .custom-table tbody td::before {
-            content: attr(data-label);
-            position: absolute;
-            left: 15px;
-            font-weight: 900;
-            text-transform: uppercase;
             font-size: 0.7rem;
+            padding: 10px 5px !important;
+        }
+        
+        .display-4 {
+            font-size: 2rem;
         }
     }
-@media (max-width: 768px) {
-
-    .attendance-container {
-        border-width: 2px;
-        box-shadow: 6px 6px 0px #000;
-    }
-
-    /* KEEP TABLE HORIZONTAL */
-    .custom-table {
-        width: 100%;
-        font-size: 0.7rem;
-    }
-
-    /* HEADER MUST STAY VISIBLE */
-    .custom-table thead th {
-        font-size: 0.6rem;
-        padding: 8px 6px;
-        letter-spacing: 1px;
-        white-space: nowrap;
-    }
-
-    /* CELLS */
-    .custom-table tbody td {
-        padding: 8px 6px !important;
-        font-size: 0.7rem;
-        white-space: nowrap;
-        text-align: center;
-    }
-
-    /* ICONS */
-    .custom-table i {
-        font-size: 0.75rem;
-    }
-
-    /* BADGE */
-    .status-badge {
-        font-size: 0.55rem;
-        padding: 3px 8px;
-    }
-}
 </style>
 
-<div class="container mt-5 mb-5">
-    <div class="d-flex justify-content-between align-items-end mb-5 border-bottom border-4 border-dark pb-3">
-        <div>
-            <h1 class="display-4 fw-black m-0 text-uppercase">Logbook</h1>
-            <p class="text-muted fw-bold small text-uppercase mb-0">Daily Verification Records</p>
+<div class="container">
+    <div class="col-lg-11 offset-lg-1">
+        <div class="d-flex justify-content-between align-items-end header-section border-bottom border-2 pb-3" style="border-color: #e2d9f3 !important;">
+            <div>
+                <h1 class="display-5 fw-bold m-0" style="color: #2d1a4d;">Logbook</h1>
+                <p class="text-muted fw-bold small text-uppercase mb-0">Daily Verification Records</p>
+            </div>
+            <button class="btn btn-purple-export">
+                <i class="bi bi-file-earmark-arrow-down-fill me-2"></i>Export CSV
+            </button>
         </div>
-        <button class="btn btn-brutal-export px-4 py-2">
-            <i class="bi bi-file-earmark-arrow-down-fill me-2"></i>Export CSV
-        </button>
-    </div>
 
-    <div class="attendance-container">
-        <div class="table-responsive">
-            <table class="table custom-table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Employee Reference</th>
-                        <th>Clock In</th>
-                        <th>Clock Out</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($attendance as $attend)
+        <div class="attendance-container mb-5">
+            <div class="table-responsive">
+                <table class="table custom-table">
+                    <thead>
                         <tr>
-                            <td data-label="" class="date-cell">
-                                {{ \Carbon\Carbon::parse($attend->date)->format('Y.m.d') }}
-                            </td>
-                            <td data-label="">
-                                <span class="fw-black text-uppercase">{{ $attend->employee->name }}</span>
-                            </td>
-                            <td data-label="">
-                                <div class="fw-bold">
-                                    <i class="bi bi-door-open-fill me-1"></i>
-                                    {{ $attend->time_in }}
-                                </div>
-                            </td>
-                            <td data-label="">
-                                <div class="fw-bold">
-                                    <i class="bi bi-door-closed-fill me-1"></i>
-                                    {{ $attend->time_out ?? '--:--' }}
-                                </div>
-                            </td>
-                            <td data-label="">
-                                <span class="status-badge {{ $attend->status == 'Present' ? 'status-present' : 'status-late' }}">
-                                    {{ strtoupper($attend->status) }}
-                                </span>
-                            </td>
+                            <th>Date</th>
+                            <th>Employee Reference</th>
+                            <th>Clock In</th>
+                            <th>Clock Out</th>
+                            <th>Status</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach($attendance as $attend)
+                            <tr>
+                                <td class="date-cell">
+                                    {{ \Carbon\Carbon::parse($attend->date)->format('M d, Y') }}
+                                </td>
+                                <td>
+                                    <span class="fw-bold">{{ $attend->employee->name }}</span>
+                                </td>
+                                <td>
+                                    <div class="text-muted">
+                                        <i class="bi bi-box-arrow-in-right me-1 text-primary"></i>
+                                        {{ $attend->time_in }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="text-muted">
+                                        <i class="bi bi-box-arrow-right me-1 text-secondary"></i>
+                                        {{ $attend->time_out ?? '--:--' }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="status-badge {{ $attend->status == 'Present' ? 'status-present' : 'status-late' }}">
+                                        {{ $attend->status }}
+                                    </span>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
