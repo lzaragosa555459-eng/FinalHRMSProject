@@ -5,6 +5,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <style>
 /* ===== DARK MODE FULL UI ===== */
@@ -239,6 +240,8 @@ body.dark-mode .emp-position{
 
         </div>
     </div>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -267,7 +270,20 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 });
+flatpickr("#period_start", {
+    dateFormat: "Y-m-d",
+    allowInput: true
+});
 
+flatpickr("#period_end", {
+    dateFormat: "Y-m-d",
+    allowInput: true
+});
+
+flatpickr("#pay_date", {
+    dateFormat: "Y-m-d",
+    allowInput: true
+});
 </script>
 </body>
 </html>

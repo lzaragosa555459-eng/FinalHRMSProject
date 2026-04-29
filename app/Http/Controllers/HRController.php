@@ -160,7 +160,7 @@ class HRController extends Controller
     }
 
     public function payroll(){
-        $payrolls = Payroll::all();
+        $payrolls = Payroll::paginate(6);
         $employees = Employee::all();
         $departments = Department::all();
 

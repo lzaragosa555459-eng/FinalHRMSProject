@@ -23,12 +23,23 @@
         color: white;
         transform: translateY(-1px);
     }
-
+    .btn {
+        font-size: 12px !important;
+        padding: 6px 10px !important;
+    }
     .card-summary {
-        transition: transform 0.2s ease;
-        border-left: 4px solid #6f42c1;
+        padding: 10px !important;
+        border-radius: 10px !important;
     }
 
+    .card-summary h4 {
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .card-summary small {
+        font-size: 11px;
+    }
     .card-summary:hover {
         transform: scale(1.02);
     }
@@ -36,6 +47,15 @@
     .form-control:focus, .form-select:focus {
         border-color: #6f42c1;
         box-shadow: 0 0 0 0.25rem rgba(111, 66, 193, 0.1);
+    }
+    .form-control,
+    .form-select {
+        font-size: 13px !important;
+        padding: 6px 10px !important;
+    }
+
+    label {
+        font-size: 11px !important;
     }
 
     .table thead {
@@ -56,27 +76,48 @@
 
     .table-sm td,
     .table-sm th {
-        padding: 6px 10px !important;
-        font-size: 13px;
-        vertical-align: middle;
+        padding: 5px 8px !important;
+        font-size: 12px;
     }
 
     .table thead th {
-        font-size: 12px;
+        font-size: 11px;
         font-weight: 600;
     }
 
+    td small {
+        font-size: 10px;
+    }
+
     .badge {
-        font-size: 11px;
-        padding: 4px 8px;
+        font-size: 10px;
+        padding: 3px 6px;
     }
 
     td small {
         font-size: 11px;
     }
+    h2 {
+    font-size: 20px;
+    }
+
+    h5 {
+        font-size: 14px;
+    }
+    .row {
+        margin-bottom: 10px !important;
+    }
+
+    .mb-3 {
+        margin-bottom: 8px !important;
+    }
+
+    .mb-4 {
+        margin-bottom: 12px !important;
+    }
 </style>
     
-    <div class="container p-4">
+    <div class="container p-2">
         <div class="col-lg-11 offset-lg-1 mb-5 mt-4 text-center text-lg-start">
             <h2 class="fw-bold mb-4" style="color: #2d1a4d;">Payroll Management</h2>
 
@@ -148,17 +189,22 @@
                                 </div>
                             </div>
                             <div class="mb-3">  
-                                <label class="form-label small fw-bold text-muted">period_start</label>
+                                <label class="form-label small fw-bold text-muted">Period Start</label>
                                 <div class="input-group">
-                                    <i class="bi bi-date"></i>
-                                    <input type="date" class="form-control border-start-0" placeholder="period start" id="period_start" name="period_start">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-calendar"></i>
+                                    </span>
+                                    
+                                    <input type="text" class="form-control border-start-0" placeholder="Enter period start" id="period_start" name="period_start">
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label small fw-bold text-muted">period_end</label>
+                                <label class="form-label small fw-bold text-muted">Period End</label>
                                 <div class="input-group">
-                                    <i class="bi bi-date"></i>
-                                    <input type="date" class="form-control border-start-0" placeholder="period end" id="period_end" name="period_end">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-calendar"></i>
+                                    </span>
+                                    <input type="text" class="form-control border-start-0" placeholder="Enter period end" id="period_end" name="period_end">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -166,15 +212,16 @@
                                     <label class="form-label small fw-bold text-muted">Allowances</label>
                                     <input type="number" class="form-control" placeholder="0.00" id="allowances" name="allowances">
                                 </div>
-                                <div class="col-6">
-                                    <label class="form-label small fw-bold text-muted">Deductions</label>
-                                    <input type="number" class="form-control" placeholder="0.00" id="deduction" name="deduction">
-                                </div>
                             </div>
 
                             <div class="mb-4">
                                 <label class="form-label small fw-bold text-muted">Pay Date</label>
-                                <input type="date" class="form-control" id="pay_date" name="pay_date">
+                                <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-calendar"></i>
+                                </span>
+                                <input type="text" class="form-control" id="pay_date" name="pay_date" placeholder="Enter pay date">
+                                </div>
                             </div>
 
                             <div class="d-grid gap-2">
@@ -212,6 +259,7 @@
                             <table class="table table-hover table-sm align-middle mb-0 small">
                                 <thead class="position-sticky top-0">
                                     <tr>
+                                        <th>Department</th>
                                         <th class="ps-4">Employee</th>
                                         <th>Period</th>
                                         <th>Basic (Computed)</th>
@@ -225,7 +273,9 @@
                                     <tbody>
                                     @foreach($payrolls as $payroll)
                                     <tr data-dept="{{ $payroll->employee->department_id }}">
-
+                                        <td>
+                                            <div class="fw-bold text-secondary">{{ $payroll->employee->position->department->name }}</div>
+                                        </td>   
                                         <td class="ps-4">
                                             <div class="fw-bold text-dark">{{ $payroll->employee->name }}</div>
                                         </td>
@@ -255,7 +305,7 @@
                                         </td>
 
                                         <td>
-                                            <span class="badge bg-success-subtle text-success fs-6 rounded-pill px-3">
+                                            <span class="badge-subtle text-success fs-6 rounded-pill px-3">
                                                 ₱{{ number_format($payroll->net_salary, 2) }}
                                             </span>
                                         </td>
@@ -268,6 +318,8 @@
                                                     onclick="editEmployee(
                                                         '{{ $payroll->employee->employee_id }}',
                                                         '{{ $payroll->basic_salary }}',
+                                                        '{{ $payroll->period_start }}',
+                                                        '{{ $payroll->period_end }}',
                                                         '{{ $payroll->allowances }}',
                                                         '{{ $payroll->deduction }}',
                                                         '{{ $payroll->pay_date }}'
@@ -291,6 +343,15 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <tfoot>        
+                                    <tr>
+                                        <td class="colspan=6 mt-4">
+                                            <div class="mt-3 d-flex justify-content-end me-4">
+                                                {{ $payrolls->links() }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                            </tfoot>
                         </div>
                     </div>
                 </div>
@@ -299,11 +360,12 @@
     </div>
 
 <script>
-function editEmployee(employee_id, basic_salary, allowances, deduction, paydate){
+function editEmployee(employee_id, basic_salary, period_start, period_end, allowances, paydate){
     document.getElementById('employee_id').value = employee_id;
     document.getElementById('basic_salary').value = basic_salary;
+    document.getElementById('period_start').value = period_start;
+    document.getElementById('period_end').value = period_end;
     document.getElementById('allowances').value = allowances;
-    document.getElementById('deduction').value = deduction;
     document.getElementById('pay_date').value = paydate;
 }
 

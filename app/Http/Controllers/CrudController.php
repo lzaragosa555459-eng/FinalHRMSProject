@@ -165,60 +165,75 @@ class CrudController extends Controller
 
 
 
-        public function AddPayroll(Request $request)
-        {
-            
-            $validated = $request->validate([
-                'employee_id'  => 'required|exists:employees,employee_id',
-                'period_start' => 'required|date',
-                'period_end'   => 'required|date|after_or_equal:period_start',
-                'allowances'   => 'required|numeric|min:0',
-                'deduction'    => 'required|numeric|min:0',
-                'pay_date'     => 'required|date|date_format:Y-m-d',
-            ]);
+public function AddPayroll(Request $request)
+{
+    $validated = $request->validate([
+        'employee_id'  => 'required|exists:employees,employee_id',
+        'period_start' => 'required|date',
+        'period_end'   => 'required|date|after_or_equal:period_start',
+        'allowances'   => 'required|numeric|min:0',
+        'pay_date'     => 'required|date',
+    ]);
 
-            // 1. Get employee + position salary
-            $employee = Employee::with('position')->find($validated['employee_id']);
-            $monthlySalary = $employee->position->salary;
-            
+    $employee = Employee::with('position')->find($validated['employee_id']);
+    $monthlySalary = $employee->position->salary;
 
-            // 2. Compute days in range
-            $start = Carbon::parse($validated['period_start']);
-            $end = Carbon::parse($validated['period_end']);
-            $days = $start->diffInDays($end) + 1;
+    $start = Carbon::parse($validated['period_start']);
+    $end   = Carbon::parse($validated['period_end']);
 
-            // 3. Daily rate (simple 30-day basis)
-            $dailyRate = $monthlySalary / 30;
+    $days = $start->diffInDays($end) + 1;
+    $dailyRate = $monthlySalary / 30;
 
-            // 4. Basic salary for this period
-            $basic_salary = $dailyRate * $days;
+    $basic_salary = $dailyRate * $days;
 
-            // 5. Compute net salary
-            $net_salary = $basic_salary
-                        + $validated['allowances']
-                        - $validated['deduction'];
-            $gross_salary = $validated['allowances'] + $basic_salary;
+    $gross_salary = $basic_salary + $validated['allowances'];
 
-            // 6. Save payroll
-            Payroll::updateOrCreate(
-                [
-                    'employee_id'  => $validated['employee_id'],
-                    'period_start' => $validated['period_start'],
-                    'period_end'   => $validated['period_end'],
-                ],
-                [
-                    'basic_salary' => $basic_salary,
-                    'allowances'   => $validated['allowances'],
-                    'gross_salary' => $gross_salary,
-                    'deduction'    => $validated['deduction'],
-                    'net_salary'   => $net_salary,
-                    'pay_date'     => $validated['pay_date'],
-                ]
-            );
+    $leaveCount = Leave::where('employee_id', $validated['employee_id'])
+        ->where('status', 'approved')
+        ->where(function ($query) use ($validated) {
+            $query->whereBetween('start_date', [$validated['period_start'], $validated['period_end']])
+                ->orWhereBetween('end_date', [$validated['period_start'], $validated['period_end']]);
+        })
+        ->get();
 
-            return redirect()->route('hr.payroll')
-                ->with('success', 'Payroll calculated and saved successfully!');
-        }
+    $totalLeaveDays = 0;
+
+    foreach ($leaveCount as $leave) {
+        $leaveStart = Carbon::parse($leave->start_date);
+        $leaveEnd   = Carbon::parse($leave->end_date);
+
+        $totalLeaveDays += $leaveStart->diffInDays($leaveEnd) + 1;
+    }
+
+    $leaveDeduction = $totalLeaveDays * $dailyRate;
+
+
+    $sss = $gross_salary * 0.045;   // example 4.5%
+    $tax = $gross_salary * 0.10;    // example 10%
+
+    $totalDeduction = $leaveDeduction + $sss + $tax;
+
+    $net_salary = $gross_salary - $totalDeduction;
+
+    Payroll::updateOrCreate(
+        [
+            'employee_id'  => $validated['employee_id'],
+            'period_start' => $validated['period_start'],
+            'period_end'   => $validated['period_end'],
+        ],
+        [
+            'basic_salary' => $basic_salary,
+            'allowances'   => $validated['allowances'],
+            'gross_salary' => $gross_salary,
+            'deduction'    => $totalDeduction,
+            'net_salary'   => $net_salary,
+            'pay_date'     => $validated['pay_date'],
+        ]
+    );
+
+    return redirect()->route('hr.payroll')
+        ->with('success', 'Payroll calculated successfully!');
+}
 
         public function destroyPayroll($id){
             $employee = Payroll::findOrFail($id);
