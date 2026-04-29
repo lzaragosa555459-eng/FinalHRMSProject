@@ -7,7 +7,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-   
+    <script>
+    (function () {
+        const isDark = localStorage.getItem('darkMode') === 'enabled';
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.documentElement.classList.toggle('dark-mode', isDark);
+            document.body.classList.toggle('dark-mode', isDark);
+        });
+    })();
+    </script>
 </head>
 <style>
 /* ===== DARK MODE FULL UI ===== */
@@ -17,6 +26,11 @@ body.dark-mode {
     color: #e4e4e4 !important;
 
 
+}
+html.dark-mode body,
+body.dark-mode {
+    background-color: #121212 !important;
+    color: #e4e4e4 !important;
 }
 .rating-note {
     background: #f3f0f7;
@@ -498,6 +512,7 @@ body.dark-mode .emp-position{
         color: #c7b6ff !important;
     }
 </style>
+
 <script>
 if (localStorage.getItem('darkMode') === 'enabled') {
     document.documentElement.classList.add('dark-mode');
@@ -532,6 +547,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const toggle = document.getElementById('darkModeToggle');
 
     const setMode = (isDark) => {
+        document.documentElement.classList.toggle('dark-mode', isDark);
         document.body.classList.toggle('dark-mode', isDark);
 
         const icon = toggle?.querySelector('i');
