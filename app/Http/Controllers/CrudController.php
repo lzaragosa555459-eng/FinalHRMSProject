@@ -180,6 +180,7 @@ class CrudController extends Controller
             // 1. Get employee + position salary
             $employee = Employee::with('position')->find($validated['employee_id']);
             $monthlySalary = $employee->position->salary;
+            
 
             // 2. Compute days in range
             $start = Carbon::parse($validated['period_start']);
@@ -196,6 +197,7 @@ class CrudController extends Controller
             $net_salary = $basic_salary
                         + $validated['allowances']
                         - $validated['deduction'];
+            $gross_salary = $validated['allowances'] + $basic_salary;
 
             // 6. Save payroll
             Payroll::updateOrCreate(
@@ -207,6 +209,7 @@ class CrudController extends Controller
                 [
                     'basic_salary' => $basic_salary,
                     'allowances'   => $validated['allowances'],
+                    'gross_salary' => $gross_salary,
                     'deduction'    => $validated['deduction'],
                     'net_salary'   => $net_salary,
                     'pay_date'     => $validated['pay_date'],

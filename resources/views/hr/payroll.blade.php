@@ -53,6 +53,27 @@
     .border-gross { border-left-color: #6c757d; }
     .border-deduction { border-left-color: #dc3545; }
     .border-net { border-left-color: #198754; }
+
+    .table-sm td,
+    .table-sm th {
+        padding: 6px 10px !important;
+        font-size: 13px;
+        vertical-align: middle;
+    }
+
+    .table thead th {
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .badge {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+
+    td small {
+        font-size: 11px;
+    }
 </style>
     
     <div class="container p-4">
@@ -188,13 +209,14 @@
 
                     <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
                         <div class="table-responsive" style="max-height: 540px;">
-                            <table class="table table-hover align-middle mb-0">
+                            <table class="table table-hover table-sm align-middle mb-0 small">
                                 <thead class="position-sticky top-0">
                                     <tr>
                                         <th class="ps-4">Employee</th>
                                         <th>Period</th>
                                         <th>Basic (Computed)</th>
                                         <th>Allowances</th>
+                                        <th>Gross salary</th>
                                         <th>Deductions</th>
                                         <th>Net Salary</th>
                                         <th class="pe-4">Action</th>
@@ -222,6 +244,11 @@
                                         <td class="text-primary">
                                             +₱{{ number_format($payroll->allowances, 2) }}
                                         </td>
+
+                                        <td class="text-primary">
+                                            +₱{{ number_format($payroll->gross_salary, 2) }}
+                                        </td>
+
 
                                         <td class="text-danger">
                                             -₱{{ number_format($payroll->deduction, 2) }}
