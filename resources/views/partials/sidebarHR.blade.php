@@ -279,8 +279,8 @@
     </div>
 
     <div class="logout-section">
-        <button id="darkModeToggle" class="btn  border-0 bg-transparent">
-            <i class="bi bi-moon-stars fs-5"></i>      
+        <button id="darkModeToggle" class="btn border-0 bg-transparent">
+            <i class="bi bi-moon-stars fs-5"></i>
         </button>
         <a href="{{ route('login') }}">
             <i class="bi bi-box-arrow-right"></i>
@@ -301,21 +301,6 @@
         sidebar.classList.toggle('active');
     });
 </script>
-<script>
-const toggle = document.getElementById('darkModeToggle');
-const icon = toggle.querySelector('i');
 
-toggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-
-    if (document.body.classList.contains('dark-mode')) {
-        icon.classList.remove('bi-moon-stars');
-        icon.classList.add('bi-sun');
-    } else {
-        icon.classList.remove('bi-sun');
-        icon.classList.add('bi-moon-stars');
-    }
-});
-</script>
 </body>
 </html>

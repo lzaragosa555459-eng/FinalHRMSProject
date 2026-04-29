@@ -387,7 +387,13 @@ body.dark-mode .emp-position{
     body.dark-mode .border-top {
         border-color: #333 !important;
     }
+    html, body {
+        height: 100%;
+    }
 
+    body.dark-mode {
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
     body.dark-mode .btn-light,
     body.dark-mode .btn-white {
         background-color: #2a2a2a !important;
@@ -492,6 +498,12 @@ body.dark-mode .emp-position{
         color: #c7b6ff !important;
     }
 </style>
+<script>
+if (localStorage.getItem('darkMode') === 'enabled') {
+    document.documentElement.classList.add('dark-mode');
+    document.body.classList.add('dark-mode');
+}
+</script>
 <body id="appBody">
 
     <div class="container-fluid">
@@ -516,30 +528,32 @@ body.dark-mode .emp-position{
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-
+document.addEventListener("DOMContentLoaded", () => {
     const toggle = document.getElementById('darkModeToggle');
 
-    // APPLY SAVED MODE ON LOAD
-    if (localStorage.getItem('darkMode') === 'enabled') {
-        document.body.classList.add('dark-mode');
-        if (toggle) toggle.checked = true;
-    }
+    const setMode = (isDark) => {
+        document.body.classList.toggle('dark-mode', isDark);
 
-    // TOGGLE EVENT (only if toggle exists)
-    if (toggle) {
-        toggle.addEventListener('change', function () {
-            if (this.checked) {
-                document.body.classList.add('dark-mode');
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                document.body.classList.remove('dark-mode');
-                localStorage.setItem('darkMode', 'disabled');
-            }
-        });
-    }
+        const icon = toggle?.querySelector('i');
+        if (icon) {
+            icon.classList.toggle('bi-moon-stars', !isDark);
+            icon.classList.toggle('bi-sun', isDark);
+        }
 
+        localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+    };
+
+    // LOAD SAVED MODE
+    const saved = localStorage.getItem('darkMode') === 'enabled';
+    setMode(saved);
+
+    // CLICK TOGGLE (IMPORTANT: button, NOT change event)
+    toggle?.addEventListener('click', () => {
+        const isDark = document.body.classList.contains('dark-mode');
+        setMode(!isDark);
+    });
 });
+
 flatpickr("#period_start", {
     dateFormat: "Y-m-d",
     allowInput: true
@@ -555,5 +569,6 @@ flatpickr("#pay_date", {
     allowInput: true
 });
 </script>
+
 </body>
 </html>
