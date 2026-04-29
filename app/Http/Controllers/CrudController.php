@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 use App\Models\Department;
 use App\Models\Position;
 use App\Models\Applicant;
@@ -163,24 +163,49 @@ class CrudController extends Controller
                          ->with('success', 'Employee deleted successfully!');
         }
 
+
+
         public function AddPayroll(Request $request)
         {
+            
             $validated = $request->validate([
                 'employee_id'  => 'required|exists:employees,employee_id',
-                'basic_salary' => 'required|numeric|min:0',
+                'period_start' => 'required|date',
+                'period_end'   => 'required|date|after_or_equal:period_start',
                 'allowances'   => 'required|numeric|min:0',
                 'deduction'    => 'required|numeric|min:0',
                 'pay_date'     => 'required|date|date_format:Y-m-d',
             ]);
 
-            $net_salary = $validated['basic_salary']
+            // 1. Get employee + position salary
+            $employee = Employee::with('position')->find($validated['employee_id']);
+            $monthlySalary = $employee->position->salary;
+
+            // 2. Compute days in range
+            $start = Carbon::parse($validated['period_start']);
+            $end = Carbon::parse($validated['period_end']);
+            $days = $start->diffInDays($end) + 1;
+
+            // 3. Daily rate (simple 30-day basis)
+            $dailyRate = $monthlySalary / 30;
+
+            // 4. Basic salary for this period
+            $basic_salary = $dailyRate * $days;
+
+            // 5. Compute net salary
+            $net_salary = $basic_salary
                         + $validated['allowances']
                         - $validated['deduction'];
 
+            // 6. Save payroll
             Payroll::updateOrCreate(
-                ['employee_id' => $validated['employee_id']],
                 [
-                    'basic_salary' => $validated['basic_salary'],
+                    'employee_id'  => $validated['employee_id'],
+                    'period_start' => $validated['period_start'],
+                    'period_end'   => $validated['period_end'],
+                ],
+                [
+                    'basic_salary' => $basic_salary,
                     'allowances'   => $validated['allowances'],
                     'deduction'    => $validated['deduction'],
                     'net_salary'   => $net_salary,
@@ -189,7 +214,7 @@ class CrudController extends Controller
             );
 
             return redirect()->route('hr.payroll')
-                ->with('success', 'Payroll saved successfully!');
+                ->with('success', 'Payroll calculated and saved successfully!');
         }
 
         public function destroyPayroll($id){

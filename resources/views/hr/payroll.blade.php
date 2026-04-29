@@ -117,7 +117,7 @@
                                         <option value="{{ $emp->employee_id }}">{{ $emp->name }}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div>  
 
                             <div class="mb-3">
                                 <label class="form-label small fw-bold text-muted">Basic Salary</label>
@@ -126,7 +126,20 @@
                                     <input type="number" class="form-control border-start-0" placeholder="0.00" id="basic_salary" name="basic_salary">
                                 </div>
                             </div>
-
+                            <div class="mb-3">  
+                                <label class="form-label small fw-bold text-muted">period_start</label>
+                                <div class="input-group">
+                                    <i class="bi bi-date"></i>
+                                    <input type="date" class="form-control border-start-0" placeholder="period start" id="period_start" name="period_start">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold text-muted">period_end</label>
+                                <div class="input-group">
+                                    <i class="bi bi-date"></i>
+                                    <input type="date" class="form-control border-start-0" placeholder="period end" id="period_end" name="period_end">
+                                </div>
+                            </div>
                             <div class="row mb-3">
                                 <div class="col-6">
                                     <label class="form-label small fw-bold text-muted">Allowances</label>
@@ -179,51 +192,74 @@
                                 <thead class="position-sticky top-0">
                                     <tr>
                                         <th class="ps-4">Employee</th>
-                                        <th>Basic</th>
+                                        <th>Period</th>
+                                        <th>Basic (Computed)</th>
                                         <th>Allowances</th>
                                         <th>Deductions</th>
                                         <th>Net Salary</th>
                                         <th class="pe-4">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                    <tbody>
                                     @foreach($payrolls as $payroll)
                                     <tr data-dept="{{ $payroll->employee->department_id }}">
+
                                         <td class="ps-4">
                                             <div class="fw-bold text-dark">{{ $payroll->employee->name }}</div>
-                                            <small class="text-muted">{{ $payroll->pay_date }}</small>
                                         </td>
-                                        <td>₱{{ number_format($payroll->basic_salary, 2) }}</td>
-                                        <td class="text-primary">+₱{{ number_format($payroll->allowances, 2) }}</td>
-                                        <td class="text-danger">-₱{{ number_format($payroll->deduction, 2) }}</td>
+
+                                        <td>
+                                            <small class="text-muted">
+                                                {{ $payroll->period_start }} <br>
+                                                → {{ $payroll->period_end }}
+                                            </small>
+                                        </td>
+
+                                        <td>
+                                            ₱{{ number_format($payroll->basic_salary, 2) }}
+                                        </td>
+
+                                        <td class="text-primary">
+                                            +₱{{ number_format($payroll->allowances, 2) }}
+                                        </td>
+
+                                        <td class="text-danger">
+                                            -₱{{ number_format($payroll->deduction, 2) }}
+                                        </td>
+
                                         <td>
                                             <span class="badge bg-success-subtle text-success fs-6 rounded-pill px-3">
                                                 ₱{{ number_format($payroll->net_salary, 2) }}
                                             </span>
                                         </td>
+
                                         <td class="pe-4">
                                             <div class="d-flex gap-2 justify-content-center align-items-center">
 
                                                 <button type="button"
-                                                    class="btn btn-sm btn-light border d-inline-flex align-items-center justify-content-center"
-                                                    style="width: 34px; height: 34px;"
-                                                    onclick="editEmployee('{{ $payroll->employee->employee_id }}','{{ $payroll->basic_salary }}','{{ $payroll->allowances }}','{{ $payroll->deduction }}','{{ $payroll->pay_date }}')">
-                                                    <i class="bi bi-pencil fs-6"></i>
+                                                    class="btn btn-sm btn-light border"
+                                                    onclick="editEmployee(
+                                                        '{{ $payroll->employee->employee_id }}',
+                                                        '{{ $payroll->basic_salary }}',
+                                                        '{{ $payroll->allowances }}',
+                                                        '{{ $payroll->deduction }}',
+                                                        '{{ $payroll->pay_date }}'
+                                                    )">
+                                                    <i class="bi bi-pencil"></i>
                                                 </button>
 
-                                                <form action="{{ route('delete.payroll', $payroll->payroll_id) }}" method="POST"
-                                                    class="m-0">
-                                                    @csrf @method('DELETE')
+                                                <form action="{{ route('delete.payroll', $payroll->payroll_id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
 
-                                                    <button type="submit"
-                                                        class="btn btn-sm btn-light border d-inline-flex align-items-center justify-content-center text-danger"
-                                                        style="width: 34px; height: 34px;">
-                                                        <i class="bi bi-trash fs-6"></i>
+                                                    <button class="btn btn-sm btn-light border text-danger">
+                                                        <i class="bi bi-trash"></i>
                                                     </button>
                                                 </form>
 
                                             </div>
                                         </td>
+
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -257,4 +293,17 @@ function searchEmployees(){
         row.style.display = (matchText && matchDept) ? "" : "none";
     });
 }
+document.getElementById('employee_id').addEventListener('change', function () {
+    let employeeId = this.value;
+
+    if (employeeId) {
+        fetch('/employee/' + employeeId)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); 
+
+                document.getElementById('basic_salary').value = data.basic_salary;
+            });
+    }
+});
 </script>

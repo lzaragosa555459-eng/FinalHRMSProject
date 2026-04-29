@@ -38,8 +38,9 @@ Route::put('/attendance/{id}/approve', [CrudController::class, 'approved'])->nam
 Route::put('/attendance/{id}/reject', [CrudController::class, 'reject'])->name('reject');
 
 Route::get('/payroll', [HRController::class, 'payroll'])->name('hr.payroll');
+Route::get('/employee/{id}', [HRController::class, 'getEmployee']);
 
-Route::post('/add payroll', [CrudController::class, 'AddPayroll'])->name('hr.AddPayroll');
+Route::post('/add-payroll', [CrudController::class, 'AddPayroll'])->name('hr.AddPayroll');
 Route::delete('/delete-payroll/{id}', [CrudController::class, 'destroyPayroll'])->name('delete.payroll');
         
 Route::get('/add employee', [HRController::class, 'AddEmployees'])->name('hr.Crud.add');

@@ -10,11 +10,13 @@ class Payroll extends Model
 
     protected $fillable = [
         'employee_id',
+        'period_start',
+        'period_end',
         'basic_salary',
         'allowances',
         'deduction',
         'net_salary',
-        'pay_date'
+        'pay_date',
     ];
 
       public function employee()
