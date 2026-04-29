@@ -33,7 +33,7 @@
     }
 
     .card-summary h4 {
-        font-size: 16px;
+        font-size: 30px;
         margin: 0;
     }
 
@@ -124,7 +124,7 @@
             <div class="row g-3 mb-4">
                 <div class="col-md-4">
                     <div class="card border-0 shadow-sm rounded-4 p-3 card-summary border-gross">
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center justify-content-between">
                             <div class="bg-light p-3 rounded-3 me-3">
                                 <i class="bi bi-wallet2 text-secondary fs-4"></i>
                             </div>
@@ -137,8 +137,8 @@
                 </div>
 
                 <div class="col-md-4">
-                    <div class="card border-0 shadow-sm rounded-4 p-3 card-summary border-deduction">
-                        <div class="d-flex align-items-center">
+                    <div class="card border-0 shadow-sm rounded-4 p-3 card-summary border-deduction ">
+                        <div class="d-flex align-items-center justify-content-between">
                             <div class="bg-danger-subtle p-3 rounded-3 me-3">
                                 <i class="bi bi-graph-down-arrow text-danger fs-4"></i>
                             </div>
@@ -152,7 +152,7 @@
 
                 <div class="col-md-4">
                     <div class="card border-0 shadow-sm rounded-4 p-3 card-summary border-net">
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center justify-content-between">
                             <div class="bg-success-subtle p-3 rounded-3 me-3">
                                 <i class="bi bi-cash-stack text-success fs-4"></i>
                             </div>
@@ -274,6 +274,7 @@
                                         <th>Gross salary</th>
                                         <th>Deductions</th>
                                         <th>Net Salary</th>
+                                        <th>Pay date</th>
                                         <th class="pe-4">Action</th>
                                     </tr>
                                 </thead>
@@ -316,7 +317,7 @@
                                                 ₱{{ number_format($payroll->net_salary, 2) }}
                                             </span>
                                         </td>
-
+                                        <td>{{ $payroll->pay_date}}</td>
                                         <td class="pe-4 align-middle">
                                             <div class="d-flex flex-row gap-2 justify-content-center align-items-center" style="min-height: 34px;">
 
@@ -329,7 +330,6 @@
                                                         '{{ $payroll->period_start }}',
                                                         '{{ $payroll->period_end }}',
                                                         '{{ $payroll->allowances }}',
-                                                        '{{ $payroll->deduction }}',
                                                         '{{ $payroll->pay_date }}'
                                                     )">
                                                     <i class="bi bi-pencil"></i>

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Event | {{ $event->title }}</title>
+@extends('layouts.apphr')
+
+@section('title', 'Edit Event | {{ $event->title }}')
+
+@section('content')
+
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -94,8 +94,6 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
     </style>
-</head>
-<body>
 
 <div class="container py-5">
     <div class="row justify-content-center">
@@ -200,7 +198,7 @@
 
                             <div class="col-12 pt-4 border-top mt-4">
                                 <div class="d-flex justify-content-end gap-2">
-                                    <a href="{{ url()->previous() }}" class="btn btn-cancel">
+                                    <a href="{{ url()->previous() }}" class="btn btn-outline-secondary">
                                         Cancel
                                     </a>
                                     <button type="submit" class="btn btn-purple shadow-sm">
@@ -218,5 +216,4 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+@endsection

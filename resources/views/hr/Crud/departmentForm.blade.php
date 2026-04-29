@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ isset($department) ? 'Edit' : 'Create' }} Department</title>
+@extends('layouts.apphr')
+
+@section('title', "{{ isset($department) ? 'Edit' : 'Create' }}")
+
+@section('content')
     
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
         body {
@@ -98,8 +95,7 @@
             backdrop-filter: blur(5px);
         }
     </style>
-</head>
-<body>
+
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-lg-6">
@@ -120,8 +116,8 @@
                             ? route('UpdateDepartment', $department->department_id)
                             : route('AddNewDepartment') }}"
                             method="POST">
-
                             @csrf
+                            
                             @if(isset($department))
                                 @method('PUT')
                             @endif
@@ -153,10 +149,10 @@
                             </div>
 
                             <div class="d-flex justify-content-end gap-2 pt-3 border-top">
-                                <a href="{{ route('hr.organization') }}" class="btn btn-cancel">
+                                <a href="{{ route('hr.organization') }}" class="btn btn-outline-secondary">
                                     Cancel
                                 </a>
-                                <button type="submit" class="btn btn-purple shadow-sm">
+                                <button type="submit" class="btn btn-purple shadow-sm text-white" style="background-color: #4b2a89;">
                                     <i class="bi bi-check-lg me-1"></i> Save Changes
                                 </button>
                             </div>
@@ -167,7 +163,5 @@
             </div>
         </div>
     </div>
-
+    @endsection
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

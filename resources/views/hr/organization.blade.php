@@ -291,7 +291,7 @@
                                         <i class="bi bi-pencil-square me-1"></i> Edit
                                     </a>
                                     
-                                    <form action="{{ route('deleteDepartment', $dept->department_id) }}" method="POST">
+                                    <form action="{{ route('deleteDepartment', $dept->department_id) }}" method="POST" class="m-0 d-inline-flex">
                                         @csrf @method('DELETE')
                                         <button class="btn btn-sm btn-soft btn-soft-danger rounded-3 px-3" 
                                                 onclick="return confirm('Delete department?')">
@@ -366,7 +366,7 @@
                             
                             <button type="button" class="btn p-0" 
                                     onclick="event.preventDefault(); window.location.href='{{ route('hr.Crud.editEvent', $event->event_id) }}';">
-                                <i class="bi bi-pencil"></i>
+                                <i class="bi bi-pencil-square me-1"></i> Edit
                             </button>
                             
                             <form action="{{ route('hr.Crud.deleteEvent', $event->event_id) }}" method="POST" class="d-inline m-0">

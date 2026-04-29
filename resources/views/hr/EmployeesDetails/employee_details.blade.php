@@ -166,10 +166,10 @@
                                     @if(auth()->user()->employee_id == $perf->reviewer_id)
                                         <div class="d-flex justify-content-end gap-2 border-top pt-2">
                                             <a href="{{ route('gotoperfomanceform', [$emp->employee_id, $perf->performance_id]) }}" 
-                                            class="btn btn-sm btn-outline-warning" title="Edit Review">
+                                            class="btn btn-sm " title="Edit Review">
                                                 <i class="bi bi-pencil"></i>
                                             </a>
-                                            <a href="#" class="btn btn-sm btn-outline-danger" title="Delete Review">
+                                            <a href="#" class="btn btn-sm" title="Delete Review">
                                                 <i class="bi bi-trash"></i>
                                             </a>
                                         </div>

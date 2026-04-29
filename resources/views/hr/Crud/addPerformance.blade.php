@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Performance Review</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+@extends('layouts.apphr')
+
+@section('title', 'create event')
+
+@section('content')
 
     <style>
         body {
@@ -85,8 +81,6 @@
             margin-top: 5px;
         }
     </style>
-</head>
-<body>
 
 <div class="container py-5">
     <div class="row justify-content-center">
@@ -178,7 +172,7 @@
                                 <div class="d-flex justify-content-end gap-2 border-top pt-4">
                                     <a href="{{ route('hr.EmployeesDetails.employee_details', $employeeID->employee_id) }}" 
                                        class="btn btn-outline-secondary rounded-pill px-4">Cancel</a>
-                                    <button type="submit" class="btn btn-purple rounded-pill px-4 shadow-sm">
+                                    <button type="submit" class="btn btn-purple rounded-pill px-4 shadow-sm" style="background-color: #4b2a89;">
                                         <i class="bi bi-check-circle me-2"></i> {{ isset($performance) ? 'Update' : 'Save' }} Review
                                     </button>
                                 </div>
@@ -193,5 +187,3 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

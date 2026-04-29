@@ -161,7 +161,7 @@
 
 <div class="row g-3 tight">
     <div class="col-md-4">
-        <div class="card card-purple big-card text-end shadow-sm">
+        <div class="card card-purple big-card text-end shadow-sm " style="background-color: #6f42c1 !important; ">
             <p class="text-uppercase small mb-1 opacity-75">Total Gross</p>
             <h3 class="fw-bold mb-0">₱{{ number_format($totalgross, 2) }}</h3>
         </div>
@@ -170,14 +170,14 @@
     <div class="col-md-4">
         <div class="card card-white big-card text-end shadow-sm">
             <p class="text-uppercase small mb-1 text-muted">Deductions</p>
-            <h3 class="fw-bold text-danger mb-0">₱{{ number_format($totaldeduction, 2) }}</h3>
+            <h3 class="fw-bold text-danger mb-0" style="color: #dc3545 !important;">₱{{ number_format($totaldeduction, 2) }}</h3>
         </div>
     </div>
 
     <div class="col-md-4">
         <div class="card card-purple-light big-card text-end shadow-sm">
             <p class="text-uppercase small mb-1">Total Net</p>
-            <h3 class="fw-bold text-success mb-0">₱{{ number_format($totalnet, 2) }}</h3>
+            <h3 class="fw-bold text-success mb-0" style="color: #28a745 !important; ">₱{{ number_format($totalnet, 2) }}</h3>
         </div>
     </div>
 </div>

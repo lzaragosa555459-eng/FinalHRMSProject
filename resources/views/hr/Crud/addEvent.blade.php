@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ asset('logo.png') }}" type="image/png">
-    <title>Create Event</title>
+@extends('layouts.apphr')
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+@section('title', 'create event')
+
+@section('content')
+
+
 
     <style>
         body {
@@ -77,9 +74,7 @@
             border-radius: 10px;
         }
     </style>
-</head>
 
-<body>
 
 <div class="container py-5">
     <div class="row justify-content-center">
@@ -187,7 +182,7 @@
                         </div>
 
                         <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-purple btn-lg shadow">
+                            <button type="submit" class="btn btn-purple btn-lg shadow" style="background-color: #4b2a89;">
                                 <i class="bi bi-cloud-arrow-up-fill me-2"></i> Create Event
                             </button>
                         </div>
@@ -201,5 +196,3 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-</body>
-</html>
