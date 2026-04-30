@@ -46,12 +46,40 @@
         background: #d1c4e9;
         border-radius: 10px;
     }
+@media (max-width: 576px) {
+
+    .card-custom {
+        padding: 15px !important;
+    }
+
+    h2, h3, h4, h5 {
+        font-size: 16px !important;
+    }
+
+    .btn {
+        font-size: 12px !important;
+        padding: 6px 10px !important;
+    }
+
+    .badge {
+        font-size: 10px !important;
+    }
+
+    canvas {
+        max-height: 220px !important;
+    }
+
+    .rounded-circle {
+        width: 100px !important;
+        height: 100px !important;
+    }
+}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <div class="container py-4">
-        <div class="col-lg-11 offset-lg-1" style="margin-left: 2%;">
+        <div class="col-12 col-lg-11 mx-auto">
             
             <div class="mb-3 text-end">
                 <a href="{{ route('hr.employees') }}" class="btn btn-white shadow-sm rounded-pill px-4">
@@ -59,9 +87,9 @@
                 </a>
             </div>
 
-            <div class="card-custom bg-purple-gradient p-5 text-center mb-4">
+            <div class="card-custom bg-purple-gradient p-3 p-md-5 text-center mb-4">
                 <div class="rounded-circle overflow-hidden shadow-lg border border-4 border-white mx-auto mb-3"
-                     style="width: 160px; height: 160px;">
+                     style="width: 120px; height: 120px;" class="mx-auto">
                     @if($emp->profile_image || $emp->avatar)
                         <img src="{{ $emp->profile_photo_path ?? $emp->avatar }}"
                              alt="{{ $emp->name }}"
@@ -74,7 +102,9 @@
                     @endif
                 </div>
 
-                <h2 class="fw-bold mb-1">{{ $emp->name }}</h2>
+                <h2 class="fw-bold mb-1" style="font-size: clamp(18px, 4vw, 28px);">
+                    {{ $emp->name }}
+                </h2>
                 <p class="opacity-75 fs-5 mb-2">{{ $emp->position?->title ?? 'Position Not Set' }}</p>
 
                 @if($emp->employee_role === 'head')
@@ -85,7 +115,7 @@
                     <span class="badge rounded-pill bg-white text-dark px-3 py-2">Staff Member</span>
                 @endif
 
-                <div class="mt-4 d-flex justify-content-center gap-2">
+                <div class="mt-4 d-flex flex-wrap justify-content-center gap-2">
                     <a href="{{ route('hr.EmployeesDetails.employee_by_department', $emp->position->department_id) }}" class="btn btn-sm btn-light rounded-pill px-3">
                         <i class="bi bi-building me-1"></i> Department
                     </a>
@@ -98,8 +128,8 @@
                 </div>
             </div>
 
-            <div class="row g-4">
-                <div class="col-md-5">
+            <div class="row g-3 g-md-4">
+                <div class="col-12 col-md-5">
                     <div class="card-custom p-4 h-100">
                         <h5 class="fw-bold text-purple mb-4"><i class="bi bi-info-circle me-2"></i>Employee Details</h5>
                         
@@ -128,7 +158,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-7">
+                <div class="col-12 col-md-7">
                     <div class="card-custom p-4 h-100">
                         <h5 class="fw-bold text-purple mb-3"><i class="bi bi-trophy me-2"></i>Performance Reviews</h5>
                         

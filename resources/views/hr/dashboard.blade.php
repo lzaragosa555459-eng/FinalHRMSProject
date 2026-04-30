@@ -45,6 +45,100 @@
         .col-6.col-md-4.col-lg-2 { width: 50% !important; }
         .tight h3 { text-align: center; }
     }
+    .stat-icon i {
+        font-size: 10px;
+    }
+@media (max-width: 768px) {
+    .container.py-4 {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+
+    .col-lg-11.offset-lg-1 {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+
+
+
+    .big-card {
+        padding: 15px !important;
+    }
+
+    .small-card {
+        padding: 12px !important;
+    }
+
+    .card h3,
+    .card h4,
+    .card h5 {
+        font-size: 1rem;
+    }
+
+    .card p,
+    .card small,
+    .card span,
+    .card li {
+        font-size: 0.75rem;
+    }
+
+    .stat-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+
+    .tight h3 {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    canvas {
+        max-height: 220px !important;
+    }
+
+    #employeeChart {
+        min-height: 250px !important;
+    }
+
+    .row.g-4,
+    .row.g-3 {
+        --bs-gutter-y: 0.8rem;
+    }
+
+    .col-6.col-md-4.col-lg-2 {
+        width: 50%;
+    }
+}
+@media (max-width: 768px) {
+    #employeeChart {
+        min-height: 180px !important;
+        max-height: 180px !important;
+    }
+
+    .card h5 {
+        font-size: 0.9rem;
+    }
+
+    .card.card-white.p-4.shadow-sm {
+        padding: 15px !important;
+    }
+}
+@media (max-width: 576px) {
+    .small-card {
+        padding: 10px !important;
+    }
+
+    .stat-icon {
+        width: 24px !important;
+        height: 24px !important;
+    }
+
+    h6, h5, h4 {
+        font-size: 14px !important;
+    }
+}
 </style>
 
 <div class="container-fluid">
@@ -74,19 +168,19 @@
             <div class="row g-3 tight">
                 <div class="col-md-4">
                     <div class="card card-purple big-card text-end shadow-sm">
-                        <p class="text-uppercase small mb-1 opacity-75">Total Gross</p>
+                        <p class="text-uppercase small mb-1 opacity-75 text-start">Total Gross</p>
                         <h3 class="fw-bold mb-0">₱{{ number_format($totalgross, 2) }}</h3>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card card-white big-card text-end shadow-sm">
-                        <p class="text-uppercase small mb-1 text-muted">Deductions</p>
+                        <p class="text-uppercase small mb-1 text-muted text-start">Deductions</p>
                         <h3 class="fw-bold text-danger mb-0">₱{{ number_format($totaldeduction, 2) }}</h3>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card card-purple-light big-card text-end shadow-sm">
-                        <p class="text-uppercase small mb-1">Total Net</p>
+                        <p class="text-uppercase small mb-1 text-start">Total Net</p>
                         <h3 class="fw-bold text-success mb-0">₱{{ number_format($totalnet, 2) }}</h3>
                     </div>
                 </div>
@@ -105,19 +199,23 @@
                 @endphp
 
                 @foreach($stats as $s)
-                <div class="col-6 col-md-4 col-lg-2">
-                    <div class="card card-white small-card h-100 shadow-sm border-bottom border-4 d-flex flex-row align-items-center justify-content-between px-3"
-                         style="border-color: #{{ $s[2] }} !important;">
-                        <div class="stat-icon d-flex align-items-center justify-content-center"
-                             style="background-color: #{{ $s[2] }}20; color: #{{ $s[2] }};">
-                            <i class="bi bi-{{ $s[3] }}"></i>
-                        </div>
-                        <div class="d-flex flex-column text-end">
-                            <small class="text-muted fw-bold">{{ $s[0] }}</small>
-                            <h4 class="fw-bold mb-0">{{ $s[1] }}</h4>
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="card card-white small-card h-100 shadow-sm border-bottom border-4 p-2 d-flex flex-column"
+                            style="border-color: #{{ $s[2] }} !important; min-height: 100px;">
+                            
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="stat-icon d-flex align-items-center justify-content-center me-2"
+                                    style="background-color: #{{ $s[2] }}20; color: #{{ $s[2] }}; width: 24px; height: 24px; border-radius: 6px;">
+                                    <i class="bi bi-{{ $s[3] }}" style="font-size: 17px;"></i>
+                                </div>
+                                <small class="text-muted fw-bold" style="font-size: 17px; line-height: 1; margin-bottom: 10px;">{{ $s[0] }}</small>
+                            </div>
+
+                            <div class="mt-auto text-end">
+                                <h4 class="fw-bold mb-0" style="color: #2d1a4d;">{{ $s[1] }}</h4>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
 
@@ -144,18 +242,20 @@
                             <h5 class="mb-0 fw-bold">{{ $totalLateToday }}</h5>
                         </div>
                         <hr>
-                        <div class="row text-center mt-3">
-                            <div class="col">
-                                <small class="text-muted d-block">Wait</small>
-                                <h4 class="fw-bold text-primary">{{ $pendingleaves }}</h4>
+                        <div class="row g-0"> 
+                            <div class="col d-flex justify-content-between align-items-center px-2">
+                                <small class="text-muted fw-bold" style="font-size: 0.75rem;">Wait</small>
+                                <h4 class="fw-bold text-primary mb-0">{{ $pendingleaves }}</h4>
                             </div>
-                            <div class="col border-start border-end">
-                                <small class="text-muted d-block">Approved</small>
-                                <h4 class="fw-bold text-success">{{ $approvedleaves }}</h4>
+
+                            <div class="col border-start border-end d-flex justify-content-between align-items-center px-2">
+                                <small class="text-muted fw-bold" style="font-size: 0.75rem;">Approved</small>
+                                <h4 class="fw-bold text-success mb-0">{{ $approvedleaves }}</h4>
                             </div>
-                            <div class="col">
-                                <small class="text-muted d-block">Declined</small>
-                                <h4 class="fw-bold text-danger">{{ $disapprovedleaves }}</h4>
+
+                            <div class="col d-flex justify-content-between align-items-center px-2">
+                                <small class="text-muted fw-bold" style="font-size: 0.75rem;">Declined</small>
+                                <h4 class="fw-bold text-danger mb-0">{{ $disapprovedleaves }}</h4>
                             </div>
                         </div>
                     </div>

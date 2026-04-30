@@ -94,6 +94,60 @@
             margin: 0 auto 15px;
             backdrop-filter: blur(5px);
         }
+/* 📱 iPhone / Mobile Fix */
+@media (max-width: 576px) {
+
+    .header-gradient {
+        padding: 1.5rem 1rem;
+    }
+
+    .header-gradient h3 {
+        font-size: 1.3rem;
+    }
+
+    .header-gradient p {
+        font-size: 0.85rem;
+    }
+
+    .icon-box {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+    }
+
+    .form-label {
+        font-size: 0.8rem;
+    }
+
+    .form-control {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .btn-purple,
+    .btn-outline-secondary {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+
+    .d-flex.justify-content-end {
+        flex-direction: column;
+        gap: 10px !important;
+    }
+
+    .card-custom {
+        border-radius: 14px;
+    }
+
+    .card-body {
+        padding: 1.5rem !important;
+    }
+
+    .input-group-text {
+        font-size: 0.85rem;
+    }
+}
     </style>
 
     <div class="container py-5">

@@ -102,6 +102,84 @@
         .custom-search { width: 100% !important; }
         #departmentFilter { max-width: 100% !important; width: 100%; }
     }
+/* 📱 iPhone / Mobile Fix */
+@media (max-width: 576px) {
+
+    h1 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .navbar {
+        flex-direction: column !important;
+        gap: 10px;
+    }
+
+    .navbar-nav {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .nav-item-link {
+        font-size: 0.9rem;
+    }
+
+    .custom-search,
+    #departmentFilter {
+        width: 100% !important;
+    }
+
+    .btn-purple {
+        width: 100%;
+        text-align: center;
+    }
+
+    .department-card,
+    .card {
+        border-radius: 12px;
+    }
+
+    .header-accent {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .icon-circle {
+        width: 38px;
+        height: 38px;
+    }
+
+    .member-count-badge {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+    }
+
+    .col-md-6.col-lg-4 {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .card-body {
+        padding: 15px !important;
+    }
+
+    .p-4 {
+        padding: 1rem !important;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+@media (max-width: 576px) {
+    .department-item,
+    .event-item {
+        width: 100%;
+    }
+}
 </style>
 
 <div class="container-fluid py-4">
@@ -124,8 +202,8 @@
                         </li>
                     </ul>
 
-                    <div class="d-flex gap-2 align-items-center flex-grow-1 flex-lg-grow-0 justify-content-end">
-                        <div class="input-group custom-search shadow-sm rounded-3 overflow-hidden" style="max-width: 250px;">
+                    <div class="d-flex flex-column flex-lg-row gap-2 align-items-stretch align-items-lg-center w-100 w-lg-auto justify-content-end mt-3">
+                        <div class="input-group custom-search shadow-sm rounded-3 overflow-hidden w-100">
                             <span class="input-group-text bg-white border-0"><i class="bi bi-search"></i></span>
                             <input type="text" id="searchInput" class="form-control border-0" placeholder="Search..." onkeyup="globalSearch()">
                         </div>

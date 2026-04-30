@@ -93,11 +93,57 @@
             letter-spacing: 1px;
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
+/* 📱 iPhone / Mobile Fix */
+@media (max-width: 576px) {
+
+    .header-gradient {
+        padding: 1.5rem 1rem;
+        text-align: center;
+    }
+
+    .header-gradient h3 {
+        font-size: 1.2rem;
+    }
+
+    .header-gradient p {
+        font-size: 0.85rem;
+    }
+
+    .form-label {
+        font-size: 0.8rem;
+    }
+
+    .form-control,
+    .form-select {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .btn-purple,
+    .btn-cancel {
+        width: 100%;
+        text-align: center;
+    }
+
+    .d-flex.justify-content-end {
+        flex-direction: column;
+        gap: 10px !important;
+    }
+
+    .card-custom {
+        border-radius: 12px;
+    }
+
+    .status-badge {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+    }
+}
     </style>
 
-<div class="container py-5">
+<div class="container py-3 py-md-5">
     <div class="row justify-content-center">
-        <div class="col-lg-9">
+        <div class="col-12 col-md-11 col-lg-9">
 
             <div class="card card-custom">
                 <div class="header-gradient">

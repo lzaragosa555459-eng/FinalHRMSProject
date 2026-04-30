@@ -126,20 +126,20 @@
     <div class="row g-4 mb-5">
         <div class="col-md-4">
             <div class="card border-0 shadow-sm rounded-4 p-4 bg-white border-start border-purple border-5" style="border-left: 5px solid var(--primary-purple) !important;">
-                <small class="text-muted fw-bold">TOTAL GROSS</small>
-                <h2 class="fw-bold text-dark mt-2 mb-0">₱{{ number_format($totalGross, 2)}}</h2>
+                <small class="text-muted fw-bold text-start">TOTAL GROSS</small>
+                <h2 class="fw-bold text-dark mt-2 mb-0 text-end">₱{{ number_format($totalGross, 2)}}</h2>
             </div>
         </div>
         <div class="col-md-4">
             <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
-                <small class="text-muted fw-bold">DEDUCTIONS</small>
-                <h2 class="fw-bold text-danger mt-2 mb-0">₱{{ number_format($totalDeduction, 2) }}</h2>
+                <small class="text-muted fw-bold text-start">DEDUCTIONS</small>
+                <h2 class="fw-bold text-danger mt-2 mb-0 text-end">₱{{ number_format($totalDeduction, 2) }}</h2>
             </div>
         </div>
         <div class="col-md-4">
             <div class="card border-0 shadow-sm rounded-4 p-4 bg-purple text-white">
-                <small class="text-white-50 fw-bold">TOTAL NET</small>
-                <h2 class="fw-bold mt-2 mb-0">₱{{ number_format($totalNetDept, 2)}}</h2>
+                <small class="text-white-50 fw-bold text-start">TOTAL NET</small>
+                <h2 class="fw-bold mt-2 mb-0 text-end">₱{{ number_format($totalNetDept, 2)}}</h2>
             </div>
         </div>
     </div>
