@@ -113,7 +113,7 @@
                         class="btn btn-purple w-100 mb-2">
                             <i class="bi bi-download me-2"></i> Download Payslip
                         </a>
-                        <a href="{{ route('employee.attendance) }}" class="btn btn-light w-100 fw-bold text-muted border">
+                        <a href="{{ route('employee.attendance') }}" class="btn btn-light w-100 fw-bold text-muted border">
                             <i class="bi bi-clock-history me-2"></i> Attendance Logs
                         </a>
                     </div>
