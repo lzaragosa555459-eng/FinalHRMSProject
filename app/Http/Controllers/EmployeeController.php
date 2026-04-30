@@ -111,17 +111,17 @@ class EmployeeController extends Controller
    }
 
 
-   public function exportCsv()
+   public function exportCsv($id)
    {
       $filename = 'attendance-export.csv';
 
-      return response()->streamDownload(function () {
+      return response()->streamDownload(function () use ($id) {
 
          $handle = fopen('php://output', 'w');
 
-         // CSV headers
+         // CSV headers (matches actual data)
          fputcsv($handle, [
-               'Employee ID',
+               'Employee',
                'Date',
                'Time In',
                'Time Out',
@@ -129,7 +129,9 @@ class EmployeeController extends Controller
          ]);
 
          // Fetch data
-         $attendances = Attendance::with('employee')->get();
+         $attendances = Attendance::with('employee')
+               ->where('employee_id', $id)
+               ->get();
 
          foreach ($attendances as $attendance) {
                fputcsv($handle, [

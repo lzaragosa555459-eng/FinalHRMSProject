@@ -81,5 +81,5 @@ Route::delete('/employee-request_leave/{id}', [CrudController::class, 'cancel_le
 
 Route::get('/payroll/{id}/download-slip', [EmployeeController::class, 'downloadSlip'])
     ->name('payroll.downloadSlip');
-Route::get('/attendance/export-csv', [EmployeeController::class, 'exportCsv'])
+Route::get('/attendance/export-csv/{id}', [EmployeeController::class, 'exportCsv'])
     ->name('attendance.exportCsv');
