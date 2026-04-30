@@ -183,64 +183,38 @@
         font-size: 0.8rem;
     }
 }
+.attendance-toolbar {
+    gap: 12px;
+}
+
+.custom-search {
+    width: 260px;
+}
+
+.status-filter {
+    width: 170px;
+}
+
+/* Mobile Responsive */
 @media (max-width: 768px) {
 
-    /* Main header wrapper stacks vertically */
-    .d-flex.flex-wrap.justify-content-between.align-items-center.mb-5.gap-3 {
-        flex-direction: column !important;
-        align-items: stretch !important;
-        gap: 1rem !important;
-    }
-
-    /* Title section */
-    h1 {
-        font-size: 1.35rem !important;
-        line-height: 1.2;
-    }
-
-    h1 + p {
-        font-size: 0.8rem;
-        margin-bottom: 0;
-    }
-
-    /* Header controls container */
-    .d-flex.align-items-center.p-2.px-4 {
-        width: 100%;
+    .attendance-toolbar {
         flex-direction: column;
         align-items: stretch !important;
-        padding: 0 !important;
-        gap: 10px;
+        padding: 12px !important;
     }
 
-    /* Attendance / Requests tabs */
-    .nav-link.nav-item-link {
-        font-size: 0.8rem;
-        margin-right: 0 !important;
-        text-align: center;
-        width: 100%;
-        padding: 8px 0;
-        border-radius: 10px;
-        background: white;
-    }
-
-    /* Remove vertical divider on mobile */
-    .vr {
-        display: none;
-    }
-
-    /* Search full width */
-    .custom-search {
-        width: 100%;
-    }
-
-    .custom-search input {
-        width: 100% !important;
+    .attendance-toolbar .nav-link {
         margin-right: 0 !important;
     }
 
-    /* Dropdown full width */
-    .form-select {
+    .custom-search,
+    .status-filter {
         width: 100% !important;
+    }
+
+    .attendance-toolbar .vr {
+        display: none !important;
     }
 }
 </style>
@@ -255,27 +229,33 @@
                     <p class="text-muted">Monitor daily presence and manage time-off requests</p>
                 </div>
                 
-                <div class="d-flex align-items-center p-2  px-4 ">
-                    <a class="nav-link nav-item-link active me-4" href="#" onclick="showContainer('container1', this)">
+                <div class="attendance-toolbar d-flex align-items-center p-2 px-4 flex-wrap">
+                    <a class="nav-link nav-item-link active me-3" href="#" onclick="showContainer('container1', this)">
                         Attendance
                     </a>
 
-                    <a class="nav-link nav-item-link me-4" href="#" onclick="showContainer('container2', this)">
+                    <a class="nav-link nav-item-link me-3" href="#" onclick="showContainer('container2', this)">
                         Requests
                         @if($countleaves > 0)
                             <span class="badge rounded-pill bg-danger ms-1">{{ $countleaves }}</span>
                         @endif
                     </a>
-                    
-                    <div class="vr me-4 my-2"></div>
+
+                    <div class="vr me-3 my-2 d-none d-md-block"></div>
+
                     <div class="input-group custom-search">
                         <span class="input-group-text">
-                            <i class="bi bi-search"></i>    
+                            <i class="bi bi-search"></i>
                         </span>
-                        <input type="text" id="searchInput" class="form-control border-0 bg-light shadow-none w-auto me-4"
-                        placeholder="Search employee..." onkeyup="searchTable()">
+                        <input type="text"
+                            id="searchInput"
+                            class="form-control border-0 bg-light shadow-none"
+                            placeholder="Search employee..."
+                            onkeyup="searchTable()">
                     </div>
-                    <select class="form-select border-0 bg-light shadow-none w-auto" onchange="filterStatus(this)">
+
+                    <select class="form-select border-0 bg-light shadow-none status-filter"
+                            onchange="filterStatus(this)">
                         <option value="">All Status</option>
                         <option value="present">Present</option>
                         <option value="late">Late</option>
