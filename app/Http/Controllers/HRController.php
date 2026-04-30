@@ -152,15 +152,26 @@ class HRController extends Controller
    
 
     public function attendance(){
-        $attendances = Attendance::paginate(6);
-        $approvedleaves = Leave::where('status', 'approved')->paginate(6);
+        $attendances = Attendance::paginate(6, ['*'], 'attendance_page');
+
+        $approvedleaves = Leave::where('status', 'approved')
+            ->paginate(6, ['*'], 'approved_page');
+
+        $pendingleaves = Leave::where('status', 'pending')
+            ->paginate(6, ['*'], 'pending_page');
+
         $countleaves = Leave::where('status', 'pending')->count();
-        $pendingleaves = Leave::where('status', 'pending')->paginate(6);
-        return view('hr.attendance', compact('attendances','approvedleaves', 'countleaves', 'pendingleaves'));
+
+        return view('hr.attendance', compact(
+            'attendances',
+            'approvedleaves',
+            'pendingleaves',
+            'countleaves'
+        ));
     }
 
     public function payroll(){
-        $payrolls = Payroll::paginate(6);
+        $payrolls = Payroll::paginate(8);
         $employees = Employee::all();
         $departments = Department::all();
 

@@ -97,9 +97,7 @@
     td small {
         font-size: 11px;
     }
-    h2 {
-    font-size: 20px;
-    }
+
 
     h5 {
         font-size: 14px;
@@ -118,7 +116,7 @@
 </style>
     
     <div class="container">
-        <div class="col-lg-11 offset-lg-1 mb-5 mt-4 text-center text-lg-start">
+        <div class="col-12 mb-5 mt-5 text-center text-lg-start">
             <h2 class="fw-bold mb-4" style="color: #2d1a4d;">Payroll Management</h2>
 
             <div class="row g-3 mb-4">
@@ -244,7 +242,7 @@
                 </div>
 
                 <div class="col-lg-8">
-                    <div class="d-flex gap-3 mb-3">
+                    <div class="d-flex gap-3 mb-4">
                         <div class="input-group custom-search">
                             <span class="input-group-text">
                                 <i class="bi bi-search"></i>    
@@ -263,96 +261,102 @@
 
                     <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
                         <div class="table-responsive" style="max-height: 540px;">
-                            <table class="table table-hover table-sm align-middle mb-0 small">
+                            <table class="table table-hover table-sm align-middle mb-0" style="font-size: 12px;">
                                 <thead class="position-sticky top-0">
                                     <tr>
-                                        <th>Department</th>
-                                        <th class="ps-4">Employee</th>
-                                        <th>Period</th>
-                                        <th>Basic (Computed)</th>
-                                        <th>Allowances</th>
-                                        <th>Gross salary</th>
-                                        <th>Deductions</th>
-                                        <th>Net Salary</th>
-                                        <th>Pay date</th>
-                                        <th class="pe-4">Action</th>
+                                        <th class="px-2">Department</th>
+                                        <th class="px-2">Employee</th>
+                                        <th class="px-2">Period</th>
+                                        <th class="px-2">Basic</th>
+                                        <th class="px-2">Allow.</th>
+                                        <th class="px-2">Gross</th>
+                                        <th class="px-2">Deduct.</th>
+                                        <th class="px-2">Net</th>
+                                        <th class="px-2">Pay Date</th>
+                                        <th class="px-2 text-center">Action</th>
                                     </tr>
                                 </thead>
-                                    <tbody>
-                                    @foreach($payrolls as $payroll)
-                                    <tr data-dept="{{ $payroll->employee->department_id }}">
-                                        <td>
-                                            <div class="fw-bold text-secondary">{{ $payroll->employee->position->department->name }}</div>
-                                        </td>   
-                                        <td class="ps-4">
-                                            <div class="fw-bold text-dark">{{ $payroll->employee->name }}</div>
-                                        </td>
 
-                                        <td>
-                                            <small class="text-muted">
-                                                {{ $payroll->period_start }} <br>
-                                                → {{ $payroll->period_end }}
-                                            </small>
-                                        </td>
+                                <tbody>
+                                @foreach($payrolls as $payroll)
+                                <tr data-dept="{{ $payroll->employee->position->department->department_id }}">
+                                    <td class="px-2">
+                                        <small class="fw-bold text-secondary">
+                                            {{ $payroll->employee->position->department->name }}
+                                        </small>
+                                    </td>
 
-                                        <td>
-                                            ₱{{ number_format($payroll->basic_salary, 2) }}
-                                        </td>
+                                    <td class="px-2">
+                                        <small class="fw-bold text-dark">
+                                            {{ $payroll->employee->name }}
+                                        </small>
+                                    </td>
 
-                                        <td class="text-primary">
-                                            +₱{{ number_format($payroll->allowances, 2) }}
-                                        </td>
+                                    <td class="px-2">
+                                        <small class="text-muted">
+                                            {{ $payroll->period_start }}<br>
+                                            → {{ $payroll->period_end }}
+                                        </small>
+                                    </td>
 
-                                        <td class="text-primary">
-                                            +₱{{ number_format($payroll->gross_salary, 2) }}
-                                        </td>
+                                    <td class="px-2">₱{{ number_format($payroll->basic_salary, 2) }}</td>
 
+                                    <td class="px-2 text-primary">
+                                        +₱{{ number_format($payroll->allowances, 2) }}
+                                    </td>
 
-                                        <td class="text-danger">
-                                            -₱{{ number_format($payroll->deduction, 2) }}
-                                        </td>
+                                    <td class="px-2 text-primary">
+                                        +₱{{ number_format($payroll->gross_salary, 2) }}
+                                    </td>
 
-                                        <td>
-                                            <span class="badge-subtle text-success fs-6 rounded-pill px-3">
-                                                ₱{{ number_format($payroll->net_salary, 2) }}
-                                            </span>
-                                        </td>
-                                        <td>{{ $payroll->pay_date}}</td>
-                                        <td class="pe-4 align-middle">
-                                            <div class="d-flex flex-row gap-2 justify-content-center align-items-center" style="min-height: 34px;">
+                                    <td class="px-2 text-danger">
+                                        -₱{{ number_format($payroll->deduction, 2) }}
+                                    </td>
 
-                                                <button type="button"
-                                                    class="btn btn-sm btn-light border d-flex align-items-center justify-content-center p-0"
-                                                    style="width: 34px; height: 34px; flex-shrink: 0;"
-                                                    onclick="editEmployee(
-                                                        '{{ $payroll->employee->employee_id }}',
-                                                        '{{ $payroll->basic_salary }}',
-                                                        '{{ $payroll->period_start }}',
-                                                        '{{ $payroll->period_end }}',
-                                                        '{{ $payroll->allowances }}',
-                                                        '{{ $payroll->pay_date }}'
-                                                    )">
-                                                    <i class="bi bi-pencil"></i>
+                                    <td class="px-2">
+                                        <span class="text-success fw-bold">
+                                            ₱{{ number_format($payroll->net_salary, 2) }}
+                                        </span>
+                                    </td>
+
+                                    <td class="px-2">
+                                        {{ $payroll->pay_date }}
+                                    </td>
+
+                                    <td class="px-2 text-center">
+                                        <div class="d-flex gap-1 justify-content-center">
+
+                                            <button type="button"
+                                                class="btn btn-sm btn-light border p-0"
+                                                style="width:28px; height:28px;"
+                                                onclick="editEmployee(
+                                                    '{{ $payroll->employee->employee_id }}',
+                                                    '{{ $payroll->basic_salary }}',
+                                                    '{{ $payroll->period_start }}',
+                                                    '{{ $payroll->period_end }}',
+                                                    '{{ $payroll->allowances }}',
+                                                    '{{ $payroll->pay_date }}'
+                                                )">
+                                                <i class="bi bi-pencil-square" style="font-size:11px;"></i>
+                                            </button>
+
+                                            <form action="{{ route('delete.payroll', $payroll->payroll_id) }}"
+                                                method="POST"
+                                                class="m-0">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button type="submit"
+                                                    class="btn btn-sm btn-light border text-danger p-0"
+                                                    style="width:28px; height:28px;">
+                                                    <i class="bi bi-trash" style="font-size:11px;"></i>
                                                 </button>
+                                            </form>
 
-                                                <form action="{{ route('delete.payroll', $payroll->payroll_id) }}"
-                                                    method="POST"
-                                                    class="m-0 d-flex align-items-center">
-                                                    @csrf
-                                                    @method('DELETE')
-
-                                                    <button type="submit"
-                                                        class="btn btn-sm btn-light border text-danger d-flex align-items-center justify-content-center p-0"
-                                                        style="width: 34px; height: 34px; flex-shrink: 0;">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
-                                                </form>
-
-                                            </div>
-                                        </td>
-
-                                    </tr>
-                                    @endforeach
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                             <tfoot>        
@@ -408,3 +412,4 @@ document.getElementById('employee_id').addEventListener('change', function () {
     }
 });
 </script>
+@endsection

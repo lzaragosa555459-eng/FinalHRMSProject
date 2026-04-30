@@ -1,6 +1,6 @@
 @extends('layouts.apphr')
 
-@section('title', "{{ isset($department) ? 'Edit' : 'Create' }}")
+@section('title', isset($department) ? 'Edit' : 'Create' )
 
 @section('content')
     

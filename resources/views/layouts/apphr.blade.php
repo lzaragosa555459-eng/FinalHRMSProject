@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+     <link rel="icon" href="{{ asset('logo.png') }}" type="image/png">
     <script>
     (function () {
         const isDark = localStorage.getItem('darkMode') === 'enabled';
@@ -525,12 +526,12 @@ if (localStorage.getItem('darkMode') === 'enabled') {
         <div class="row">
             
             <!-- Sidebar -->
-            <div class="col-md-2">
+            <div class="col-2">
                 @include('partials.sidebarHR')
             </div>
 
             <!-- Main Content -->
-            <div class="col-md-9 p-5">
+            <div class="col-10 " style="margin-left: 12%;">
                 @yield('content')
             </div>
 

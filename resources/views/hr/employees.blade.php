@@ -3,195 +3,196 @@
 @section('title', 'Employees')
 
 @section('content')
-    <style>
-        body {
-            background-color: #f3f0f7 !important;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-        }
+<style>
+    body {
+        background-color: #f3f0f7 !important;
+        font-family: 'Segoe UI', Roboto, sans-serif;
+    }
 
-        /* CONTROLS */
-        .controls-container {
-            background: white;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(111, 66, 193, 0.08);
-            margin-bottom: 30px;
-        }
+    /* CONTROLS */
+    .controls-container {
+       
+        padding: 25px;
+        border-radius: 20px;
+        margin-bottom: 30px;
+    }
 
-        /* CLICKABLE CARD STYLE */
-        .employee-link {
-            text-decoration: none !important;
-            display: block;
-            height: 100%;
-        }
+    /* CLICKABLE CARD STYLE */
+    .employee-link {
+        text-decoration: none !important;
+        display: block;
+        height: 100%;
+    }
 
-        .employee-card .card {
-            border: none;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            background: #ffffff;
-            position: relative;
-            cursor: pointer;
-        }
+    .employee-card .card {
+        border: none;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        background: #ffffff;
+        position: relative;
+        cursor: pointer;
+    }
 
-        /* Big Box Hover Effect */
-        .employee-link:hover .card {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(111, 66, 193, 0.12) !important;
-            background-color: #fdfbff; /* Very slight purple tint on hover */
-        }
+    /* Big Box Hover Effect */
+    .employee-link:hover .card {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(111, 66, 193, 0.12) !important;
+        background-color: #fdfbff;
+    }
 
-        /* Profile Section */
-        .profile-circle {
-            width: 130px; /* Bigger box feel */
-            height: 130px;
-            border: 6px solid #f3f0f7;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            margin: 0 auto;
-            background: #6f42c1;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    /* Profile Section */
+    .profile-circle {
+        width: 130px;
+        height: 130px;
+        border: 6px solid #f3f0f7;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        margin: 0 auto;
+        background: #6f42c1;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-        .initials {
-            font-size: 52px;
-            font-weight: bold;
-            color: white;
-        }
+    .initials {
+        font-size: 52px;
+        font-weight: bold;
+        color: white;
+    }
 
-        /* Typography */
-        .emp-name {
-            color: #2d1a4d;
-            font-weight: 700;
-            margin-top: 15px;
-        }
+    /* Typography */
+    .emp-name {
+        color: #2d1a4d;
+        font-weight: 700;
+        margin-top: 15px;
+    }
 
-        .emp-position {
-            color: #6f42c1;
-            background: #efebf7;
-            display: inline-block;
-            padding: 5px 18px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
+    .emp-position {
+        color: #6f42c1;
+        background: #efebf7 !important;
+        display: inline-block;
+        padding: 5px 18px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
 
-        .info-row {
-            color: #6c757d;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
-        }
+    .info-row {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
 
-        /* Add Button */
-        .btn-add {
-            background-color: #6f42c1;
-            color: white;
-            padding: 14px 28px;
-            border-radius: 14px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: 0.3s;
-        }
+    /* Add Button */
+    .btn-add {
+        background-color: #6f42c1;
+        color: white;
+        padding: 14px 28px;
+        border-radius: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: 0.3s;
+    }
 
-        .btn-add:hover {
-            background-color: #5a32a3;
-            color: white;
-            transform: scale(1.02);
-        }
-    </style>
+    .btn-add:hover {
+        background-color: #5a32a3;
+        color: white;
+        transform: scale(1.02);
+    }
 
+    /* Search & Filter Styling */
+    .custom-search .input-group-text, 
+    .custom-search .form-control,
+    .custom-select {
+        border-radius: 12px;
+        border: 1px solid #e0e0e0;
+    }
+</style>
 
-<div class="container py-5">
-    <div class="col-lg-11 offset-lg-1">
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
 
-        <div class="d-flex justify-content-between align-items-center mb-5">
-            <div>
-                <h1 class="fw-bold mb-0" style="color: #2d1a4d;">Employees</h1>
-                <p class="text-muted">Click any card to manage employee details</p>
-            </div>
-            <a href="{{ route('hr.Crud.add') }}" class="btn-add shadow-sm">
-                <i class="bi bi-person-plus-fill me-2"></i> Add New Employee
-            </a>
-        </div>
-
-        <div class=" mb-4">
-            <div class="row g-3">
-
-                <!-- SEARCH -->
-                <div class="col-md-8">
-                    <div class="input-group custom-search">
-                        <span class="input-group-text">
-                            <i class="bi bi-search"></i>    
-                        </span>
-
-                        <input type="text"
-                            id="searchInput"
-                            class="form-control"
-                            placeholder="Search name or position..."
-                            onkeyup="searchEmployees()">
-                    </div>
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-5">
+                <div class="mb-3 mb-md-0">
+                    <h1 class="fw-bold mb-0" style="color: #2d1a4d;">Employees</h1>
+                    <p class="text-muted mb-0">Click any card to manage employee details</p>
                 </div>
-
-                <!-- FILTER -->
-                <div class="col-md-4">
-                    <select class="form-select custom-select"
-                            onchange="filterByDepartment()">
-                        <option value="">All Departments</option>
-                        @foreach($departments as $dept)
-                            <option value="{{ $dept->department_id }}">
-                                {{ $dept->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="row" id="employeesGrid">
-            @foreach($employees as $emp)
-            <div class="col-md-6 col-xl-4 mb-4 employee-card"
-                 data-name="{{ strtolower($emp->name) }}"
-                 data-department="{{ $emp->position->department_id }}">
-                
-                <a href="{{ route('hr.EmployeesDetails.employee_details', $emp->employee_id) }}" class="employee-link">
-                    <div class="card shadow-sm h-100 rounded-4 text-center p-4">
-                        <div class="profile-container">
-                            <div class="profile-circle rounded-circle">
-                                @if($emp->profile_image || $emp->avatar)
-                                    <img src="{{ $emp->profile_photo_path ?? $emp->avatar }}"
-                                         alt="{{ $emp->name }}"
-                                         class="w-100 h-100 object-fit-cover">
-                                @else
-                                    <div class="initials">{{ strtoupper(substr($emp->name ?? 'U', 0, 1)) }}</div>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="mt-3">
-                            <h4 class="emp-name mb-1">{{ $emp->name }}</h4>
-                            <div class="emp-position">{{ $emp->position?->title ?? 'Staff Member' }}</div>
-                            
-                            <div class="info-row">
-                                <i class="bi bi-envelope-at me-1"></i> {{ $emp->email }}
-                            </div>
-                            <div class="info-row">
-                                <i class="bi bi-building me-1"></i> {{ $emp->position->department?->name ?? 'Unassigned' }}
-                            </div>
-                        </div>
-                    </div>
+                <a href="{{ route('hr.Crud.add') }}" class="btn-add shadow-sm text-center">
+                    <i class="bi bi-person-plus-fill me-2"></i> Add New Employee
                 </a>
             </div>
-            @endforeach
-        </div>
-    </div>
-<div class="mt-3 d-flex justify-content-center">
-    {{ $employees->links() }}
-</div>
-</div>
-@if(session('success'))
+
+            <div class="controls-container">
+                <div class="row g-3">
+                    <div class="col-md-8">
+                        <div class="input-group custom-search">
+                            <span class="input-group-text">
+                                <i class="bi bi-search"></i>    
+                            </span>
+                            <input type="text"
+                                id="searchInput"
+                                class="form-control"
+                                placeholder="Search name or position..."
+                                onkeyup="searchEmployees()">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <select class="form-select custom-select h-100" onchange="filterByDepartment()">
+                            <option value="">All Departments</option>
+                            @foreach($departments as $dept)
+                                <option value="{{ $dept->department_id }}">
+                                    {{ $dept->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="employeesGrid">
+                @foreach($employees as $emp)
+                <div class="col-md-6 col-xl-4 mb-4 employee-card"
+                     data-name="{{ strtolower($emp->name) }}"
+                     data-department="{{ $emp->position->department_id }}">
+                    
+                    <a href="{{ route('hr.EmployeesDetails.employee_details', $emp->employee_id) }}" class="employee-link">
+                        <div class="card shadow-sm h-100 rounded-4 text-center p-4">
+                            <div class="profile-container">
+                                <div class="profile-circle rounded-circle">
+                                    @if($emp->profile_image || $emp->avatar)
+                                        <img src="{{ $emp->profile_photo_path ?? $emp->avatar }}"
+                                             alt="{{ $emp->name }}"
+                                             class="w-100 h-100 object-fit-cover">
+                                    @else
+                                        <div class="initials">{{ strtoupper(substr($emp->name ?? 'U', 0, 1)) }}</div>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                <h4 class="emp-name mb-1">{{ $emp->name }}</h4>
+                                <div class="emp-position">{{ $emp->position?->title ?? 'Staff Member' }}</div>
+                                
+                                <div class="info-row">
+                                    <i class="bi bi-envelope-at me-1"></i> {{ $emp->email }}
+                                </div>
+                                <div class="info-row">
+                                    <i class="bi bi-building me-1"></i> {{ $emp->position->department?->name ?? 'Unassigned' }}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                @endforeach
+            </div>
+
+            <div class="mt-4 d-flex justify-content-center">
+                {{ $employees->links() }}
+            </div>
+
+        </div> </div> </div> @if(session('success'))
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
     <div id="successToast" class="toast align-items-center text-bg-success border-0 show" role="alert">
         <div class="d-flex">
@@ -204,7 +205,6 @@
     </div>
 </div>
 @endif
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
 function searchEmployees() {
@@ -230,12 +230,13 @@ function filterByDepartment() {
         }
     });
 }
+
 document.addEventListener('DOMContentLoaded', function () {
     const toastEl = document.getElementById('successToast');
     if (toastEl) {
-        const toast = new bootstrap.Toast(toastEl, { delay: 9000 });
+        const toast = new bootstrap.Toast(toastEl, { delay: 5000 });
         toast.show();
     }
 });
 </script>
-
+@endsection

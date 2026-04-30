@@ -44,7 +44,6 @@
 
     .status-badge-soft {
         font-size: 0.65rem;
-        background: #e2d9f3;
         color: #4b208c;
         padding: 5px 12px;
         font-weight: 700;
@@ -82,7 +81,7 @@
         background: #6f42c1;
         color: #fff;
         font-weight: 700;
-        border-radius: 12px;
+        border-radius: 20px;
         padding: 8px 20px;
         border: none;
         transition: 0.3s;

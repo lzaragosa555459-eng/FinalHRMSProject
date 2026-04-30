@@ -188,7 +188,7 @@
 
   
     <div class="container py-5">
-        <div class="col-lg-11 offset-lg-1">
+        <div class="col-12">
 
             <div class="d-flex flex-wrap justify-content-between align-items-center mb-5 gap-3">
                 <div>
@@ -415,3 +415,4 @@
         });
     }
 </script>
+@endsection

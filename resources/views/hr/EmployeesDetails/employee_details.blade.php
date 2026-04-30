@@ -51,7 +51,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <div class="container py-4">
-        <div class="col-lg-11 offset-lg-1">
+        <div class="col-lg-11 offset-lg-1" style="margin-left: 2%;">
             
             <div class="mb-3 text-end">
                 <a href="{{ route('hr.employees') }}" class="btn btn-white shadow-sm rounded-pill px-4">
@@ -145,9 +145,9 @@
                                             <small class="text-muted">By {{ $perf->reviewer->name }}</small>
                                         </div>
                                         <span class="badge rounded-pill 
-                                            @if($perf->status == 'Reviewed') bg-success-subtle text-success 
-                                            @elseif($perf->status == 'Completed') bg-primary-subtle text-primary 
-                                            @else bg-secondary-subtle text-secondary @endif">
+                                            @if($perf->status == 'Reviewed')  text-success 
+                                            @elseif($perf->status == 'Completed')  text-primary 
+                                            @else  text-secondary @endif">
                                             {{ $perf->status }}
                                         </span>
                                     </div>
@@ -260,3 +260,4 @@
         }
     });
 </script>
+@endsection
