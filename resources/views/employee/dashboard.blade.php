@@ -109,7 +109,7 @@
 
                     <div class="text-start border-top pt-4">
                         <p class="text-muted small text-uppercase fw-bold mb-2">Quick Actions</p>
-                        <a href="{{ route('payroll.downloadSlip'), $payroll->payroll_id) }}"
+                        <a href="{{ route('payroll.downloadSlip', $user->employee->payroll->payroll_id) }}"
                         class="btn btn-purple w-100 mb-2">
                             <i class="bi bi-download me-2"></i> Download Payslip
                         </a>
