@@ -29,7 +29,7 @@ class EmployeeController extends Controller
 
       $attendance = Attendance::where('employee_id', $user->employee_id)->get();
 
-      return view('employee.attendance', compact('attendance'));
+      return view('employee.attendance', compact('attendance','user'));
    }
 
    public function attend_event()

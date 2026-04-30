@@ -125,7 +125,7 @@
                 <h1 class="display-5 fw-bold m-0" style="color: #2d1a4d;">Logbook</h1>
                 <p class="text-muted fw-bold small text-uppercase mb-0">Daily Verification Records</p>
             </div>
-            <a href="{{ route('attendance.exportCsv', $attendance->employee_id) }}" class="btn btn-purple-export">
+            <a href="{{ route('attendance.exportCsv', $user->employee->employee_id) }}" class="btn btn-purple-export">
                 <i class="bi bi-file-earmark-arrow-down-fill me-2"></i>Export CSV
             </a>
         </div>
