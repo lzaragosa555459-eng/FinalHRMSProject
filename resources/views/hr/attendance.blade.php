@@ -183,7 +183,66 @@
         font-size: 0.8rem;
     }
 }
+@media (max-width: 768px) {
 
+    /* Main header wrapper stacks vertically */
+    .d-flex.flex-wrap.justify-content-between.align-items-center.mb-5.gap-3 {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 1rem !important;
+    }
+
+    /* Title section */
+    h1 {
+        font-size: 1.35rem !important;
+        line-height: 1.2;
+    }
+
+    h1 + p {
+        font-size: 0.8rem;
+        margin-bottom: 0;
+    }
+
+    /* Header controls container */
+    .d-flex.align-items-center.p-2.px-4 {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch !important;
+        padding: 0 !important;
+        gap: 10px;
+    }
+
+    /* Attendance / Requests tabs */
+    .nav-link.nav-item-link {
+        font-size: 0.8rem;
+        margin-right: 0 !important;
+        text-align: center;
+        width: 100%;
+        padding: 8px 0;
+        border-radius: 10px;
+        background: white;
+    }
+
+    /* Remove vertical divider on mobile */
+    .vr {
+        display: none;
+    }
+
+    /* Search full width */
+    .custom-search {
+        width: 100%;
+    }
+
+    .custom-search input {
+        width: 100% !important;
+        margin-right: 0 !important;
+    }
+
+    /* Dropdown full width */
+    .form-select {
+        width: 100% !important;
+    }
+}
 </style>
 
   
