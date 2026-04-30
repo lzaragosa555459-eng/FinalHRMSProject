@@ -11,6 +11,9 @@ use App\Models\Event_attendance;
 use App\Models\Leave;
 use App\Models\Performance;
 use Symfony\Contracts\Service\Attribute\Required;
+use App\Models\Payroll;
+
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class EmployeeController extends Controller
 {
@@ -95,5 +98,53 @@ class EmployeeController extends Controller
 
       return redirect()->route('employee.attendEvent')
          ->with('success', 'Successfully registered!');
+   }
+
+
+   public function downloadSlip($id)
+   {
+      $payroll = Payroll::with('employee')->findOrFail($id);
+
+      $pdf = Pdf::loadView('pdf.payslip', compact('payroll'));
+
+      return $pdf->download('Payslip-'.$payroll->employee->name.'.pdf');
+   }
+
+
+   public function exportCsv()
+   {
+      $filename = 'attendance-export.csv';
+
+      return response()->streamDownload(function () {
+
+         $handle = fopen('php://output', 'w');
+
+         // CSV headers
+         fputcsv($handle, [
+               'Employee ID',
+               'Date',
+               'Time In',
+               'Time Out',
+               'Status'
+         ]);
+
+         // Fetch data
+         $attendances = Attendance::with('employee')->get();
+
+         foreach ($attendances as $attendance) {
+               fputcsv($handle, [
+                  $attendance->employee->name ?? 'N/A',
+                  $attendance->date,
+                  $attendance->time_in,
+                  $attendance->time_out ?? '--',
+                  $attendance->status
+               ]);
+         }
+
+         fclose($handle);
+
+      }, $filename, [
+         "Content-Type" => "text/csv",
+      ]);
    }
 }
