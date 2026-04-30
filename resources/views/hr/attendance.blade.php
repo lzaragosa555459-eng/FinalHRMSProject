@@ -206,11 +206,12 @@
 
     .attendance-toolbar .nav-link {
         margin-right: 0 !important;
+        background-color: transparent;
     }
 
     .custom-search,
     .status-filter {
-        width: 100% !important;
+        width: 80% !important;
     }
 
     .attendance-toolbar .vr {
