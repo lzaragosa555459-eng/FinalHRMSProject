@@ -43,7 +43,6 @@
     .profile-circle {
         width: 130px;
         height: 130px;
-        border: 6px solid #f3f0f7;
         box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         margin: 0 auto;
         background: #6f42c1;

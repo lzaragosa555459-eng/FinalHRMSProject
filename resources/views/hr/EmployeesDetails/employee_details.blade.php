@@ -88,7 +88,7 @@
             </div>
 
             <div class="card-custom bg-purple-gradient p-3 p-md-5 text-center mb-4">
-                <div class="rounded-circle overflow-hidden shadow-lg border border-4 border-white mx-auto mb-3"
+                <div class="rounded-circle overflow-hidden shadow-lg  mx-auto mb-3"
                      style="width: 120px; height: 120px;" class="mx-auto">
                          @if($emp->profile_image)
                             <img src="{{ asset('uploads/employees/' . $emp->profile_image) }}"
