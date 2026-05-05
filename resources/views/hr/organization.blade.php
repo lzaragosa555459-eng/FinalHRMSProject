@@ -286,7 +286,7 @@
                         <div class="card shadow-sm h-100 rounded-4 border-0 overflow-hidden">
                             <div class="p-4">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <div class="bg-purple-subtle px-3 py-1 rounded-pill small fw-bold">
+                                    <div class="bg-purple-subtle px-3 py-1  small fw-bold">
                                         {{ str_replace('_', ' ', $event->event_type) }}
                                     </div>
                                     <span class="badge @if($event->status == 'published') bg-success @else bg-secondary @endif">

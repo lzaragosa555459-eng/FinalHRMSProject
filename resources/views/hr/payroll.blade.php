@@ -121,7 +121,7 @@
 
             <div class="row g-3 mb-4">
                 <div class="col-md-4">
-                    <div class="card border-0 shadow-sm rounded-4 p-3 card-summary border-gross">
+                    <div class="card border-0 shadow-sm rounded-4 p-3 card-summary border-gross" style="background-color: #6f42c1;">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="bg-light p-3 rounded-3 me-3">
                                 <i class="bi bi-wallet2 text-secondary fs-4"></i>
@@ -149,7 +149,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <div class="card border-0 shadow-sm rounded-4 p-3 card-summary border-net">
+                    <div class="card border-0 shadow-sm rounded-4 p-3 card-summary border-net" style=" background-color: #e2d9f3;">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="bg-success-subtle p-3 rounded-3 me-3">
                                 <i class="bi bi-cash-stack text-success fs-4"></i>

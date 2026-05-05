@@ -34,12 +34,21 @@ class CrudController extends Controller
             'manager_id'      => 'nullable|exists:employees,employee_id',
             'status'          => 'nullable|in:active,resigned,inactive',
         ]);
+
+        // 1. HANDLE IMAGE FIRST
+        if ($request->hasFile('profile_image')) {
+            $file = $request->file('profile_image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads/employees'), $filename);
+
+            $validated['profile_image'] = $filename;
+        }
+
+        // 2. CREATE EMPLOYEE
         $employee = Employee::create($validated);
-        if (
-            $request->filled('username') ||
-            $request->filled('email') ||
-            $request->filled('password')
-        ) {
+
+        // 3. CREATE USER IF PROVIDED
+        if ($request->filled('username') || $request->filled('email') || $request->filled('password')) {
 
             $request->validate([
                 'username' => 'required|string|max:100',
@@ -49,56 +58,76 @@ class CrudController extends Controller
             ]);
 
             User::create([
-                'employee_id' => $employee->getkey(),
+                'employee_id' => $employee->employee_id,
                 'username' => $request->username,
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
                 'system_role' => $request->system_role,
             ]);
         }
-            
-
-
-        if ($request->hasFile('profile_image')) {
-            $path = $request->file('profile_image')->store('employees', 'public');
-            $validated['profile_image'] = $path;
-        }
-
-        $validated['status'] = $request->status ?? 'active';
-
-       
 
         return redirect()->route('hr.employees')
-                         ->with('success', 'Employee added successfully!');
+            ->with('success', 'Employee added successfully!');
     }
 
 
-        public function update(Request $request, $id)
-        {
-            $employee = Employee::findOrFail($id);
+    public function update(Request $request, $id)
+    {
+        $employee = Employee::findOrFail($id);
 
-            $employee->update([
-                'employee_number' => $request->employee_number,
-                'name'            => $request->name,
-                'phone_number'    => $request->phone_number,
-                'address'         => $request->address,
-                'date_of_birth'   => $request->date_of_birth,
-                'gender'          => $request->gender,
+        $validated = $request->validate([
+            'employee_number' => 'required|string',
+            'name' => 'required|string',
+            'phone_number' => 'required|string',
+            'address' => 'required|string',
+            'date_of_birth' => 'required|date',
+            'gender' => 'required',
+            'profile_image' => 'nullable|image',
+            'employee_role' => 'nullable',
+            'position_id' => 'required',
+            'applicant_id' => 'nullable',
+            'hire_date' => 'nullable',
+            'manager_id' => 'nullable',
+            'status' => 'nullable',
+        ]);
 
-                // Profile image handled separately (see note below)
+        // IMAGE
+        if ($request->hasFile('profile_image')) {
 
-                'employee_role'   => $request->role,
-                'position_id'     => $request->position_id,
-                'applicant_name'  => $request->applicant_name,
-                'hire_date'       => $request->hire_date,
-                'salary'          => $request->salary,
-                'manager_name'    => $request->manager_name,
-                'status'          => $request->status,
+            $file = $request->file('profile_image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+
+            $file->move(public_path('uploads/employees'), $filename);
+
+            if ($employee->profile_image) {
+                @unlink(public_path('uploads/employees/' . $employee->profile_image));
+            }
+
+            $validated['profile_image'] = $filename;
+        }
+
+        // EMPLOYEE UPDATE
+        $employee->update($validated);
+
+        // USER UPDATE
+        if ($employee->user) {
+            $employee->user->update([
+                'username' => $request->username,
+                'email' => $request->email,
+                'system_role' => $request->system_role,
             ]);
 
-            return redirect()->route('hr.EmployeesDetails.employee_details', $id)
-                ->with('success', 'Employee updated successfully');
+            if ($request->filled('password')) {
+                $employee->user->update([
+                    'password' => bcrypt($request->password),
+                ]);
+            }
         }
+
+        return redirect()
+            ->route('hr.EmployeesDetails.employee_details', $id)
+            ->with('success', 'Employee updated successfully');
+    }
 
         public function destroy($id){
             $employee = Employee::findOrFail($id);

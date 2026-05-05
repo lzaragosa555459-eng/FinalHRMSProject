@@ -153,6 +153,7 @@
                         <div class="col-md-6">
                             <label class="form-label">Position<span class="required-dot">*</span></label>
                             <select name="position_id" class="form-select">
+                                <option value="">Select position</option>
                                 @foreach($positions as $pos)
                                     <option value="{{ $pos->position_id }}">{{ $pos->title }}</option>
                                 @endforeach
@@ -177,6 +178,7 @@
                         <div class="col-md-6">
                             <label class="form-label">Manager</label>
                             <select name="manager_id" class="form-select">
+                                <option value="">None</option>
                                 @foreach($managers as $man)
                                     <option value="{{ $man->employee_id }}">{{ $man->name }}</option>
                                 @endforeach
@@ -186,6 +188,7 @@
                         <div class="col-md-6">
                             <label class="form-label">User Account</label>
                             <select name="user_id" class="form-select">
+                                 <option value="">None</option>
                                 @foreach($users as $user)
                                     <option value="{{ $user->user_id }}">{{ $user->email }}</option>
                                 @endforeach
@@ -208,17 +211,17 @@
 
                         <div class="col-md-6">
                             <label class="form-label">Username<span class="required-dot">*</span></label>
-                            <input type="text" name="username" class="form-control">
+                            <input type="text" name="username" class="form-control" placeholder="Enter username">
                         </div>
 
                         <div class="col-md-6">
                             <label class="form-label">Email<span class="required-dot">*</span></label>
-                            <input type="email" name="email" class="form-control">
+                            <input type="email" name="email" class="form-control" placeholder="Enter email">
                         </div>
 
                         <div class="col-md-6">
                             <label class="form-label">Password<span class="required-dot">*</span></label>
-                            <input type="password" name="password" class="form-control">
+                            <input type="password" name="password" class="form-control" placeholder="Enter password">
                         </div>
 
                         <div class="col-md-6">

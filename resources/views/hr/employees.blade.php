@@ -161,12 +161,14 @@
                         <div class="card shadow-sm h-100 rounded-4 text-center p-4">
                             <div class="profile-container">
                                 <div class="profile-circle rounded-circle">
-                                    @if($emp->profile_image || $emp->avatar)
-                                        <img src="{{ $emp->profile_photo_path ?? $emp->avatar }}"
-                                             alt="{{ $emp->name }}"
-                                             class="w-100 h-100 object-fit-cover">
+                                    @if($emp->profile_image)
+                                        <img src="{{ asset('uploads/employees/' . $emp->profile_image) }}"
+                                            alt="{{ $emp->name }}"
+                                            class="w-100 h-100 object-fit-cover">
                                     @else
-                                        <div class="initials">{{ strtoupper(substr($emp->name ?? 'U', 0, 1)) }}</div>
+                                        <div class="initials">
+                                            {{ strtoupper(substr($emp->name ?? 'U', 0, 1)) }}
+                                        </div>
                                     @endif
                                 </div>
                             </div>
@@ -192,19 +194,9 @@
                 {{ $employees->links() }}
             </div>
 
-        </div> </div> </div> @if(session('success'))
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
-    <div id="successToast" class="toast align-items-center text-bg-success border-0 show" role="alert">
-        <div class="d-flex">
-            <div class="toast-body">
-                <i class="bi bi-check-circle me-2"></i>
-                {{ session('success') }}
-            </div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-        </div>
-    </div>
-</div>
-@endif
+        </div> 
+    </div> 
+</div> 
 
 <script>
 function searchEmployees() {

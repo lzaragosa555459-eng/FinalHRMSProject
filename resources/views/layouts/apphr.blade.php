@@ -512,6 +512,7 @@ body.dark-mode .emp-position{
     body.dark-mode .card-summary i {
         color: #c7b6ff !important;
     }
+
 </style>
 
 <script>
@@ -586,6 +587,35 @@ flatpickr("#pay_date", {
     allowInput: true
 });
 </script>
+@if(session('success'))
+    <div id="toast-success"
+        style="
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #198754;
+            color: white;
+            padding: 14px 22px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,.15);
+            z-index: 9999;
+            transition: opacity .3s ease;
+        ">
+        {{ session('success') }}
+    </div>
 
+    <script>
+        setTimeout(() => {
+            const toast = document.getElementById('toast-success');
+
+            if (toast) {
+                toast.style.opacity = '0';
+
+                setTimeout(() => toast.remove(), 300);
+            }
+        }, 3000);
+    </script>
+@endif
 </body>
 </html>

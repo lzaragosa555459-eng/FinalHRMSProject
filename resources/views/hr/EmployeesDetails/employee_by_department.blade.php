@@ -274,7 +274,7 @@
                         </a>
                         <div class="d-flex gap-1">
                             <a href="{{ route('hr.Crud.editEvent', $event->event_id) }}" class="btn btn-light btn-sm rounded-circle text-warning">
-                                <i class="bi bi-pencil"></i>
+                                <i class="bi bi-pencil-square"></i>
                             </a>
                             <form action="{{ route('hr.Crud.deleteEvent', $event->event_id) }}" method="POST">
                                 @csrf @method('DELETE')

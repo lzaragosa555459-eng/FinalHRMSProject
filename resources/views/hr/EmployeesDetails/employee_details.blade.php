@@ -90,16 +90,15 @@
             <div class="card-custom bg-purple-gradient p-3 p-md-5 text-center mb-4">
                 <div class="rounded-circle overflow-hidden shadow-lg border border-4 border-white mx-auto mb-3"
                      style="width: 120px; height: 120px;" class="mx-auto">
-                    @if($emp->profile_image || $emp->avatar)
-                        <img src="{{ $emp->profile_photo_path ?? $emp->avatar }}"
-                             alt="{{ $emp->name }}"
-                             class="w-100 h-100 object-fit-cover">
-                    @else
-                        <div class="w-100 h-100 bg-white text-purple d-flex justify-content-center align-items-center"
-                             style="font-size: 50px; font-weight: bold;">
-                            {{ strtoupper(substr($emp->name ?? 'U', 0, 1)) }}
-                        </div>
-                    @endif
+                         @if($emp->profile_image)
+                            <img src="{{ asset('uploads/employees/' . $emp->profile_image) }}"
+                            alt="{{ $emp->name }}"
+                            class="w-100 h-100 object-fit-cover">
+                         @else
+                            <div class="initials">
+                                {{ strtoupper(substr($emp->name ?? 'U', 0, 1)) }}
+                            </div>
+                        @endif
                 </div>
 
                 <h2 class="fw-bold mb-1" style="font-size: clamp(18px, 4vw, 28px);">
@@ -197,7 +196,7 @@
                                         <div class="d-flex justify-content-end gap-2 border-top pt-2">
                                             <a href="{{ route('gotoperfomanceform', [$emp->employee_id, $perf->performance_id]) }}" 
                                             class="btn btn-sm " title="Edit Review">
-                                                <i class="bi bi-pencil"></i>
+                                                <i class="bi bi-pencil-square"></i>
                                             </a>
                                             <a href="#" class="btn btn-sm" title="Delete Review">
                                                 <i class="bi bi-trash"></i>

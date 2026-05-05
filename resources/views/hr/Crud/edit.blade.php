@@ -146,6 +146,7 @@
                         <div class="col-md-6">
                             <label class="form-label">Position</label>
                             <select name="position_id" class="form-select">
+                                <option value="">Select position</option>
                                 @foreach($positions as $pos)
                                     <option value="{{ $pos->position_id }}"
                                         {{ $employee->position_id == $pos->position_id ? 'selected' : '' }}>
@@ -190,6 +191,7 @@
                         <div class="col-md-6">
                             <label class="form-label">User Account</label>
                             <select name="user_id" class="form-select">
+                                <option value="">None</option>
                                 @foreach($users as $user)
                                     <option value="{{ $user->user_id }}"
                                         {{ $employee->user_id == $user->user_id ? 'selected' : '' }}>

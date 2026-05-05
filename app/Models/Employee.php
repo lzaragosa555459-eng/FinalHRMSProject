@@ -49,8 +49,9 @@ class Employee extends Model
         return $this->hasOne(User::class, 'employee_id');
     }
     
-    public function payroll(){
-        return $this->belongsTo(Payroll::class, 'employee_id');
+    public function payroll()
+    {
+        return $this->hasOne(Payroll::class, 'employee_id', 'employee_id');
     }
 
     public function performance(){

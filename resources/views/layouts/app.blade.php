@@ -83,7 +83,7 @@
 
     <div class="sidebar-overlay" id="overlay"></div>
 
-    <main class="main-wrapper">
+    <main class="main-wrapper" style="margin-left: 10px;">
         @yield('content')
     </main>
 
