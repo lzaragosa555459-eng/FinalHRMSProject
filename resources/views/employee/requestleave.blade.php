@@ -143,7 +143,7 @@
             <div class="tab-content">
                 {{-- PENDING --}}
                 <div class="tab-pane fade show active" id="pending">
-                    <div class="table-responsive">
+                    <div class="table-responsive portal-table">
                         <table class="table mb-0">
                             <thead>
                                 <tr>

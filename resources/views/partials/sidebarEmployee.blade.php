@@ -218,6 +218,12 @@
                 <span class="text">Performance</span>
             </a>
         </li>
+        <li>
+            <button id="darkModeToggle" 
+                class="btn border-0 text-white bg-transparent ms-2">
+                <i class="bi bi-moon-stars fs-5"></i>
+            </button>
+        </li>
 
         <li class="nav-item mt-4">
             <a href="{{ route('hr.logout') }}" class="nav-link logout">
