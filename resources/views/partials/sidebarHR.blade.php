@@ -239,6 +239,21 @@
         padding-left: 20px;
     }
 }
+ .sidebar-header h5 {
+            color: white;
+            font-weight: 800;
+            margin: 0 0 0 15px;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .sidebar:hover h5, .sidebar.expanded h5 {
+            opacity: 1;
+        }
 
     </style>
 </head>
@@ -247,8 +262,12 @@
     <i class="bi bi-list"></i>
 </button>
 <div id="mySidebar" class="sidebar">
-    <div class="logo-details">
+    <div class="ms-3 mt-3 sidebar-header d-flex align-items-center gap-2">
         <img src="{{ asset('logo.png') }}" height="35" alt="Logo">
+
+        <h5 class="mb-0 text-white fw-bold">
+            <small>HR Portal</small>
+        </h5>
     </div>
     
     <div class="nav-list">

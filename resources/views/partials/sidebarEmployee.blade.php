@@ -58,7 +58,7 @@
             min-width: 45px;
         }
 
-        .sidebar-header h3 {
+        .sidebar-header h5 {
             color: white;
             font-weight: 800;
             margin: 0 0 0 15px;
@@ -70,7 +70,7 @@
             transition: opacity 0.2s ease;
         }
 
-        .sidebar:hover h3, .sidebar.expanded h3 {
+        .sidebar:hover h5, .sidebar.expanded h5 {
             opacity: 1;
         }
 
@@ -179,7 +179,8 @@
 
 <div class="sidebar d-flex flex-column">
     <div class="sidebar-header">
-        <i class="bi bi-cpu-fill"></i> <h3>CoreHR</h3>
+        <img src="{{ asset('logo.png') }}" height="35" alt="Logo"> 
+        <h5><small>Employee Portal</small></h5>
     </div>
 
     <ul class="nav flex-column">

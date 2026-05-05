@@ -30,8 +30,12 @@
             <td>₱{{ number_format($payroll->basic_salary, 2) }}</td>
         </tr>
         <tr>
+            <th>Allowances</th>
+            <td>₱{{ number_format($payroll->allowances, 2) }}</td>
+        </tr>
+        <tr>
             <th>Deductions</th>
-            <td>₱{{ number_format($payroll->deductions, 2) }}</td>
+            <td>₱{{ number_format($payroll->deduction, 2) }}</td>
         </tr>
         <tr>
             <th>Net Salary</th>

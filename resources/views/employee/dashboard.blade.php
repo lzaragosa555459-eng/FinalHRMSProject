@@ -78,8 +78,8 @@
         
         <div class="navbar-custom tight mt-4">
             <div class="d-flex align-items-center">
-                <div class="rounded-circle text-white d-flex justify-content-center align-items-center fw-bold me-3" style="width:45px;height:45px; background: #6f42c1;">
-                    {{ substr($user->employee->name, 0, 1) }}
+                <div class="rounded-circle text-white d-flex justify-content-center align-items-center fw-bold me-3" style="width:45px;height:45px;">
+                    <img src="{{ asset('logo.png') }}" height="35" alt="Logo"> 
                 </div>
                 <div>
                     <h4 class="mb-0 fw-bold" style="color: #2d1a4d;">Welcome, {{ $user->employee->name }}</h4>
@@ -97,8 +97,24 @@
         <div class="row g-4 mt-2">
             <div class="col-lg-4">
                 <div class="card big-card text-center shadow-sm h-100">
-                    <div class="mx-auto mb-3 stat-icon" style="background: #efebf7; color: #6f42c1; width: 80px; height: 80px; font-size: 2rem; border-radius: 20px;">
-                        <i class="bi bi-person-badge"></i>
+                    <div class="d-flex justify-content-center align-items-center mb-3">
+
+                        <div class="rounded-circle overflow-hidden"
+                            style="width:140px;height:140px;background:#6f42c1;">
+
+                            @php($emp = $user->employee)
+
+                            @if($emp && $emp->profile_image)
+                                <img src="{{ asset('uploads/employees/' . $emp->profile_image) }}"
+                                    style="width:100%;height:100%;object-fit:cover;">
+                            @else
+                                <div class="w-100 h-100 d-flex justify-content-center align-items-center text-white fw-bold fs-2">
+                                    {{ strtoupper(substr($emp->name ?? 'U', 0, 1)) }}
+                                </div>
+                            @endif
+
+                        </div>
+
                     </div>
                     <h4 class="fw-bold mb-1">{{ $user->employee->name }}</h4>
                     <p class="text-muted small mb-4">{{ $user->email }}</p>
