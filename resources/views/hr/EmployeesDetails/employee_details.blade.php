@@ -74,6 +74,28 @@
         height: 100px !important;
     }
 }
+/* Ensure the wrapper doesn't collapse */
+.initials-wrapper {
+    display: inline-block;
+}
+
+    .initials {
+        /* 1. Dimensions: Equal width and height for a perfect circle */
+        width: 64px; 
+        height: 64px;
+        
+        /* 2. Centering: The Flexbox magic */
+        display: flex;
+        align-items: center;      /* Vertical centering */
+        justify-content: center;   /* Horizontal centering */
+        margin-top: 27px;
+        /* 3. Typography */
+        font-size: 2rem;          /* Large and readable */
+        font-weight: 700;         /* Bold */
+        line-height: 1;           /* Prevents line-height from pushing the letter down */
+        
+   
+    }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -95,8 +117,10 @@
                             alt="{{ $emp->name }}"
                             class="w-100 h-100 object-fit-cover">
                          @else
-                            <div class="initials">
-                                {{ strtoupper(substr($emp->name ?? 'U', 0, 1)) }}
+                            <div class="initials-wrapper">
+                                <div class="initials">
+                                    {{ strtoupper(substr($emp->name ?? 'U', 0, 1)) }}
+                                </div>
                             </div>
                         @endif
                 </div>
@@ -150,7 +174,7 @@
                         </div>
                         <div class="p-3 bg-light rounded-3">
                             <label class="text-muted small d-block">Net Monthly Salary</label>
-                            <h4 class="text-success fw-bold mb-0">
+                            <h4 class="text-success fw-bold mb-0 text-end">
                                 ₱{{ $emp->payroll && $emp->payroll->net_salary !== null ? number_format($emp->payroll->net_salary, 2) : '0.00' }}
                             </h4>
                         </div>

@@ -49,7 +49,125 @@ body.dark-mode .rating-note {
     color: #e0e0e0;
     border: 1px solid #333;
 }
+/* Dark Mode Overrides */
+body.dark-mode .card-summary {
+    background-color: #1e1e2d !important; /* Deep dark slate */
+    border: 1px solid #323248 !important;
+}
 
+body.dark-mode .dark-text-white,
+body.dark-mode h2,
+body.dark-mode h4:not(.text-danger):not(.text-success),
+body.dark-mode .fw-semibold {
+    color: #ffffff !important;
+}
+
+body.dark-mode .text-muted {
+    color: #a1a1c5 !important;
+}
+/* Base Circle Styles */
+.initials-circle {
+    width: 60px;          /* Adjust size as needed */
+    height: 60px;         /* Must match width */
+    display: flex;
+    align-items: center;  /* Vertical center */
+    justify-content: center; /* Horizontal center */
+    font-size: 24px;      /* Big letter size */
+    font-weight: 800;     /* Extra bold */
+    border-radius: 50%;   /* Makes it a circle */
+    background-color: #6f42c1; /* Your payroll purple */
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+/* Dark Mode Adjustment */
+body.dark-mode .initials-circle {
+    background-color: #4c2b91; /* Deeper purple */
+    color: #f3f4f6;
+    border: 2px solid #374151;
+}
+/* --- Force Background Colors in Dark Mode --- */
+
+body.dark-mode .card-purple {
+    background-color: #4c2b91 !important; /* Deep Royal Purple */
+    color: #ffffff !important;
+}
+
+body.dark-mode .card-purple-light {
+    /* Instead of light lavender, we use a dark plum so it looks "Dark Mode" but still Purple */
+    background-color: #2a2438 !important; 
+    color: #d1bdf2 !important;
+    border: 1px solid #4b208c !important;
+}
+/* Dark Mode Overrides for Status Rows */
+body.dark-mode .bg-light {
+    background-color: #2a2438 !important; /* Dark plum background */
+    border: 1px solid #3d3451 !important;
+}
+
+body.dark-mode .bg-light h5 {
+    color: #ffffff !important;
+}
+/* Base Card State */
+.card-modern {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                box-shadow 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05); /* Subtle border for definition */
+}
+
+/* Hover Movement */
+.card-modern:hover {
+    transform: translateY(-10px); /* Lifts the card up */
+    box-shadow: 0 12px 24px rgba(111, 66, 193, 0.15) !important; /* Soft purple glow shadow */
+}
+
+/* Dark Mode Adjustment */
+body.dark-mode .card-modern:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4) !important;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Subtle scale for the buttons inside when hovering the card */
+.card-modern:hover .btn-soft {
+    transform: scale(1.05);
+}
+
+.btn-soft {
+    transition: transform 0.2s ease;
+}
+/* Ensure the dots stay bright and visible */
+body.dark-mode .text-success .bi-circle-fill { color: #2ecc71 !important; }
+body.dark-mode .text-danger .bi-circle-fill { color: #e74c3c !important; }
+body.dark-mode .text-warning .bi-circle-fill { color: #f1c40f !important; }
+
+/* Keep the labels visible next to the dots */
+body.dark-mode .text-success { color: #2ecc71 !important; }
+body.dark-mode .text-danger { color: #e74c3c !important; }
+body.dark-mode .text-warning { color: #f1c40f !important; }
+body.dark-mode .card-white {
+    /* The white card follows your standard dark mode gray */
+    background-color: #1e1e2d !important;
+    color: #ffffff !important;
+}
+
+/* Ensure the labels inside stay readable */
+body.dark-mode .card-purple-light p,
+body.dark-mode .card-purple-light .text-muted {
+    color: #a1a1c5 !important;
+}
+
+body.dark-mode .card-purple p {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+/* Adjusting the Purple Card specifically for dark mode */
+body.dark-mode .bg-payroll-purple {
+    background-color: #4c2b91 !important; /* Slightly deeper purple for less eye strain */
+}
+
+/* Adjusting the Lavender Card specifically for dark mode */
+body.dark-mode .bg-payroll-lavender {
+    background-color: #2a2438 !important; /* Dark plum instead of light lavender */
+}
 body.dark-mode .rating-note strong {
     color: #ffffff;
 }

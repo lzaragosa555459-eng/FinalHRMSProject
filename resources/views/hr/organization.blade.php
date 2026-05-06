@@ -283,7 +283,7 @@
                 <div class="row g-4">
                     @foreach($events as $event)
                     <div class="col-md-6 col-lg-4 event-item">
-                        <div class="card shadow-sm h-100 rounded-4 border-0 overflow-hidden">
+                        <div class="card shadow-sm h-100 rounded-4 border-0 overflow-hidden card-modern">
                             <div class="p-4">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <div class="bg-purple-subtle px-3 py-1  small fw-bold">

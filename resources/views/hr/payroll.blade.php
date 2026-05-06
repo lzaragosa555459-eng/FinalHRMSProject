@@ -119,49 +119,64 @@
         <div class="col-12 mb-5 mt-5 text-center text-lg-start">
             <h2 class="fw-bold mb-4" style="color: #2d1a4d;">Payroll Management</h2>
 
-            <div class="row g-3 mb-4">
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm rounded-4 p-3 card-summary border-gross" style="background-color: #6f42c1;">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div class="bg-light p-3 rounded-3 me-3">
-                                <i class="bi bi-wallet2 text-secondary fs-4"></i>
-                            </div>
-                            <div>
-                                <small class="text-muted d-block">Overall Total Gross</small>
-                                <h4 class="fw-bold text-dark mb-0">₱{{ number_format($totalgross, 2) }}</h4>
+             <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm rounded-4 p-3 card-summary border-gross" style="background-color: #6f42c1;">
+                            <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-light p-3 rounded-3 me-3">
+                                        <i class="bi bi-wallet2 text-primary fs-4"></i>
+                                    </div>
+                                    <div>
+                                        <small class="text-white-50 d-block">Overall Total Gross</small>
+                                        <span class="fw-semibold text-white">Summary</span>
+                                    </div>
+                                </div>
+                                <div class="ms-auto text-end">
+                                    <h4 class="fw-bold text-white mb-0">₱{{ number_format($totalgross, 2) }}</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm rounded-4 p-3 card-summary border-deduction ">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div class="bg-danger-subtle p-3 rounded-3 me-3">
-                                <i class="bi bi-graph-down-arrow text-danger fs-4"></i>
-                            </div>
-                            <div>
-                                <small class="text-muted d-block">Overall Deductions</small>
-                                <h4 class="fw-bold text-danger mb-0">₱{{ number_format($totaldeduction, 2) }}</h4>
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm rounded-4 p-3 card-summary border-deduction bg-white">
+                            <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-danger-subtle p-3 rounded-3 me-3">
+                                        <i class="bi bi-graph-down-arrow text-danger fs-4"></i>
+                                    </div>
+                                    <div>
+                                        <small class="text-muted d-block">Overall Deductions</small>
+                                        <span class="fw-semibold text-dark">Summary</span>
+                                    </div>
+                                </div>
+                                <div class="ms-auto text-end">
+                                    <h4 class="fw-bold text-danger mb-0">₱{{ number_format($totaldeduction, 2) }}</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm rounded-4 p-3 card-summary border-net" style=" background-color: #e2d9f3;">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div class="bg-success-subtle p-3 rounded-3 me-3">
-                                <i class="bi bi-cash-stack text-success fs-4"></i>
-                            </div>
-                            <div>
-                                <small class="text-muted d-block">Overall Total Net</small>
-                                <h4 class="fw-bold text-success mb-0">₱{{ number_format($totalnet, 2) }}</h4>
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm rounded-4 p-3 card-summary border-net" style="background-color: #e2d9f3;">
+                            <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-success-subtle p-3 rounded-3 me-3">
+                                        <i class="bi bi-cash-stack text-success fs-4"></i>
+                                    </div>
+                                    <div>
+                                        <small class="text-muted d-block">Overall Total Net</small>
+                                        <span class="fw-semibold text-dark">Summary</span>
+                                    </div>
+                                </div>
+                                <div class="ms-auto text-end">
+                                    <h4 class="fw-bold text-success mb-0">₱{{ number_format($totalnet, 2) }}</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
             <div class="row">
                 <div class="col-lg-4 mb-4">

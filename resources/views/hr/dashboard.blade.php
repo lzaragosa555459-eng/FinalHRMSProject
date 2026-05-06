@@ -165,27 +165,36 @@
                 <h3 class="fw-bold" style="color: #2d1a4d;">Dashboard Overview</h3>
             </div>
 
-            <div class="row g-3 tight">
-                <div class="col-md-4">
-                    <div class="card card-purple big-card text-end shadow-sm">
-                        <p class="text-uppercase small mb-1 opacity-75 text-start">Total Gross</p>
-                        <h3 class="fw-bold mb-0">₱{{ number_format($totalgross, 2) }}</h3>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-white big-card text-end shadow-sm">
-                        <p class="text-uppercase small mb-1 text-muted text-start">Deductions</p>
-                        <h3 class="fw-bold text-danger mb-0">₱{{ number_format($totaldeduction, 2) }}</h3>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-purple-light big-card text-end shadow-sm">
-                        <p class="text-uppercase small mb-1 text-start">Total Net</p>
-                        <h3 class="fw-bold text-success mb-0">₱{{ number_format($totalnet, 2) }}</h3>
-                    </div>
-                </div>
+<div class="row g-3 tight">
+    <div class="col-md-4">
+        <div class="card card-purple big-card shadow-sm">
+            <p class="text-uppercase small mb-1 opacity-75 text-start">Total Gross</p>
+            <div class="d-flex align-items-center justify-content-between">
+                <span class="fs-2">💰</span> <h3 class="fw-bold mb-0">₱{{ number_format($totalgross, 2) }}</h3>
             </div>
+        </div>
+    </div>
 
+    <div class="col-md-4">
+        <div class="card card-white big-card shadow-sm">
+            <p class="text-uppercase small mb-1 text-muted text-start">Deductions</p>
+            <div class="d-flex align-items-center justify-content-between">
+                <span class="fs-2">📉</span>
+                <h3 class="fw-bold text-danger mb-0">₱{{ number_format($totaldeduction, 2) }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card card-purple-light big-card shadow-sm">
+            <p class="text-uppercase small mb-1 text-start">Total Net</p>
+            <div class="d-flex align-items-center justify-content-between">
+                <span class="fs-2">🏦</span>
+                <h3 class="fw-bold text-success mb-0">₱{{ number_format($totalnet, 2) }}</h3>
+            </div>
+        </div>
+    </div>
+</div>
             <div class="row g-3 tight">
                 @php
                 $stats = [
