@@ -138,55 +138,87 @@
 
             <div class="col-lg-8">
                 <div class="row g-3">
-                    <div class="col-12">
-                        <div class="card card-purple big-card shadow-sm position-relative overflow-hidden">
-                            <div style="position: absolute; right: -10px; top: -10px; opacity: 0.1; font-size: 8rem;">
-                                <i class="bi bi-wallet2"></i>
-                            </div>
-                            <p class="text-uppercase small mb-1 opacity-75 fw-bold">Monthly Net Payout</p>
-                            <h1 class="display-5 fw-bold mb-0">₱{{ number_format($user->employee->payroll->net_salary ?? 0, 2) }}</h1>
-                            <small class="opacity-75">Estimated disbursement at end of month</small>
-                        </div>
-                    </div>
+<div class="col-12">
+    <div class="card card-purple big-card shadow-sm position-relative overflow-hidden p-5">
+        <div style="position: absolute; right: -20px; top: -20px; opacity: 0.15; font-size: 10rem;">
+            <i class="bi bi-wallet2"></i>
+        </div>
 
-                    <div class="col-md-6">
-                        <div class="card big-card shadow-sm border-start border-4" style="border-color: #6f42c1 !important;">
-                            <p class="text-uppercase small mb-1 text-muted fw-bold">Position Base</p>
-                            <h3 class="fw-bold mb-0 text-dark">₱{{ number_format($user->employee->position->salary ?? 0, 2) }}</h3>
-                        </div>
-                    </div>
+        <div class="position-relative">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <p class="text-uppercase small mb-0 opacity-75 fw-bold tracking-wider">
+                    Monthly Net Payout
+                </p>
+                <h1 class="display-4 fw-bold mb-0">
+                    ₱{{ number_format($user->employee->payroll->net_salary ?? 0, 2) }}
+                </h1>
+            </div>
+            <small class="opacity-75 bg-white bg-opacity-10 px-3 py-2 rounded-pill">
+                <i class="bi bi-info-circle me-1"></i> Estimated disbursement at end of month
+            </small>
+        </div>
+    </div>
+</div>
 
-                    <div class="col-md-6">
-                        <div class="card big-card shadow-sm">
-                            <p class="text-uppercase small mb-1 text-muted fw-bold">Basic Salary</p>
-                            <h3 class="fw-bold mb-0 text-dark">₱{{ number_format($user->employee->payroll->basic_salary ?? 0, 2) }}</h3>
-                        </div>
-                    </div>
+<div class="row g-3 mt-1">
+    <div class="col-md-6">
+        <div class="card big-card shadow-sm border-start border-5 p-4 h-100" style="border-color: #6f42c1 !important;">
+            <div class="d-flex flex-column justify-content-between h-100">
+                <p class="text-uppercase small mb-4 text-muted fw-bold">Position Base</p>
+                <div class="text-end">
+                    <h3 class="fw-bold mb-0 text-dark">
+                        ₱{{ number_format($user->employee->position->salary ?? 0, 2) }}
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    <div class="col-md-6">
-                        <div class="card card-purple-light big-card shadow-sm">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <p class="text-uppercase small mb-1 fw-bold opacity-75">Total Allowances</p>
-                                    <h3 class="fw-bold mb-0">+ ₱{{ number_format($user->employee->payroll->allowances ?? 0, 2) }}</h3>
-                                </div>
-                                <i class="bi bi-plus-circle fs-3"></i>
-                            </div>
-                        </div>
-                    </div>
+    <div class="col-md-6">
+        <div class="card big-card shadow-sm p-4 h-100">
+            <div class="d-flex flex-column justify-content-between h-100">
+                <p class="text-uppercase small mb-4 text-muted fw-bold">Basic Salary</p>
+                <div class="text-end">
+                    <h3 class="fw-bold mb-0 text-dark">
+                        ₱{{ number_format($user->employee->payroll->basic_salary ?? 0, 2) }}
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    <div class="col-md-6">
-                        <div class="card big-card shadow-sm border-start border-4" style="border-color: #dc3545 !important;">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <p class="text-uppercase small mb-1 text-muted fw-bold">Monthly Deductions</p>
-                                    <h3 class="fw-bold mb-0 text-danger">- ₱{{ number_format($user->employee->payroll->deduction ?? 0, 2) }}</h3>
-                                </div>
-                                <i class="bi bi-dash-circle text-danger fs-3"></i>
-                            </div>
-                        </div>
-                    </div>
-                    
+    <div class="col-md-6">
+        <div class="card card-purple-light big-card shadow-sm p-4 h-100">
+            <div class="d-flex flex-column justify-content-between h-100">
+                <div class="d-flex justify-content-between">
+                    <p class="text-uppercase small mb-0 fw-bold opacity-75">Total Allowances</p>
+                    <i class="bi bi-plus-circle fs-3"></i>
+                </div>
+                <div class="text-end mt-4">
+                    <h3 class="fw-bold mb-0">
+                        + ₱{{ number_format($user->employee->payroll->allowances ?? 0, 2) }}
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card big-card shadow-sm border-start border-5 p-4 h-100" style="border-color: #dc3545 !important;">
+            <div class="d-flex flex-column justify-content-between h-100">
+                <div class="d-flex justify-content-between">
+                    <p class="text-uppercase small mb-0 text-muted fw-bold">Monthly Deductions</p>
+                    <i class="bi bi-dash-circle text-danger fs-3"></i>
+                </div>
+                <div class="text-end mt-4">
+                    <h3 class="fw-bold mb-0 text-danger">
+                        - ₱{{ number_format($user->employee->payroll->deduction ?? 0, 2) }}
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>                               
                     <div class="col-12 mt-2">
                         <div class="p-3 rounded-4 d-flex align-items-center" style="background-color: #efebf7; color: #6f42c1;">
                             <i class="bi bi-info-circle-fill me-3 fs-5"></i>
