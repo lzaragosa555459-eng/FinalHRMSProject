@@ -630,7 +630,46 @@ body.dark-mode .emp-position{
     body.dark-mode .card-summary i {
         color: #c7b6ff !important;
     }
+/* ===== FLATPICKR DARK MODE ===== */
+body.dark-mode .flatpickr-calendar {
+    background: #1e1e1e !important;
+    border: 1px solid #333 !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.45) !important;
+}
 
+body.dark-mode .flatpickr-months,
+body.dark-mode .flatpickr-weekdays {
+    background: #1e1e1e !important;
+}
+
+body.dark-mode .flatpickr-current-month,
+body.dark-mode .flatpickr-weekday,
+body.dark-mode .flatpickr-day {
+    color: #ffffff !important;
+}
+
+body.dark-mode .flatpickr-day:hover {
+    background: #6f42c1 !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode .flatpickr-day.selected,
+body.dark-mode .flatpickr-day.startRange,
+body.dark-mode .flatpickr-day.endRange {
+    background: #6f42c1 !important;
+    border-color: #6f42c1 !important;
+    color: white !important;
+}
+
+body.dark-mode .flatpickr-day.today {
+    border-color: #9b6dff !important;
+}
+
+body.dark-mode .numInput,
+body.dark-mode .flatpickr-monthDropdown-months {
+    color: #ffffff !important;
+    background: transparent !important;
+}
 </style>
 
 <script>

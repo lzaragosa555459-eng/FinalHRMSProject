@@ -171,10 +171,10 @@ class HRController extends Controller
     }
 
     public function payroll(){
-        $payrolls = Payroll::paginate(8);
+        $payrolls = Payroll::paginate(9);
         $employees = Employee::all();
         $departments = Department::all();
-
+        $days_gone = Attendance::count();
         $totalgross = DB::table('payrolls')
             ->selectRaw('SUM(basic_salary + allowances) as total_gross')
             ->value('total_gross');
@@ -245,6 +245,7 @@ class HRController extends Controller
             ->join('positions', 'positions.position_id', '=', 'employees.position_id')
             ->where('positions.department_id', $id)
             ->sum('payrolls.net_salary');
+
         $totalDeduction = Payroll::where('employee_id', $id)
         ->sum('deduction');
         $totalGross = Payroll::where('employee_id', $id)
