@@ -209,11 +209,7 @@ class CrudController extends Controller
         $start = Carbon::parse($validated['period_start']);
         $end   = Carbon::parse($validated['period_end']);
 
-        $startDay = $start->day;
-
-        $cutoff = ($startDay >= 5 && $startDay <= 20)
-            ? 'first'
-            : 'second';
+        $cutoff = $validated['cutoff_label'];
 
         $days = $start->diffInDays($end) + 1;
         $dailyRate = $monthlySalary / 30;

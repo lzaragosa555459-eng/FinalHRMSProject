@@ -171,7 +171,7 @@ class HRController extends Controller
     }
 
     public function payroll(){
-        $payrolls = Payroll::paginate(9);
+       $payrolls = Payroll::orderBy('created_at', 'desc')->paginate(9);
         $employees = Employee::all();
         $departments = Department::all();
         $days_gone = Attendance::count();

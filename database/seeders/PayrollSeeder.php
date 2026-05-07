@@ -11,11 +11,10 @@ class PayrollSeeder extends Seeder
 {
     public function run()
     {
-        $employees = Employee::all();
+        $employees = Employee::with('position')->get();
 
         foreach ($employees as $emp) {
 
-            // simulate position salary (you can replace with real relation later)
             $baseSalary = match ($emp->position_id) {
                 1 => 40000,
                 2 => 35000,
@@ -25,40 +24,54 @@ class PayrollSeeder extends Seeder
                 default => 20000,
             };
 
-            // cutoffs
-            $periodStart1 = Carbon::create(2026, 4, 1);
-            $periodEnd1   = Carbon::create(2026, 4, 15);
+            $periods = [
+                [Carbon::create(2026, 4, 1), Carbon::create(2026, 4, 15)],
+                [Carbon::create(2026, 4, 16), Carbon::create(2026, 4, 30)],
+            ];
 
-            $periodStart2 = Carbon::create(2026, 4, 16);
-            $periodEnd2   = Carbon::create(2026, 4, 30);
-
-            foreach ([[$periodStart1, $periodEnd1, '1st Cutoff'], [$periodStart2, $periodEnd2, '2nd Cutoff']] as [$start, $end, $label]) {
+            foreach ($periods as $index => [$start, $end]) {
 
                 $days = $start->diffInDays($end) + 1;
                 $dailyRate = $baseSalary / 30;
 
                 $basic = $dailyRate * $days;
-
                 $allowances = rand(500, 3000);
-                $deduction  = rand(200, 1500);
-
                 $gross = $basic + $allowances;
-                $net   = $gross - $deduction;
+
+                // ✅ MATCH CONTROLLER FORMAT
+                $cutoff = ($index === 0) ? 'first' : 'second';
+
+                // ✅ SAME LOGIC AS CONTROLLER
+                if ($cutoff == 'first') {
+                    $tax = $gross * 0.10;
+                    $sss = 0;
+                    $philhealth = 0;
+                    $pagibig = 0;
+                } else {
+                    $tax = 0;
+                    $sss = $gross * 0.045;
+                    $philhealth = $gross * 0.03;
+                    $pagibig = $gross * 0.02;
+                }
+
+                $deduction = $tax + $sss + $philhealth + $pagibig;
+                $net = $gross - $deduction;
 
                 Payroll::create([
-                    'employee_id'   => $emp->employee_id,
-                    'period_start'  => $start,
-                    'period_end'    => $end,
-                    'cutoff_label'  => $label,
+                    'employee_id'  => $emp->employee_id,
+                    'period_start' => $start,
+                    'period_end'   => $end,
 
-                    'basic_salary'  => $basic,
-                    'allowances'    => $allowances,
-                    'gross_salary'  => $gross,
-                    'deduction'     => $deduction,
-                    'net_salary'    => $net,
+                    'cutoff_label' => $cutoff,
 
-                    'pay_date'      => now(),
-                    'status'        => 'Paid',
+                    'basic_salary' => $basic,
+                    'allowances'   => $allowances,
+                    'gross_salary' => $gross,
+                    'deduction'    => $deduction,
+                    'net_salary'   => $net,
+
+                    'pay_date'     => now(),
+                    'status'       => 'Paid',
                 ]);
             }
         }

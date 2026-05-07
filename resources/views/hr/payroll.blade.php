@@ -199,7 +199,7 @@
                                 <label class="form-label small fw-bold text-muted">Basic Salary</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-white border-end-0 text-muted">₱</span>
-                                    <input type="number" class="form-control border-start-0" placeholder="0.00" id="basic_salary" name="basic_salary">
+                                    <input type="number" step="any" class="form-control border-start-0" placeholder="0.00" id="basic_salary" name="basic_salary">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -244,7 +244,7 @@
                             <div class="row mb-3">
                                 <div class="col-12">
                                     <label class="form-label small fw-bold text-muted">Allowances</label>
-                                    <input type="number" class="form-control" placeholder="0.00" id="allowances" name="allowances">
+                                    <input type="number"  class="form-control" placeholder="0.00" id="allowances" name="allowances">
                                 </div>
                             </div>
 
@@ -477,6 +477,11 @@ document.getElementById('cutoff_label').addEventListener('change', function () {
         box.innerHTML = `<small class="text-muted">Select cut-off first...</small>`;
     }
 });
+document.querySelector('form').addEventListener('reset', function () {
+    document.getElementById('deductionBox').innerHTML =
+        `<small class="text-muted">Select cut-off first...</small>`;
 
+    document.getElementById('cutoff_label').value = "";
+});
 </script>
 @endsection
