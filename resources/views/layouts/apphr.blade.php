@@ -642,6 +642,11 @@ body.dark-mode .flatpickr-weekdays {
     background: #1e1e1e !important;
 }
 
+body.dark-mode .alert-danger {
+    background-color: #2b1b1b !important;
+    color: #ffd6d6 !important;
+    border-left: 4px solid #dc3545 !important;
+}
 body.dark-mode .flatpickr-current-month,
 body.dark-mode .flatpickr-weekday,
 body.dark-mode .flatpickr-day {

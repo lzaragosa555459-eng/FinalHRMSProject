@@ -156,7 +156,15 @@
                     <h3 class="fw-bold mb-1">Update Event</h3>
                     <p class="mb-0 opacity-75">Modify scheduling, location, and participation details</p>
                 </div>
-
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="card-body p-4 p-md-5">
                     <form action="{{ route('hr.Crud.updateEvent', $event->event_id) }}" method="POST">
                         @csrf

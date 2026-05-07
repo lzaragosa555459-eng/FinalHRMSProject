@@ -183,6 +183,15 @@
                 <div class="col-lg-4 mb-4">
                     <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
                         <h5 class="mb-4 fw-bold text-purple"><i class="bi bi-plus-circle-fill me-2"></i>Add Payroll</h5>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <form action="{{ route('hr.AddPayroll') }}" method="POST">
                             @csrf
                             <div class="mb-3">

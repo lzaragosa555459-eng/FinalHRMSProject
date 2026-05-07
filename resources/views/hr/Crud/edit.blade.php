@@ -84,7 +84,15 @@
                 <h2 class="section-title">
                     <i class="bi bi-pencil-square"></i> Edit Employee
                 </h2>
-
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form action="{{ route('hr.Crud.update', $employee->employee_id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')

@@ -97,7 +97,15 @@
                         <span class="fw-bold fs-5 text-white">{{ $employeeID->name }}</span>
                     </div>
                 </div>
-
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="card-body p-4 p-md-5">
                     <form action="{{ isset($performance) 
                             ? route('UpdateEmployeeRating', ['employee_id' => $employeeID->employee_id, 'performance_id' => $performance->performance_id]) 

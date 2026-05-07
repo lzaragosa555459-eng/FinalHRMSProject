@@ -164,7 +164,15 @@
                         </h3>
                         <p class="mb-0 opacity-75 small">Define organizational structure and goals</p>
                     </div>
-
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                     <div class="card-body p-4 p-md-5">
                         <form action="{{ isset($department)
                             ? route('UpdateDepartment', $department->department_id)
@@ -182,7 +190,7 @@
                                     <span class="input-group-text bg-white border-end-0 text-muted"><i class="bi bi-hash"></i></span>
                                     <input type="text" class="form-control border-start-0" id="department_number" name="department_number" 
                                         placeholder="e.g. DEP-101" 
-                                        value="{{ old('department_number', $department->department_number ?? '' ) }}">
+                                        value="{{ old('department_number', $department->department_number ?? '' ) }}" required>
                                 </div>
                             </div>
 
@@ -199,7 +207,7 @@
                             <div class="mb-4">
                                 <label for="description" class="form-label">Purpose & Description</label>
                                 <textarea class="form-control" id="description" name="description" rows="4" 
-                                    placeholder="Briefly describe the department's responsibilities...">{{ old('description', $department->description ?? '') }}</textarea>
+                                    placeholder="Briefly describe the department's responsibilities..." required>{{ old('description', $department->description ?? '') }}</textarea>
                             </div>
 
                             <div class="d-flex justify-content-end gap-2 pt-3 border-top">

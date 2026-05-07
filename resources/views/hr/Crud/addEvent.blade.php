@@ -92,7 +92,15 @@
                     <h3 class="mb-0 fw-bold">Schedule New Event</h3>
                     <p class="mb-0 opacity-75">Organize meetings, trainings, or social gatherings</p>
                 </div>
-
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="card-body p-5">
                     <form action="{{ route('hr.Crud.addEvent') }}" method="POST">
                         @csrf

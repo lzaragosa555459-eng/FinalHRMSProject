@@ -134,17 +134,20 @@ class HRController extends Controller
     }
 
     public function employees(){
-        $employees = Employee::paginate(6);
+        $employees = Employee::orderBy('created_at', 'desc')->paginate(6);
         $departments = Department::all();
 
         return view('hr.employees', compact('employees','departments'));
     }
     public function organization()
     {
-        $departments = Department::withCount('employees')->paginate(6);
+        $departments = Department::withCount('employees')
+            ->orderBy('created_at', 'desc')
+            ->paginate(6, ['*'], 'department_page');
 
-        
-        $events = Event::with('department')->paginate(6);
+        $events = Event::with('department')
+            ->orderBy('created_at', 'desc')
+            ->paginate(6, ['*'], 'event_page');
 
         return view('hr.organization', compact('departments', 'events'));
     }
@@ -152,12 +155,12 @@ class HRController extends Controller
    
 
     public function attendance(){
-        $attendances = Attendance::paginate(6, ['*'], 'attendance_page');
+        $attendances = Attendance::orderBy('created_at', 'desc')->paginate(6, ['*'], 'attendance_page');
 
-        $approvedleaves = Leave::where('status', 'approved')
+        $approvedleaves = Leave::where('status', 'approved')->orderBy('created_at', 'desc')
             ->paginate(6, ['*'], 'approved_page');
 
-        $pendingleaves = Leave::where('status', 'pending')
+        $pendingleaves = Leave::where('status', 'pending')->orderBy('created_at', 'desc')
             ->paginate(6, ['*'], 'pending_page');
 
         $countleaves = Leave::where('status', 'pending')->count();
@@ -201,7 +204,9 @@ class HRController extends Controller
     public function employee_details($id){
         $emp = Employee::findOrFail($id);
         
-        $performances = Performance::where('employee_id', $id)->get();
+        $performances = Performance::where('employee_id', $id)
+        ->orderBy('created_at', 'desc')
+        ->paginate(6);
         $performance =  Performance::where('employee_id', $id)
             ->latest()
             ->first();
