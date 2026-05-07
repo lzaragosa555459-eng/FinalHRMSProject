@@ -670,6 +670,7 @@ body.dark-mode .flatpickr-monthDropdown-months {
     color: #ffffff !important;
     background: transparent !important;
 }
+
 </style>
 
 <script>

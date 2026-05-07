@@ -354,13 +354,14 @@
 
                                                 <button class="btn btn-sm btn-light border p-0" style="width:26px;height:26px;"
                                                     onclick="editEmployee(
-                                                        '{{ $payroll->employee->employee_id }}',
-                                                        '{{ $payroll->basic_salary }}',
-                                                        '{{ $payroll->period_start }}',
-                                                        '{{ $payroll->period_end }}',
-                                                        '{{ $payroll->allowances }}',
-                                                        '{{ $payroll->pay_date }}'
-                                                    )">
+                                                            '{{ $payroll->employee->employee_id }}',
+                                                            '{{ $payroll->cutoff_label }}',
+                                                            '{{ $payroll->basic_salary }}',
+                                                            '{{ $payroll->period_start }}',
+                                                            '{{ $payroll->period_end }}',
+                                                            '{{ $payroll->allowances }}',
+                                                            '{{ $payroll->pay_date }}'
+                                                        )">
                                                     <i class="bi bi-pencil-square" style="font-size:10px;"></i>
                                                 </button>
 
@@ -398,12 +399,34 @@
     </div>
 
 <script>
-function editEmployee(employee_id, basic_salary, period_start, period_end, allowances){
+function editEmployee(employee_id, cutoff_label, basic_salary, period_start, period_end, allowances, pay_date){
+
+    // employee
     document.getElementById('employee_id').value = employee_id;
+
+    // cutoff FIRST (important)
+    const cutoff = document.getElementById('cutoff_label');
+    cutoff.value = cutoff_label;
+
+    // trigger UI update
+    cutoff.dispatchEvent(new Event('change'));
+
+    // other fields
     document.getElementById('basic_salary').value = basic_salary;
     document.getElementById('period_start').value = period_start;
     document.getElementById('period_end').value = period_end;
     document.getElementById('allowances').value = allowances;
+
+    // optional debug
+    console.log({
+        employee_id,
+        cutoff_label,
+        basic_salary,
+        period_start,
+        period_end,
+        allowances,
+        pay_date
+    });
 }
 
 function searchEmployees(){

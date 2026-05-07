@@ -196,10 +196,11 @@ class CrudController extends Controller
     public function AddPayroll(Request $request)
     {
         $validated = $request->validate([
-            'employee_id'  => 'required|exists:employees,employee_id',
-            'period_start' => 'required|date',
-            'period_end'   => 'required|date|after_or_equal:period_start',
-            'allowances'   => 'required|numeric|min:0',
+            'employee_id'   => 'required|exists:employees,employee_id',
+            'cutoff_label'  => 'required|string',
+            'period_start'  => 'required|date',
+            'period_end'    => 'required|date|after_or_equal:period_start',
+            'allowances'    => 'required|numeric|min:0',
         ]);
 
         $employee = Employee::with('position')->find($validated['employee_id']);
@@ -210,12 +211,9 @@ class CrudController extends Controller
 
         $startDay = $start->day;
 
-        
-        if ($startDay >= 5 && $startDay <= 20) {
-            $cutoff = 'first';
-        } else {
-            $cutoff = 'second';
-        }
+        $cutoff = ($startDay >= 5 && $startDay <= 20)
+            ? 'first'
+            : 'second';
 
         $days = $start->diffInDays($end) + 1;
         $dailyRate = $monthlySalary / 30;
