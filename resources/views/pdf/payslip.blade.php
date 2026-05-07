@@ -57,20 +57,11 @@
 
         <div class="section">
 
-            {{-- CUTOFF LABEL --}}
             <div class="cutoff">
                 {{ $payroll->cutoff_label == 'first' ? 'First Cut-off' : 'Second Cut-off' }}
             </div>
 
             <table>
-                <tr>
-                    <th>Period</th>
-                    <td>
-                        {{ \Carbon\Carbon::parse($payroll->period_start)->format('M d') }}
-                        -
-                        {{ \Carbon\Carbon::parse($payroll->period_end)->format('M d, Y') }}
-                    </td>
-                </tr>
 
                 <tr>
                     <th>Basic Salary</th>
@@ -83,20 +74,31 @@
                 </tr>
 
                 <tr>
-                    <th>Gross</th>
+                    <th>Gross Salary</th>
                     <td>₱{{ number_format($payroll->gross_salary, 2) }}</td>
                 </tr>
 
+                {{-- ✅ DEDUCTION BREAKDOWN --}}
                 <tr>
                     <th>Deductions</th>
-                    <td class="text-danger">
-                        - ₱{{ number_format($payroll->deduction, 2) }}
+                    <td>
+                        @if($payroll->cutoff_label == 'first')
+                            <strong>Tax (5%)</strong><br>
+                        @elseif($payroll->cutoff_label == 'second')
+                            <strong>SSS (5%)</strong><br>
+                            <strong>PhilHealth (5%)</strong><br>
+                            <strong>Pag-IBIG (5%)</strong><br>
+                        @endif
+
+                        <span style="color:#dc3545;">
+                            - ₱{{ number_format($payroll->deduction, 2) }}
+                        </span>
                     </td>
                 </tr>
 
                 <tr>
                     <th>Net Salary</th>
-                    <td class="text-success">
+                    <td style="color:#198754;">
                         <strong>
                             ₱{{ number_format($payroll->net_salary, 2) }}
                         </strong>
