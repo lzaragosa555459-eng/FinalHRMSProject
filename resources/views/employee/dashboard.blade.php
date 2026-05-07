@@ -105,7 +105,7 @@
 
                             @php($emp = $user->employee)
 
-                            @if($emp && $emp->profile_image)
+                            @if(!empty($emp->profile_image) && file_exists(public_path('uploads/employees/' . $emp->profile_image)))
                                 <img src="{{ asset('uploads/employees/' . $emp->profile_image) }}"
                                     style="width:100%;height:100%;object-fit:cover;">
                             @else
@@ -123,7 +123,15 @@
                     <div class="status-badge bg-purple-light mb-4">
                         {{ $user->employee->position->department->name }}
                     </div>
+                    <form method="POST" action="{{ route('employee.profile.update') }}" enctype="multipart/form-data" style="margin-top: -10px;">
+                        @csrf
 
+                        <input type="file" name="profile_image" id="profileImage" hidden>
+
+                        <a href="#" onclick="document.getElementById('profileImage').click(); return false;">
+                            Change Profile Picture
+                        </a>
+                    </form>
                     <div class="text-start border-top pt-4">
                         <p class="text-muted small text-uppercase fw-bold mb-2">Quick Actions</p>
                         <a href="{{ route('payroll.downloadSlip') }}"
@@ -150,7 +158,7 @@
                             <p class="text-uppercase small mb-0 opacity-75 fw-bold tracking-wider">
                                 Monthly Net Payout
                             </p>
-                            <h1 class="display-4 fw-bold mb-0 text-success">
+                            <h1 class="display-4 fw-bold mb-0 text-format" style="color: #00ff6e;">
                             ₱{{ number_format($monthlyPayout, 2) }}
                             </h1>
                         </div>
@@ -160,7 +168,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row g-3 mt-1">
+            <div class="row g-3 mt-1" style="margin-left: 0px;">
 
                 <div class="col-md-6">
                     <div class="card p-3 shadow-sm">
@@ -255,4 +263,9 @@
         </div>
     </div>
 </div>
+<script>
+document.getElementById('profileImage').addEventListener('change', function () {
+    this.closest('form').submit();
+});
+</script>
 @endsection

@@ -205,13 +205,15 @@ class HRController extends Controller
         $emp = Employee::findOrFail($id);
         
         $performances = Performance::where('employee_id', $id)
-        ->orderBy('created_at', 'desc')
-        ->paginate(6);
+            ->orderBy('created_at', 'desc')
+            ->paginate(6);
+        $performancesCanvas = Performance::where('employee_id', $id);
+            
         $performance =  Performance::where('employee_id', $id)
             ->latest()
             ->first();
 
-        $ratings = $performances->pluck('rating');
+        $ratings = $performancesCanvas->pluck('rating');
         $labels = $performances->pluck('review_period'); // or review_date
         
         $employeeSummary = Attendance::select(
@@ -238,7 +240,7 @@ class HRController extends Controller
             $present = $attendanceByDate->pluck('present');
             $late = $attendanceByDate->pluck('late');
 
-        return view('hr.EmployeesDetails.employee_details', compact('emp','ratings','labels','performances','employeeSummary', 'attendanceByDate', 'dates', 'present', 'late', 'performance'));
+        return view('hr.EmployeesDetails.employee_details', compact('emp','ratings','labels','performances','employeeSummary', 'attendanceByDate', 'dates', 'present', 'late', 'performance', 'performancesCanvas'));
     }
      public function organization_details($id){
         $employees = Employee::join('positions', 'employees.position_id', '=', 'positions.position_id')

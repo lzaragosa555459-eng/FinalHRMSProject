@@ -83,3 +83,6 @@ Route::get('/payroll/download-slip', [EmployeeController::class, 'downloadSlip']
     ->name('payroll.downloadSlip');
 Route::get('/attendance/export-csv/{id}', [EmployeeController::class, 'exportCsv'])
     ->name('attendance.exportCsv');
+
+Route::post('/employee/profile/update', [EmployeeController::class, 'updateProfile'])
+    ->name('employee.profile.update');

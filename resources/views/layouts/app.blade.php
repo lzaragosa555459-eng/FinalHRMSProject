@@ -304,6 +304,9 @@ body.dark-mode .text-muted {
 body.dark-mode .bi {
     color: inherit;
 }
+body.dark-mode .display-4 {
+    color: #11ff00 !important;
+}
 /* ================= DARK MODE EVENTS ================= */
 
 body.dark-mode {

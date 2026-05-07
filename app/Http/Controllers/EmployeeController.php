@@ -14,7 +14,7 @@ use Symfony\Contracts\Service\Attribute\Required;
 use App\Models\Payroll;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
-
+use Illuminate\Support\Facades\Storage;
 class EmployeeController extends Controller
 {
 
@@ -130,9 +130,12 @@ class EmployeeController extends Controller
 
    public function performance(){
       $user = Auth::user();
-      $performances = Performance::where('employee_id', $user->employee_id)->get();
-
-      return view('employee.performance', compact('performances'));
+      $performances = Performance::where('employee_id', $user->employee_id)
+         ->orderBy('created_at', 'desc')
+         ->get();
+      $performanceCanva = Performance::where('employee_id', $user->employee_id)
+               ->get();
+      return view('employee.performance', compact('performances', 'performanceCanva'));
    }
 
    public function attend($employee_id, $event_id)
@@ -229,5 +232,34 @@ class EmployeeController extends Controller
       }, $filename, [
          "Content-Type" => "text/csv",
       ]);
+   }
+
+
+   public function updateProfile(Request $request)
+   {
+      $request->validate([
+         'profile_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+      ]);
+
+      $user = Auth::user();
+      $employee = $user->employee;
+
+      if ($request->hasFile('profile_image')) {
+
+         // delete old image (optional)
+         if ($employee->profile_image && file_exists(public_path('uploads/employees/' . $employee->profile_image))) {
+               unlink(public_path('uploads/employees/' . $employee->profile_image));
+         }
+
+         $file = $request->file('profile_image');
+         $filename = time() . '_' . $file->getClientOriginalName();
+
+         $file->move(public_path('uploads/employees'), $filename);
+
+         $employee->profile_image = $filename;
+         $employee->save();
+      }
+
+      return redirect()->back()->with('success', 'Profile updated successfully!');
    }
 }

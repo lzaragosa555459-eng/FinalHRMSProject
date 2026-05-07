@@ -160,7 +160,7 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const labels = @json($performances->pluck('review_period'));
-    const ratings = @json($performances->pluck('rating'));
+    const ratings = @json($performanceCanva->pluck('rating'));
     const ctx = document.getElementById('performanceChart').getContext('2d');
 
     // Create Gradient
