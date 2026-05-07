@@ -2,85 +2,111 @@
 <html>
 <head>
     <title>Payslip</title>
+
     <style>
         body { font-family: sans-serif; }
         .container { padding: 20px; }
         h2 { color: #6f42c1; }
 
-        .cutoff-badge{
-            display:inline-block;
-            padding:6px 12px;
-            background:#6f42c1;
-            color:white;
-            border-radius:5px;
-            font-size:12px;
-            margin-bottom:10px;
+        .cutoff {
+            margin-bottom: 15px;
+            padding: 6px 10px;
+            background: #6f42c1;
+            color: white;
+            display: inline-block;
+            border-radius: 5px;
+            font-size: 12px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         td, th {
             border: 1px solid #ddd;
             padding: 10px;
         }
+
+        th {
+            background: #f3f0f7;
+            text-align: left;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .text-success { color: #198754; }
+        .text-danger { color: #dc3545; }
     </style>
 </head>
+
 <body>
 
 <div class="container">
 
     <h2>Employee Payslip</h2>
 
-    {{-- SHOW CUTOFF ONLY IF VALUE EXISTS --}}
-    @if($payroll->cutoff_label == '1st Cutoff')
-        <div class="cutoff-badge">
-            First Cut-off
+    <p><strong>Name:</strong> {{ $user->employee->name }}</p>
+
+    <p><strong>Month:</strong> {{ now()->format('F Y') }}</p>
+
+    @foreach($payrolls as $payroll)
+
+        <div class="section">
+
+            {{-- CUTOFF LABEL --}}
+            <div class="cutoff">
+                {{ $payroll->cutoff_label == 'first' ? 'First Cut-off' : 'Second Cut-off' }}
+            </div>
+
+            <table>
+                <tr>
+                    <th>Period</th>
+                    <td>
+                        {{ \Carbon\Carbon::parse($payroll->period_start)->format('M d') }}
+                        -
+                        {{ \Carbon\Carbon::parse($payroll->period_end)->format('M d, Y') }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Basic Salary</th>
+                    <td>₱{{ number_format($payroll->basic_salary, 2) }}</td>
+                </tr>
+
+                <tr>
+                    <th>Allowances</th>
+                    <td>₱{{ number_format($payroll->allowances, 2) }}</td>
+                </tr>
+
+                <tr>
+                    <th>Gross</th>
+                    <td>₱{{ number_format($payroll->gross_salary, 2) }}</td>
+                </tr>
+
+                <tr>
+                    <th>Deductions</th>
+                    <td class="text-danger">
+                        - ₱{{ number_format($payroll->deduction, 2) }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Net Salary</th>
+                    <td class="text-success">
+                        <strong>
+                            ₱{{ number_format($payroll->net_salary, 2) }}
+                        </strong>
+                    </td>
+                </tr>
+            </table>
+
         </div>
-    @elseif($payroll->cutoff_label == '2nd Cutoff')
-        <div class="cutoff-badge">
-            Second Cut-off
-        </div>
-    @endif
 
-    <p>
-        <strong>Name:</strong>
-        {{ $payroll->employee->name }}
-    </p>
-
-    <p>
-        <strong>Payroll Date:</strong>
-        {{ $payroll->created_at->format('M d, Y') }}
-    </p>
-
-    <table>
-        <tr>
-            <th>Basic Salary</th>
-            <td>₱{{ number_format($payroll->basic_salary, 2) }}</td>
-        </tr>
-
-        <tr>
-            <th>Allowances</th>
-            <td>₱{{ number_format($payroll->allowances, 2) }}</td>
-        </tr>
-
-        <tr>
-            <th>Deductions</th>
-            <td>₱{{ number_format($payroll->deduction, 2) }}</td>
-        </tr>
-
-        <tr>
-            <th>Net Salary</th>
-            <td>
-                <strong>
-                    ₱{{ number_format($payroll->net_salary, 2) }}
-                </strong>
-            </td>
-        </tr>
-    </table>
+    @endforeach
 
 </div>
 

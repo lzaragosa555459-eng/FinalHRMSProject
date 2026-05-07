@@ -27,6 +27,8 @@ class EmployeeController extends Controller
 
       $currentMonth = Carbon::now()->month;
       $currentYear  = Carbon::now()->year;
+   
+
       $firstCutoff = Payroll::where('employee_id', $employeeId)
          ->whereMonth('period_start', $currentMonth)
          ->whereYear('period_start', $currentYear)
@@ -156,13 +158,27 @@ class EmployeeController extends Controller
    }
 
 
-   public function downloadSlip($id)
+   public function downloadSlip()
    {
-      $payroll = Payroll::with('employee')->findOrFail($id);
+      $user = Auth::user();
 
-      $pdf = Pdf::loadView('pdf.payslip', compact('payroll'));
+      if (!$user || !$user->employee) {
+         return back()->with('error', 'No employee found.');
+      }
 
-      return $pdf->download('Payslip-'.$payroll->employee->name.'.pdf');
+      $payrolls = Payroll::where('employee_id', $user->employee->employee_id)
+         ->whereMonth('period_start', now()->month)
+         ->whereYear('period_start', now()->year)
+         ->orderBy('period_start', 'asc')
+         ->get();
+
+      if ($payrolls->isEmpty()) {
+         return back()->with('error', 'No payroll found this month.');
+      }
+
+      $pdf = Pdf::loadView('pdf.payslip', compact('payrolls', 'user'));
+
+      return $pdf->download('Payslip-'.$user->employee->name.'.pdf');
    }
 
 

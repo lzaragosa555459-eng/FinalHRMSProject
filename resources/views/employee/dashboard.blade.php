@@ -126,7 +126,7 @@
 
                     <div class="text-start border-top pt-4">
                         <p class="text-muted small text-uppercase fw-bold mb-2">Quick Actions</p>
-                        <a href="{{ route('payroll.downloadSlip', $user->employee->payroll->payroll_id) }}"
+                        <a href="{{ route('payroll.downloadSlip') }}"
                         class="btn btn-purple w-100 mb-2">
                             <i class="bi bi-download me-2"></i> Download Payslip
                         </a>
@@ -150,7 +150,7 @@
                             <p class="text-uppercase small mb-0 opacity-75 fw-bold tracking-wider">
                                 Monthly Net Payout
                             </p>
-                            <h1 class="display-4 fw-bold mb-0">
+                            <h1 class="display-4 fw-bold mb-0 text-success">
                             ₱{{ number_format($monthlyPayout, 2) }}
                             </h1>
                         </div>

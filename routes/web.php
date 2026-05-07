@@ -79,7 +79,7 @@ Route::get('/employee-attendance/{employee_id}/{event_id}', [EmployeeController:
 Route::post('/employee-request_leave/{id}', [CrudController::class, 'add_request'])->name('add-request');
 Route::delete('/employee-request_leave/{id}', [CrudController::class, 'cancel_leave'])->name('cancel-leave');
 
-Route::get('/payroll/{id}/download-slip', [EmployeeController::class, 'downloadSlip'])
+Route::get('/payroll/download-slip', [EmployeeController::class, 'downloadSlip'])
     ->name('payroll.downloadSlip');
 Route::get('/attendance/export-csv/{id}', [EmployeeController::class, 'exportCsv'])
     ->name('attendance.exportCsv');
