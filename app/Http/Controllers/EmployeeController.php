@@ -169,18 +169,28 @@ class EmployeeController extends Controller
       $payrolls = Payroll::where('employee_id', $user->employee->employee_id)
          ->whereMonth('period_start', now()->month)
          ->whereYear('period_start', now()->year)
-         ->orderBy('period_start', 'asc')
          ->get();
 
       if ($payrolls->isEmpty()) {
          return back()->with('error', 'No payroll found this month.');
       }
 
-      $pdf = Pdf::loadView('pdf.payslip', compact('payrolls', 'user'));
+      $totalBasic = $payrolls->sum('basic_salary');
+      $totalAllowance = $payrolls->sum('allowances');
+      $totalDeduction = $payrolls->sum('deduction');
+      $totalNet = $payrolls->sum('net_salary');
+
+      $pdf = Pdf::loadView('pdf.payslip', compact(
+         'payrolls',
+         'user',
+         'totalBasic',
+         'totalAllowance',
+         'totalDeduction',
+         'totalNet'
+      ));
 
       return $pdf->download('Payslip-'.$user->employee->name.'.pdf');
    }
-
 
    public function exportCsv($id)
    {

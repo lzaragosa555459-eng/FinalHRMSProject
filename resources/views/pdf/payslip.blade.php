@@ -102,12 +102,45 @@
                         </strong>
                     </td>
                 </tr>
+
             </table>
 
         </div>
 
     @endforeach
+        <hr>
 
+        <h3 style="color:#6f42c1;">Monthly Summary</h3>
+
+        <table>
+
+            <tr>
+                <th>Total Basic Salary</th>
+                <td>₱{{ number_format($totalBasic, 2) }}</td>
+            </tr>
+
+            <tr>
+                <th>Total Allowances</th>
+                <td>₱{{ number_format($totalAllowance, 2) }}</td>
+            </tr>
+
+            <tr>
+                <th>Total Deductions</th>
+                <td style="color:#dc3545;">
+                    - ₱{{ number_format($totalDeduction, 2) }}
+                </td>
+            </tr>
+
+            <tr>
+                <th>Total Net Salary</th>
+                <td style="color:#198754;">
+                    <strong>
+                        ₱{{ number_format($totalNet, 2) }}
+                    </strong>
+                </td>
+            </tr>
+
+        </table>
 </div>
 
 </body>

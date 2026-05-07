@@ -101,7 +101,7 @@
                     <div class="d-flex justify-content-center align-items-center mb-3">
 
                         <div class="rounded-circle overflow-hidden"
-                            style="width:140px;height:140px;background:#6f42c1;">
+                            style="width:280px;height:280px;background:#6f42c1;">
 
                             @php($emp = $user->employee)
 
