@@ -12,15 +12,70 @@ use App\Models\Leave;
 use App\Models\Performance;
 use Symfony\Contracts\Service\Attribute\Required;
 use App\Models\Payroll;
-
+use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class EmployeeController extends Controller
 {
-   public function dashboard(){
-    $user = Auth::user();
 
-    return view('employee.dashboard', compact('user'));
+
+   public function dashboard()
+   {
+      $user = Auth::user();
+
+      $employeeId = $user->employee->employee_id;
+
+      $currentMonth = Carbon::now()->month;
+      $currentYear  = Carbon::now()->year;
+      $firstCutoff = Payroll::where('employee_id', $employeeId)
+         ->whereMonth('period_start', $currentMonth)
+         ->whereYear('period_start', $currentYear)
+         ->where('cutoff_label', 'first')
+         ->sum('net_salary');
+
+      $secondCutoff = Payroll::where('employee_id', $employeeId)
+         ->whereMonth('period_start', $currentMonth)
+         ->whereYear('period_start', $currentYear)
+         ->where('cutoff_label', 'second')
+         ->sum('net_salary');
+
+      $monthlyPayout = $firstCutoff + $secondCutoff;
+      // Get ONLY current month payrolls
+      $payrolls = Payroll::where('employee_id', $employeeId)
+         ->whereMonth('period_start', $currentMonth)
+         ->whereYear('period_start', $currentYear)
+         ->get();
+
+      // IF no payroll this month
+      if ($payrolls->isEmpty()) {
+
+         $monthlyNet = 0;
+         $monthlyBasic = 0;
+         $monthlyAllowance = 0;
+         $monthlyDeduction = 0;
+
+      } else {
+
+         // add first + second cutoff together
+         $monthlyNet = $payrolls->sum('net_salary');
+
+         $monthlyBasic = $payrolls->sum('basic_salary');
+
+         $monthlyAllowance = $payrolls->sum('allowances');
+
+         $monthlyDeduction = $payrolls->sum('deduction');
+      }
+
+      return view('employee.dashboard', compact(
+         'user',
+         'monthlyNet',
+         'monthlyPayout',
+         'firstCutoff',
+         'secondCutoff',
+         'monthlyBasic',
+         'monthlyAllowance',
+         'monthlyDeduction'
+      ));
    }
 
    public function attendance()
