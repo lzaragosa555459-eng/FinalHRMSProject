@@ -214,4 +214,5 @@ Allows users to input and store employee data in the database.
 
 ## 🗂️ Entity Relationship Diagram (ERD)
 
-<img width="1051" height="901" alt="hrmsERD drawio" src="https://github.com/user-attachments/assets/3d134953-701f-476d-be46-3269cae2a7f9" />
+<img width="1767" height="907" alt="image" src="https://github.com/user-attachments/assets/ba4fe6ba-0b8d-4049-8d02-fdc376b8c805" />
+
