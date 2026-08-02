@@ -1,218 +1,201 @@
-# 📘 Human Resource Management System (HRMS)
+# 💼 Human Resource Management System (HRMS)
 
-## 📖 Chapter 1: Introduction
+A Human Resource Management System (HRMS) built with **Laravel** and **MySQL** to help organizations manage employees, attendance, payroll, and organizational data through a centralized web application.
 
-The Human Resources (HR) staff plays a vital role in organizing a company by managing the entire employee lifecycle. This includes recruitment, training, compensation, benefits, and performance management.
-
-However, many companies still rely on traditional methods such as paper-based records, which lead to data redundancy and time-consuming reporting processes. Additionally, some HR systems are overly complex, featuring information-dense interfaces that confuse users.
-
-This project proposes a **Human Resource Management System (HRMS)** that minimizes redundancy and ensures data consistency using a database management system. It also applies **Human-Computer Interaction (HCI)** principles to create a user-friendly interface, especially for users with impairments and disabilities.
+The system replaces manual paper-based processes with a digital solution that improves efficiency, minimizes data redundancy, and provides role-based access for HR staff and employees.
 
 ---
 
-## 🎯 Purpose and Value Proposition
+## ✨ Features
 
-The system aims to improve efficiency for both employees and HR staff, contributing to smoother company operations and better organization.
+### 👨‍💼 HR Administrator
+- Dashboard with system statistics
+- Employee Management (CRUD)
+- Department & Position Management
+- Attendance Management
+- Payroll Management
+- Leave Request Management
+- User Management
+- Role-Based Access Control
 
-### Key Benefits:
-
-* Reduces human errors
-* Provides real-time data
-* Minimizes workload
-* Improves system usability
-
-The system is developed using **Laravel**, which enables faster development through clean code and built-in tools while maintaining high performance when optimized.
-
----
-
-## 👥 Target Audience
-
-The system is designed for:
-
-### 🧑‍💼 HR Staff
-
-* Access dashboard and system modules
-* Manage employees
-* Handle organization structure (departments & positions)
-* Monitor attendance
-* Manage payroll
-* Perform CRUD operations (Create, Read, Update, Delete)
-
-### 👨‍💻 Employees
-
-* Access personal accounts
-* View attendance records
-* View payroll information
+### 👨‍💻 Employee
+- Secure Login
+- View Personal Information
+- View Attendance Records
+- View Payroll Information
+- Submit Leave Requests
 
 ---
 
-## ⚙️ Core Functionalities
+## 🛠️ Built With
 
-### 👤 User Management (CRUD)
-
-A complete system for managing users with Create, Read, Update, and Delete operations.
-Uses **Laravel Eloquent** and **AJAX** for real-time updates without page refresh.
-
----
-
-### 🔐 Role-Based Access Control
-
-Implemented using **Laravel Middleware**:
-
-* HR staff: Full system access
-* Employees: Limited access (self-service only)
+- Laravel
+- PHP
+- MySQL
+- Blade
+- Bootstrap
+- JavaScript
+- AJAX
+- HTML5
+- CSS3
 
 ---
 
-### 💰 Payroll System
+## 📂 Project Structure
 
-* Automatically computes salaries, taxes, and deductions
-* Uses **Blade templating** for clean and readable financial reports
-
----
-
-### 🕒 Attendance & Leave Tracking
-
-* Handles employee attendance and leave requests
-* Provides real-time updates
-* Includes form validation for accuracy
-* Improves HR-employee communication
+```
+app/
+database/
+public/
+resources/
+routes/
+storage/
+```
 
 ---
 
-## 🛠️ Technical Feasibility & Laravel Components
+## 🚀 Installation
 
-The system is built using:
+### 1. Clone the repository
 
-* **Laravel (MVC Architecture)**
+```bash
+git clone https://github.com/yourusername/hrms.git
+```
 
-  * Separates logic, data, and UI for better organization
+### 2. Go to the project directory
 
-* **Routing System**
+```bash
+cd hrms
+```
 
-  * Connects user actions to backend functions
+### 3. Install PHP dependencies
 
-* **MySQL Database + Eloquent ORM**
+```bash
+composer install
+```
 
-  * Simplifies data handling
-  * Supports migrations and relationships
+### 4. Install JavaScript dependencies
 
-* **Blade Templating Engine**
+```bash
+npm install
+```
 
-  * Used for UI components like the sidebar
+### 5. Create the environment file
 
-* **Artisan CLI**
+```bash
+cp .env.example .env
+```
 
-  * Speeds up development and maintenance
+If you're using Windows:
 
----
+```bash
+copy .env.example .env
+```
 
-# 📘 Chapter 2: System Design
+### 6. Generate the application key
 
-## 🖼️ Wireframe
+```bash
+php artisan key:generate
+```
 
-### 📊 Dashboard Page
+### 7. Configure your database
 
-**Purpose:**
-Displays summary cards, statistics, and recent user activities.
+Open `.env` and update the following:
 
----
+```env
+DB_DATABASE=your_database
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-## 🧾 Transaction Page (Forms)
+### 8. Run migrations and seeders
 
-### ➕ Add Transaction
+```bash
+php artisan migrate --seed
+```
 
-**Purpose:**
-Allows users to input and store employee data in the database.
+### 9. Create the storage link
 
----
+```bash
+php artisan storage:link
+```
 
-### 🔘 Buttons
+### 10. Start the development server
 
-* **Save Button**
-  Submits form data for processing and storage
+```bash
+php artisan serve
+```
 
-* **Cancel Button**
-  Clears inputs or redirects without saving
+### 11. Run Vite
 
----
+```bash
+npm run dev
+```
 
-### 📝 Input Fields
+The application should now be available at:
 
-* Accept user data such as:
-
-  * Text
-  * Numbers
-  * Dates
-
----
-
-### 🏷️ Labels
-
-* Describe each input field
-* Guide users and reduce confusion
-
----
-
-## ✅ Form Processing
-
-### ✔️ Validation
-
-* Ensures required fields are filled
-* Checks proper email format
-
----
-
-### 📤 Submission
-
-* Sends data via **POST request**
-* Processed by a controller
-* Stored in the database
+```
+http://127.0.0.1:8000
+```
 
 ---
 
-### 💬 Feedback
+## 📸 Screenshots
 
-* Displays success messages when saved
-* Shows error messages if submission fails
+### Dashboard
 
----
+<img width="1906" height="1053" alt="Screenshot 2026-04-23 164054" src="https://github.com/user-attachments/assets/af3bb5be-7c1e-42f7-996e-60cdfaad123c" />
 
-## 🔍 Task Analysis
+### Employee Management
 
-<img width="291" height="571" alt="FlowChart drawio" src="https://github.com/user-attachments/assets/c1469686-2e86-4349-baaa-cb809b47e286" />
+<img width="1902" height="1149" alt="Screenshot 2026-04-23 165503" src="https://github.com/user-attachments/assets/dafb848a-be49-47d4-baed-5920ab3cb689" />
 
-### 👤 User: HR Staff
+### Payroll
 
-### 🎯 Goal: Add an Employee
-
-### Step-by-Step Process:
-
-1. User logs in using username and password
-2. User is redirected to the dashboard
-3. User selects the **Employee** module
-4. User clicks the **Add** button
-5. User inputs employee information
-6. User reviews and confirms data
-7. User clicks the **Save** button
-8. System shows confirmation prompt
-
-   * *“Are you sure you want to add an employee?”*
-9. User selects **Yes**
-10. System displays success message:
-
-* *“Success: Added a new employee”*
+<img width="1918" height="990" alt="Screenshot 2026-05-19 212120" src="https://github.com/user-attachments/assets/4ee1ef58-cc68-4901-aba3-ebcc76cb60e1" />
 
 ---
 
-## 📅 Gantt Chart
+## 📊 Database Design
 
-<img width="1180" height="326" alt="image" src="https://github.com/user-attachments/assets/588fb82e-d30f-4f88-a2a0-2accdd737da8" />
+### Entity Relationship Diagram (ERD)
 
+<img width="1777" height="936" alt="Screenshot 2026-05-20 214736" src="https://github.com/user-attachments/assets/343e4f5d-d7cd-40bc-a036-8b38493a3151" />
 
 ---
 
-## 🗂️ Entity Relationship Diagram (ERD)
+## 📅 Development Timeline
 
-<img width="1767" height="907" alt="image" src="https://github.com/user-attachments/assets/ba4fe6ba-0b8d-4049-8d02-fdc376b8c805" />
+<img width="1832" height="335" alt="Screenshot 2026-05-20 221501" src="https://github.com/user-attachments/assets/d691c8cb-742b-48b4-89e2-52a0e9622de5" />
 
+---
+
+## 🔐 Default Login
+
+Administrator
+
+```
+Email:
+admin@example.com
+
+Password:
+password
+```
+
+Employee
+
+```
+Email:
+employee@example.com
+
+Password:
+password
+```
+
+---
+
+## 👨‍💻 Developer
+
+Created by **Liz Zaragosa**
+
+BS Information Technology | Second year Project
